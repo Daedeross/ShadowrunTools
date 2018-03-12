@@ -128,7 +128,29 @@
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+        }
+
+        public bool Equals(ITrait other)
+        {
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+            if (other is null)
+            {
+                return false;
+            }
+            return Equals(Id, other.Id);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return base.Equals(obj as ITrait);
+        }
+
+        public override int GetHashCode()
+        {
+            return Id.GetHashCode();
         }
     }
 }

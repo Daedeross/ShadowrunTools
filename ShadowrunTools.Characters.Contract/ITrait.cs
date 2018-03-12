@@ -2,7 +2,7 @@
 {
     using System;
 
-    public interface ITrait: IEditable, IDisposable
+    public interface ITrait: IEditable, IDisposable, IEquatable<ITrait>
     {
         Guid Id { get; }
         string Name { get; set; }

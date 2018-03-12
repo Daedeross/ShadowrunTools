@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Text;
 
-    public interface ILeveledTrait: ITrait
+    public interface ILeveledTrait: ITrait, IComparable<ILeveledTrait>, IAugmentable
     {
         /// <summary>
         /// Added to the (base) minimum.
@@ -35,8 +35,12 @@
         /// </summary>
         int BonusRating { get; set; }
         /// <summary>
-        /// The "actual" rating, Base + Karma Improvement + Bonus
+        /// The "actual" rating before bonus, Base + Karma Improvement
         /// </summary>
-        int ImprovedRating { get; set; }
+        int ImprovedRating { get;}
+        /// <summary>
+        /// The rating after bonus
+        /// </summary>
+        int AugmentedRating { get; }
     }
 }
