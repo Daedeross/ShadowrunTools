@@ -29,9 +29,9 @@
         /// If owner does not have a rating or it is out of range for the array,
         /// Index zero [0] is used.
         /// </summary>
-        decimal[] BonusArray { get; set; }
+        double[] BonusArray { get; set; }
 
-        decimal Bonus { get;}
+        double Bonus { get;}
 
         /// <summary>
         /// The name of the Trait that this Augment modifies.

@@ -3,6 +3,7 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Collections.Specialized;
     using System.Text;
 
     public class TraitContainerBase : ITraitContainer
@@ -21,12 +22,18 @@
                         return;
                     }
                     OnRemoveItem(oldTrait);
+                    _traits[key] = value;
+                    RaiseReplace(new KeyValuePair<string, ITrait>(key, oldTrait), new KeyValuePair<string, ITrait>(key, value));
                 }
-                _traits[key] = value;
+                else
+                {
+                    _traits[key] = value;
+                    RaiseAddedItem(new KeyValuePair<string, ITrait>(key, value));
+                }
             }
         }
 
-        public bool OwnsObjects { get; set; }
+        public virtual bool OwnsObjects { get; set; }
 
         public ICollection<string> Keys => _traits.Keys;
 
@@ -80,8 +87,11 @@
             if (_traits.TryGetValue(key, out ITrait trait))
             {
                 OnRemoveItem(trait);
+                _traits.Remove(key);
+                RaiseRemove(new KeyValuePair<string, ITrait>(key, trait));
+                return true;
             }
-            return _traits.Remove(key);
+            return false;
         }
 
         public bool Remove(KeyValuePair<string, ITrait> item)
@@ -92,6 +102,7 @@
             {
                 collection.Remove(item);
                 OnRemoveItem(item.Value);
+                RaiseRemove(item);
                 return true;
             }
             return false;
@@ -107,12 +118,38 @@
             return _traits.GetEnumerator();
         }
 
-        private void OnRemoveItem(ITrait item)
+        protected void OnRemoveItem(ITrait item)
         {
             if (OwnsObjects)
             {
                 item.Dispose(); 
             }
         }
+
+        #region INotifyCollectionChanged
+
+        public event NotifyCollectionChangedEventHandler CollectionChanged;
+
+        protected void RaiseAddedItem(KeyValuePair<string, ITrait> newItem)
+        {
+            RaiseAddedItems(new List<KeyValuePair<string, ITrait>> { newItem });
+        }
+
+        protected void RaiseAddedItems(List<KeyValuePair<string, ITrait>> newItems)
+        {
+            CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, newItems));
+        }
+
+        protected void RaiseReplace(KeyValuePair<string, ITrait> oldItem, KeyValuePair<string, ITrait> newItem)
+        {
+            CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Replace, oldItem, newItem));
+        }
+
+        protected void RaiseRemove(KeyValuePair<string, ITrait> item)
+        {
+            CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, item));
+        }
+
+        #endregion // INotifyCollectionChanged
     }
 }

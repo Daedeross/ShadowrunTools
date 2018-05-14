@@ -9,6 +9,13 @@
 
     public class BaseTraitTests
     {
+        internal class TestBaseTrait : BaseTrait
+        {
+            public TestBaseTrait(ITraitContainer container, ICategorizedTraitContainer root) : base(container, root)
+            {
+            }
+        }
+
         [Fact]
         public void ConstructorTest()
         {

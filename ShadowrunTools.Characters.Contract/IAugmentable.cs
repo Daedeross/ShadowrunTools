@@ -34,7 +34,7 @@
         /// It is up to the implementing class to subscribe to this collection's
         /// CollectionChanged event.
         /// </remarks>
-        ObservableCollection<IAugment> Augments { get; set; }
+        ObservableCollection<IAugment> Augments { get; }
 
         /// <summary>
         /// Method to handle when a subscribed Augment's property changes.
@@ -56,7 +56,7 @@
         void OnAugmentCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e);
 
         /// <summary>
-        /// Callback called by Iaubment when it is Disposed
+        /// Callback called by IAugment when it is Disposed
         /// </summary>
         /// <param name="kind"></param>
         void OnAugmentRemoving(AugmentKind kind);

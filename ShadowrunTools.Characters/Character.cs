@@ -3,8 +3,9 @@
     using System;
     using System.Collections.Generic;
     using System.Text;
-    
-    public class Character
+
+    public class Character: CategorizedTraitContainer, ICharacter
     {
+        public string Name { get; set; }
     }
 }

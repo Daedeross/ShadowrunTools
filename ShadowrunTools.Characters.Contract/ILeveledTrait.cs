@@ -33,7 +33,7 @@
         /// <summary>
         /// Any Bonus to the Rating, from <see cref="IAugment"/>s
         /// </summary>
-        int BonusRating { get; set; }
+        int RatingBonus { get; }
         /// <summary>
         /// The "actual" rating before bonus, Base + Karma Improvement
         /// </summary>
@@ -42,5 +42,10 @@
         /// The rating after bonus
         /// </summary>
         int AugmentedRating { get; }
+
+        /// <summary>
+        /// The maximum augmented rating for this trait
+        /// </summary>
+        int AugmentedMax { get; }
     }
 }
