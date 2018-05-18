@@ -11,7 +11,8 @@
     {
         internal class TestBaseTrait : BaseTrait
         {
-            public TestBaseTrait(ITraitContainer container, ICategorizedTraitContainer root) : base(container, root)
+            public TestBaseTrait(Guid id, ITraitContainer container, ICategorizedTraitContainer root)
+                : base(id, "Hai", container, root)
             {
             }
         }
@@ -21,10 +22,11 @@
         {
             var rootMock = new Mock<ICategorizedTraitContainer>().Object;
             var ownerMock = new Mock<ITraitContainer>().Object;
+            var id = Guid.NewGuid();
 
-            //var trait = new BaseTrait(ownerMock, rootMock);
-            //Assert.Throws<ArgumentNullException>(() => new BaseTrait(null, rootMock));
-            //Assert.Throws<ArgumentNullException>(() => new BaseTrait(ownerMock, null));
+            var trait = new TestBaseTrait(id, ownerMock, rootMock);
+            Assert.Throws<ArgumentNullException>(() => new TestBaseTrait(id, null, rootMock));
+            Assert.Throws<ArgumentNullException>(() => new TestBaseTrait(id, ownerMock, null));
         }
     }
 }

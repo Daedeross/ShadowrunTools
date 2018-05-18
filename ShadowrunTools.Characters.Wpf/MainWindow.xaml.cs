@@ -15,6 +15,14 @@ using System.Windows.Shapes;
 
 namespace ShadowrunTools.Characters.Wpf
 {
+    internal class TestBaseTrait : BaseTrait
+    {
+        public TestBaseTrait(Guid id, ITraitContainer container, ICategorizedTraitContainer root)
+            : base(id, "Skill", container, root)
+        {
+        }
+    }
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -23,6 +31,21 @@ namespace ShadowrunTools.Characters.Wpf
         public MainWindow()
         {
             InitializeComponent();
+
+            var id = Guid.NewGuid();
+
+            var trait = new TestBaseTrait(id, null, null)
+            {
+                Name = "Bob",
+                Book = "hai",
+                Page = 12,
+                SubCategory = "Sub Cat",
+                UserNotes = "Hmm, this is a note."
+            };
+
+            var vm = new ViewModel.EditListViewModel(trait.BeginEdit());
+
+            List_View.DataContext = vm;
         }
     }
 }

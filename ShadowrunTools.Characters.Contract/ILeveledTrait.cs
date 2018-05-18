@@ -35,6 +35,10 @@
         /// </summary>
         int RatingBonus { get; }
         /// <summary>
+        /// The improvement to the <see cref="BaseRating"/> from Karma Advancement
+        /// </summary>
+        int Improvement { get; set; }
+        /// <summary>
         /// The "actual" rating before bonus, Base + Karma Improvement
         /// </summary>
         int ImprovedRating { get;}

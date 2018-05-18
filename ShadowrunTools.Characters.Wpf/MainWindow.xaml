@@ -4,9 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ShadowrunTools.Characters.Wpf"
+        xmlns:views="clr-namespace:ShadowrunTools.Characters.Wpf.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <views:TraitEditView x:Name="List_View" />
     </Grid>
 </Window>

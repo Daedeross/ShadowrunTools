@@ -11,13 +11,16 @@
         protected ITraitContainer mOwner;
         protected ICategorizedTraitContainer mRoot;
 
-        public BaseTrait(ITraitContainer container, ICategorizedTraitContainer root)
+        public BaseTrait(Guid id, string category, ITraitContainer container, ICategorizedTraitContainer root)
         {
-            Args.NotNull(container, nameof(container));
-            Args.NotNull(root, nameof(root));
+            Args.NotNull(category, nameof(category));
+            //Args.NotNull(container, nameof(container));
+            //Args.NotNull(root, nameof(root));
 
+            Id = id;
             mOwner = container;
             mRoot = root;
+            Category = category;
         }
 
         public Guid Id { get; private set; }
@@ -25,7 +28,7 @@
         [Display(Label = "Name", Editable = false)]
         public string Name { get; set; }
         [Display(Editable = false)]
-        public string Category { get; }
+        public string Category { get; private set; }
         [Display(Editable = true)]
         public string SubCategory { get; set; }
         [Display(Editable = true)]

@@ -8,8 +8,8 @@
 
     public class Attribute : LeveledTrait
     {
-        public Attribute(ITraitContainer container, ICategorizedTraitContainer root)
-            : base(container, root)
+        public Attribute(Guid id, ITraitContainer container, ICategorizedTraitContainer root)
+            : base(id, "Attribute", container, root)
         {
 
         }

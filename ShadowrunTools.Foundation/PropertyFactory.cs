@@ -10,7 +10,7 @@
             var type = obj.GetType();
             var props = type.GetProperties();
 
-            IPropertyList dict = (IPropertyList)new Dictionary<string, IProperty>(props.Length);
+            IPropertyList dict = new PropertyList(props.Length);
 
             foreach (var prop in props)
             {

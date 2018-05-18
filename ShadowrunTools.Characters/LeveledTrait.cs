@@ -10,8 +10,8 @@
 
     public abstract class LeveledTrait : BaseTrait, ILeveledTrait
     {
-        public LeveledTrait(ITraitContainer container, ICategorizedTraitContainer root)
-            : base (container, root)
+        public LeveledTrait(Guid id, string category, ITraitContainer container, ICategorizedTraitContainer root)
+            : base (id, category, container, root)
         {
             _augments = new ObservableCollection<IAugment>();
             _augments.CollectionChanged += OnAugmentCollectionChanged;

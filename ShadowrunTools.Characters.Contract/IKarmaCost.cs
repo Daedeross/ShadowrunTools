@@ -1,5 +1,8 @@
 ﻿namespace ShadowrunTools.Characters.Contract
 {
+    /// <summary>
+    /// Traits that implement this interface can be improved or bought with Karma
+    /// </summary>
     public interface IKarmaCost
     {
         /// <summary>
