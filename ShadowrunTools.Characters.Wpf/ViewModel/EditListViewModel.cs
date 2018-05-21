@@ -1,12 +1,9 @@
 ﻿namespace ShadowrunTools.Characters.Wpf.ViewModel
 {
     using ShadowrunTools.Foundation;
-    using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+
     public class EditListViewModel
     {
         private IDictionary<string, IProperty> dictionary;

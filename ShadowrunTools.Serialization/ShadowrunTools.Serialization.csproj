@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ShadowrunTools.Characters\ShadowrunTools.Characters.csproj" />
+    <ProjectReference Include="..\ShadowrunTools.Characters.Contract\ShadowrunTools.Characters.Contract.csproj" />
   </ItemGroup>
 
 </Project>

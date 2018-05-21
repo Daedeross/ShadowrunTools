@@ -1,10 +1,7 @@
-﻿namespace ShadowrunTools.Serialization.Prototype
+﻿namespace ShadowrunTools.Serialization.Prototypes
 {
     using ShadowrunTools.Characters.Model;
-    using System;
-    using System.Collections.Generic;
     using System.Runtime.Serialization;
-    using System.Text;
 
     [DataContract(Name = "TraitPrototype", Namespace = "http://schemas.shadowruntools.com/prototypes")]
     public class TraitPrototypeBase

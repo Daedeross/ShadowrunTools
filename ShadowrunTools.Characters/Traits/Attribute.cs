@@ -8,15 +8,20 @@
 
     public class Attribute : LeveledTrait
     {
-        public Attribute(Guid id, ITraitContainer container, ICategorizedTraitContainer root)
+        protected ICharacterMetatype Metatype { get; private set; }
+
+        public Attribute(Guid id, ITraitContainer container, ICategorizedTraitContainer root, ICharacterMetatype metatype)
             : base(id, "Attribute", container, root)
         {
-
+            Metatype = metatype;
+            Metatype.ItemChanged += OnMetatypeChanged;
         }
 
-        public override int Min => throw new NotImplementedException();
+        protected int _min;
+        public override int Min => _min;
 
-        public override int Max => throw new NotImplementedException();
+        protected int _max;
+        public override int Max => _max;
 
         public override int AugmentedMax => throw new NotImplementedException();
 
@@ -38,6 +43,23 @@
         protected override void OnAugmentRemoved(IAugment augment)
         {
             throw new NotImplementedException();
+        }
+
+        protected void OnMetatypeChanged(object sender, ItemChangedEventArgs e)
+        {
+
+        }
+
+        private void CalculateMinMax()
+        {
+            if (Metatype.TryGetAttribute(Name, out IMetatypeAttribute attribute))
+            {
+
+            }
+            else // use (1/6) and log it
+            {
+
+            }
         }
     }
 }
