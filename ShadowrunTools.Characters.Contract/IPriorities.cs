@@ -3,9 +3,8 @@
     using System;
     using System.Collections.Generic;
     using System.Text;
-
-    public interface IAttribute: ILeveledTrait
+    public interface IPriorities
     {
-        string ShortName { get; }
+
     }
 }

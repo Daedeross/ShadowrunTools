@@ -1,26 +1,37 @@
-﻿namespace ShadowrunTools.Characters
+﻿namespace ShadowrunTools.Characters.Traits
 {
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Linq;
+    using NLog;
     using ShadowrunTools.Foundation;
 
     public abstract class BaseTrait : ITrait, INotifyItemChanged
     {
-        protected ITraitContainer mOwner;
-        protected ICategorizedTraitContainer mRoot;
+        protected static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
 
-        public BaseTrait(Guid id, string category, ITraitContainer container, ICategorizedTraitContainer root)
+        protected readonly ITraitContainer mOwner;
+        protected readonly ICategorizedTraitContainer mRoot;
+        protected readonly IRules mRules;
+
+        public BaseTrait(Guid id,
+            string name,
+            string category,
+            ITraitContainer container,
+            ICategorizedTraitContainer root,
+            IRules rules)
         {
             Args.NotNull(category, nameof(category));
-            //Args.NotNull(container, nameof(container));
-            //Args.NotNull(root, nameof(root));
+            Args.NotNull(container, nameof(container));
+            Args.NotNull(root, nameof(root));
 
             Id = id;
             mOwner = container;
             mRoot = root;
             Category = category;
+            Name = name;
+            mRules = rules;
         }
 
         public Guid Id { get; private set; }
@@ -122,7 +133,7 @@
             return (true, propNames);
         }
 
-        public event ItemChangedEventHandler ItemChanged;
+        public event EventHandler<ItemChangedEventArgs> ItemChanged;
 
         protected void RaiseItemChanged(string[] propertyNames)
         {

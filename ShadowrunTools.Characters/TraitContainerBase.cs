@@ -1,5 +1,6 @@
 ﻿namespace ShadowrunTools.Characters
 {
+    using ShadowrunTools.Characters.Traits;
     using System;
     using System.Collections;
     using System.Collections.Generic;

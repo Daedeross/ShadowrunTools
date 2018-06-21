@@ -1,19 +1,22 @@
 ﻿namespace ShadowrunTools.Characters
 {
-    using System.Linq;
+    using ShadowrunTools.Characters.Prototypes;
+    using System;
     using System.Collections.Generic;
-    using System.Text;
+    using System.Linq;
 
     public class CharacterMetatype : ICharacterMetatype
     {
-        public CharacterMetatype(Serialization.Prototypes.MetavariantPrototype metavariant)
+        public CharacterMetatype(IMetavariantPrototype metavariant)
         {
+            Name = metavariant.Name;
+
             _attributes = metavariant.Attributes.ToDictionary(
                 proto => proto.Name,
                 proto => new MetatypeAttribute(proto) as IMetatypeAttribute);
         }
 
-        public void SetMetavariant(Serialization.Prototypes.MetavariantPrototype metavariant)
+        public void SetMetavariant(IMetavariantPrototype metavariant)
         {
             var newAttributes = metavariant.Attributes.ToDictionary(
                 proto => proto.Name,
@@ -24,17 +27,19 @@
                          select new { Old = oldAttr.Value, New = newAttr.Value };
             var changed = (from x in joined
                            where x.Old.Max != x.New.Max || x.Old.Min != x.Old.Min
-                           select x.Old.Name).ToArray();
+                           select x.Old.Name).ToList();
 
             _attributes = newAttributes;
 
-            if (changed.Any())
-            {
-                RaiseItemChanged(changed);
-            }
+            Name = metavariant.Name;
+            changed.Add(nameof(Name));
+
+            RaiseItemChanged(changed.ToArray());
         }
 
         private Dictionary<string, IMetatypeAttribute> _attributes;
+
+        public string Name { get; private set; }
 
         public IMetatypeAttribute this[string name] => _attributes[name];
 
@@ -45,7 +50,7 @@
 
         #region INotifyItemChanged Implementation
 
-        public event ItemChangedEventHandler ItemChanged;
+        public event EventHandler<ItemChangedEventArgs> ItemChanged;
 
         protected void RaiseItemChanged(string[] propertyNames)
         {

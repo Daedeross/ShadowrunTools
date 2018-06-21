@@ -1,7 +1,9 @@
 ﻿namespace ShadowrunTools.Characters
 {
+    using System;
+
     public interface INotifyItemChanged
     {
-        event ItemChangedEventHandler ItemChanged;
+        event EventHandler<ItemChangedEventArgs> ItemChanged;
     }
 }

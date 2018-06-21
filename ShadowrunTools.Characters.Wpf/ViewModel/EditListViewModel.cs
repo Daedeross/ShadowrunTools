@@ -6,7 +6,7 @@
 
     public class EditListViewModel
     {
-        private IDictionary<string, IProperty> dictionary;
+        private readonly IDictionary<string, IProperty> dictionary;
         public ObservableCollection<IProperty> Properties { get; set; }
 
         public EditListViewModel(IPropertyList properties)

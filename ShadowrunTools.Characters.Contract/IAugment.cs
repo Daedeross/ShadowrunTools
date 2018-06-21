@@ -15,7 +15,7 @@
     /// It is up to the targeted trait (which must implement <see cref="IAugmentable"/>)
     /// how to handle the Augment.
     /// </remarks>
-    public interface IAugment: IDisposable
+    public interface IAugment: IDisposable, INotifyItemChanged
     {
         IAugmentable Target { get; set; }
 

@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="NLog" Version="4.5.6" />
+    <PackageReference Include="NLog.Config" Version="4.5.6" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ShadowrunTools.Characters.Contract\ShadowrunTools.Characters.Contract.csproj" />
     <ProjectReference Include="..\ShadowrunTools.Foundation\ShadowrunTools.Foundation.csproj" />
     <ProjectReference Include="..\ShadowrunTools.Serialization\ShadowrunTools.Serialization.csproj" />

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2020
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShadowrunTools.Characters", "ShadowrunTools.Characters\ShadowrunTools.Characters.csproj", "{CBFE5E08-40F2-4ED1-8B8A-83CFDB547DFE}"
 EndProject
@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShadowrunTools.Characters.T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShadowrunTools.Serialization", "ShadowrunTools.Serialization\ShadowrunTools.Serialization.csproj", "{7066C548-11A5-4FC4-820A-983C8E83871A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShadowrunTools.Characters.ViewModels", "ShadowrunTools.Characters.ViewModels\ShadowrunTools.Characters.ViewModels.csproj", "{543B1353-8F3D-43EB-8086-B50463E1D594}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShadowrunTools.Characters.ViewModels", "ShadowrunTools.Characters.ViewModels\ShadowrunTools.Characters.ViewModels.csproj", "{543B1353-8F3D-43EB-8086-B50463E1D594}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

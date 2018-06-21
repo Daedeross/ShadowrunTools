@@ -1,4 +1,4 @@
-﻿namespace ShadowrunTools.Characters
+﻿namespace ShadowrunTools.Characters.Traits
 {
     using System;
 

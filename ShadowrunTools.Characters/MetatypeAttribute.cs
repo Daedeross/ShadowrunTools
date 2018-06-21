@@ -8,7 +8,7 @@
 
         public int Max { get; }
 
-        public MetatypeAttribute(Serialization.Prototypes.MetatypeAttribute prototype)
+        public MetatypeAttribute(IMetatypeAttribute prototype)
         {
             Name = prototype.Name;
             Min = prototype.Min;

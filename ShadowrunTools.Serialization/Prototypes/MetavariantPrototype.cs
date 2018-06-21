@@ -1,10 +1,13 @@
 ﻿namespace ShadowrunTools.Serialization.Prototypes
 {
+    using ShadowrunTools.Characters;
+    using ShadowrunTools.Characters.Prototypes;
     using System.Collections.Generic;
     using System.Runtime.Serialization;
 
+    [KnownType(typeof(MetatypeAttributePrototype))]
     [DataContract(Name = "MetatypePrototype", Namespace = "http://schemas.shadowruntools.com/prototypes")]
-    public class MetavariantPrototype
+    public class MetavariantPrototype: IMetavariantPrototype
     {
         /// <summary>
         /// The name of the Metavariant. eg: Human, Nartaki, Cyclops, etc
@@ -17,6 +20,6 @@
         [DataMember]
         public string Metatype { get; set; }
         [DataMember]
-        public List<MetatypeAttribute> Attributes { get; set; }
+        public List<IMetatypeAttribute> Attributes { get; set; }
     }
 }

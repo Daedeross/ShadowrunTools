@@ -1,20 +1,25 @@
-﻿namespace ShadowrunTools.Characters
+﻿namespace ShadowrunTools.Characters.Traits
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Text;
-    using ShadowrunTools.Characters.Model;
+    using System.Linq;
 
     public class Attribute : LeveledTrait
     {
-        protected ICharacterMetatype Metatype { get; private set; }
+        protected readonly ICharacterMetatype Metatype;
 
-        public Attribute(Guid id, ITraitContainer container, ICategorizedTraitContainer root, ICharacterMetatype metatype)
-            : base(id, "Attribute", container, root)
+        public Attribute(
+            Guid id,
+            string name,
+            ITraitContainer container,
+            ICategorizedTraitContainer root,
+            ICharacterMetatype metatype,
+            IRules rules)
+            : base(id, name, "Attribute", container, root, rules)
         {
             Metatype = metatype;
             Metatype.ItemChanged += OnMetatypeChanged;
+            CalculateMinMax();
         }
 
         protected int _min;
@@ -22,43 +27,64 @@
 
         protected int _max;
         public override int Max => _max;
-
-        public override int AugmentedMax => throw new NotImplementedException();
-
-        public override void OnAugmentChanged(object sender, PropertyChangedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void OnAugmentRemoving(AugmentKind kind)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override void OnAugmentAdded(IAugment augment)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override void OnAugmentRemoved(IAugment augment)
-        {
-            throw new NotImplementedException();
-        }
+        public override int AugmentedMax => ImprovedRating + mRules.MaxAugment;
 
         protected void OnMetatypeChanged(object sender, ItemChangedEventArgs e)
         {
-
+            if (ReferenceEquals(sender, Metatype))
+            {
+                if (e.PropertyNames.Contains(Name))
+                {
+                    CalculateMinMax();
+                }
+            }
+            else
+            {
+                Logger.Warn("Unknown object sent to {0} event on Attribute:{1}", nameof(OnMetatypeChanged), Name);
+            }
         }
 
         private void CalculateMinMax()
         {
+            var propNames = new List<string>();
+
+            var oldMin = _min;
+            var oldMax = _max;
+            var oldBase = BaseRating;
+            var oldImproved = ImprovedRating;
+            var oldAugmented = AugmentedRating;
+            var oldAugMax = AugmentedMax;
+
             if (Metatype.TryGetAttribute(Name, out IMetatypeAttribute attribute))
             {
+
+                _min = attribute.Min;
+                _max = attribute.Max;
 
             }
             else // use (1/6) and log it
             {
+                Logger.Error("Unable to retireve Attribute with Name:{0} info from Metatype:{1}", Name, Metatype.Name);
+                _min = 1;
+                _max = 6;
+            }
 
+            if (Min != oldMin)
+                propNames.Add(nameof(Min));
+            if (Max != oldMax)
+                propNames.Add(nameof(Max));
+            if (BaseRating != oldBase)
+                propNames.Add(nameof(BaseRating));
+            if (ImprovedRating != oldImproved)
+                propNames.Add(nameof(ImprovedRating));
+            if (AugmentedRating != oldAugmented)
+                propNames.Add(nameof(AugmentedRating));
+            if (AugmentedMax != oldAugmented)
+                propNames.Add(nameof(AugmentedMax));
+
+            if (propNames.Any())
+            {
+                RaiseItemChanged(propNames.ToArray());
             }
         }
     }

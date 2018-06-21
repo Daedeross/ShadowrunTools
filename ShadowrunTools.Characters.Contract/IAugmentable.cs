@@ -16,7 +16,7 @@
     /// <see cref="LeveledTrait"/> for an abstract class that implements this.
     /// Most IAugmentable traits are descendants of <b>LeveledTrait</b>.
     /// </remarks>
-    public interface IAugmentable : INotifyPropertyChanged
+    public interface IAugmentable : INotifyItemChanged
     {
         /// <summary>
         /// Since Augments find their targets by name, every IAugmentable needs a name.
@@ -46,7 +46,7 @@
         /// this method, enforcing this name helps with descedant classes to override
         /// it. It is recomended to make this method virtual (or abstract).
         /// </remarks>
-        void OnAugmentChanged(object sender, PropertyChangedEventArgs e);
+        void OnAugmentChanged(object sender, ItemChangedEventArgs e);
 
         /// <summary>
         /// To be used to handle Augments.CollectionChanged

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShadowrunTools.Characters.Traits;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,7 @@ namespace ShadowrunTools.Characters.Wpf
     internal class TestBaseTrait : BaseTrait
     {
         public TestBaseTrait(Guid id, ITraitContainer container, ICategorizedTraitContainer root)
-            : base(id, "Skill", container, root)
+            : base(id, "TEST", "Skill", container, root, null)
         {
         }
     }
