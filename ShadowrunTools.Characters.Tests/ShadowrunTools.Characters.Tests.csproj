@@ -21,8 +21,4 @@
     <ProjectReference Include="..\ShadowrunTools.Characters\ShadowrunTools.Characters.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="TestArtifacts\" />
-  </ItemGroup>
-
 </Project>

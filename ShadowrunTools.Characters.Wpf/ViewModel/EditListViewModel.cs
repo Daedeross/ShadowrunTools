@@ -1,5 +1,6 @@
 ﻿namespace ShadowrunTools.Characters.Wpf.ViewModel
 {
+    using GalaSoft.MvvmLight.Command;
     using ShadowrunTools.Foundation;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;

@@ -1,0 +1,77 @@
+{
+  "$type": "ShadowrunTools.Serialization.Prototypes.TraitPrototypeBase[], ShadowrunTools.Serialization",
+  "$values": [
+    {
+      "$type": "ShadowrunTools.Serialization.Prototypes.AttributePrototype, ShadowrunTools.Serialization",
+      "ShortName": "BOD",
+      "TraitType": "Attribute",
+      "Name": "Body",
+      "SubCategory": "Physical Attributes",
+      "Book": "SR5",
+      "Page": 51
+    },
+    {
+      "$type": "ShadowrunTools.Serialization.Prototypes.AttributePrototype, ShadowrunTools.Serialization",
+      "ShortName": "AGI",
+      "TraitType": "Attribute",
+      "Name": "Agility",
+      "SubCategory": "Physical Attributes",
+      "Book": "SR5",
+      "Page": 51
+    },
+    {
+      "$type": "ShadowrunTools.Serialization.Prototypes.AttributePrototype, ShadowrunTools.Serialization",
+      "ShortName": "REA",
+      "TraitType": "Attribute",
+      "Name": "Reaction",
+      "SubCategory": "Physical Attributes",
+      "Book": "SR5",
+      "Page": 51
+    },
+    {
+      "$type": "ShadowrunTools.Serialization.Prototypes.AttributePrototype, ShadowrunTools.Serialization",
+      "ShortName": "STR",
+      "TraitType": "Attribute",
+      "Name": "Strength",
+      "SubCategory": "Physical Attributes",
+      "Book": "SR5",
+      "Page": 51
+    },
+    {
+      "$type": "ShadowrunTools.Serialization.Prototypes.AttributePrototype, ShadowrunTools.Serialization",
+      "ShortName": "WIL",
+      "TraitType": "Attribute",
+      "Name": "Willpower",
+      "SubCategory": "Mental Attributes",
+      "Book": "SR5",
+      "Page": 51
+    },
+    {
+      "$type": "ShadowrunTools.Serialization.Prototypes.AttributePrototype, ShadowrunTools.Serialization",
+      "ShortName": "LOG",
+      "TraitType": "Attribute",
+      "Name": "Logic",
+      "SubCategory": "Mental Attributes",
+      "Book": "SR5",
+      "Page": 51
+    },
+    {
+      "$type": "ShadowrunTools.Serialization.Prototypes.AttributePrototype, ShadowrunTools.Serialization",
+      "ShortName": "INT",
+      "TraitType": "Attribute",
+      "Name": "Intuition",
+      "SubCategory": "Mental Attributes",
+      "Book": "SR5",
+      "Page": 51
+    },
+    {
+      "$type": "ShadowrunTools.Serialization.Prototypes.AttributePrototype, ShadowrunTools.Serialization",
+      "ShortName": "Cha",
+      "TraitType": "Attribute",
+      "Name": "Charisma",
+      "SubCategory": "Mental Attributes",
+      "Book": "SR5",
+      "Page": 51
+    }
+  ]
+}

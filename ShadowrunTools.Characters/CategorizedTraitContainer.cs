@@ -146,6 +146,7 @@ namespace ShadowrunTools.Characters
             {
                 OnAddTrait(kvp.Key, kvp.Value);
             }
+            container.CollectionChanged += OnContainerChanged;
         }
 
         private void OnRemoveContainer(ITraitContainer container)
@@ -154,6 +155,7 @@ namespace ShadowrunTools.Characters
             {
                 OnRemoveTrait(kvp.Key, kvp.Value);
             }
+            container.CollectionChanged -= OnContainerChanged;
         }
 
         private void OnContainerChanged(object sender, NotifyCollectionChangedEventArgs e)

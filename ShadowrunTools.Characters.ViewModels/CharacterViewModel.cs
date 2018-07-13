@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using ShadowrunTools.Characters.Prototypes;
 using ShadowrunTools.Serialization.Prototypes;
 using System;
 using System.Collections.Generic;
@@ -26,13 +27,13 @@ namespace ShadowrunTools.Characters.ViewModels
             {
                 if (mAddTraitCommand is null)
                 {
-                    mAddTraitCommand = new RelayCommand<TraitPrototypeBase>(AddTraitExecute);
+                    mAddTraitCommand = new RelayCommand<ITraitPrototype>(AddTraitExecute);
                 }
                 return mAddTraitCommand;
             }
         }
 
-        private void AddTraitExecute(TraitPrototypeBase prototype)
+        private void AddTraitExecute(ITraitPrototype prototype)
         {
             
         }
