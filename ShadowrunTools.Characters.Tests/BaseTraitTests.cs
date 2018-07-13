@@ -1,12 +1,12 @@
-﻿namespace ShadowrunTools.Characters.Tests
-{
-    using Moq;
-    using ShadowrunTools.Characters.Traits;
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
-    using Xunit;
+﻿using Moq;
+using ShadowrunTools.Characters.Model;
+using ShadowrunTools.Characters.Traits;
+using System;
+using System.Collections.Generic;
+using Xunit;
 
+namespace ShadowrunTools.Characters.Tests
+{
     public class BaseTraitTests
     {
         internal class TestBaseTrait : BaseTrait
@@ -15,6 +15,10 @@
                 : base(id, "Trait", "Hai", container, root, rules)
             {
             }
+
+            public override TraitType TraitType => throw new NotImplementedException();
+
+            public override bool Independant => throw new NotImplementedException();
         }
 
         [Fact]

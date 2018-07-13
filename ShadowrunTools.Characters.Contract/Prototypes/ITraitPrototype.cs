@@ -1,7 +1,4 @@
 ﻿using ShadowrunTools.Characters.Model;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ShadowrunTools.Characters.Prototypes
 {
@@ -14,8 +11,6 @@ namespace ShadowrunTools.Characters.Prototypes
         string Category { get; }
 
         string SubCategory { get; }
-
-        string UserNotes { get; }
 
         string Book { get; }
 

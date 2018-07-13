@@ -1,7 +1,7 @@
-﻿namespace ShadowrunTools.Foundation
-{
-    using System;
+﻿using System;
 
+namespace ShadowrunTools.Foundation
+{
     public class DisplayAttribute : Attribute
     {
         public string Label { get; set; }

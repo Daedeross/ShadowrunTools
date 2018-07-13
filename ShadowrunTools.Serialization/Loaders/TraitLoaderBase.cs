@@ -1,9 +1,9 @@
-﻿namespace ShadowrunTools.Serialization
-{
-    using ShadowrunTools.Characters.Model;
-    using System;
-    using System.Runtime.Serialization;
+﻿using ShadowrunTools.Characters.Model;
+using System;
+using System.Runtime.Serialization;
 
+namespace ShadowrunTools.Serialization
+{
     [DataContract(Name = "Trait", Namespace = "http://schemas.shadowruntools.com/loaders")]
     [KnownType(typeof(AttributeLoader))]
     public abstract class TraitLoaderBase

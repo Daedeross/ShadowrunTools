@@ -1,7 +1,7 @@
-﻿namespace ShadowrunTools.Characters
-{
-    using ShadowrunTools.Foundation;
+﻿using ShadowrunTools.Foundation;
 
+namespace ShadowrunTools.Characters
+{
     /// <summary>
     /// Interface for repository of game rules information
     /// </summary>

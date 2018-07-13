@@ -1,10 +1,7 @@
-﻿namespace ShadowrunTools.Characters.Traits
+﻿using ShadowrunTools.Characters.Contract.Model;
+
+namespace ShadowrunTools.Characters.Traits
 {
-    using ShadowrunTools.Characters.Contract.Model;
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
-    
     public interface ISkill: ILeveledTrait
     {
         SkillType SkillType { get; }

@@ -1,9 +1,7 @@
-﻿namespace ShadowrunTools.Characters.Prototypes
+﻿using System.Collections.Generic;
+
+namespace ShadowrunTools.Characters.Prototypes
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
-    
     public interface IMetavariantPrototype
     {
         /// <summary>

@@ -3,8 +3,9 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using ShadowrunTools.Characters.Model;
 
-    public class Attribute : LeveledTrait
+    public class Attribute : LeveledTrait, IAttribute
     {
         protected readonly ICharacterMetatype Metatype;
 
@@ -22,12 +23,18 @@
             CalculateMinMax();
         }
 
+        public string ShortName { get; set; }
+
+        public override TraitType TraitType => TraitType.Attribute;
+
         protected int _min;
         public override int Min => _min;
 
         protected int _max;
         public override int Max => _max;
         public override int AugmentedMax => ImprovedRating + mRules.MaxAugment;
+
+        public override bool Independant { get => true; }
 
         protected void OnMetatypeChanged(object sender, ItemChangedEventArgs e)
         {

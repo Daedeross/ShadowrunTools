@@ -17,6 +17,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShadowrunTools.Serializatio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShadowrunTools.Characters.ViewModels", "ShadowrunTools.Characters.ViewModels\ShadowrunTools.Characters.ViewModels.csproj", "{543B1353-8F3D-43EB-8086-B50463E1D594}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1612C524-4EEE-464A-A038-9A10FF3F42D1}"
+	ProjectSection(SolutionItems) = preProject
+		shared.app.props = shared.app.props
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

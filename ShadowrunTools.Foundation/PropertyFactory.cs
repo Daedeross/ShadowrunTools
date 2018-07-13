@@ -1,8 +1,7 @@
-﻿namespace ShadowrunTools.Foundation
+﻿using System.Linq;
+
+namespace ShadowrunTools.Foundation
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    
     public static class PropertyFactory
     {
         public static IPropertyList CreateFromObject(object obj, bool inherit = false)

@@ -1,15 +1,13 @@
-﻿namespace ShadowrunTools.Characters
-{
-    using ShadowrunTools.Characters.Traits;
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Collections.Specialized;
-    using System.Text;
+﻿using ShadowrunTools.Characters.Traits;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.Specialized;
 
-    public class TraitContainerBase : ITraitContainer
+namespace ShadowrunTools.Characters
+{
+    public class TraitContainer : ITraitContainer
     {
-        private Dictionary<string, ITrait> _traits = new Dictionary<string, ITrait>();
+        protected Dictionary<string, ITrait> _traits = new Dictionary<string, ITrait>();
 
         public ITrait this[string key]
         {
@@ -152,5 +150,12 @@
         }
 
         #endregion // INotifyCollectionChanged
+
+        public TraitContainer() : base() { }
+
+        public TraitContainer(Dictionary<string, ITrait> initial)
+        {
+            _traits = initial;
+        }
     }
 }

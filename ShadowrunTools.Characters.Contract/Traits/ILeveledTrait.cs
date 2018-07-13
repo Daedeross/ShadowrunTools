@@ -1,9 +1,7 @@
-﻿namespace ShadowrunTools.Characters.Traits
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
+﻿using System;
 
+namespace ShadowrunTools.Characters.Traits
+{
     public interface ILeveledTrait: ITrait, IComparable<ILeveledTrait>, IAugmentable
     {
         /// <summary>

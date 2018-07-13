@@ -5,6 +5,7 @@
     using System.ComponentModel;
     using System.Linq;
     using NLog;
+    using ShadowrunTools.Characters.Model;
     using ShadowrunTools.Foundation;
 
     public abstract class BaseTrait : ITrait, INotifyItemChanged
@@ -48,6 +49,10 @@
         public string Book { get; set; }
         [Display(Editable = true)]
         public int Page { get; set; }
+
+        public abstract TraitType TraitType { get; }
+
+        public abstract bool Independant { get; }
 
         public virtual IPropertyList BeginEdit()
         {

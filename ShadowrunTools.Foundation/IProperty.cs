@@ -1,6 +1,7 @@
-﻿namespace ShadowrunTools.Foundation
+﻿using System;
+
+namespace ShadowrunTools.Foundation
 {
-    using System;
     public interface IProperty
     {
         string Label { get; }

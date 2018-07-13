@@ -1,4 +1,5 @@
-﻿using ShadowrunTools.Characters.Traits;
+﻿using ShadowrunTools.Characters.Model;
+using ShadowrunTools.Characters.Traits;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,10 @@ namespace ShadowrunTools.Characters.Wpf
             : base(id, "TEST", "Skill", container, root, null)
         {
         }
+
+        public override TraitType TraitType => throw new NotImplementedException();
+
+        public override bool Independant => throw new NotImplementedException();
     }
 
     /// <summary>

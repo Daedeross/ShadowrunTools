@@ -1,9 +1,8 @@
-﻿namespace ShadowrunTools.Foundation
+﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
+
+namespace ShadowrunTools.Foundation
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Runtime.Serialization;
-    using System.Text;
     public class PropertyList: Dictionary<string, IProperty>, IPropertyList
     {
         public PropertyList()

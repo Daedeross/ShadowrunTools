@@ -1,9 +1,10 @@
-﻿namespace ShadowrunTools.Serialization.Prototypes
+﻿using ShadowrunTools.Characters;
+using ShadowrunTools.Characters.Prototypes;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
+
+namespace ShadowrunTools.Serialization.Prototypes
 {
-    using ShadowrunTools.Characters;
-    using ShadowrunTools.Characters.Prototypes;
-    using System.Collections.Generic;
-    using System.Runtime.Serialization;
 
     [KnownType(typeof(MetatypeAttributePrototype))]
     [DataContract(Name = "MetatypePrototype", Namespace = "http://schemas.shadowruntools.com/prototypes")]

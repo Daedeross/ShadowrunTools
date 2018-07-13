@@ -1,8 +1,8 @@
-﻿namespace ShadowrunTools.Characters
-{
-    using ShadowrunTools.Characters.Model;
-    using System;
+﻿using ShadowrunTools.Characters.Model;
+using System;
 
+namespace ShadowrunTools.Characters
+{
     /// <summary>
     /// Interface that represents something that can modify another trait
     /// </summary>

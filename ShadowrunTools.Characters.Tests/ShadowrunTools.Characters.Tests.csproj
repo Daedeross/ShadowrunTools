@@ -1,4 +1,5 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="../shared.app.props" />
 
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
@@ -11,12 +12,17 @@
     <PackageReference Include="Moq" Version="4.8.1" />
     <PackageReference Include="xunit" Version="2.3.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ShadowrunTools.Characters.Contract\ShadowrunTools.Characters.Contract.csproj" />
     <ProjectReference Include="..\ShadowrunTools.Characters.ViewModels\ShadowrunTools.Characters.ViewModels.csproj" />
     <ProjectReference Include="..\ShadowrunTools.Characters\ShadowrunTools.Characters.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="TestArtifacts\" />
   </ItemGroup>
 
 </Project>

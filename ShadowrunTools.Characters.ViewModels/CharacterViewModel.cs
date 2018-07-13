@@ -9,7 +9,12 @@ namespace ShadowrunTools.Characters.ViewModels
 {
     public class CharacterViewModel: NotificationObject
     {
-        private ICharacter _character;
+        private readonly ICharacter _character;
+
+        public CharacterViewModel(ICharacter character)
+        {
+            _character = character ?? throw new ArgumentNullException(nameof(character));
+        }
 
         #region Commands
 

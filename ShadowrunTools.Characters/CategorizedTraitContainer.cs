@@ -1,11 +1,10 @@
-﻿namespace ShadowrunTools.Characters
-{
-    using ShadowrunTools.Characters.Traits;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Collections.Specialized;
-    using System.Linq;
+﻿using ShadowrunTools.Characters.Traits;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.Specialized;
 
+namespace ShadowrunTools.Characters
+{
     public class CategorizedTraitContainer : ICategorizedTraitContainer
     {
         private Dictionary<string, ITraitContainer> _categories;
@@ -14,6 +13,7 @@
         public CategorizedTraitContainer()
         {
             _categories = new Dictionary<string, ITraitContainer>();
+            _traits = new Dictionary<string, List<ITrait>>();
         }
 
         public ITraitContainer this[string key]

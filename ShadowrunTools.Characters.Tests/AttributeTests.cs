@@ -1,14 +1,12 @@
-﻿namespace ShadowrunTools.Characters.Tests
-{
-    using Moq;
-    using ShadowrunTools.Characters.Traits;
-    using Attribute = ShadowrunTools.Characters.Traits.Attribute;
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
-    using Xunit;
-    using System.Linq;
+﻿using Moq;
+using ShadowrunTools.Characters.Traits;
+using System;
+using System.Collections.Generic;
+using Xunit;
+using Attribute = ShadowrunTools.Characters.Traits.Attribute;
 
+namespace ShadowrunTools.Characters.Tests
+{
     public class AttributeTests
     {
         private const string AttributeName = "Reaction";

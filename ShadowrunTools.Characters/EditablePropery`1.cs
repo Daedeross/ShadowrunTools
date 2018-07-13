@@ -4,7 +4,7 @@
     {
         private TValue _value;
         private TValue _tempValue;
-        private bool _isEditing;
+        private bool _isEditing = false;
 
         public TValue Value
         {

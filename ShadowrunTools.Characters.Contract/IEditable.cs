@@ -1,10 +1,7 @@
-﻿namespace ShadowrunTools.Characters
-{
-    using ShadowrunTools.Foundation;
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
+﻿using ShadowrunTools.Foundation;
 
+namespace ShadowrunTools.Characters
+{
     /// <summary>
     /// Interface for sessioned editing of an object;
     /// </summary>

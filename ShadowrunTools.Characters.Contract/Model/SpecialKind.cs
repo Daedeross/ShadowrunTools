@@ -1,9 +1,12 @@
-﻿namespace ShadowrunTools.Characters.Contract.Model
+﻿using System;
+
+namespace ShadowrunTools.Characters.Contract.Model
 {
+    [Flags]
     public enum SpecialKind
     {
         None = 0,
-        Magic,
-        Resonance,
+        Magic = 1,
+        Resonance = 2,
     }
 }
