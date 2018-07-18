@@ -48,9 +48,9 @@ namespace ShadowrunTools.Serialization
             using (var stream = new StreamReader(filename))
             using (var reader = new JsonTextReader(stream))
             {
-                var traits = _serializer.Deserialize<ICollection<TraitPrototypeBase>>(reader);
+                var dto = _serializer.Deserialize<PrototypeFile>(reader);
 
-                repository.MergeTraitCollection(traits);
+                repository.MergeFile(dto);
             }
         }
     }

@@ -17,6 +17,10 @@ namespace ShadowrunTools.Characters.ViewModels
             _character = character ?? throw new ArgumentNullException(nameof(character));
         }
 
+        #region Core Attributes
+
+        #endregion // Core Attributes
+
         #region Commands
 
         private ICommand mAddTraitCommand;
@@ -37,6 +41,8 @@ namespace ShadowrunTools.Characters.ViewModels
         {
             
         }
+
+
 
         #endregion // Commands
     }

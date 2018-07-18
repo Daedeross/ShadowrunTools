@@ -1,6 +1,6 @@
 ﻿namespace ShadowrunTools.Characters.Prototypes
 {
-    public interface IAttributePrototype: ILeveledTraitPrototype
+    public interface IAttributePrototype: ILeveledTraitPrototype, IOrderOverride
     {
         string ShortName { get; }
     }

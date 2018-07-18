@@ -1,5 +1,6 @@
 ﻿using ShadowrunTools.Characters.Model;
 using ShadowrunTools.Characters.Prototypes;
+using ShadowrunTools.Serialization.Prototypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,8 @@ namespace ShadowrunTools.Serialization
     public class PrototypeRepository: IPrototypeRepository
     {
         public List<IMetavariantPrototype> Metavariants { get; set; }
+
+        public IMetavariantPrototype DefaultMetavariant { get; set; }
 
         private readonly Dictionary<TraitType, Dictionary<string, ITraitPrototype>> _traitsMap1;
         private readonly Dictionary<Type, Dictionary<string, ITraitPrototype>> _traitsMap2;
@@ -37,6 +40,13 @@ namespace ShadowrunTools.Serialization
                 return prototype as TPrototype;
             }
             return default;
+        }
+
+        public void MergeFile(PrototypeFile prototypeFile)
+        {
+            MergeTraitCollection(prototypeFile.Attributes);
+
+            Metavariants.AddRange(prototypeFile.Metavariants);
         }
 
         public void MergeTraitCollection(IEnumerable<ITraitPrototype> collection)

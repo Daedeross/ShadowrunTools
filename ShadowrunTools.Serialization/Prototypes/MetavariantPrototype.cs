@@ -1,6 +1,7 @@
 ﻿using ShadowrunTools.Characters;
 using ShadowrunTools.Characters.Prototypes;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Serialization;
 
 namespace ShadowrunTools.Serialization.Prototypes
@@ -20,7 +21,21 @@ namespace ShadowrunTools.Serialization.Prototypes
         /// </summary>
         [DataMember]
         public string Metatype { get; set; }
-        [DataMember]
-        public List<IMetatypeAttribute> Attributes { get; set; }
+
+        [DataMember(Name = "Attributes")]
+        public List<MetatypeAttributePrototype> _Attributes { get; set; }
+
+        private List<IMetatypeAttribute> _attributes;
+        public List<IMetatypeAttribute> Attributes
+        {
+            get
+            {
+                if (_attributes == null)
+                {
+                    _attributes = _Attributes.ToList<IMetatypeAttribute>();
+                }
+                return _attributes;
+            }
+        }
     }
 }

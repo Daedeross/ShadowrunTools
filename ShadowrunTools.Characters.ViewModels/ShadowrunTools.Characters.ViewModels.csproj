@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ShadowrunTools.Characters.Contract\ShadowrunTools.Characters.Contract.csproj" />
+    <ProjectReference Include="..\ShadowrunTools.Characters\ShadowrunTools.Characters.csproj" />
     <ProjectReference Include="..\ShadowrunTools.Serialization\ShadowrunTools.Serialization.csproj" />
   </ItemGroup>
 

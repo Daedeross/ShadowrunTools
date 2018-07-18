@@ -7,11 +7,11 @@ namespace ShadowrunTools.Characters.Prototypes
         /// <summary>
         /// The name of the Metavariant. eg: Human, Nartaki, Cyclops, etc
         /// </summary>
-        string Name { get; set; }
+        string Name { get; }
         /// <summary>
         /// The "Primary Subspecies." eg: Human, Elf, Ork, etc.
         /// </summary>
-        string Metatype { get; set; }
-        List<IMetatypeAttribute> Attributes { get; set; }
+        string Metatype { get; }
+        List<IMetatypeAttribute> Attributes { get; }
     }
 }

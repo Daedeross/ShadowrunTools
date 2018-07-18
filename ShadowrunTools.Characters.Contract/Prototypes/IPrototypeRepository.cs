@@ -4,10 +4,12 @@
     using System;
     using System.Collections.Generic;
     using System.Text;
-    
+
     public interface IPrototypeRepository
     {
         List<IMetavariantPrototype> Metavariants { get; }
+
+        IMetavariantPrototype DefaultMetavariant { get; }
 
         ITraitPrototype GetTraitPrototype(TraitType traitType, string name);
 

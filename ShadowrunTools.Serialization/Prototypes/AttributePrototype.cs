@@ -10,6 +10,9 @@ namespace ShadowrunTools.Serialization.Prototypes
         [DataMember]
         public string ShortName { get; set; }
 
+        [DataMember]
+        public string CustomOrder { get; set; }
+
         public AttributePrototype()
         {
             Category = Categories.Attributes;

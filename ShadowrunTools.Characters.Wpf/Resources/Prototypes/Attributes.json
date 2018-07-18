@@ -1,8 +1,6 @@
 {
-  "$type": "ShadowrunTools.Serialization.Prototypes.TraitPrototypeBase[], ShadowrunTools.Serialization",
-  "$values": [
+  "Attributes": [
     {
-      "$type": "ShadowrunTools.Serialization.Prototypes.AttributePrototype, ShadowrunTools.Serialization",
       "ShortName": "BOD",
       "CustomOrder": "00",
       "TraitType": "Attribute",
@@ -12,7 +10,6 @@
       "Page": 51
     },
     {
-      "$type": "ShadowrunTools.Serialization.Prototypes.AttributePrototype, ShadowrunTools.Serialization",
       "ShortName": "AGI",
       "CustomOrder": "01",
       "TraitType": "Attribute",
@@ -22,7 +19,6 @@
       "Page": 51
     },
     {
-      "$type": "ShadowrunTools.Serialization.Prototypes.AttributePrototype, ShadowrunTools.Serialization",
       "ShortName": "REA",
       "CustomOrder": "02",
       "TraitType": "Attribute",
@@ -32,7 +28,6 @@
       "Page": 51
     },
     {
-      "$type": "ShadowrunTools.Serialization.Prototypes.AttributePrototype, ShadowrunTools.Serialization",
       "ShortName": "STR",
       "CustomOrder": "03",
       "TraitType": "Attribute",
@@ -42,7 +37,6 @@
       "Page": 51
     },
     {
-      "$type": "ShadowrunTools.Serialization.Prototypes.AttributePrototype, ShadowrunTools.Serialization",
       "ShortName": "WIL",
       "CustomOrder": "04",
       "TraitType": "Attribute",
@@ -52,7 +46,6 @@
       "Page": 51
     },
     {
-      "$type": "ShadowrunTools.Serialization.Prototypes.AttributePrototype, ShadowrunTools.Serialization",
       "ShortName": "LOG",
       "CustomOrder": "05",
       "TraitType": "Attribute",
@@ -62,7 +55,6 @@
       "Page": 51
     },
     {
-      "$type": "ShadowrunTools.Serialization.Prototypes.AttributePrototype, ShadowrunTools.Serialization",
       "ShortName": "INT",
       "CustomOrder": "06",
       "TraitType": "Attribute",
@@ -72,7 +64,6 @@
       "Page": 51
     },
     {
-      "$type": "ShadowrunTools.Serialization.Prototypes.AttributePrototype, ShadowrunTools.Serialization",
       "ShortName": "CHA",
       "CustomOrder": "07",
       "TraitType": "Attribute",
@@ -82,7 +73,6 @@
       "Page": 51
     },
     {
-      "$type": "ShadowrunTools.Serialization.Prototypes.AttributePrototype, ShadowrunTools.Serialization",
       "ShortName": "EDG",
       "CustomOrder": "08",
       "TraitType": "Attribute",
@@ -92,7 +82,6 @@
       "Page": 51
     },
     {
-      "$type": "ShadowrunTools.Serialization.Prototypes.AttributePrototype, ShadowrunTools.Serialization",
       "ShortName": "MAG",
       "CustomOrder": "09",
       "TraitType": "Attribute",
@@ -102,7 +91,6 @@
       "Page": 51
     },
     {
-      "$type": "ShadowrunTools.Serialization.Prototypes.AttributePrototype, ShadowrunTools.Serialization",
       "ShortName": "MAG",
       "CustomOrder": "10",
       "TraitType": "Attribute",
