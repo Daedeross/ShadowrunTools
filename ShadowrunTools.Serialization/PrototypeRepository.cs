@@ -79,5 +79,16 @@ namespace ShadowrunTools.Serialization
                 }
             }
         }
+
+        public bool SetDefaultRace(string name)
+        {
+            var variant = Metavariants.First(mv => mv.Name == name);
+            if (variant is null)
+            {
+                return false;
+            }
+            DefaultMetavariant = variant;
+            return true;
+        }
     }
 }

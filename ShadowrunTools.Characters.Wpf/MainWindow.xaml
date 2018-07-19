@@ -8,6 +8,28 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <views:TraitEditView x:Name="List_View" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <Menu Grid.Row="0">
+            <MenuItem Header="_File">
+                <MenuItem Header="_New" Command="{Binding NewCharacterCommand}" />
+            </MenuItem>
+            <MenuItem Header="_Characters" ItemsSource="{Binding Characters}">
+                <MenuItem Header="Not Implemented" />
+            </MenuItem>
+        </Menu>
+        <StatusBar Grid.Row="2">
+            <StatusBarItem>
+                <Button Command="{Binding NewCharacterCommand}">New</Button>
+            </StatusBarItem>
+            <StatusBarItem>
+                <TextBlock Text="{Binding CurrentCharacter.Name}"></TextBlock>
+            </StatusBarItem>
+        </StatusBar>
+        <views:CharacterView DataContext="{Binding CurrentCharacter}" Grid.Row="2" />
     </Grid>
 </Window>

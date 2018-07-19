@@ -1,5 +1,10 @@
-﻿using ShadowrunTools.Characters.Model;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using NLog;
+using ShadowrunTools.Characters.Model;
 using ShadowrunTools.Characters.Traits;
+using ShadowrunTools.Characters.ViewModels;
+using ShadowrunTools.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,18 +22,6 @@ using System.Windows.Shapes;
 
 namespace ShadowrunTools.Characters.Wpf
 {
-    internal class TestBaseTrait : BaseTrait
-    {
-        public TestBaseTrait(Guid id, ITraitContainer container, ICategorizedTraitContainer root)
-            : base(id, "TEST", "Skill", container, root, null)
-        {
-        }
-
-        public override TraitType TraitType => throw new NotImplementedException();
-
-        public override bool Independant => throw new NotImplementedException();
-    }
-
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -36,22 +29,24 @@ namespace ShadowrunTools.Characters.Wpf
     {
         public MainWindow()
         {
-            InitializeComponent();
-
-            var id = Guid.NewGuid();
-
-            var trait = new TestBaseTrait(id, null, null)
+            var logger = new Castle.Core.Logging.NullLogger();
+            // temp bootstrap stuff
+            var serializer = new JsonSerializer();
+            serializer.Converters.Add(new StringEnumConverter());
+            var dataLoader = new DataLoader(serializer, logger)
             {
-                Name = "Bob",
-                Book = "hai",
-                Page = 12,
-                SubCategory = "Sub Cat",
-                UserNotes = "Hmm, this is a note."
+                CurrentFiles = new List<string>
+                {
+                    @"Resources\Prototypes\Attributes.json",
+                    @"Resources\Prototypes\Metatypes.json",
+                }
             };
 
-            var vm = new ViewModel.EditListViewModel(trait.BeginEdit());
+            var rules = new RulesPrototype();
 
-            List_View.DataContext = vm;
+            var workspace = new WorkspaceViewModel(dataLoader, rules);
+
+            this.DataContext = workspace;
         }
     }
 }

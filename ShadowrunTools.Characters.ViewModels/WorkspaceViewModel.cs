@@ -7,6 +7,7 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Text;
+    using System.Windows;
     using System.Windows.Input;
 
     public class WorkspaceViewModel: NotificationObject
@@ -29,10 +30,26 @@
 
         public ObservableCollection<CharacterViewModel> Characters { get; set; }
 
+        private CharacterViewModel _currentCharacter;
+
+        public CharacterViewModel CurrentCharacter
+        {
+            get { return _currentCharacter; }
+            set
+            {
+                if (value != _currentCharacter)
+                {
+                    _currentCharacter = value;
+                    RaisePropertyChanged(nameof(CurrentCharacter));
+                }
+            }
+        }
+
+
         public WorkspaceViewModel(DataLoader dataLoader, IRules rules)
         {
             _dataLoader = dataLoader ?? throw new ArgumentNullException(nameof(dataLoader));
-            _rules = rules;
+            _rules = rules ?? throw new ArgumentNullException(nameof(rules));
         }
 
         #region Commands
@@ -53,9 +70,12 @@
 
         protected virtual void NewCharacterExecute()
         {
+            MessageBox.Show("NEW!");
             var character = new Character(_rules, null);
+            character.Name = "New Character";
             var viewModel = new CharacterViewModel(character);
             Characters.Add(viewModel);
+            CurrentCharacter = viewModel;
         }
 
         #endregion

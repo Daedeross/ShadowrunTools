@@ -35,7 +35,7 @@ namespace ShadowrunTools.Characters
         /// <summary>
         /// The maximum number of attributes that can have the highest available rating during character creation.
         /// </summary>
-        int StartingMaxedAttributeCount { get; set; }
+        int StartingMaxedAttributeCount { get; }
 
         #region Scaling Karma Costs
 
