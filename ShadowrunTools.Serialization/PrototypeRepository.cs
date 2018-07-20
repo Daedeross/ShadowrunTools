@@ -9,9 +9,20 @@ namespace ShadowrunTools.Serialization
 {
     public class PrototypeRepository: IPrototypeRepository
     {
-        public List<IMetavariantPrototype> Metavariants { get; set; }
+        public List<IMetavariantPrototype> Metavariants { get; private set; }
 
-        public IMetavariantPrototype DefaultMetavariant { get; set; }
+        private IMetavariantPrototype _defaultMetavariant;
+        public IMetavariantPrototype DefaultMetavariant
+        {
+            get
+            {
+                if (_defaultMetavariant is null)
+                {
+                    _defaultMetavariant = GetDefaultRace("Human");
+                }
+                return _defaultMetavariant;
+            }
+        }
 
         private readonly Dictionary<TraitType, Dictionary<string, ITraitPrototype>> _traitsMap1;
         private readonly Dictionary<Type, Dictionary<string, ITraitPrototype>> _traitsMap2;
@@ -20,6 +31,8 @@ namespace ShadowrunTools.Serialization
         {
             _traitsMap1 = new Dictionary<TraitType, Dictionary<string, ITraitPrototype>>();
             _traitsMap2 = new Dictionary<Type, Dictionary<string, ITraitPrototype>>();
+
+            Metavariants = new List<IMetavariantPrototype>();
         }
 
         public ITraitPrototype GetTraitPrototype(TraitType traitType, string name)
@@ -42,11 +55,27 @@ namespace ShadowrunTools.Serialization
             return default;
         }
 
+        public IReadOnlyDictionary<string, TPrototype> GetTraits<TPrototype>()
+            where TPrototype : class, ITraitPrototype
+        {
+            if (_traitsMap2.TryGetValue(typeof(TPrototype), out Dictionary<string, ITraitPrototype> inner))
+            {
+                return inner.ToDictionary(kvp => kvp.Key, kvp => kvp.Value as TPrototype);
+            }
+            return new Dictionary<string, TPrototype>();
+        }
+
         public void MergeFile(PrototypeFile prototypeFile)
         {
-            MergeTraitCollection(prototypeFile.Attributes);
+            if (prototypeFile.Attributes != null)
+            {
+                MergeTraitCollection(prototypeFile.Attributes);
+            }
 
-            Metavariants.AddRange(prototypeFile.Metavariants);
+            if (prototypeFile.Metavariants != null)
+            {
+                Metavariants.AddRange(prototypeFile.Metavariants); 
+            }
         }
 
         public void MergeTraitCollection(IEnumerable<ITraitPrototype> collection)
@@ -80,15 +109,9 @@ namespace ShadowrunTools.Serialization
             }
         }
 
-        public bool SetDefaultRace(string name)
+        public IMetavariantPrototype GetDefaultRace(string name)
         {
-            var variant = Metavariants.First(mv => mv.Name == name);
-            if (variant is null)
-            {
-                return false;
-            }
-            DefaultMetavariant = variant;
-            return true;
+            return Metavariants.First(mv => mv.Name == name);
         }
     }
 }

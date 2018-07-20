@@ -3,10 +3,31 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:xtk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:local="clr-namespace:ShadowrunTools.Characters.Wpf.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120" />
+            <ColumnDefinition Width="60" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="120" />
+            <ColumnDefinition Width="60" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock  Grid.Column="0" Grid.Row="0"
+                    Text="{Binding Agility.Name}" />
+        <xtk:IntegerUpDown Grid.Column="1" Grid.Row="0"
+                           Value="{Binding Agility.BaseRating}" />
+
+        <TextBlock Grid.Row="2" Text="{Binding Name}" />
     </Grid>
 </UserControl>

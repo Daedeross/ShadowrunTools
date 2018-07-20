@@ -18,7 +18,7 @@
             <MenuItem Header="_File">
                 <MenuItem Header="_New" Command="{Binding NewCharacterCommand}" />
             </MenuItem>
-            <MenuItem Header="_Characters" ItemsSource="{Binding Characters}">
+            <MenuItem Header="_Characters" >
                 <MenuItem Header="Not Implemented" />
             </MenuItem>
         </Menu>
@@ -30,6 +30,29 @@
                 <TextBlock Text="{Binding CurrentCharacter.Name}"></TextBlock>
             </StatusBarItem>
         </StatusBar>
-        <views:CharacterView DataContext="{Binding CurrentCharacter}" Grid.Row="2" />
+        <!--<views:CharacterView Grid.Row="1" DataContext="{Binding CurrentCharacter}" />-->
+        <TabControl Grid.Row="1" ItemsSource="{Binding Characters}"
+                    SelectedItem="{Binding CurrentCharacter}">
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}" />
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+            <TabControl.ContentTemplate>
+                <DataTemplate>
+                    <views:CharacterView DataContext="{Binding}" />
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+            <!--<TabControl.ItemContainerStyle>
+                <Style TargetType="TabItem">
+                    <Setter Property="Header" Value="{Binding Name}" />
+                    <Setter Property="Content">
+                        <Setter.Value>
+                            <views:CharacterView DataContext="{Binding}" />
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TabControl.ItemContainerStyle>-->
+        </TabControl>
     </Grid>
 </Window>

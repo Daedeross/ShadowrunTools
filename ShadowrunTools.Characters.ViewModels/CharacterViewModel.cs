@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using ShadowrunTools.Characters.Prototypes;
+using ShadowrunTools.Characters.Traits;
 using ShadowrunTools.Serialization.Prototypes;
 using System;
 using System.Collections.Generic;
@@ -15,9 +16,20 @@ namespace ShadowrunTools.Characters.ViewModels
         public CharacterViewModel(ICharacter character)
         {
             _character = character ?? throw new ArgumentNullException(nameof(character));
+
+            var agility = _character[TraitCategories.Attribute]["Agility"];
+            Agility = agility as IAttribute;
         }
 
+        #region Character Properties
+
+        public string Name { get => _character.Name; set => _character.Name = value; }
+
+        #endregion // Character Properties
+
         #region Core Attributes
+
+        public ILeveledTrait Agility { get; private set; }
 
         #endregion // Core Attributes
 
@@ -41,8 +53,6 @@ namespace ShadowrunTools.Characters.ViewModels
         {
             
         }
-
-
 
         #endregion // Commands
     }

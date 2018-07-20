@@ -3,6 +3,7 @@
     using GalaSoft.MvvmLight.Command;
     using ShadowrunTools.Characters.Prototypes;
     using ShadowrunTools.Serialization;
+    using ShadowrunTools.Serialization.Prototypes;
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
@@ -28,7 +29,7 @@
             }
         }
 
-        public ObservableCollection<CharacterViewModel> Characters { get; set; }
+        public ObservableCollection<CharacterViewModel> Characters { get; private set; }
 
         private CharacterViewModel _currentCharacter;
 
@@ -50,6 +51,7 @@
         {
             _dataLoader = dataLoader ?? throw new ArgumentNullException(nameof(dataLoader));
             _rules = rules ?? throw new ArgumentNullException(nameof(rules));
+            Characters = new ObservableCollection<CharacterViewModel>();
         }
 
         #region Commands
@@ -70,8 +72,13 @@
 
         protected virtual void NewCharacterExecute()
         {
-            MessageBox.Show("NEW!");
-            var character = new Character(_rules, null);
+            var prototypes = Prototypes;
+            var defaultMeta = prototypes.DefaultMetavariant;
+
+            var charProto = CharacterPrototype.CreateFromRepository(prototypes);
+
+            var character = Character.CreateFromPrototype(charProto, Prototypes.DefaultMetavariant, _rules);
+            //var character = new Character(_rules, Prototypes.DefaultMetavariant);
             character.Name = "New Character";
             var viewModel = new CharacterViewModel(character);
             Characters.Add(viewModel);

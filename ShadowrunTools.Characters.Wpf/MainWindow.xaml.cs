@@ -47,6 +47,8 @@ namespace ShadowrunTools.Characters.Wpf
             var workspace = new WorkspaceViewModel(dataLoader, rules);
 
             this.DataContext = workspace;
+
+            InitializeComponent();
         }
     }
 }
