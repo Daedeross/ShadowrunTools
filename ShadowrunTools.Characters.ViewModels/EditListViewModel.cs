@@ -41,7 +41,6 @@
             }
         }
 
-
         private EditListViewModel(IEditable editable, IPropertyList properties)
         {
             Properties = new ObservableCollection<KeyValuePair<string, IProperty>>(properties);

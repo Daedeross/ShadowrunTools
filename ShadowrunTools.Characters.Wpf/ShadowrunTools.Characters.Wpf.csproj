@@ -101,6 +101,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ViewModel\EditListViewModel.cs" />
+    <Compile Include="Views\AttributesView.xaml.cs">
+      <DependentUpon>AttributesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AttributeUpDown.xaml.cs">
+      <DependentUpon>AttributeUpDown.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CharacterView.xaml.cs">
       <DependentUpon>CharacterView.xaml</DependentUpon>
     </Compile>
@@ -119,6 +125,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\AttributesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AttributeUpDown.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CharacterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

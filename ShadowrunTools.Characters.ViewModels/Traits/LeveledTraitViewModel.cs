@@ -19,7 +19,7 @@ namespace ShadowrunTools.Characters.ViewModels.Traits
 
         static LeveledTraitViewModel()
         {
-            _propertyNames = new HashSet<string>(typeof(TraitViewModelBase).GetProperties().Select(pi => pi.Name));
+            _propertyNames = new HashSet<string>(typeof(LeveledTraitViewModel).GetProperties().Select(pi => pi.Name));
         }
 
         public LeveledTraitViewModel(ILeveledTrait leveledTrait)

@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Grid.ColumnDefinitions>
+        <!--<Grid.ColumnDefinitions>
             <ColumnDefinition Width="120" />
             <ColumnDefinition Width="60" />
             <ColumnDefinition Width="auto" />
@@ -24,10 +24,52 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <TextBlock  Grid.Column="0" Grid.Row="0"
-                    Text="{Binding Agility.Name}" />
+                    Text="{Binding Body.Name}" />
         <xtk:IntegerUpDown Grid.Column="1" Grid.Row="0"
+                           Value="{Binding Body.BaseRating}" />
+        <TextBlock  Grid.Column="0" Grid.Row="1"
+                    Text="{Binding Agility.Name}" />
+        <xtk:IntegerUpDown Grid.Column="1" Grid.Row="1"
                            Value="{Binding Agility.BaseRating}" />
+        <TextBlock  Grid.Column="0" Grid.Row="2"
+                    Text="{Binding Reaction.Name}" />
+        <xtk:IntegerUpDown Grid.Column="1" Grid.Row="2"
+                           Value="{Binding Reaction.BaseRating}" />
+        <TextBlock  Grid.Column="0" Grid.Row="3"
+                    Text="{Binding Strength.Name}" />
+        <xtk:IntegerUpDown Grid.Column="1" Grid.Row="3"
+                           Value="{Binding Strength.BaseRating}" />
 
-        <TextBlock Grid.Row="2" Text="{Binding Name}" />
+        <TextBlock Grid.Row="4" Text="{Binding Name}" />
+        <local:AttributeUpDown DataContext="{Binding Agility}"
+                               Grid.Column="2"
+                               Grid.Row="1"/>-->
+        <ListView ItemsSource="{Binding Attributes}">
+            <ListView.View>
+                <GridView>
+                    <!--<GridViewColumn Header="Attribute" DisplayMemberBinding="{Binding Name}" />-->
+                    <GridViewColumn Header="Attribute" Width="400">
+                        <GridViewColumn.DisplayMemberBinding>
+                            <MultiBinding StringFormat="{}{0} [{1}/{2}]">
+                                <Binding Path="Name" Mode="OneWay" />
+                                <Binding Path="Min" Mode="OneWay" />
+                                <Binding Path="Max" Mode="OneWay" />
+                            </MultiBinding>
+                        </GridViewColumn.DisplayMemberBinding>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Rating">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <xtk:IntegerUpDown Grid.Column="1"
+                                                   Name="SpinEdit"
+                                                   Value="{Binding BaseRating}"
+                                                   Minimum="{Binding Min}" Maximum="{Binding Max}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="-" Width="40" DisplayMemberBinding="{Binding AugmentedRating}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </UserControl>
