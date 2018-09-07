@@ -126,6 +126,7 @@
                 }
             }
         }
+
         public int ImprovedRating => BaseRating + Improvement;
 
         public int AugmentedRating => Math.Min(ImprovedRating + RatingBonus, AugmentedMax);
