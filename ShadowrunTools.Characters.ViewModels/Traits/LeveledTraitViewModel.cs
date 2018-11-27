@@ -14,12 +14,12 @@ namespace ShadowrunTools.Characters.ViewModels.Traits
 {
     public class LeveledTraitViewModel : TraitViewModelBase, ILeveledTrait
     {
-        private readonly ILeveledTrait _leveledTrait; private readonly ITrait _trait;
+        private readonly ILeveledTrait _leveledTrait;
         private static readonly ISet<string> _propertyNames;
 
         static LeveledTraitViewModel()
         {
-            _propertyNames = new HashSet<string>(typeof(LeveledTraitViewModel).GetProperties().Select(pi => pi.Name));
+            _propertyNames = new HashSet<string>(typeof(LeveledTraitViewModel).GetProperties(System.Reflection.BindingFlags.Instance).Select(pi => pi.Name));
         }
 
         public LeveledTraitViewModel(ILeveledTrait leveledTrait)

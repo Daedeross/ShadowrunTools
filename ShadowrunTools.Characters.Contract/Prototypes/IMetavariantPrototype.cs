@@ -12,6 +12,10 @@ namespace ShadowrunTools.Characters.Prototypes
         /// The "Primary Subspecies." eg: Human, Elf, Ork, etc.
         /// </summary>
         string Metatype { get; }
+
+        /// <summary>
+        /// The Min/Max attributes for the metatvariant.
+        /// </summary>
         List<IMetatypeAttribute> Attributes { get; }
     }
 }

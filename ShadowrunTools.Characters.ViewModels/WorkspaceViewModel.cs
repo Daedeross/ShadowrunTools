@@ -16,6 +16,7 @@
         private IPrototypeRepository _prototypes;
         private readonly DataLoader _dataLoader;
         private IRules _rules;
+        private ITraitFactory _traitFactory;
 
         public IPrototypeRepository Prototypes
         {
@@ -46,11 +47,11 @@
             }
         }
 
-
         public WorkspaceViewModel(DataLoader dataLoader, IRules rules)
         {
             _dataLoader = dataLoader ?? throw new ArgumentNullException(nameof(dataLoader));
             _rules = rules ?? throw new ArgumentNullException(nameof(rules));
+            _traitFactory = new Factories.TraitFactory(rules);
             Characters = new ObservableCollection<CharacterViewModel>();
         }
 
@@ -79,7 +80,7 @@
 
             var meta = Prototypes.Metavariants.Find(m => m.Name == "Elf");
 
-            var character = Character.CreateFromPrototype(charProto, meta, _rules);
+            var character = Character.CreateFromPrototype(charProto, meta, _traitFactory);
             //var character = new Character(_rules, Prototypes.DefaultMetavariant);
             character.Name = "New Character";
             var viewModel = new CharacterViewModel(character);

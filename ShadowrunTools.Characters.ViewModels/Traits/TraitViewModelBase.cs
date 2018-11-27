@@ -18,7 +18,7 @@ namespace ShadowrunTools.Characters.ViewModels.Traits
 
         static TraitViewModelBase()
         {
-            _propertyNames = new HashSet<string>(typeof(TraitViewModelBase).GetProperties().Select(pi => pi.Name));
+            _propertyNames = new HashSet<string>(typeof(TraitViewModelBase).GetProperties(System.Reflection.BindingFlags.Instance).Select(pi => pi.Name));
         }
 
         public TraitViewModelBase(ITrait trait)

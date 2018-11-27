@@ -6,15 +6,15 @@ namespace ShadowrunTools.Characters
 {
     public class Character: CategorizedTraitContainer, ICharacter
     {
-        private readonly IRules _rules;
+        private readonly ITraitFactory _traitFactory;
 
         public string Name { get; set; }
 
         public ICharacterMetatype Metatype { get; }
 
-        public Character(IRules rules, IMetavariantPrototype metavariant)
+        public Character(ITraitFactory traitFactory, IMetavariantPrototype metavariant)
         {
-            _rules = rules ?? throw new ArgumentNullException(nameof(rules));
+            _traitFactory = traitFactory ?? throw new ArgumentNullException(nameof(traitFactory));
 
             Metatype = new CharacterMetatype(metavariant);
         }
@@ -32,24 +32,19 @@ namespace ShadowrunTools.Characters
             }
         }
 
-        internal IAttribute CreateAttribute(IAttributePrototype prototype)
+        public void AddAttribute(IAttribute attribute)
         {
-            var id = Guid.NewGuid();
-            var container = Attributes;
-            var attribute = new Traits.Attribute(id, prototype.Name, container, this, Metatype, _rules)
-            {
-                SubCategory = prototype.SubCategory,
-                Book = prototype.Book,
-                Page = prototype.Page,
-                ShortName = prototype.ShortName,
-            };
 
-            return attribute;
         }
 
-        public static ICharacter CreateFromPrototype(ICharacterPrototype characterPrototype, IMetavariantPrototype metavariant, IRules rules)
+        internal IAttribute CreateAttribute(IAttributePrototype prototype)
         {
-            var character = new Character(rules, metavariant);
+            return _traitFactory.CreateAttribute(this, prototype);
+        }
+
+        public static ICharacter CreateFromPrototype(ICharacterPrototype characterPrototype, IMetavariantPrototype metavariant, ITraitFactory traitFactory)
+        {
+            var character = new Character(traitFactory, metavariant);
 
             foreach (var attributePrototype in characterPrototype.CoreAttributes)
             {

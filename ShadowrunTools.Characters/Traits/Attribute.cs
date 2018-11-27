@@ -36,6 +36,21 @@
 
         public override bool Independant { get => true; }
 
+        private string _customOrder;
+        public string CustomOrder
+        {
+            get { return _customOrder; }
+            set
+            {
+                if (_customOrder != value)
+                {
+                    _customOrder = value;
+                    RaiseItemChanged(new[] { nameof(CustomOrder) });
+                }
+            }
+        }
+
+
         protected void OnMetatypeChanged(object sender, ItemChangedEventArgs e)
         {
             if (ReferenceEquals(sender, Metatype))

@@ -25,15 +25,17 @@ namespace ShadowrunTools.Characters.ViewModels
 
         private void InitializeAttributes()
         {
-            var body = _character[TraitCategories.Attribute]["Body"];
-            var agility = _character[TraitCategories.Attribute]["Agility"];
-            var reaction = _character[TraitCategories.Attribute]["Reaction"];
-            var strength = _character[TraitCategories.Attribute]["Strength"];
+            var attributes = _character[TraitCategories.Attribute];
 
-            var willpower = _character[TraitCategories.Attribute]["Willpower"];
-            var logic = _character[TraitCategories.Attribute]["Logic"];
-            var intuition = _character[TraitCategories.Attribute]["Intuition"];
-            var charisma = _character[TraitCategories.Attribute]["Charisma"];
+            var body     = attributes["Body"];
+            var agility  = attributes["Agility"];
+            var reaction = attributes["Reaction"];
+            var strength = attributes["Strength"];
+
+            var willpower = attributes["Willpower"];
+            var logic     = attributes["Logic"];
+            var intuition = attributes["Intuition"];
+            var charisma  = attributes["Charisma"];
 
             Body = body as IAttribute;
             Agility = agility as IAttribute;
@@ -45,8 +47,8 @@ namespace ShadowrunTools.Characters.ViewModels
             Intuition = intuition as IAttribute;
             Charisma = charisma as IAttribute;
 
-            Attributes = new ObservableCollection<LeveledTraitViewModel>
-                (_character[TraitCategories.Attribute].Values.Select(x => new LeveledTraitViewModel(x as IAttribute)));
+            Attributes = new ObservableCollection<AttributeViewModel>
+                (attributes.Values.Select(x => new AttributeViewModel(x as IAttribute)));
         }
 
         #region Character Properties
@@ -57,7 +59,7 @@ namespace ShadowrunTools.Characters.ViewModels
 
         #region Core Attributes
 
-        public ObservableCollection<LeveledTraitViewModel> Attributes { get; set; }
+        public ObservableCollection<AttributeViewModel> Attributes { get; set; }
 
         public ILeveledTrait Body { get; private set; }
         public ILeveledTrait Agility { get; private set; }

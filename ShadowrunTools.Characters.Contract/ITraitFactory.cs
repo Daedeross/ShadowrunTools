@@ -5,6 +5,6 @@ namespace ShadowrunTools.Characters
 {
     public interface ITraitFactory
     {
-        IAttribute CreateAttribute(ICategorizedTraitContainer container, IAttributePrototype prototype);
+        IAttribute CreateAttribute(ICharacter character, IAttributePrototype prototype);
     }
 }

@@ -13,7 +13,7 @@
     /// Living Persona: (implementations TBD)
     /// Reputation: (only in-play, TBD)
     /// </remarks>
-    public interface IAttribute: ILeveledTrait
+    public interface IAttribute: ILeveledTrait, IOrderOverride
     {
         string ShortName { get; }
     }

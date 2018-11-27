@@ -8,7 +8,7 @@
     using ShadowrunTools.Characters.Model;
     using ShadowrunTools.Foundation;
 
-    public abstract class BaseTrait : ITrait, INotifyItemChanged
+    public abstract class BaseTrait : ItemChangedBase, ITrait
     {
         protected static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
 
