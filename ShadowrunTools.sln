@@ -22,6 +22,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		shared.app.props = shared.app.props
 	EndProjectSection
 EndProject
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "ShadowrunTools.Validators", "ShadowrunTools.Validators\ShadowrunTools.Validators.fsproj", "{2150D299-DF0C-460C-9033-5C79EC496EE9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +58,10 @@ Global
 		{543B1353-8F3D-43EB-8086-B50463E1D594}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{543B1353-8F3D-43EB-8086-B50463E1D594}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{543B1353-8F3D-43EB-8086-B50463E1D594}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2150D299-DF0C-460C-9033-5C79EC496EE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2150D299-DF0C-460C-9033-5C79EC496EE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2150D299-DF0C-460C-9033-5C79EC496EE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2150D299-DF0C-460C-9033-5C79EC496EE9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

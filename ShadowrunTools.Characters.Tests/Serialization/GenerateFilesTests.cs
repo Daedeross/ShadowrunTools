@@ -11,7 +11,7 @@ namespace ShadowrunTools.Characters.Tests.Serialization
 {
     public class GenerateFilesTests
     {
-        private List<AttributePrototype> MakeAttributes()
+        internal static List<AttributePrototype> MakeAttributes()
         {
             var prototypes = Enumerable.Range(0, 11).Select(
                 i => new AttributePrototype
@@ -39,38 +39,37 @@ namespace ShadowrunTools.Characters.Tests.Serialization
             prototypes[3].SubCategory = "Physical Attributes";
             prototypes[4].Name = "Willpower";
             prototypes[4].ShortName = "WIL";
-            prototypes[4].CustomOrder = "04";
+            prototypes[4].CustomOrder = "10";
             prototypes[4].SubCategory = "Mental Attributes";
             prototypes[5].Name = "Logic";
             prototypes[5].ShortName = "LOG";
-            prototypes[5].CustomOrder = "05";
+            prototypes[5].CustomOrder = "11";
             prototypes[5].SubCategory = "Mental Attributes";
             prototypes[6].Name = "Intuition";
             prototypes[6].ShortName = "INT";
-            prototypes[6].CustomOrder = "06";
+            prototypes[6].CustomOrder = "12";
             prototypes[6].SubCategory = "Mental Attributes";
             prototypes[7].Name = "Charisma";
             prototypes[7].ShortName = "CHA";
-            prototypes[7].CustomOrder = "07";
+            prototypes[7].CustomOrder = "13";
             prototypes[7].SubCategory = "Mental Attributes";
             prototypes[8].Name = "Edge";
             prototypes[8].ShortName = "EDG";
-            prototypes[8].CustomOrder = "08";
+            prototypes[8].CustomOrder = "20";
             prototypes[8].SubCategory = "Special Attributes";
             prototypes[9].Name = "Magic";
             prototypes[9].ShortName = "MAG";
-            prototypes[9].CustomOrder = "09";
+            prototypes[9].CustomOrder = "21";
             prototypes[9].SubCategory = "Special Attributes";
-            prototypes[10].Name = "Magic";
-            prototypes[10].ShortName = "MAG";
-            prototypes[10].CustomOrder = "10";
+            prototypes[10].Name = "Resonance";
+            prototypes[10].ShortName = "RES";
+            prototypes[10].CustomOrder = "22";
             prototypes[10].SubCategory = "Special Attributes";
 
             return prototypes.ToList();
         }
 
-
-        private MetatypeAttributePrototype MakeMetaAttribute(string name, int min, int max)
+        internal static MetatypeAttributePrototype MakeMetaAttribute(string name, int min, int max)
         {
             return new MetatypeAttributePrototype
             {
@@ -78,7 +77,7 @@ namespace ShadowrunTools.Characters.Tests.Serialization
             };
         }
 
-        private List<MetatypeAttributePrototype> MakeMetaAttributes(
+        internal static List<MetatypeAttributePrototype> MakeMetaAttributes(
             int b1, int b2,
             int a1, int a2,
             int r1, int r2,

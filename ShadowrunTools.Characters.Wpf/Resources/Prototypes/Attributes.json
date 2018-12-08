@@ -38,7 +38,7 @@
     },
     {
       "ShortName": "WIL",
-      "CustomOrder": "04",
+      "CustomOrder": "10",
       "TraitType": "Attribute",
       "Name": "Willpower",
       "SubCategory": "Mental Attributes",
@@ -47,7 +47,7 @@
     },
     {
       "ShortName": "LOG",
-      "CustomOrder": "05",
+      "CustomOrder": "11",
       "TraitType": "Attribute",
       "Name": "Logic",
       "SubCategory": "Mental Attributes",
@@ -56,7 +56,7 @@
     },
     {
       "ShortName": "INT",
-      "CustomOrder": "06",
+      "CustomOrder": "12",
       "TraitType": "Attribute",
       "Name": "Intuition",
       "SubCategory": "Mental Attributes",
@@ -65,7 +65,7 @@
     },
     {
       "ShortName": "CHA",
-      "CustomOrder": "07",
+      "CustomOrder": "13",
       "TraitType": "Attribute",
       "Name": "Charisma",
       "SubCategory": "Mental Attributes",
@@ -74,7 +74,7 @@
     },
     {
       "ShortName": "EDG",
-      "CustomOrder": "08",
+      "CustomOrder": "20",
       "TraitType": "Attribute",
       "Name": "Edge",
       "SubCategory": "Special Attributes",
@@ -83,7 +83,7 @@
     },
     {
       "ShortName": "MAG",
-      "CustomOrder": "09",
+      "CustomOrder": "21",
       "TraitType": "Attribute",
       "Name": "Magic",
       "SubCategory": "Special Attributes",
@@ -91,10 +91,10 @@
       "Page": 51
     },
     {
-      "ShortName": "MAG",
-      "CustomOrder": "10",
+      "ShortName": "RES",
+      "CustomOrder": "22",
       "TraitType": "Attribute",
-      "Name": "Magic",
+      "Name": "Resonance",
       "SubCategory": "Special Attributes",
       "Book": "SR5",
       "Page": 51

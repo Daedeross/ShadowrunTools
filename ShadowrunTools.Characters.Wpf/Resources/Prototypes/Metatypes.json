@@ -41,8 +41,8 @@
         },
         {
           "Name": "Charisma",
-          "Min": 2,
-          "Max": 8
+          "Min": 1,
+          "Max": 6
         },
         {
           "Name": "Edge",
@@ -92,13 +92,13 @@
         },
         {
           "Name": "Charisma",
-          "Min": 1,
-          "Max": 6
+          "Min": 3,
+          "Max": 8
         },
         {
           "Name": "Edge",
-          "Min": 3,
-          "Max": 8
+          "Min": 1,
+          "Max": 6
         }
       ]
     }

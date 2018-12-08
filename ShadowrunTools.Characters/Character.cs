@@ -19,7 +19,7 @@ namespace ShadowrunTools.Characters
             Metatype = new CharacterMetatype(metavariant);
         }
 
-        public ITraitContainer Attributes
+        public ITraitContainer<IAttribute> Attributes
         {
             get
             {
@@ -28,7 +28,7 @@ namespace ShadowrunTools.Characters
                     attributes = new TraitContainer<IAttribute>();
                     this[TraitCategories.Attribute] = attributes;
                 }
-                return attributes;
+                return attributes as ITraitContainer<IAttribute>;
             }
         }
 

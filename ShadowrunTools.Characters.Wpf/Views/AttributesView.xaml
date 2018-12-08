@@ -4,15 +4,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:xtk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
              xmlns:local="clr-namespace:ShadowrunTools.Characters.Wpf.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <!--<Grid.Resources>
+        <Grid.Resources>
             <CollectionViewSource x:Key="src" Source="{Binding Attributes}">
+                <CollectionViewSource.SortDescriptions>
+                    <scm:SortDescription PropertyName="CustomOrder" />
+                </CollectionViewSource.SortDescriptions>
             </CollectionViewSource>
-        </Grid.Resources>-->
-        <ListView ItemsSource="{Binding Attributes}">
+        </Grid.Resources>
+        <ListView ItemsSource="{Binding Source={StaticResource src}}">
             <ListView.View>
                 <GridView ColumnHeaderContainerStyle="{StaticResource myGridViewColumnHeaderStyle}">
                     <GridViewColumn Header=" " Width="20" DisplayMemberBinding="{Binding CustomOrder}" />

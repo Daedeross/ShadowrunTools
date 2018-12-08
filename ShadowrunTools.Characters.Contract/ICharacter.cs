@@ -7,6 +7,8 @@ namespace ShadowrunTools.Characters
         string Name { get; set; }
         ICharacterMetatype Metatype { get; }
 
+        ITraitContainer<IAttribute> Attributes { get; }
+
         void AddAttribute(IAttribute attribute);
     }
 }
