@@ -1,0 +1,103 @@
+{
+  "Attributes": [
+    {
+      "ShortName": "BOD",
+      "CustomOrder": "00",
+      "TraitType": "Attribute",
+      "Name": "Body",
+      "SubCategory": "Physical Attributes",
+      "Book": "SR5",
+      "Page": 51
+    },
+    {
+      "ShortName": "AGI",
+      "CustomOrder": "01",
+      "TraitType": "Attribute",
+      "Name": "Agility",
+      "SubCategory": "Physical Attributes",
+      "Book": "SR5",
+      "Page": 51
+    },
+    {
+      "ShortName": "REA",
+      "CustomOrder": "02",
+      "TraitType": "Attribute",
+      "Name": "Reaction",
+      "SubCategory": "Physical Attributes",
+      "Book": "SR5",
+      "Page": 51
+    },
+    {
+      "ShortName": "STR",
+      "CustomOrder": "03",
+      "TraitType": "Attribute",
+      "Name": "Strength",
+      "SubCategory": "Physical Attributes",
+      "Book": "SR5",
+      "Page": 51
+    },
+    {
+      "ShortName": "WIL",
+      "CustomOrder": "10",
+      "TraitType": "Attribute",
+      "Name": "Willpower",
+      "SubCategory": "Mental Attributes",
+      "Book": "SR5",
+      "Page": 51
+    },
+    {
+      "ShortName": "LOG",
+      "CustomOrder": "11",
+      "TraitType": "Attribute",
+      "Name": "Logic",
+      "SubCategory": "Mental Attributes",
+      "Book": "SR5",
+      "Page": 51
+    },
+    {
+      "ShortName": "INT",
+      "CustomOrder": "12",
+      "TraitType": "Attribute",
+      "Name": "Intuition",
+      "SubCategory": "Mental Attributes",
+      "Book": "SR5",
+      "Page": 51
+    },
+    {
+      "ShortName": "CHA",
+      "CustomOrder": "13",
+      "TraitType": "Attribute",
+      "Name": "Charisma",
+      "SubCategory": "Mental Attributes",
+      "Book": "SR5",
+      "Page": 51
+    },
+    {
+      "ShortName": "EDG",
+      "CustomOrder": "20",
+      "TraitType": "Attribute",
+      "Name": "Edge",
+      "SubCategory": "Special Attributes",
+      "Book": "SR5",
+      "Page": 51
+    },
+    {
+      "ShortName": "MAG",
+      "CustomOrder": "21",
+      "TraitType": "Attribute",
+      "Name": "Magic",
+      "SubCategory": "Special Attributes",
+      "Book": "SR5",
+      "Page": 51
+    },
+    {
+      "ShortName": "RES",
+      "CustomOrder": "22",
+      "TraitType": "Attribute",
+      "Name": "Resonance",
+      "SubCategory": "Special Attributes",
+      "Book": "SR5",
+      "Page": 51
+    }
+  ]
+}

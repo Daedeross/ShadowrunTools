@@ -7,7 +7,7 @@
 
     public interface IPrototypeRepository
     {
-        List<IMetavariantPrototype> Metavariants { get; }
+        IReadOnlyCollection<IMetavariantPrototype> Metavariants { get; }
 
         IMetavariantPrototype DefaultMetavariant { get; }
 

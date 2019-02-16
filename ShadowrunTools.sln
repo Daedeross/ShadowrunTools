@@ -1,13 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2027
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28531.58
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShadowrunTools.Characters", "ShadowrunTools.Characters\ShadowrunTools.Characters.csproj", "{CBFE5E08-40F2-4ED1-8B8A-83CFDB547DFE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShadowrunTools.Characters.Contract", "ShadowrunTools.Characters.Contract\ShadowrunTools.Characters.Contract.csproj", "{1091FCC1-71EF-4104-81F8-B861CC51229C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShadowrunTools.Characters.Wpf", "ShadowrunTools.Characters.Wpf\ShadowrunTools.Characters.Wpf.csproj", "{574CB02E-71E6-4089-90AF-5F8672ABBBF2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShadowrunTools.Foundation", "ShadowrunTools.Foundation\ShadowrunTools.Foundation.csproj", "{6C77AD64-75A8-4794-A285-8888C5327ACA}"
 EndProject
@@ -24,6 +22,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "ShadowrunTools.Validators", "ShadowrunTools.Validators\ShadowrunTools.Validators.fsproj", "{2150D299-DF0C-460C-9033-5C79EC496EE9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShadowrunTools.Characters.Wpf", "ShadowrunTools.Characters.Wpf\ShadowrunTools.Characters.Wpf.csproj", "{7B3E7A07-B477-4777-B6C6-9A9A601FBE91}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,10 +38,6 @@ Global
 		{1091FCC1-71EF-4104-81F8-B861CC51229C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1091FCC1-71EF-4104-81F8-B861CC51229C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1091FCC1-71EF-4104-81F8-B861CC51229C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{574CB02E-71E6-4089-90AF-5F8672ABBBF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{574CB02E-71E6-4089-90AF-5F8672ABBBF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{574CB02E-71E6-4089-90AF-5F8672ABBBF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{574CB02E-71E6-4089-90AF-5F8672ABBBF2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6C77AD64-75A8-4794-A285-8888C5327ACA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6C77AD64-75A8-4794-A285-8888C5327ACA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C77AD64-75A8-4794-A285-8888C5327ACA}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -62,6 +58,10 @@ Global
 		{2150D299-DF0C-460C-9033-5C79EC496EE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2150D299-DF0C-460C-9033-5C79EC496EE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2150D299-DF0C-460C-9033-5C79EC496EE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B3E7A07-B477-4777-B6C6-9A9A601FBE91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B3E7A07-B477-4777-B6C6-9A9A601FBE91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B3E7A07-B477-4777-B6C6-9A9A601FBE91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B3E7A07-B477-4777-B6C6-9A9A601FBE91}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

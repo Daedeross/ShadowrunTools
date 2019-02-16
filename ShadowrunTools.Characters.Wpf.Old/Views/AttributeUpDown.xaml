@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="ShadowrunTools.Characters.Wpf.Views.AttributeUpDown"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ShadowrunTools.Characters.Wpf.Views"
+             xmlns:xtk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d" MinHeight="34" >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120" />
+            <ColumnDefinition Width="64" />
+            <ColumnDefinition Width="48" />
+        </Grid.ColumnDefinitions>
+        <Label Margin="5 0 0 0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Center"
+               Target="{Binding ElementName=SpinEdit}">
+            <Label.Content>
+                <TextBlock>
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}{0} ({1}/{2})">
+                            <Binding Path="Name" Mode="OneWay" />
+                            <Binding Path="Min" Mode="OneWay" />
+                            <Binding Path="Max" Mode="OneWay" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+            </Label.Content>
+        </Label>
+        <xtk:IntegerUpDown Grid.Column="1"
+                           Name="SpinEdit"
+                           Value="{Binding BaseRating}"
+                           Minimum="{Binding Min}" Maximum="{Binding Max}" />
+        <TextBlock Grid.Column="2"
+                   Margin="5 0 0 0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   Text="{Binding AugmentedRating}" />
+    </Grid>
+</UserControl>

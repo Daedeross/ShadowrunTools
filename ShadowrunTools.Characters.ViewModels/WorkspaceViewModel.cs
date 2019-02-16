@@ -7,6 +7,7 @@
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Linq;
     using System.Text;
     using System.Windows;
     using System.Windows.Input;
@@ -78,7 +79,7 @@
 
             var charProto = CharacterPrototype.CreateFromRepository(prototypes);
 
-            var meta = Prototypes.Metavariants.Find(m => m.Name == "Elf");
+            var meta = Prototypes.Metavariants.First(m => m.Name == "Elf");
 
             var character = Character.CreateFromPrototype(charProto, meta, _traitFactory);
             //var character = new Character(_rules, Prototypes.DefaultMetavariant);

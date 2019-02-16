@@ -1,48 +1,18 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-  <Import Project="../shared.app.props" />
-  
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
   <PropertyGroup>
-    <RootNamespace>ShadowrunTools.Characters.Wpf</RootNamespace>
-    <AssemblyName>ShadowrunTools.Characters.Wpf</AssemblyName>
-    <LanguageTargets>$(MSBuildExtensionsPath)\$(VisualStudioVersion)\Bin\Microsoft.CSharp.targets</LanguageTargets>
-    <OutputType>winexe</OutputType>
-    <OutputTypeEx>winexe</OutputTypeEx>
-    <TargetFramework>net461</TargetFramework>
-    <LangVersion>latest</LangVersion>
-    <Author>Bryan C. Jones</Author>
-    <Description>Graphical Character Creator for Shadowrun 5th Ed.</Description>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <UseWPF>true</UseWPF>
   </PropertyGroup>
-
-  <PropertyGroup Label="Globals">
-    <SccProjectName>SAK</SccProjectName>
-    <SccProvider>SAK</SccProvider>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccLocalPath>SAK</SccLocalPath>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="Properties\Resources.resx" Generator="ResXFileCodeGenerator" LastGenOutput="Resources.Designer.cs" />
-    <Compile Update="Properties\Resources.Designer.cs" DesignTime="True" AutoGen="True" DependentUpon="Resources.resx" />
-    <Compile Update="Settings.Designer.cs" AutoGen="True" DependentUpon="Settings.settings" />
-    <None Update="Resources\**\*.*">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Settings.settings" LastGenOutput="Settings.Designer.cs" Generator="SettingsSingleFileGenerator" />
-
-    <Page Include="**\*.xaml" SubType="Designer" Generator="MSBuild:Compile" Exclude="App.xaml" />
-    <Compile Update="**\*.xaml.cs" SubType="Code" DependentUpon="%(Filename)" />
-
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Castle.Windsor" Version="4.1.1" />
     <PackageReference Include="Extended.Wpf.Toolkit" Version="3.4.0" />
     <PackageReference Include="MvvmLightLibsStd10" Version="5.4.1.1" />
     <PackageReference Include="Nito.Mvvm.Async" Version="1.0.0-pre-03" />
+    <PackageReference Include="NLog" Version="4.5.11" />
+    <PackageReference Include="NLog.Config" Version="4.5.11" />
   </ItemGroup>
 
   <ItemGroup>
@@ -51,15 +21,42 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="WindowsBase" />
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xaml">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
+    <None Update="Resources\**\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
-  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
+  <ItemGroup>
+    <Page Update="ControlTemplates\BrushPaletts.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="ControlTemplates\Glyphs.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="ControlTemplates\IntSpin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="ControlTemplates\ListStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="ControlTemplates\PriorityRadioButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Views\AttributesView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Views\AttributeUpDown.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Views\CharacterView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Views\TraitEditView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
 </Project>

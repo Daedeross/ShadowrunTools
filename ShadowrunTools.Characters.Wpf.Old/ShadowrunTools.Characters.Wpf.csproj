@@ -1,0 +1,52 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="../shared.app.props" />
+  
+  <PropertyGroup>
+    <RootNamespace>ShadowrunTools.Characters.Wpf</RootNamespace>
+    <AssemblyName>ShadowrunTools.Characters.Wpf</AssemblyName>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <LangVersion>latest</LangVersion>
+    <Author>Bryan C. Jones</Author>
+    <Description>Graphical Character Creator for Shadowrun 5th Ed.</Description>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx" Generator="ResXFileCodeGenerator" LastGenOutput="Resources.Designer.cs" />
+    <Compile Update="Properties\Resources.Designer.cs" DesignTime="True" AutoGen="True" DependentUpon="Resources.resx" />
+    <Compile Update="Settings.Designer.cs" AutoGen="True" DependentUpon="Settings.settings" />
+    <None Update="Resources\**\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Settings.settings" LastGenOutput="Settings.Designer.cs" Generator="SettingsSingleFileGenerator" />
+
+    <Page Include="**\*.xaml" SubType="Designer" Generator="MSBuild:Compile" Exclude="App.xaml" />
+    <Compile Update="**\*.xaml.cs" SubType="Code" DependentUpon="%(Filename)" />
+
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Castle.Windsor" Version="4.1.1" />
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="3.4.0" />
+    <PackageReference Include="MvvmLightLibsStd10" Version="5.4.1.1" />
+    <PackageReference Include="Nito.Mvvm.Async" Version="1.0.0-pre-03" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ShadowrunTools.Characters.ViewModels\ShadowrunTools.Characters.ViewModels.csproj" />
+    <ProjectReference Include="..\ShadowrunTools.Characters\ShadowrunTools.Characters.csproj" />
+  </ItemGroup>
+  
+</Project>
