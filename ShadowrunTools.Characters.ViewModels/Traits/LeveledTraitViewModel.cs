@@ -22,8 +22,8 @@ namespace ShadowrunTools.Characters.ViewModels.Traits
             _propertyNames = new HashSet<string>(typeof(LeveledTraitViewModel).GetProperties(System.Reflection.BindingFlags.Instance).Select(pi => pi.Name));
         }
 
-        public LeveledTraitViewModel(ILeveledTrait leveledTrait)
-            : base(leveledTrait)
+        public LeveledTraitViewModel(DisplaySettings displaySettings, ILeveledTrait leveledTrait)
+            : base(displaySettings, leveledTrait)
         {
             _leveledTrait = leveledTrait;
         }

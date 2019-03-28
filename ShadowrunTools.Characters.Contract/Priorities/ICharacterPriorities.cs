@@ -68,5 +68,10 @@ namespace ShadowrunTools.Characters.Priorities
         /// Amout of nuyen (¥) available to spend during creation.
         /// </summary>
         decimal Resources { get; }
+
+        /// <summary>
+        /// Used in SumToTen
+        /// </summary>
+        int TotalPriorityPoints { get; }
     }
 }

@@ -14,8 +14,8 @@ namespace ShadowrunTools.Characters.ViewModels.Traits
             _propertyNames = new HashSet<string>(typeof(AttributeViewModel).GetProperties(System.Reflection.BindingFlags.Instance).Select(pi => pi.Name));
         }
 
-        public AttributeViewModel(IAttribute attribute)
-            : base(attribute)
+        public AttributeViewModel(DisplaySettings displaySettings, IAttribute attribute)
+            : base(displaySettings, attribute)
         {
             _attribute = attribute;
         }

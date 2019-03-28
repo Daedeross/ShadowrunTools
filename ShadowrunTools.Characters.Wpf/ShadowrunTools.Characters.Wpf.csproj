@@ -4,7 +4,13 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <UseWPF>true</UseWPF>
+    <NoWarn>NU1701</NoWarn>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Views\PrioritiesView.xaml" />
+    <None Remove="Views\PriorityCellView.xaml" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Castle.Windsor" Version="4.1.1" />
@@ -24,6 +30,15 @@
     <None Update="Resources\**\*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\PrioritiesView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\PriorityCellView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -52,6 +67,12 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Update="Views\CharacterView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Views\PrioritiesView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Views\PriorityCellView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Update="Views\TraitEditView.xaml">

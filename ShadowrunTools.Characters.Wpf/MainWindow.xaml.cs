@@ -45,7 +45,9 @@ namespace ShadowrunTools.Characters.Wpf
 
             var rules = new RulesPrototype();
 
-            var workspace = new WorkspaceViewModel(dataLoader, rules);
+            var settings = new DisplaySettings { PriorityCellVisibleItemsCount = 2 };
+
+            var workspace = new WorkspaceViewModel(dataLoader, rules, settings);
 
             this.DataContext = workspace;
 

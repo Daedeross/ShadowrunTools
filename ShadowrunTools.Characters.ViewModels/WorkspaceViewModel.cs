@@ -12,7 +12,7 @@
     using System.Windows;
     using System.Windows.Input;
 
-    public class WorkspaceViewModel: NotificationObject
+    public class WorkspaceViewModel: ViewModelBase
     {
         private IPrototypeRepository _prototypes;
         private readonly DataLoader _dataLoader;
@@ -48,7 +48,8 @@
             }
         }
 
-        public WorkspaceViewModel(DataLoader dataLoader, IRules rules)
+        public WorkspaceViewModel(DataLoader dataLoader, IRules rules, DisplaySettings displaySettings)
+            : base(displaySettings)
         {
             _dataLoader = dataLoader ?? throw new ArgumentNullException(nameof(dataLoader));
             _rules = rules ?? throw new ArgumentNullException(nameof(rules));
@@ -84,7 +85,7 @@
             var character = Character.CreateFromPrototype(charProto, meta, _traitFactory);
             //var character = new Character(_rules, Prototypes.DefaultMetavariant);
             character.Name = "New Character";
-            var viewModel = new CharacterViewModel(character);
+            var viewModel = new CharacterViewModel(_displaySettings, character);
             Characters.Add(viewModel);
             CurrentCharacter = viewModel;
         }

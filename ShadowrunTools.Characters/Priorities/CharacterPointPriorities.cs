@@ -1,15 +1,12 @@
-﻿using System;
+﻿using ShadowrunTools.Characters.Model;
+using System;
 using System.Collections.Generic;
-using System.Text;
-using ShadowrunTools.Characters.Model;
-using ShadowrunTools.Foundation;
 
 namespace ShadowrunTools.Characters.Priorities
 {
-    public class CharacterPriorities : ItemChangedBase, ICharacterPriorities
+    public class CharacterPointPriorities : ItemChangedBase, ICharacterPriorities
     {
         private readonly IPriorities _priorities;
-        #region ICharacterPriorities Properties
 
         private PriorityLevel _metatypePriority;
         public PriorityLevel MetatypePriority
@@ -19,10 +16,8 @@ namespace ShadowrunTools.Characters.Priorities
             {
                 if (_metatypePriority != value)
                 {
-                    SwapPriorities(
-                        value,
-                        new List<string> { nameof(MetatypePriority), nameof(MetavariantOptions) },
-                        ref _metatypePriority);
+                    _metatypePriority = value;
+                    RaiseItemChanged(new[] { nameof(MetatypePriority), nameof(MetavariantOptions) });
                 }
             }
         }
@@ -35,10 +30,8 @@ namespace ShadowrunTools.Characters.Priorities
             {
                 if (_attributePriority != value)
                 {
-                    SwapPriorities(
-                        value,
-                        new List<string> { nameof(AttributePriority), nameof(AttributePoints) },
-                        ref _attributePriority);
+                    _attributePriority = value;
+                    RaiseItemChanged(new[] { nameof(AttributePriority), nameof(AttributePoints) });
                 }
             }
         }
@@ -51,10 +44,8 @@ namespace ShadowrunTools.Characters.Priorities
             {
                 if (_specialPriority != value)
                 {
-                    SwapPriorities(
-                        value,
-                        new List<string> { nameof(SpecialPriority) },
-                        ref _specialPriority);
+                    _specialPriority = value;
+                    RaiseItemChanged(new[] { nameof(SpecialPriority) });
                 }
             }
         }
@@ -81,10 +72,8 @@ namespace ShadowrunTools.Characters.Priorities
             {
                 if (_resourcePriority != value)
                 {
-                    SwapPriorities(
-                        value,
-                        new List<string> { nameof(ResourcePriority), nameof(Resources) },
-                        ref _resourcePriority);
+                    _resourcePriority = value;
+                    RaiseItemChanged(new[] { nameof(ResourcePriority) });
                 }
             }
         }
@@ -97,7 +86,6 @@ namespace ShadowrunTools.Characters.Priorities
             _specialPriority = special;
             _skillPriority = skill;
             _resourcePriority = resource;
-
             RaiseItemChanged(new[] { nameof(MetatypePriority), nameof(AttributePriority),
                 nameof(SpecialPriority), nameof(SkillPriority), nameof(ResourcePriority),
                 nameof(AttributePoints), nameof(SkillPoints), nameof(SkillGroupPoints),
@@ -117,45 +105,9 @@ namespace ShadowrunTools.Characters.Priorities
         public int TotalPriorityPoints => (int)_attributePriority + (int)_metatypePriority
             + (int)_resourcePriority + (int)_skillPriority + (int)_specialPriority;
 
-        #endregion
-
-        public CharacterPriorities(IPriorities priorities)
+        public CharacterPointPriorities(IPriorities priorities)
         {
             _priorities = priorities ?? throw new ArgumentNullException(nameof(priorities));
-        }
-
-        private void SwapPriorities(PriorityLevel level, List<string> propertyNames, ref PriorityLevel refValue)
-        {
-            propertyNames.Add(nameof(TotalPriorityPoints));
-            if (_attributePriority == level)
-            {
-                _attributePriority = refValue;
-                propertyNames.AddRange(new[] { nameof(AttributePriority), nameof(AttributePoints) });
-            }
-            else if (_metatypePriority == level)
-            {
-                _metatypePriority = refValue;
-                propertyNames.AddRange(new[] { nameof(MetatypePriority), nameof(MetavariantOptions) });
-            }
-            else if (_specialPriority == level)
-            {
-                _specialPriority = refValue;
-                propertyNames.Add(nameof(SpecialPriority));
-            }
-            else if (_skillPriority == level)
-            {
-                _skillPriority = refValue;
-                propertyNames.AddRange(new[] { nameof(SkillPriority), nameof(SkillPoints), nameof(SkillGroupPoints) });
-            }
-            else
-            {
-                _resourcePriority = refValue;
-                propertyNames.AddRange(new[] { nameof(ResourcePriority), nameof(Resources) });
-            }
-
-            refValue = level;
-
-            RaiseItemChanged(propertyNames.ToArray());
         }
     }
 }

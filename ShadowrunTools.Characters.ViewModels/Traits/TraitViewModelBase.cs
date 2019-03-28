@@ -11,7 +11,7 @@ using System.Windows.Input;
 
 namespace ShadowrunTools.Characters.ViewModels.Traits
 {   
-    public class TraitViewModelBase: NotificationObject, ITrait
+    public class TraitViewModelBase: ViewModelBase, ITrait
     {
         private readonly ITrait _trait;
         private static readonly ISet<string> _propertyNames;
@@ -21,7 +21,8 @@ namespace ShadowrunTools.Characters.ViewModels.Traits
             _propertyNames = new HashSet<string>(typeof(TraitViewModelBase).GetProperties(System.Reflection.BindingFlags.Instance).Select(pi => pi.Name));
         }
 
-        public TraitViewModelBase(ITrait trait)
+        public TraitViewModelBase(DisplaySettings displaySettings, ITrait trait)
+            : base(displaySettings)
         {
             _trait = trait ?? throw new ArgumentNullException(nameof(trait));
             var notify = trait as INotifyItemChanged ?? throw new ArgumentException("Trait must implement INotifyItemChanged");
@@ -54,11 +55,6 @@ namespace ShadowrunTools.Characters.ViewModels.Traits
         public void CommitEdit(IPropertyList newProperties)
         {
             _trait.CommitEdit(newProperties);
-        }
-
-        public void Dispose()
-        {
-            _trait.Dispose();
         }
 
         public bool Equals(ITrait other)
@@ -110,6 +106,23 @@ namespace ShadowrunTools.Characters.ViewModels.Traits
                 if (_propertyNames.Contains(propName))
                 {
                     RaisePropertyChanged(propName);
+                }
+            }
+        }
+
+        private bool _disposed = false;
+
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+
+            if (disposing)
+            {
+                if (!_disposed)
+                {
+                    _trait.Dispose();
+
+                    _disposed = true;
                 }
             }
         }

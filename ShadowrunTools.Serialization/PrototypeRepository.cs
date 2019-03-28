@@ -9,7 +9,8 @@ namespace ShadowrunTools.Serialization
 {
     public class PrototypeRepository: IPrototypeRepository
     {
-        public List<IMetavariantPrototype> Metavariants { get; private set; }
+        private List<IMetavariantPrototype> _metavariants;
+        public IReadOnlyCollection<IMetavariantPrototype> Metavariants => _metavariants;
 
         private IMetavariantPrototype _defaultMetavariant;
         public IMetavariantPrototype DefaultMetavariant
@@ -32,7 +33,7 @@ namespace ShadowrunTools.Serialization
             _traitsMap1 = new Dictionary<TraitType, Dictionary<string, ITraitPrototype>>();
             _traitsMap2 = new Dictionary<Type, Dictionary<string, ITraitPrototype>>();
 
-            Metavariants = new List<IMetavariantPrototype>();
+            _metavariants = new List<IMetavariantPrototype>();
         }
 
         public ITraitPrototype GetTraitPrototype(TraitType traitType, string name)
@@ -74,7 +75,7 @@ namespace ShadowrunTools.Serialization
 
             if (prototypeFile.Metavariants != null)
             {
-                Metavariants.AddRange(prototypeFile.Metavariants); 
+                _metavariants.AddRange(prototypeFile.Metavariants); 
             }
         }
 

@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Moq" Version="4.8.1" />
     <PackageReference Include="MvvmLightLibsStd10" Version="5.4.1" />
   </ItemGroup>
 
