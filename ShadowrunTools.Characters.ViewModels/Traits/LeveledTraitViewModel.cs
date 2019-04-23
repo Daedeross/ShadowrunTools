@@ -19,13 +19,15 @@ namespace ShadowrunTools.Characters.ViewModels.Traits
 
         static LeveledTraitViewModel()
         {
-            _propertyNames = new HashSet<string>(typeof(LeveledTraitViewModel).GetProperties(System.Reflection.BindingFlags.Instance).Select(pi => pi.Name));
+            _propertyNames = new HashSet<string>(typeof(LeveledTraitViewModel)
+                .GetProperties(System.Reflection.BindingFlags.Instance).Select(pi => pi.Name));
         }
 
         public LeveledTraitViewModel(DisplaySettings displaySettings, ILeveledTrait leveledTrait)
             : base(displaySettings, leveledTrait)
         {
             _leveledTrait = leveledTrait;
+            _leveledTrait.ItemChanged += OnTraitChanged;
         }
 
         public event EventHandler<ItemChangedEventArgs> ItemChanged
