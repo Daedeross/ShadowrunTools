@@ -11,6 +11,7 @@
             <TextBlock.ToolTip>
                 <ListBox ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                          ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                         Margin="0"
                          ItemsSource="{Binding Items}">
                 </ListBox>
             </TextBlock.ToolTip>

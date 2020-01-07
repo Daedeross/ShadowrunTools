@@ -1,6 +1,7 @@
 ﻿namespace ShadowrunTools.Characters.Prototypes
 {
     using ShadowrunTools.Characters.Model;
+    using ShadowrunTools.Characters.Priorities;
     using System;
     using System.Collections.Generic;
     using System.Text;
@@ -10,6 +11,8 @@
         IReadOnlyCollection<IMetavariantPrototype> Metavariants { get; }
 
         IMetavariantPrototype DefaultMetavariant { get; }
+
+        IPriorities Priorities { get; set; }
 
         ITraitPrototype GetTraitPrototype(TraitType traitType, string name);
 

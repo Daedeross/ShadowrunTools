@@ -33,12 +33,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\PrioritiesView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\PriorityCellView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Update="Views\PrioritiesView.xaml.cs" />
+    <Compile Update="Views\PriorityCellView.xaml.cs" />
   </ItemGroup>
 
   <ItemGroup>

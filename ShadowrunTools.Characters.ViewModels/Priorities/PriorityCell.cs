@@ -28,7 +28,7 @@ namespace ShadowrunTools.Characters.ViewModels
 
                 if (count >= 0)
                 {
-                    _visible = string.Join("\n" ,Items.Take(count));
+                    _visible = string.Join("\n", Items.Take(count));
                     RaisePropertyChanged(nameof(VisibleItems));
                 }
             }

@@ -1,5 +1,6 @@
 ﻿using Castle.Core.Logging;
 using Newtonsoft.Json;
+using ShadowrunTools.Characters.Priorities;
 using ShadowrunTools.Characters.Prototypes;
 using ShadowrunTools.Serialization.Prototypes;
 using System;
@@ -12,7 +13,7 @@ namespace ShadowrunTools.Serialization
     {
         private readonly JsonSerializer _serializer;
         private readonly ILogger _logger;
-        public IPrototypeRepository Repository { get; private set; }
+        public IPrototypeRepository Repository { get; protected set; }
 
         public List<string> CurrentFiles { get; set; } 
 
@@ -22,7 +23,7 @@ namespace ShadowrunTools.Serialization
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public IPrototypeRepository ReloadAll()
+        public virtual IPrototypeRepository ReloadAll()
         {
             if (CurrentFiles != null)
             {

@@ -1,6 +1,7 @@
 ﻿using ShadowrunTools.Characters.Traits;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 
 namespace ShadowrunTools.Characters.ViewModels.Traits
 {
@@ -11,7 +12,9 @@ namespace ShadowrunTools.Characters.ViewModels.Traits
 
         static AttributeViewModel()
         {
-            _propertyNames = new HashSet<string>(typeof(AttributeViewModel).GetProperties(System.Reflection.BindingFlags.Instance).Select(pi => pi.Name));
+            _propertyNames = new HashSet<string>(typeof(AttributeViewModel)
+                .GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                .Select(pi => pi.Name));
         }
 
         public AttributeViewModel(DisplaySettings displaySettings, IAttribute attribute)

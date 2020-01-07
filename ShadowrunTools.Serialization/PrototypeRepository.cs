@@ -1,4 +1,5 @@
 ﻿using ShadowrunTools.Characters.Model;
+using ShadowrunTools.Characters.Priorities;
 using ShadowrunTools.Characters.Prototypes;
 using ShadowrunTools.Serialization.Prototypes;
 using System;
@@ -24,6 +25,8 @@ namespace ShadowrunTools.Serialization
                 return _defaultMetavariant;
             }
         }
+
+        public IPriorities Priorities { get; set; }
 
         private readonly Dictionary<TraitType, Dictionary<string, ITraitPrototype>> _traitsMap1;
         private readonly Dictionary<Type, Dictionary<string, ITraitPrototype>> _traitsMap2;

@@ -8,8 +8,6 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
-    using System.Text;
-    using System.Windows;
     using System.Windows.Input;
 
     public class WorkspaceViewModel: ViewModelBase
@@ -85,7 +83,7 @@
             var character = Character.CreateFromPrototype(charProto, meta, _traitFactory);
             //var character = new Character(_rules, Prototypes.DefaultMetavariant);
             character.Name = "New Character";
-            var viewModel = new CharacterViewModel(_displaySettings, character);
+            var viewModel = new CharacterViewModel(_displaySettings, character, prototypes.Priorities);
             Characters.Add(viewModel);
             CurrentCharacter = viewModel;
         }

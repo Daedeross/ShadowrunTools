@@ -4,6 +4,7 @@ using NLog;
 using ShadowrunTools.Characters.Model;
 using ShadowrunTools.Characters.Traits;
 using ShadowrunTools.Characters.ViewModels;
+using ShadowrunTools.Characters.Wpf.Resources.Prototypes;
 using ShadowrunTools.Serialization;
 using System;
 using System.Collections.Generic;
@@ -33,7 +34,7 @@ namespace ShadowrunTools.Characters.Wpf
             // temp bootstrap stuff
             var serializer = new JsonSerializer();
             serializer.Converters.Add(new StringEnumConverter());
-            var dataLoader = new DataLoader(serializer, logger)
+            var dataLoader = new TestData(serializer, logger)
             {
                 CurrentFiles = new List<string>
                 {

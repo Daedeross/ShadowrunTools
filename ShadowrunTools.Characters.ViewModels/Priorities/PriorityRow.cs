@@ -65,7 +65,9 @@ namespace ShadowrunTools.Characters.ViewModels
                 return new List<string>();
             }
 
-            return new List<string> { };
+            return specials.Options
+                .Select(o => GetSpecialText(o))
+                .ToList();
         }
 
         private static List<string> GetSkillsItems(PriorityLevel level, IPriorities priorities)
@@ -86,6 +88,103 @@ namespace ShadowrunTools.Characters.ViewModels
             }
 
             return new List<string> { resources.Resources.ToString() };
+        }
+
+        private static string GetSpecialText(ISpecialOption specialOption)
+        {
+            var builder = new StringBuilder(specialOption.Quality);
+            builder.Append(": ");
+            builder.Append(specialOption.AttributeName);
+            builder.Append(' ');
+            builder.Append(specialOption.AttributeRating);
+
+            if (specialOption.SkillOptions?.Count > 0)
+            {
+                foreach (var option in specialOption.SkillOptions)
+                {
+                    builder.Append(", ");
+                    builder.Append(IntToToWord(option.Count));
+                    builder.Append(" Rating ");
+                    builder.Append(option.Rating);
+                    builder.Append(" ");
+                    builder.Append(option.Choice);
+                    builder.Append(" skill");
+                    if (option.Count > 1)
+                    {
+                        builder.Append('s');
+                    }
+                }
+            }
+            if (specialOption.SkillGroupOptions?.Count > 0)
+            {
+                foreach (var option in specialOption.SkillGroupOptions)
+                {
+                    builder.Append(", ");
+                    builder.Append(IntToToWord(option.Count));
+                    builder.Append(" Rating ");
+                    builder.Append(option.Rating);
+                    builder.Append(" ");
+                    builder.Append(option.Choice);
+                    builder.Append(" skill group");
+                    if (option.Count > 1)
+                    {
+                        builder.Append('s');
+                    }
+                }
+            }
+            if (specialOption.FreeSpells > 0)
+            {
+                builder.Append(", ");
+                builder.Append(specialOption.FreeSpells);
+                builder.Append(" spell");
+                if (specialOption.FreeSpells > 1)
+                {
+                    builder.Append('s');
+                }
+            }
+            if (specialOption.FreeComplexForms > 0)
+            {
+                builder.Append(", ");
+                builder.Append(specialOption.FreeComplexForms);
+                builder.Append(" complex form");
+                if (specialOption.FreeComplexForms > 1)
+                {
+                    builder.Append('s');
+                }
+            }
+
+            return builder.ToString();
+        }
+
+        private static string[] Digits =
+        {
+            "zero",
+            "one",
+            "two",
+            "three",
+            "four",
+            "five",
+            "six",
+            "seven",
+            "eight",
+            "nine",
+            "ten",
+            "eleven",
+            "twelve",
+            "thirteen",
+            "sixteen",
+            "seventeen",
+            "nineteen",
+            "twenty"
+        };
+
+        private static string IntToToWord(int i)
+        {
+            if (i < 21 && i >=0 )
+            {
+                return Digits[i];
+            }
+            throw new InvalidOperationException();
         }
     }
 }
