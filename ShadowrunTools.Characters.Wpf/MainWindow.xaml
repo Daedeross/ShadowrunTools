@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ShadowrunTools.Characters.Wpf"
         xmlns:views="clr-namespace:ShadowrunTools.Characters.Wpf.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="1000">
+        Title="MainWindow" Height="800" Width="1325">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />

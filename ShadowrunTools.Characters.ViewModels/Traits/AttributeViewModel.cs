@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Windows.Input;
 
 namespace ShadowrunTools.Characters.ViewModels.Traits
 {
@@ -13,7 +14,8 @@ namespace ShadowrunTools.Characters.ViewModels.Traits
         static AttributeViewModel()
         {
             _propertyNames = new HashSet<string>(typeof(AttributeViewModel)
-                .GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                .GetProperties(BindingFlags.Instance | BindingFlags.Public)
+                .Where(p => ! typeof(ICommand).IsAssignableFrom(p.PropertyType))
                 .Select(pi => pi.Name));
         }
 
