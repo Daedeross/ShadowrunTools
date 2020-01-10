@@ -18,7 +18,7 @@ namespace ShadowrunTools.Characters.Wpf.Resources.Prototypes
         public override IPrototypeRepository ReloadAll()
         {
             var repo = base.ReloadAll();
-            repo.Priorities = TestPriorities();
+            //repo.Priorities = TestPriorities();
             return repo;
         }
 

@@ -41,6 +41,7 @@ namespace ShadowrunTools.Characters.Wpf
                     @"Resources\Prototypes\Attributes.json",
                     @"Resources\Prototypes\Metatypes.json",
                     @"Resources\Prototypes\merge.json",
+                    @"Resources\Prototypes\Priorities.json",
                 }
             };
 

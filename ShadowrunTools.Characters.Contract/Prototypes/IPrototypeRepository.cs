@@ -12,7 +12,7 @@
 
         IMetavariantPrototype DefaultMetavariant { get; }
 
-        IPriorities Priorities { get; set; }
+        IPriorities Priorities { get; }
 
         ITraitPrototype GetTraitPrototype(TraitType traitType, string name);
 

@@ -26,7 +26,8 @@ namespace ShadowrunTools.Serialization
             }
         }
 
-        public IPriorities Priorities { get; set; }
+        private PrioritiesPrototype _priorities = new PrioritiesPrototype();
+        public IPriorities Priorities => _priorities;
 
         private readonly Dictionary<TraitType, Dictionary<string, ITraitPrototype>> _traitsMap1;
         private readonly Dictionary<Type, Dictionary<string, ITraitPrototype>> _traitsMap2;
@@ -79,6 +80,11 @@ namespace ShadowrunTools.Serialization
             if (prototypeFile.Metavariants != null)
             {
                 _metavariants.AddRange(prototypeFile.Metavariants); 
+            }
+
+            if (prototypeFile.Priorities != null)
+            {
+                _priorities.MergeWith(prototypeFile.Priorities);
             }
         }
 

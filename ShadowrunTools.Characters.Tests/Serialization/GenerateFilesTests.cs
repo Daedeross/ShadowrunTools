@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Converters;
 using ShadowrunTools.Characters.Model;
 using ShadowrunTools.Serialization.Prototypes;
+using ShadowrunTools.Serialization.Prototypes.Priorities;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -187,6 +188,422 @@ namespace ShadowrunTools.Characters.Tests.Serialization
             PrototypeFile output;
 
             using (var stream = new StreamReader("Metatypes.json"))
+            using (var reader = new JsonTextReader(stream))
+            {
+                output = ser.Deserialize<PrototypeFile>(reader);
+            }
+        }
+
+        [Fact]
+        public void GeneratePrioritiesFile()
+        {
+            var priorities = new PrioritiesPrototype
+            {
+                AttributesPrototypes = new Dictionary<PriorityLevel, AttributesPriorityPrototype>
+                {
+                    [PriorityLevel.A] = new AttributesPriorityPrototype { AttibutePoints = 24 },
+                    [PriorityLevel.B] = new AttributesPriorityPrototype { AttibutePoints = 20 },
+                    [PriorityLevel.C] = new AttributesPriorityPrototype { AttibutePoints = 16 },
+                    [PriorityLevel.D] = new AttributesPriorityPrototype { AttibutePoints = 14 },
+                    [PriorityLevel.E] = new AttributesPriorityPrototype { AttibutePoints = 12 },
+                },
+                MetatypePrototypes = new Dictionary<PriorityLevel, MetatypePriorityPrototype>
+                {
+                    [PriorityLevel.A] = new MetatypePriorityPrototype
+                    {
+                        _MetavariantOptions = new List<PriorityMetavariantOptionPrototype>
+                        {
+                            new PriorityMetavariantOptionPrototype
+                            {
+                                Metavariant = "Human",
+                                SpecialAttributePoints = 9
+                            },
+                            new PriorityMetavariantOptionPrototype
+                            {
+                                Metavariant = "Elf",
+                                SpecialAttributePoints = 8
+                            },
+                            new PriorityMetavariantOptionPrototype
+                            {
+                                Metavariant = "Dwarf",
+                                SpecialAttributePoints = 7
+                            },
+                            new PriorityMetavariantOptionPrototype
+                            {
+                                Metavariant = "Ork",
+                                SpecialAttributePoints = 7
+                            },
+                            new PriorityMetavariantOptionPrototype
+                            {
+                                Metavariant = "Troll",
+                                SpecialAttributePoints = 5
+                            }
+                        }
+                    },
+                    [PriorityLevel.B] = new MetatypePriorityPrototype
+                    {
+                        _MetavariantOptions = new List<PriorityMetavariantOptionPrototype>
+                        {
+                            new PriorityMetavariantOptionPrototype
+                            {
+                                Metavariant = "Human",
+                                SpecialAttributePoints = 7
+                            },
+                            new PriorityMetavariantOptionPrototype
+                            {
+                                Metavariant = "Elf",
+                                SpecialAttributePoints = 6
+                            },
+                            new PriorityMetavariantOptionPrototype
+                            {
+                                Metavariant = "Dwarf",
+                                SpecialAttributePoints = 4
+                            },
+                            new PriorityMetavariantOptionPrototype
+                            {
+                                Metavariant = "Ork",
+                                SpecialAttributePoints = 4
+                            },
+                            new PriorityMetavariantOptionPrototype
+                            {
+                                Metavariant = "Troll",
+                                SpecialAttributePoints = 0
+                            }
+                        }
+                    },
+                    [PriorityLevel.C] = new MetatypePriorityPrototype
+                    {
+                        _MetavariantOptions = new List<PriorityMetavariantOptionPrototype>
+                        {
+                            new PriorityMetavariantOptionPrototype
+                            {
+                                Metavariant = "Human",
+                                SpecialAttributePoints = 5
+                            },
+                            new PriorityMetavariantOptionPrototype
+                            {
+                                Metavariant = "Elf",
+                                SpecialAttributePoints = 3
+                            },
+                            new PriorityMetavariantOptionPrototype
+                            {
+                                Metavariant = "Dwarf",
+                                SpecialAttributePoints = 1
+                            },
+                            new PriorityMetavariantOptionPrototype
+                            {
+                                Metavariant = "Ork",
+                                SpecialAttributePoints = 0
+                            },
+                        }
+                    },
+                    [PriorityLevel.D] = new MetatypePriorityPrototype
+                    {
+                        _MetavariantOptions = new List<PriorityMetavariantOptionPrototype>
+                        {
+                            new PriorityMetavariantOptionPrototype
+                            {
+                                Metavariant = "Human",
+                                SpecialAttributePoints = 3
+                            },
+                            new PriorityMetavariantOptionPrototype
+                            {
+                                Metavariant = "Elf",
+                                SpecialAttributePoints = 1
+                            },
+                        }
+                    },
+                    [PriorityLevel.E] = new MetatypePriorityPrototype
+                    {
+                        _MetavariantOptions = new List<PriorityMetavariantOptionPrototype>
+                        {
+                            new PriorityMetavariantOptionPrototype
+                            {
+                                Metavariant = "Human",
+                                SpecialAttributePoints = 1
+                            },
+                        }
+                    }
+                },
+                ResourcesPrototypes = new Dictionary<PriorityLevel, ResourcesPriorityPrototype>
+                {
+                    [PriorityLevel.A] = new ResourcesPriorityPrototype { Resources = 450000 },
+                    [PriorityLevel.B] = new ResourcesPriorityPrototype { Resources = 275000 },
+                    [PriorityLevel.C] = new ResourcesPriorityPrototype { Resources = 140000 },
+                    [PriorityLevel.D] = new ResourcesPriorityPrototype { Resources = 50000 },
+                    [PriorityLevel.E] = new ResourcesPriorityPrototype { Resources = 6000 },
+                },
+                SkillsPrototypes = new Dictionary<PriorityLevel, SkillsPriorityPrototype>
+                {
+                    [PriorityLevel.A] = new SkillsPriorityPrototype
+                    {
+                        SkillGroupPoints = 10,
+                        SkillPoints = 46
+                    },
+                    [PriorityLevel.B] = new SkillsPriorityPrototype
+                    {
+                        SkillGroupPoints = 5,
+                        SkillPoints = 36
+                    },
+                    [PriorityLevel.C] = new SkillsPriorityPrototype
+                    {
+                        SkillGroupPoints = 2,
+                        SkillPoints = 28
+                    },
+                    [PriorityLevel.D] = new SkillsPriorityPrototype
+                    {
+                        SkillPoints = 22
+                    },
+                    [PriorityLevel.E] = new SkillsPriorityPrototype
+                    {
+                        SkillPoints = 18
+                    },
+                },
+                SpecialsPrototyes = new Dictionary<PriorityLevel, SpecialsPriorityPrototype>
+                {
+                    [PriorityLevel.A] = new SpecialsPriorityPrototype
+                    {
+                        _Options = new List<SpecialOptionPrototype>
+                        {
+                            new SpecialOptionPrototype
+                            {
+                                Quality = "Magician",
+                                AttributeName = "Magic",
+                                AttributeRating = 6,
+                                FreeSpells = 10,
+                                _SkillOptions = new List<SpecialSkillChoicePrototype>
+                                {
+                                    new SpecialSkillChoicePrototype
+                                    {
+                                        Choice = "Magical",
+                                        Count = 2,
+                                        Rating = 5,
+                                        Kind = SkillChoiceKind.Category
+                                    }
+                                },
+                            },
+                            new SpecialOptionPrototype
+                            {
+                                Quality = "Mystic Adept",
+                                AttributeName = "Magic",
+                                AttributeRating = 6,
+                                FreeSpells = 10,
+                                _SkillOptions = new List<SpecialSkillChoicePrototype>
+                                {
+                                    new SpecialSkillChoicePrototype
+                                    {
+                                        Choice = "Magical",
+                                        Count = 2,
+                                        Rating = 5,
+                                        Kind = SkillChoiceKind.Category
+                                    }
+                                },
+                            },
+                            new SpecialOptionPrototype
+                            {
+                                Quality = "Technomancer",
+                                AttributeName = "Resonance",
+                                AttributeRating = 6,
+                                FreeComplexForms = 5,
+                                _SkillOptions = new List<SpecialSkillChoicePrototype>
+                                {
+                                    new SpecialSkillChoicePrototype
+                                    {
+                                        Choice = "Resonance",
+                                        Count = 2,
+                                        Rating = 5,
+                                        Kind = SkillChoiceKind.Category
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    [PriorityLevel.B] = new SpecialsPriorityPrototype
+                    {
+                        _Options = new List<SpecialOptionPrototype>
+                        {
+                            new SpecialOptionPrototype
+                            {
+                                Quality = "Magician",
+                                AttributeName = "Magic",
+                                AttributeRating = 4,
+                                FreeSpells = 7,
+                                _SkillOptions = new List<SpecialSkillChoicePrototype>
+                                {
+                                    new SpecialSkillChoicePrototype
+                                    {
+                                        Choice = "Magical",
+                                        Count = 2,
+                                        Rating = 4,
+                                        Kind = SkillChoiceKind.Category
+                                    }
+                                },
+                            },
+                            new SpecialOptionPrototype
+                            {
+                                Quality = "Mystic Adept",
+                                AttributeName = "Magic",
+                                AttributeRating = 4,
+                                FreeSpells = 7,
+                                _SkillOptions = new List<SpecialSkillChoicePrototype>
+                                {
+                                    new SpecialSkillChoicePrototype
+                                    {
+                                        Choice = "Magical",
+                                        Count = 2,
+                                        Rating = 4,
+                                        Kind = SkillChoiceKind.Category
+                                    }
+                                },
+                            },
+                            new SpecialOptionPrototype
+                            {
+                                Quality = "Technomancer",
+                                AttributeName = "Resonance",
+                                AttributeRating = 4,
+                                FreeComplexForms = 2,
+                                _SkillOptions = new List<SpecialSkillChoicePrototype>
+                                {
+                                    new SpecialSkillChoicePrototype
+                                    {
+                                        Choice = "Resonance",
+                                        Count = 2,
+                                        Rating = 4,
+                                        Kind = SkillChoiceKind.Category
+                                    }
+                                }
+                            },
+                            new SpecialOptionPrototype
+                            {
+                                Quality = "Adept",
+                                AttributeName = "Magic",
+                                AttributeRating = 6,
+                                _SkillOptions = new List<SpecialSkillChoicePrototype>
+                                {
+                                    new SpecialSkillChoicePrototype
+                                    {
+                                        Choice = "Active",
+                                        Count = 1,
+                                        Rating = 4,
+                                        Kind = SkillChoiceKind.Category
+                                    }
+                                },
+                            },
+                            new SpecialOptionPrototype
+                            {
+                                Quality = "Aspected Magician",
+                                AttributeName = "Magic",
+                                AttributeRating = 5,
+                                _SkillGroupOptions = new List<SpecialSkillChoicePrototype>
+                                {
+                                    new SpecialSkillChoicePrototype
+                                    {
+                                        Choice = "Magical",
+                                        Count = 1,
+                                        Rating = 4,
+                                        Kind = SkillChoiceKind.Category
+                                    }
+                                },
+                            },
+                        }
+                    },
+                    [PriorityLevel.C] = new SpecialsPriorityPrototype
+                    {
+                        _Options = new List<SpecialOptionPrototype>
+                        {
+                            new SpecialOptionPrototype
+                            {
+                                Quality = "Magician",
+                                AttributeName = "Magic",
+                                AttributeRating = 3,
+                                FreeSpells = 5
+                            },
+                            new SpecialOptionPrototype
+                            {
+                                Quality = "Mystic Adept",
+                                AttributeName = "Magic",
+                                AttributeRating = 3,
+                                FreeSpells = 5
+                            },
+                            new SpecialOptionPrototype
+                            {
+                                Quality = "Technomancer",
+                                AttributeName = "Resonance",
+                                AttributeRating = 3,
+                                FreeComplexForms = 1
+                            },
+                            new SpecialOptionPrototype
+                            {
+                                Quality = "Adept",
+                                AttributeName = "Magic",
+                                AttributeRating = 4,
+                                _SkillOptions = new List<SpecialSkillChoicePrototype>
+                                {
+                                    new SpecialSkillChoicePrototype
+                                    {
+                                        Choice = "Active",
+                                        Count = 1,
+                                        Rating = 2,
+                                        Kind = SkillChoiceKind.Category
+                                    }
+                                },
+                            },
+                            new SpecialOptionPrototype
+                            {
+                                Quality = "Aspected Magician",
+                                AttributeName = "Magic",
+                                AttributeRating = 3,
+                                _SkillGroupOptions = new List<SpecialSkillChoicePrototype>
+                                {
+                                    new SpecialSkillChoicePrototype
+                                    {
+                                        Choice = "Magical",
+                                        Count = 1,
+                                        Rating = 2,
+                                        Kind = SkillChoiceKind.Category
+                                    }
+                                },
+                            },
+                        }
+                    },
+                    [PriorityLevel.D] = new SpecialsPriorityPrototype
+                    {
+                        _Options = new List<SpecialOptionPrototype>
+                        {
+                            new SpecialOptionPrototype
+                            {
+                                Quality = "Adept",
+                                AttributeName = "Magic",
+                                AttributeRating = 2
+                            },
+                            new SpecialOptionPrototype
+                            {
+                                Quality = "Aspected Magician",
+                                AttributeName = "Magic",
+                                AttributeRating = 2
+                            },
+                        }
+                    }
+                }
+            };
+
+            var prototypeFile = new PrototypeFile
+            {
+                Priorities = priorities
+            };
+
+            var ser = new JsonSerializer();
+            ser.Converters.Add(new StringEnumConverter());
+
+            using (var stream = new StreamWriter("Priorities.json"))
+            using (var writer = new JsonTextWriter(stream) { Formatting = Formatting.Indented, Indentation = 2 })
+            {
+                ser.Serialize(writer, prototypeFile);
+            }
+
+            PrototypeFile output;
+
+            using (var stream = new StreamReader("Priorities.json"))
             using (var reader = new JsonTextReader(stream))
             {
                 output = ser.Deserialize<PrototypeFile>(reader);

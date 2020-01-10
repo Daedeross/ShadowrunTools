@@ -16,6 +16,6 @@ namespace ShadowrunTools.Characters.Prototypes
         /// <summary>
         /// The Min/Max attributes for the metatvariant.
         /// </summary>
-        List<IMetatypeAttribute> Attributes { get; }
+        IReadOnlyCollection<IMetatypeAttribute> Attributes { get; }
     }
 }
