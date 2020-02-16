@@ -19,7 +19,7 @@
         <ListView ItemsSource="{Binding Source={StaticResource src}}">
             <ListView.View>
                 <GridView ColumnHeaderContainerStyle="{StaticResource myGridViewColumnHeaderStyle}">
-                    <GridViewColumn Header=" " Width="20" DisplayMemberBinding="{Binding CustomOrder}" />
+                    <GridViewColumn Header=" " Width="28" DisplayMemberBinding="{Binding CustomOrder}" />
                     <GridViewColumn Header="Attribute" Width="400" DisplayMemberBinding="{Binding Name}">
                     </GridViewColumn>
                     <GridViewColumn Header="Min/Max">

@@ -7,7 +7,8 @@ namespace ShadowrunTools.Characters
 {
     public class TraitContainer : ITraitContainer
     {
-        protected Dictionary<string, ITrait> _traits = new Dictionary<string, ITrait>();
+        protected IDictionary<ITrait, HashSet<string>> _refKeyMap = new Dictionary<ITrait, HashSet<string>>();
+        protected IDictionary<string, ITrait> _traits = new Dictionary<string, ITrait>();
 
         public ITrait this[string key]
         {
@@ -20,19 +21,26 @@ namespace ShadowrunTools.Characters
                     {
                         return;
                     }
-                    OnRemoveItem(oldTrait);
+                    OnBeforeReplace(new KeyValuePair<string, ITrait>(key, oldTrait), new KeyValuePair<string, ITrait>(key, value));
                     _traits[key] = value;
-                    RaiseReplace(new KeyValuePair<string, ITrait>(key, oldTrait), new KeyValuePair<string, ITrait>(key, value));
+                    OnAfterReplace(new KeyValuePair<string, ITrait>(key, oldTrait), new KeyValuePair<string, ITrait>(key, value));
                 }
                 else
                 {
+                    OnBeforeAdd(new KeyValuePair<string, ITrait>(key, value));
                     _traits[key] = value;
-                    RaiseAddedItem(new KeyValuePair<string, ITrait>(key, value));
+                    OnAfterAdd(new KeyValuePair<string, ITrait>(key, value));
                 }
             }
         }
 
+        public string Name { get; private set; }
+
         public virtual bool OwnsObjects { get; set; }
+
+        public virtual bool Valid { get; }
+
+        public virtual string Summary { get; }
 
         public ICollection<string> Keys => _traits.Keys;
 
@@ -44,26 +52,32 @@ namespace ShadowrunTools.Characters
 
         public void Add(string key, ITrait value)
         {
+            var item = new KeyValuePair<string, ITrait>(key, value);
+            OnBeforeAdd(item);
             _traits.Add(key, value);
+            OnAfterAdd(item);
         }
 
         public void Add(KeyValuePair<string, ITrait> item)
         {
+            OnBeforeAdd(item);
             _traits.Add(item.Key, item.Value);
+            OnAfterAdd(item);
         }
 
         public void Clear()
         {
-            foreach (var trait in _traits.Values)
+            foreach (var kvp in _traits)
             {
-                OnRemoveItem(trait);
+                OnBeforeRemove(kvp);
+                OnAfterRemove(kvp);
             }
             _traits.Clear();
         }
 
         public bool Contains(KeyValuePair<string, ITrait> item)
         {
-            return (_traits as IDictionary<string, ITrait>).Contains(item);
+            return _traits.Contains(item);
         }
 
         public bool ContainsKey(string key)
@@ -73,7 +87,7 @@ namespace ShadowrunTools.Characters
 
         public void CopyTo(KeyValuePair<string, ITrait>[] array, int arrayIndex)
         {
-            (_traits as IDictionary<string, ITrait>).CopyTo(array, arrayIndex);
+            _traits.CopyTo(array, arrayIndex);
         }
 
         public IEnumerator<KeyValuePair<string, ITrait>> GetEnumerator()
@@ -85,7 +99,7 @@ namespace ShadowrunTools.Characters
         {
             if (_traits.TryGetValue(key, out ITrait trait))
             {
-                OnRemoveItem(trait);
+                OnRemoveValue(trait);
                 _traits.Remove(key);
                 RaiseRemove(new KeyValuePair<string, ITrait>(key, trait));
                 return true;
@@ -99,9 +113,9 @@ namespace ShadowrunTools.Characters
 
             if (collection.Contains(item))
             {
+                OnBeforeRemove(item);
                 collection.Remove(item);
-                OnRemoveItem(item.Value);
-                RaiseRemove(item);
+                OnAfterRemove(item);
                 return true;
             }
             return false;
@@ -117,22 +131,66 @@ namespace ShadowrunTools.Characters
             return _traits.GetEnumerator();
         }
 
-        protected void OnRemoveItem(ITrait item)
+        protected void OnRemoveValue(ITrait item)
         {
-            if (OwnsObjects)
+            if (OwnsObjects && !_refKeyMap.ContainsKey(item))
             {
-                item.Dispose(); 
+                item.Dispose();
+            }
+        }
+
+        protected void AddToReverseMap(KeyValuePair<string, ITrait> item)
+        {
+            if (!_refKeyMap.TryGetValue(item.Value, out var set))
+            {
+                set = new HashSet<string>();
+                _refKeyMap[item.Value] = set;
+            }
+            set.Add(item.Key);
+        }
+
+        protected void RemoveFromReverseMap(KeyValuePair<string, ITrait> item)
+        {
+            var oldSet = _refKeyMap[item.Value];
+            oldSet.Remove(item.Key);
+            if (oldSet.Count == 0)
+            {
+                _refKeyMap.Remove(item.Value);
             }
         }
 
         #region INotifyCollectionChanged
 
-        public event NotifyCollectionChangedEventHandler CollectionChanged;
+        protected virtual bool OnBeforeAdd(KeyValuePair<string, ITrait> item) => true;
 
-        protected void RaiseAddedItem(KeyValuePair<string, ITrait> newItem)
+        protected virtual void OnAfterAdd(KeyValuePair<string, ITrait> item)
         {
-            RaiseAddedItems(new List<KeyValuePair<string, ITrait>> { newItem });
+            AddToReverseMap(item);
+            RaiseAddedItems(new List<KeyValuePair<string, ITrait>> { item });
         }
+
+        protected virtual bool OnBeforeReplace(KeyValuePair<string, ITrait> oldItem, KeyValuePair<string, ITrait> newItem)
+            => true;
+
+        protected virtual void OnAfterReplace(KeyValuePair<string, ITrait> oldItem, KeyValuePair<string, ITrait> newItem)
+        {
+            AddToReverseMap(newItem);
+            RemoveFromReverseMap(oldItem);
+            OnRemoveValue(oldItem.Value);
+            RaiseReplace(oldItem, newItem);
+        }
+
+        protected virtual bool OnBeforeRemove(KeyValuePair<string, ITrait> item)
+            => true;
+
+        protected virtual void OnAfterRemove(KeyValuePair<string, ITrait> item)
+        {
+            RemoveFromReverseMap(item);
+            OnRemoveValue(item.Value);
+            RaiseRemove(item);
+        }
+
+        public event NotifyCollectionChangedEventHandler CollectionChanged;
 
         protected void RaiseAddedItems(List<KeyValuePair<string, ITrait>> newItems)
         {
@@ -151,10 +209,16 @@ namespace ShadowrunTools.Characters
 
         #endregion // INotifyCollectionChanged
 
-        public TraitContainer() : base() { }
+        public TraitContainer() { }
 
-        public TraitContainer(Dictionary<string, ITrait> initial)
+        public TraitContainer(string name)
         {
+            Name = name;
+        }
+
+        public TraitContainer(string name, Dictionary<string, ITrait> initial)
+        {
+            Name = name;
             _traits = initial;
         }
     }

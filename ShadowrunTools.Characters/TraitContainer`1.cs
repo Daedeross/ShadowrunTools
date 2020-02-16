@@ -9,6 +9,15 @@ namespace ShadowrunTools.Characters
     public class TraitContainer<T> : TraitContainer, ITraitContainer<T>
         where T : class, ITrait
     {
+        public TraitContainer() : base() { }
+
+        public TraitContainer(string name) : base (name) { }
+
+        public TraitContainer(string name, Dictionary<string, T> initial) 
+            : base(name, initial.ToDictionary(x => x.Key, x => x.Value as ITrait))
+        {
+        }
+
         T IDictionary<string, T>.this[string key]
         {
             get => base[key] as T;
@@ -58,7 +67,7 @@ namespace ShadowrunTools.Characters
         private class GenericEnumerator<TValue> : IEnumerator<KeyValuePair<string, TValue>>
             where TValue : class, ITrait
         {
-            private IEnumerator<KeyValuePair<string, ITrait>> _enumerator;
+            private readonly IEnumerator<KeyValuePair<string, ITrait>> _enumerator;
 
             public KeyValuePair<string, TValue> Current { get; private set; }
 

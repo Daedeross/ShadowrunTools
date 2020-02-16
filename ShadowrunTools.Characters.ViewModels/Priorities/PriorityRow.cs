@@ -9,6 +9,8 @@ namespace ShadowrunTools.Characters.ViewModels
 {
     public class PriorityRow : ViewModelBase
     {
+        private readonly IPriorities _priorities;
+
         public PriorityLevel Level { get; private set; }
 
         public PriorityCell Metatype { get; set; }
@@ -26,6 +28,11 @@ namespace ShadowrunTools.Characters.ViewModels
             IPriorities priorities)
             : base(displaySettings)
         {
+            if (priorities is INotifyItemChanged)
+            {
+
+            }
+            _priorities = priorities;
             Level = level;
 
             Metatype = new PriorityCell(displaySettings, GetMetatypeItems(level, priorities));

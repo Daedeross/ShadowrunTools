@@ -5,21 +5,30 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ShadowrunTools.Characters.Wpf.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto" />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <CheckBox Grid.Column="0" VerticalAlignment="Center" Margin="4"></CheckBox>
-        <TextBlock Grid.Column="1" Text="{Binding VisibleItems}">
+             d:DesignHeight="100" d:DesignWidth="200" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+    <UserControl.Resources>
+        <Style TargetType="ToggleButton"
+               BasedOn="{StaticResource PriorityToggleButton}">
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="VerticalAlignment" Value="Stretch" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="Background" Value="Aqua" />
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+    </UserControl.Resources>
+    <ToggleButton Margin="-6,0" Padding="0" >
+        <TextBlock Text="{Binding VisibleItems}" >
             <TextBlock.ToolTip>
                 <ListBox ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                          ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                         Margin="0"
                          ItemsSource="{Binding Items}">
                 </ListBox>
             </TextBlock.ToolTip>
         </TextBlock>
-    </Grid>
+    </ToggleButton>
 </UserControl>

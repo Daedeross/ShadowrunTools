@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using ReactiveUI;
 using ShadowrunTools.Characters.Model;
 using ShadowrunTools.Characters.Prototypes;
 using ShadowrunTools.Characters.Traits;
@@ -86,7 +86,7 @@ namespace ShadowrunTools.Characters.ViewModels.Traits
             {
                 if (mBeginEditCommand is null)
                 {
-                    mBeginEditCommand = new RelayCommand(BeginEditExecute);
+                    mBeginEditCommand = ReactiveCommand.Create(BeginEditExecute);
                 }
                 return mBeginEditCommand;
             }
@@ -106,7 +106,7 @@ namespace ShadowrunTools.Characters.ViewModels.Traits
             {
                 if (_propertyNames.Contains(propName))
                 {
-                    RaisePropertyChanged(propName);
+                    this.RaisePropertyChanged(propName);
                 }
             }
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ReactiveUI;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -9,15 +10,22 @@ namespace ShadowrunTools.Characters.ViewModels
     public class PriorityCell : ViewModelBase
     {
         public List<string> Items { get; private set; }
+        public string VisibleItems { get; private set; }
 
-        private string _visible;
-        public string VisibleItems => _visible;
+        private bool mIsSelected;
+        public bool IsSelected
+        {
+            get => mIsSelected;
+            set => this.RaiseAndSetIfChanged(ref mIsSelected, value);
+        }
 
-        public PriorityCell(DisplaySettings displaySettings, List<string> items)
+        public PriorityCell(
+            DisplaySettings displaySettings,
+            List<string> items)
             : base(displaySettings)
         {
             Items = items;
-            _visible = string.Join("\n", Items.Take(displaySettings.PriorityCellVisibleItemsCount));
+            VisibleItems = string.Join("\n", Items.Take(displaySettings.PriorityCellVisibleItemsCount));
         }
 
         protected override void OnDisplaySettingsPropertyChanged(string propertyName)
@@ -28,8 +36,8 @@ namespace ShadowrunTools.Characters.ViewModels
 
                 if (count >= 0)
                 {
-                    _visible = string.Join("\n", Items.Take(count));
-                    RaisePropertyChanged(nameof(VisibleItems));
+                    VisibleItems = string.Join("\n", Items.Take(count));
+                    this.RaisePropertyChanged(nameof(VisibleItems));
                 }
             }
         }

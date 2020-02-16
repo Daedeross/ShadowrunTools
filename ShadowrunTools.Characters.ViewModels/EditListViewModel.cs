@@ -1,6 +1,6 @@
 ﻿namespace ShadowrunTools.Characters.ViewModels
 {
-    using GalaSoft.MvvmLight.Command;
+    using ReactiveUI;
     using ShadowrunTools.Foundation;
     using System;
     using System.Collections.Generic;
@@ -8,7 +8,7 @@
     using System.Linq;
     using System.Windows.Input;
 
-    public class EditListViewModel: NotificationObject
+    public class EditListViewModel: ReactiveObject
     {
         private readonly IEditable _editable;
         public ObservableCollection<KeyValuePair<string, IProperty>> Properties { get; set; }
@@ -16,29 +16,15 @@
         private bool _visible = true;
         public bool Visible
         {
-            get { return _visible; }
-            set
-            {
-                if (_visible != value)
-                {
-                    _visible = value;
-                    RaisePropertyChanged(nameof(Visible));
-                }
-            }
+            get => _visible;
+            set => this.RaiseAndSetIfChanged(ref _visible, value);
         }
 
         private bool _valid = true;
         public bool Valid
         {
-            get { return _valid; }
-            set
-            {
-                if (_valid != value)
-                {
-                    _valid = value;
-                    RaisePropertyChanged(nameof(Valid));
-                }
-            }
+            get => _valid;
+            set => this.RaiseAndSetIfChanged(ref _valid, value);
         }
 
         private EditListViewModel(IEditable editable, IPropertyList properties)
@@ -55,7 +41,7 @@
             {
                 if (mCommitEditCommand is null)
                 {
-                    mCommitEditCommand = new RelayCommand(CommitEditExecute);
+                    mCommitEditCommand = ReactiveCommand.Create(CommitEditExecute);
                 }
                 return mCommitEditCommand;
             }

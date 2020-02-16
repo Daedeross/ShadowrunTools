@@ -1,6 +1,6 @@
 ﻿namespace ShadowrunTools.Characters.ViewModels
 {
-    using GalaSoft.MvvmLight.Command;
+    using ReactiveUI;
     using ShadowrunTools.Characters.Prototypes;
     using ShadowrunTools.Serialization;
     using ShadowrunTools.Serialization.Prototypes;
@@ -10,7 +10,7 @@
     using System.Linq;
     using System.Windows.Input;
 
-    public class WorkspaceViewModel: ViewModelBase
+    public class WorkspaceViewModel : ViewModelBase
     {
         private IPrototypeRepository _prototypes;
         private readonly DataLoader _dataLoader;
@@ -32,18 +32,10 @@
         public ObservableCollection<CharacterViewModel> Characters { get; private set; }
 
         private CharacterViewModel _currentCharacter;
-
         public CharacterViewModel CurrentCharacter
         {
-            get { return _currentCharacter; }
-            set
-            {
-                if (value != _currentCharacter)
-                {
-                    _currentCharacter = value;
-                    RaisePropertyChanged(nameof(CurrentCharacter));
-                }
-            }
+            get => _currentCharacter;
+            set => this.RaiseAndSetIfChanged(ref _currentCharacter, value);
         }
 
         public WorkspaceViewModel(DataLoader dataLoader, IRules rules, DisplaySettings displaySettings)
@@ -65,7 +57,7 @@
             {
                 if (mNewCharacterCommand is null)
                 {
-                    mNewCharacterCommand = new RelayCommand(NewCharacterExecute);
+                    mNewCharacterCommand = ReactiveCommand.Create(NewCharacterExecute);
                 }
                 return mNewCharacterCommand;
             }

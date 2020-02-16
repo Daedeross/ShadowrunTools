@@ -25,7 +25,7 @@ namespace ShadowrunTools.Characters
             {
                 if (!TryGetValue(TraitCategories.Attribute, out ITraitContainer attributes))
                 {
-                    attributes = new TraitContainer<IAttribute>();
+                    attributes = new TraitContainer<IAttribute>(TraitCategories.Attribute);
                     this[TraitCategories.Attribute] = attributes;
                 }
                 return attributes as ITraitContainer<IAttribute>;
@@ -34,7 +34,7 @@ namespace ShadowrunTools.Characters
 
         public void AddAttribute(IAttribute attribute)
         {
-
+            Attributes[attribute.Name] = attribute;
         }
 
         internal IAttribute CreateAttribute(IAttributePrototype prototype)

@@ -74,7 +74,7 @@
                 Value="true" />
         <Setter Property="OverridesDefaultStyle"
                 Value="true" />
-        <Setter Property="Margin" Value="4,0" />
+        <Setter Property="Margin" Value="0,0" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
@@ -123,6 +123,7 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <GridViewRowPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              Margin="0"
                                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
                     </Border>
                 </ControlTemplate>

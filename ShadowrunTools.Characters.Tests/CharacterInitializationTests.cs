@@ -40,6 +40,7 @@ namespace ShadowrunTools.Characters.Tests
             var character = new Character(factory, mockMetatype.Object);
 
             var attribute = character.CreateAttribute(mockAttributePrototype.Object);
+            character.AddAttribute(attribute);
 
             Assert.Equal(2, attribute.Min);
             Assert.Equal(7, attribute.Max);

@@ -1,11 +1,12 @@
-﻿using System;
+﻿using ReactiveUI;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 
 namespace ShadowrunTools.Characters.ViewModels
 {
-    public abstract class ViewModelBase : NotificationObject, IDisposable
+    public abstract class ViewModelBase : ReactiveObject, IDisposable
     {
         protected DisplaySettings _displaySettings { get; private set; }
 

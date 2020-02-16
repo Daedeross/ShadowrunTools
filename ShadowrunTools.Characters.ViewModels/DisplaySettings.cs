@@ -1,11 +1,12 @@
-﻿using ShadowrunTools.Foundation;
+﻿using ReactiveUI;
+using ShadowrunTools.Foundation;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ShadowrunTools.Characters.ViewModels
 {
-    public class DisplaySettings : NotificationObject
+    public class DisplaySettings : ReactiveObject
     {
         public DisplaySettings()
         {

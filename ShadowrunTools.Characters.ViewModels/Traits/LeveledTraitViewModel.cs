@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using ReactiveUI;
 using ShadowrunTools.Characters.Model;
 using ShadowrunTools.Characters.Prototypes;
 using ShadowrunTools.Characters.Traits;
@@ -99,7 +99,7 @@ namespace ShadowrunTools.Characters.ViewModels.Traits
             {
                 if (_propertyNames.Contains(propName))
                 {
-                    RaisePropertyChanged(propName);
+                    this.RaisePropertyChanged(propName);
                 }
             }
         }

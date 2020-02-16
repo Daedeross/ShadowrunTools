@@ -8,9 +8,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <ListView ItemsSource="{Binding Rows}">
+        <ListView ItemsSource="{Binding Rows}" Padding="0" ItemContainerStyle="{StaticResource plainListViewItemStyle}">
             <ListView.View>
-                <GridView>
+                <GridView ColumnHeaderContainerStyle="{StaticResource myGridViewColumnHeaderStyle}">
                     <GridViewColumn Header="" DisplayMemberBinding="{Binding Level}">
                     </GridViewColumn>
                     <GridViewColumn Header="Metatype">

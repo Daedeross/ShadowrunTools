@@ -1,4 +1,5 @@
-﻿using ShadowrunTools.Characters.Traits;
+﻿using ReactiveUI;
+using ShadowrunTools.Characters.Traits;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -39,7 +40,7 @@ namespace ShadowrunTools.Characters.ViewModels.Traits
             {
                 if (_propertyNames.Contains(propName))
                 {
-                    RaisePropertyChanged(propName);
+                    this.RaisePropertyChanged(propName);
                 }
             }
         }

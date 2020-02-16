@@ -1,5 +1,5 @@
-﻿using GalaSoft.MvvmLight.Command;
-using Moq;
+﻿using Moq;
+using ReactiveUI;
 using ShadowrunTools.Characters.Model;
 using ShadowrunTools.Characters.Priorities;
 using ShadowrunTools.Characters.Prototypes;
@@ -92,7 +92,7 @@ namespace ShadowrunTools.Characters.ViewModels
             {
                 if (mAddTraitCommand is null)
                 {
-                    mAddTraitCommand = new RelayCommand<ITraitPrototype>(AddTraitExecute);
+                    mAddTraitCommand = ReactiveCommand.Create<ITraitPrototype>(AddTraitExecute);
                 }
                 return mAddTraitCommand;
             }

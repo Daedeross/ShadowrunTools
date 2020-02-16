@@ -50,7 +50,6 @@
             }
         }
 
-
         protected void OnMetatypeChanged(object sender, ItemChangedEventArgs e)
         {
             if (ReferenceEquals(sender, Metatype))
