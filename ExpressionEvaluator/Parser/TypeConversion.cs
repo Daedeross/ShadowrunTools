@@ -332,7 +332,7 @@ namespace ExpressionEvaluator.Parser
                         }
                     }
                 }
-                //•	A constant-expression of type long can be converted to type ulong, provided the value of the constant-expression is not negative.
+                //• A constant-expression of type long can be converted to type ulong, provided the value of the constant-expression is not negative.
                 if (src.Type == typeof(long))
                 {
                     var value = (long)((ConstantExpression)src).Value;

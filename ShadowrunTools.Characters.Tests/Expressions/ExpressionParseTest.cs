@@ -41,8 +41,9 @@ namespace ShadowrunTools.Characters.Tests.Expressions
         public class TraitScope : IExpressionScope<IAttribute>
         {
             public IAttribute Me { get; set; }
-
             public ITraitContainer<IAttribute> Attributes { get; set; }
+            public ITraitContainer<ISkill> Skills { get; }
+            public ITraitContainer<IQuality> Qualities { get; }
         }
 
         [Fact]

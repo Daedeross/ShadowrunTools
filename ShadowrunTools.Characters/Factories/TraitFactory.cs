@@ -30,5 +30,10 @@ namespace ShadowrunTools.Characters.Factories
 
             return attribute;
         }
+
+        public ISkill CreateSkill(ICharacter character, ISkillPrototype prototype)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

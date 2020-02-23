@@ -1,4 +1,5 @@
-﻿using ShadowrunTools.Characters.Prototypes;
+﻿using ShadowrunTools.Characters.Priorities;
+using ShadowrunTools.Characters.Prototypes;
 using ShadowrunTools.Characters.Traits;
 using System;
 
@@ -10,6 +11,8 @@ namespace ShadowrunTools.Characters
 
         public string Name { get; set; }
 
+        public ICharacterPriorities Priorities { get; }
+
         public ICharacterMetatype Metatype { get; }
 
         public Character(ITraitFactory traitFactory, IMetavariantPrototype metavariant)
@@ -18,6 +21,8 @@ namespace ShadowrunTools.Characters
 
             Metatype = new CharacterMetatype(metavariant);
         }
+
+        #region Attributes
 
         public ITraitContainer<IAttribute> Attributes
         {
@@ -41,6 +46,35 @@ namespace ShadowrunTools.Characters
         {
             return _traitFactory.CreateAttribute(this, prototype);
         }
+
+        #endregion // Attributes
+
+        #region Skills
+
+        public ITraitContainer<ISkill> ActiveSkills
+        {
+            get
+            {
+                if (!TryGetValue(TraitCategories.ActiveSkill, out ITraitContainer skills))
+                {
+                    skills = new TraitContainer<ISkill>(TraitCategories.ActiveSkill);
+                    this[TraitCategories.ActiveSkill] = skills;
+                }
+                return ActiveSkills as ITraitContainer<ISkill>;
+            }
+        }
+
+        public void AddActiveSkill(ISkill skill)
+        {
+            ActiveSkills[skill.Name] = skill;
+        }
+
+        internal ISkill CreateSkill(ISkillPrototype prototype)
+        {
+            return _traitFactory.CreateSkill(this, prototype);
+        }
+
+        #endregion // Skills
 
         public static ICharacter CreateFromPrototype(ICharacterPrototype characterPrototype, IMetavariantPrototype metavariant, ITraitFactory traitFactory)
         {

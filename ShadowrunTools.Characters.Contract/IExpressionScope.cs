@@ -7,7 +7,9 @@ namespace ShadowrunTools.Characters
 {
     public interface IExpressionScope<out T>
     {
-        public T Me { get; }
-        public ITraitContainer<IAttribute> Attributes { get; }
+        T Me { get; }
+        ITraitContainer<IAttribute> Attributes { get; }
+        ITraitContainer<ISkill> Skills { get; }
+        ITraitContainer<IQuality> Qualities { get; }
     }
 }

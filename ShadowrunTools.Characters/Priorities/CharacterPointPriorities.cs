@@ -17,7 +17,7 @@ namespace ShadowrunTools.Characters.Priorities
                 if (_metatypePriority != value)
                 {
                     _metatypePriority = value;
-                    RaiseItemChanged(new[] { nameof(MetatypePriority), nameof(MetavariantOptions) });
+                    RaiseItemChanged(new[] { nameof(MetatypePriority), nameof(MetavariantOptions), nameof(TotalPriorityPoints) });
                 }
             }
         }
@@ -31,7 +31,7 @@ namespace ShadowrunTools.Characters.Priorities
                 if (_attributePriority != value)
                 {
                     _attributePriority = value;
-                    RaiseItemChanged(new[] { nameof(AttributePriority), nameof(AttributePoints) });
+                    RaiseItemChanged(new[] { nameof(AttributePriority), nameof(AttributePoints), nameof(TotalPriorityPoints) });
                 }
             }
         }
@@ -45,7 +45,7 @@ namespace ShadowrunTools.Characters.Priorities
                 if (_specialPriority != value)
                 {
                     _specialPriority = value;
-                    RaiseItemChanged(new[] { nameof(SpecialPriority) });
+                    RaiseItemChanged(new[] { nameof(SpecialPriority), nameof(TotalPriorityPoints) });
                 }
             }
         }
@@ -59,7 +59,7 @@ namespace ShadowrunTools.Characters.Priorities
                 if (_skillPriority != value)
                 {
                     _skillPriority = value;
-                    RaiseItemChanged(new[] { nameof(SkillPriority), nameof(SkillPoints), nameof(SkillGroupPoints) });
+                    RaiseItemChanged(new[] { nameof(SkillPriority), nameof(SkillPoints), nameof(SkillGroupPoints), nameof(TotalPriorityPoints) });
                 }
             }
         }
@@ -73,7 +73,7 @@ namespace ShadowrunTools.Characters.Priorities
                 if (_resourcePriority != value)
                 {
                     _resourcePriority = value;
-                    RaiseItemChanged(new[] { nameof(ResourcePriority) });
+                    RaiseItemChanged(new[] { nameof(ResourcePriority), nameof(TotalPriorityPoints) });
                 }
             }
         }
