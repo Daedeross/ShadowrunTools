@@ -1,7 +1,9 @@
 ﻿using ShadowrunTools.Characters.Priorities;
 using ShadowrunTools.Characters.Prototypes;
 using ShadowrunTools.Characters.Traits;
+using ShadowrunTools.Serialization.Prototypes;
 using System;
+using System.Linq;
 
 namespace ShadowrunTools.Characters
 {
@@ -11,9 +13,9 @@ namespace ShadowrunTools.Characters
 
         public string Name { get; set; }
 
-        public ICharacterPriorities Priorities { get; }
+        public ICharacterPriorities Priorities { get; private set; }
 
-        public ICharacterMetatype Metatype { get; }
+        public ICharacterMetatype Metatype { get; private set; }
 
         public Character(ITraitFactory traitFactory, IMetavariantPrototype metavariant)
         {
@@ -76,9 +78,34 @@ namespace ShadowrunTools.Characters
 
         #endregion // Skills
 
-        public static ICharacter CreateFromPrototype(ICharacterPrototype characterPrototype, IMetavariantPrototype metavariant, ITraitFactory traitFactory)
+        public static ICharacter CreateFromPrototype(
+            IRules rules,
+            IPrototypeRepository prototypes,
+            ITraitFactory traitFactory)
         {
-            var character = new Character(traitFactory, metavariant);
+            var characterPrototype = CharacterPrototype.CreateFromRepository(prototypes);
+            var meta = prototypes.Metavariants.First(m => m.Name == "Elf");
+            var character = new Character(traitFactory, meta);
+
+            switch (rules.GenerationMethod)
+            {
+                case Model.GenerationMethod.NPC:
+                    throw new NotImplementedException();
+                case Model.GenerationMethod.Priority:
+                    character.Priorities = new CharacterPriorities(prototypes.Priorities);
+                    break;
+                case Model.GenerationMethod.SumToTen:
+                    character.Priorities = new CharacterPointPriorities(prototypes.Priorities);
+                    break;
+                case Model.GenerationMethod.KarmaGen:
+                    throw new NotImplementedException();
+                case Model.GenerationMethod.LifeModules:
+                    throw new NotImplementedException();
+                case Model.GenerationMethod.BuildPoints:
+                    throw new NotImplementedException();
+                default:
+                    break;
+            }
 
             foreach (var attributePrototype in characterPrototype.CoreAttributes)
             {

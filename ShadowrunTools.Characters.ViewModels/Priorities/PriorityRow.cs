@@ -10,6 +10,7 @@ namespace ShadowrunTools.Characters.ViewModels
     public class PriorityRow : ViewModelBase
     {
         private readonly IPriorities _priorities;
+        private readonly ICharacterPriorities _characterPriorities;
 
         public PriorityLevel Level { get; private set; }
 
@@ -25,21 +26,99 @@ namespace ShadowrunTools.Characters.ViewModels
 
         public PriorityRow(DisplaySettings displaySettings,
             PriorityLevel level,
-            IPriorities priorities)
+            IPriorities priorities,
+            ICharacterPriorities characterPriorities)
             : base(displaySettings)
         {
-            if (priorities is INotifyItemChanged)
-            {
-
-            }
             _priorities = priorities;
+            _characterPriorities = characterPriorities;
             Level = level;
 
-            Metatype = new PriorityCell(displaySettings, GetMetatypeItems(level, priorities));
-            Attributes = new PriorityCell(displaySettings, GetAttributesItems(level, priorities));
-            Specials = new PriorityCell(displaySettings, GetSpecialsItems(level, priorities));
-            Skills = new PriorityCell(displaySettings, GetSkillsItems(level, priorities));
-            Resources = new PriorityCell(displaySettings, GetResourcesItems(level, priorities));
+            Metatype = new PriorityCell(displaySettings, GetMetatypeItems(level, priorities), OnMetatypeChanged,
+                isSelected: _characterPriorities.MetatypePriority == level);
+            Attributes = new PriorityCell(displaySettings, GetAttributesItems(level, priorities), OnAttributeChanged,
+                isSelected: _characterPriorities.AttributePriority == level);
+            Specials = new PriorityCell(displaySettings, GetSpecialsItems(level, priorities), OnSpecialChanged,
+                isSelected: _characterPriorities.SpecialPriority == level);
+            Skills = new PriorityCell(displaySettings, GetSkillsItems(level, priorities), OnSkillChanged,
+                isSelected: _characterPriorities.SkillPriority == level);
+            Resources = new PriorityCell(displaySettings, GetResourcesItems(level, priorities), OnResourceChanged,
+                isSelected: _characterPriorities.ResourcePriority == level);
+
+            var temp = _characterPriorities as INotifyValueChanged;
+            if (temp != null)
+            {
+                temp.ValueChanged += OnCharacterPrioritiesChanged;
+            }
+        }
+
+        private void OnCharacterPrioritiesChanged(object sender, ValueChangedEventArgs e)
+        {
+            if (e.NewValue is PriorityLevel newValue
+                && e.OldValue is PriorityLevel oldValue
+                && (newValue == Level || oldValue == Level))
+            {
+                switch (e.PropertyName)
+                {
+                    case nameof(ICharacterPriorities.MetatypePriority):
+                        Metatype.IsSelected = newValue == Level;
+                        break;
+                    case nameof(ICharacterPriorities.AttributePriority):
+                        Attributes.IsSelected = newValue == Level;
+                        break;
+                    case nameof(ICharacterPriorities.SpecialPriority):
+                        Specials.IsSelected = newValue == Level;
+                        break;
+                    case nameof(ICharacterPriorities.SkillPriority):
+                        Skills.IsSelected = newValue == Level;
+                        break;
+                    case nameof(ICharacterPriorities.ResourcePriority):
+                        Resources.IsSelected = newValue == Level;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        private void OnMetatypeChanged(bool isSelected)
+        {
+            if (isSelected)
+            {
+                _characterPriorities.MetatypePriority = Level;
+            }
+        }
+
+        private void OnAttributeChanged(bool isSelected)
+        {
+            if (isSelected)
+            {
+                _characterPriorities.AttributePriority = Level; 
+            }
+        }
+
+        private void OnSpecialChanged(bool isSelected)
+        {
+            if (isSelected)
+            {
+                _characterPriorities.SpecialPriority = Level;
+            }
+        }
+
+        private void OnSkillChanged(bool isSelected)
+        {
+            if (isSelected)
+            {
+                _characterPriorities.SkillPriority = Level;
+            }
+        }
+
+        private void OnResourceChanged(bool isSelected)
+        {
+            if (isSelected)
+            {
+                _characterPriorities.ResourcePriority = Level;
+            }
         }
 
         private static List<string> GetMetatypeItems(PriorityLevel level, IPriorities priorities)

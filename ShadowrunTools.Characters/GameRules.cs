@@ -4,10 +4,12 @@
     using System.Collections;
     using System.Collections.Generic;
     using System.Text;
+    using ShadowrunTools.Characters.Model;
     using ShadowrunTools.Foundation;
 
     public class GameRules : PropertyList, IRules
     {
+        public GenerationMethod GenerationMethod { get; set; }
         public int StartingKarma { get; set; }
 
         public int MaxAugment { get; set; }

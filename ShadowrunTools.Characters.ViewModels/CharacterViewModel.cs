@@ -24,7 +24,7 @@ namespace ShadowrunTools.Characters.ViewModels
         {
             _character = character ?? throw new ArgumentNullException(nameof(character));
 
-            _priorities = new PrioritiesViewModel(displaySettings, priorities);
+            _priorities = new PrioritiesViewModel(displaySettings, priorities, character.Priorities);
 
             InitializeAttributes();
         }

@@ -1,17 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 using ShadowrunTools.Characters.Model;
 using ShadowrunTools.Foundation;
 
 namespace ShadowrunTools.Characters.Priorities
 {
-    public class CharacterPriorities : ItemChangedBase, ICharacterPriorities
+    public class CharacterPriorities : ItemChangedBase, ICharacterPriorities, INotifyValueChanged
     {
         private readonly IPriorities _priorities;
         #region ICharacterPriorities Properties
 
-        private PriorityLevel _metatypePriority;
+        public event ValueChangedEventHandler ValueChanged;
+
+        private PriorityLevel _metatypePriority = PriorityLevel.E;
         public PriorityLevel MetatypePriority
         {
             get { return _metatypePriority; }
@@ -27,7 +30,7 @@ namespace ShadowrunTools.Characters.Priorities
             }
         }
 
-        private PriorityLevel _attributePriority;
+        private PriorityLevel _attributePriority = PriorityLevel.D;
         public PriorityLevel AttributePriority
         {
             get { return _attributePriority; }
@@ -43,7 +46,7 @@ namespace ShadowrunTools.Characters.Priorities
             }
         }
 
-        private PriorityLevel _specialPriority;
+        private PriorityLevel _specialPriority = PriorityLevel.C;
         public PriorityLevel SpecialPriority
         {
             get { return _specialPriority; }
@@ -59,7 +62,7 @@ namespace ShadowrunTools.Characters.Priorities
             }
         }
 
-        private PriorityLevel _skillPriority;
+        private PriorityLevel _skillPriority = PriorityLevel.B;
         public PriorityLevel SkillPriority
         {
             get { return _skillPriority; }
@@ -67,13 +70,15 @@ namespace ShadowrunTools.Characters.Priorities
             {
                 if (_skillPriority != value)
                 {
-                    _skillPriority = value;
-                    RaiseItemChanged(new[] { nameof(SkillPriority), nameof(SkillPoints), nameof(SkillGroupPoints) });
+                    SwapPriorities(
+                        value,
+                        new List<string> { nameof(SkillPriority), nameof(SkillPoints), nameof(SkillGroupPoints) },
+                        ref _skillPriority);
                 }
             }
         }
 
-        private PriorityLevel _resourcePriority;
+        private PriorityLevel _resourcePriority = PriorityLevel.A;
         public PriorityLevel ResourcePriority
         {
             get { return _resourcePriority; }
@@ -124,38 +129,54 @@ namespace ShadowrunTools.Characters.Priorities
             _priorities = priorities ?? throw new ArgumentNullException(nameof(priorities));
         }
 
-        private void SwapPriorities(PriorityLevel level, List<string> propertyNames, ref PriorityLevel refValue)
+        private void SwapPriorities(PriorityLevel level, List<string> propertyNames, ref PriorityLevel refValue,
+            [CallerMemberName] string propertyName = null)
         {
             propertyNames.Add(nameof(TotalPriorityPoints));
+
+            ValueChangedEventArgs valueArgs1 = new ValueChangedEventArgs(propertyName, refValue, level);
+            ValueChangedEventArgs valueArgs2;
+
             if (_attributePriority == level)
             {
+                valueArgs2 = new ValueChangedEventArgs(nameof(AttributePriority), _attributePriority, refValue);
                 _attributePriority = refValue;
                 propertyNames.AddRange(new[] { nameof(AttributePriority), nameof(AttributePoints) });
             }
             else if (_metatypePriority == level)
             {
+                valueArgs2 = new ValueChangedEventArgs(nameof(MetatypePriority), _metatypePriority, refValue);
                 _metatypePriority = refValue;
                 propertyNames.AddRange(new[] { nameof(MetatypePriority), nameof(MetavariantOptions) });
             }
             else if (_specialPriority == level)
             {
+                valueArgs2 = new ValueChangedEventArgs(nameof(SpecialPriority), _specialPriority, refValue);
                 _specialPriority = refValue;
                 propertyNames.Add(nameof(SpecialPriority));
             }
             else if (_skillPriority == level)
             {
+                valueArgs2 = new ValueChangedEventArgs(nameof(SkillPriority), _skillPriority, refValue);
                 _skillPriority = refValue;
                 propertyNames.AddRange(new[] { nameof(SkillPriority), nameof(SkillPoints), nameof(SkillGroupPoints) });
             }
             else
             {
+                valueArgs2 = new ValueChangedEventArgs(nameof(ResourcePriority), _resourcePriority, refValue);
                 _resourcePriority = refValue;
                 propertyNames.AddRange(new[] { nameof(ResourcePriority), nameof(Resources) });
             }
-
             refValue = level;
 
+            RaiseValueChanged(valueArgs1);
+            RaiseValueChanged(valueArgs2);
             RaiseItemChanged(propertyNames.ToArray());
+        }
+
+        public void RaiseValueChanged(ValueChangedEventArgs args)
+        {
+            ValueChanged?.Invoke(this, args);
         }
     }
 }

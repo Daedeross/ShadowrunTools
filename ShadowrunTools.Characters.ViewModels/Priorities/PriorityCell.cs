@@ -13,18 +13,32 @@ namespace ShadowrunTools.Characters.ViewModels
         public string VisibleItems { get; private set; }
 
         private bool mIsSelected;
+        private readonly Action<bool> _onChangedCallback;
+
         public bool IsSelected
         {
             get => mIsSelected;
-            set => this.RaiseAndSetIfChanged(ref mIsSelected, value);
+            set
+            {
+                if (mIsSelected != value)
+                {
+                    mIsSelected = value;
+                    this.RaisePropertyChanged();
+                    _onChangedCallback(value);
+                }
+            }
         }
 
         public PriorityCell(
             DisplaySettings displaySettings,
-            List<string> items)
+            List<string> items,
+            Action<bool> onChangedCallback,
+            bool isSelected = false)
             : base(displaySettings)
         {
             Items = items;
+            mIsSelected = isSelected;
+            _onChangedCallback = onChangedCallback;
             VisibleItems = string.Join("\n", Items.Take(displaySettings.PriorityCellVisibleItemsCount));
         }
 

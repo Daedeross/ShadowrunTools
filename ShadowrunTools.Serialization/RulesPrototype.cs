@@ -1,4 +1,5 @@
 ﻿using ShadowrunTools.Characters;
+using ShadowrunTools.Characters.Model;
 using ShadowrunTools.Foundation;
 using System;
 using System.Collections;
@@ -9,6 +10,7 @@ namespace ShadowrunTools.Serialization
 {
     public class RulesPrototype : PropertyList, IRules
     {
+        public GenerationMethod GenerationMethod { get; set; } = GenerationMethod.Priority;
         public int StartingKarma { get; set; } = 20;
 
         public int MaxAugment { get; set; } = 4;

@@ -6,7 +6,7 @@ namespace ShadowrunTools.Characters
     {
         public event EventHandler<ItemChangedEventArgs> ItemChanged;
 
-        protected void RaiseItemChanged(string[] propertyNames)
+        protected void RaiseItemChanged(params string[] propertyNames)
         {
             ItemChanged?.Invoke(this, new ItemChangedEventArgs(propertyNames));
         }

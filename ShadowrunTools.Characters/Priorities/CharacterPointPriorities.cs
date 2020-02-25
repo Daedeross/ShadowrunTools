@@ -4,9 +4,11 @@ using System.Collections.Generic;
 
 namespace ShadowrunTools.Characters.Priorities
 {
-    public class CharacterPointPriorities : ItemChangedBase, ICharacterPriorities
+    public class CharacterPointPriorities : ItemChangedBase, ICharacterPriorities, INotifyValueChanged
     {
         private readonly IPriorities _priorities;
+
+        public event ValueChangedEventHandler ValueChanged;
 
         private PriorityLevel _metatypePriority;
         public PriorityLevel MetatypePriority
@@ -14,10 +16,10 @@ namespace ShadowrunTools.Characters.Priorities
             get { return _metatypePriority; }
             set
             {
-                if (_metatypePriority != value)
+                if (this.RaiseAndSetIfChanged(ref _metatypePriority, value))
                 {
                     _metatypePriority = value;
-                    RaiseItemChanged(new[] { nameof(MetatypePriority), nameof(MetavariantOptions), nameof(TotalPriorityPoints) });
+                    RaiseItemChanged(nameof(MetatypePriority), nameof(MetavariantOptions), nameof(TotalPriorityPoints));
                 }
             }
         }
@@ -28,10 +30,10 @@ namespace ShadowrunTools.Characters.Priorities
             get { return _attributePriority; }
             set
             {
-                if (_attributePriority != value)
+                if (this.RaiseAndSetIfChanged(ref _attributePriority, value))
                 {
                     _attributePriority = value;
-                    RaiseItemChanged(new[] { nameof(AttributePriority), nameof(AttributePoints), nameof(TotalPriorityPoints) });
+                    RaiseItemChanged(nameof(AttributePriority), nameof(AttributePoints), nameof(TotalPriorityPoints));
                 }
             }
         }
@@ -42,10 +44,10 @@ namespace ShadowrunTools.Characters.Priorities
             get { return _specialPriority; }
             set
             {
-                if (_specialPriority != value)
+                if (this.RaiseAndSetIfChanged(ref _specialPriority, value))
                 {
                     _specialPriority = value;
-                    RaiseItemChanged(new[] { nameof(SpecialPriority), nameof(TotalPriorityPoints) });
+                    RaiseItemChanged(nameof(SpecialPriority), nameof(TotalPriorityPoints));
                 }
             }
         }
@@ -56,10 +58,10 @@ namespace ShadowrunTools.Characters.Priorities
             get { return _skillPriority; }
             set
             {
-                if (_skillPriority != value)
+                if (this.RaiseAndSetIfChanged(ref _skillPriority, value))
                 {
                     _skillPriority = value;
-                    RaiseItemChanged(new[] { nameof(SkillPriority), nameof(SkillPoints), nameof(SkillGroupPoints), nameof(TotalPriorityPoints) });
+                    RaiseItemChanged(nameof(SkillPriority), nameof(SkillPoints), nameof(SkillGroupPoints), nameof(TotalPriorityPoints));
                 }
             }
         }
@@ -70,10 +72,10 @@ namespace ShadowrunTools.Characters.Priorities
             get { return _resourcePriority; }
             set
             {
-                if (_resourcePriority != value)
+                if (this.RaiseAndSetIfChanged(ref _resourcePriority, value))
                 {
                     _resourcePriority = value;
-                    RaiseItemChanged(new[] { nameof(ResourcePriority), nameof(TotalPriorityPoints) });
+                    RaiseItemChanged(nameof(ResourcePriority), nameof(TotalPriorityPoints));
                 }
             }
         }
@@ -81,15 +83,34 @@ namespace ShadowrunTools.Characters.Priorities
         public void SetPriorities(PriorityLevel metatype, PriorityLevel attribute,
             PriorityLevel special, PriorityLevel skill, PriorityLevel resource)
         {
-            _metatypePriority = metatype;
-            _attributePriority = attribute;
-            _specialPriority = special;
-            _skillPriority = skill;
-            _resourcePriority = resource;
-            RaiseItemChanged(new[] { nameof(MetatypePriority), nameof(AttributePriority),
-                nameof(SpecialPriority), nameof(SkillPriority), nameof(ResourcePriority),
-                nameof(AttributePoints), nameof(SkillPoints), nameof(SkillGroupPoints),
-                nameof(Resources), nameof(TotalPriorityPoints) });
+            var propertyNames = new List<string>{ nameof(ResourcePriority) };
+
+            if (this.RaiseAndSetIfChanged(ref _metatypePriority, metatype, nameof(MetatypePriority)))
+            {
+                propertyNames.Add(nameof(MetatypePriority));
+            }
+            if (this.RaiseAndSetIfChanged(ref _attributePriority, attribute, nameof(AttributePriority)))
+            {
+                propertyNames.Add(nameof(AttributePriority));
+                propertyNames.Add(nameof(AttributePoints));
+            }
+            if (this.RaiseAndSetIfChanged(ref _specialPriority, special, nameof(SpecialPriority)))
+            {
+                propertyNames.Add(nameof(SpecialPriority));
+            }
+            if (this.RaiseAndSetIfChanged(ref _skillPriority, skill, nameof(SkillPriority)))
+            {
+                propertyNames.Add(nameof(SkillPriority));
+                propertyNames.Add(nameof(SkillPoints));
+                propertyNames.Add(nameof(SkillGroupPoints));
+            }
+            if (this.RaiseAndSetIfChanged(ref _resourcePriority, resource, nameof(ResourcePriority)))
+            {
+                propertyNames.Add(nameof(ResourcePriority));
+                propertyNames.Add(nameof(Resources));
+            }
+
+            RaiseItemChanged(propertyNames.ToArray());
         }
 
         public IReadOnlyCollection<IPriorityMetavariantOption> MetavariantOptions => _priorities.Metatype[_metatypePriority].MetavariantOptions;
@@ -108,6 +129,11 @@ namespace ShadowrunTools.Characters.Priorities
         public CharacterPointPriorities(IPriorities priorities)
         {
             _priorities = priorities ?? throw new ArgumentNullException(nameof(priorities));
+        }
+
+        public void RaiseValueChanged(ValueChangedEventArgs args)
+        {
+            ValueChanged?.Invoke(this, args);
         }
     }
 }

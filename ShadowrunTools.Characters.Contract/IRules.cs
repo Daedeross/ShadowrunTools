@@ -1,4 +1,5 @@
-﻿using ShadowrunTools.Foundation;
+﻿using ShadowrunTools.Characters.Model;
+using ShadowrunTools.Foundation;
 
 namespace ShadowrunTools.Characters
 {
@@ -7,6 +8,11 @@ namespace ShadowrunTools.Characters
     /// </summary>
     public interface IRules: IPropertyList
     {
+        /// <summary>
+        /// The method used to generate the character. <see cref="GenerationMethod"/>
+        /// </summary>
+        GenerationMethod GenerationMethod { get; }
+
         /// <summary>
         /// The descetionary Karma avalable during character creation.
         /// </summary>

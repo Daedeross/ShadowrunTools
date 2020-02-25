@@ -68,11 +68,7 @@
             var prototypes = Prototypes;
             var defaultMeta = prototypes.DefaultMetavariant;
 
-            var charProto = CharacterPrototype.CreateFromRepository(prototypes);
-
-            var meta = Prototypes.Metavariants.First(m => m.Name == "Elf");
-
-            var character = Character.CreateFromPrototype(charProto, meta, _traitFactory);
+            var character = Character.CreateFromPrototype(_rules, prototypes, _traitFactory);
             //var character = new Character(_rules, Prototypes.DefaultMetavariant);
             character.Name = "New Character";
             var viewModel = new CharacterViewModel(_displaySettings, character, prototypes.Priorities);

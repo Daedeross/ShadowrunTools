@@ -21,7 +21,7 @@
             <Setter Property="HorizontalAlignment" Value="Center" />
         </Style>
     </UserControl.Resources>
-    <ToggleButton Margin="-6,0" Padding="0" IsChecked="{Binding IsSelected}" >
+    <ToggleButton Margin="-6,0" Padding="0" IsChecked="{Binding IsSelected, Mode=TwoWay}" >
         <TextBlock Text="{Binding VisibleItems}" >
             <TextBlock.ToolTip>
                 <ListBox ScrollViewer.HorizontalScrollBarVisibility="Hidden"
