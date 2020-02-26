@@ -3,11 +3,12 @@ using ShadowrunTools.Characters.Prototypes;
 using ShadowrunTools.Characters.Traits;
 using ShadowrunTools.Serialization.Prototypes;
 using System;
+using System.Collections.Specialized;
 using System.Linq;
 
 namespace ShadowrunTools.Characters
 {
-    public class Character: CategorizedTraitContainer, ICharacter
+    public class Character: CategorizedTraitContainer, ICharacter, INotifyItemChanged
     {
         private readonly ITraitFactory _traitFactory;
 
@@ -17,12 +18,27 @@ namespace ShadowrunTools.Characters
 
         public ICharacterMetatype Metatype { get; private set; }
 
-        public Character(ITraitFactory traitFactory, IMetavariantPrototype metavariant)
+        public Character(
+            ITraitFactory traitFactory,
+            ICharacterMetatype characterMetatype,
+            ICharacterPriorities characterPriorities)
         {
             _traitFactory = traitFactory ?? throw new ArgumentNullException(nameof(traitFactory));
 
-            Metatype = new CharacterMetatype(metavariant);
+            Metatype = characterMetatype;
+            Priorities = characterPriorities;
         }
+
+        #region INotifyItemChanged
+
+        public event EventHandler<ItemChangedEventArgs> ItemChanged;
+
+        protected void RaiseItemChanged(params string[] propertyNames)
+        {
+            ItemChanged?.Invoke(this, new ItemChangedEventArgs(propertyNames));
+        }
+
+        #endregion
 
         #region Attributes
 
@@ -34,9 +50,15 @@ namespace ShadowrunTools.Characters
                 {
                     attributes = new TraitContainer<IAttribute>(TraitCategories.Attribute);
                     this[TraitCategories.Attribute] = attributes;
+                    attributes.CollectionChanged += OnAttributesCollectionChanged;
                 }
                 return attributes as ITraitContainer<IAttribute>;
             }
+        }
+
+        private void OnAttributesCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         public void AddAttribute(IAttribute attribute)
@@ -77,42 +99,5 @@ namespace ShadowrunTools.Characters
         }
 
         #endregion // Skills
-
-        public static ICharacter CreateFromPrototype(
-            IRules rules,
-            IPrototypeRepository prototypes,
-            ITraitFactory traitFactory)
-        {
-            var characterPrototype = CharacterPrototype.CreateFromRepository(prototypes);
-            var meta = prototypes.Metavariants.First(m => m.Name == "Elf");
-            var character = new Character(traitFactory, meta);
-
-            switch (rules.GenerationMethod)
-            {
-                case Model.GenerationMethod.NPC:
-                    throw new NotImplementedException();
-                case Model.GenerationMethod.Priority:
-                    character.Priorities = new CharacterPriorities(prototypes.Priorities);
-                    break;
-                case Model.GenerationMethod.SumToTen:
-                    character.Priorities = new CharacterPointPriorities(prototypes.Priorities);
-                    break;
-                case Model.GenerationMethod.KarmaGen:
-                    throw new NotImplementedException();
-                case Model.GenerationMethod.LifeModules:
-                    throw new NotImplementedException();
-                case Model.GenerationMethod.BuildPoints:
-                    throw new NotImplementedException();
-                default:
-                    break;
-            }
-
-            foreach (var attributePrototype in characterPrototype.CoreAttributes)
-            {
-                character.Attributes[attributePrototype.Name] = character.CreateAttribute(attributePrototype);
-            }
-
-            return character;
-        }
     }
 }

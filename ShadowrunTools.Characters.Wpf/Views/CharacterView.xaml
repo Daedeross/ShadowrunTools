@@ -9,11 +9,11 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <TabControl>
-            <TabItem Header="Attributes">
-                <local:AttributesView DataContext="{Binding}" />
-            </TabItem>
             <TabItem Header="Priorities">
                 <local:PrioritiesView DataContext="{Binding Priorities}" />
+            </TabItem>
+            <TabItem Header="Attributes">
+                <local:AttributesView DataContext="{Binding}" />
             </TabItem>
         </TabControl>
     </Grid>

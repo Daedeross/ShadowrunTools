@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace ShadowrunTools.Characters
 {
@@ -9,6 +11,17 @@ namespace ShadowrunTools.Characters
         protected void RaiseItemChanged(params string[] propertyNames)
         {
             ItemChanged?.Invoke(this, new ItemChangedEventArgs(propertyNames));
+        }
+
+        protected TRet RaiseAndSetIfChanged<TRet>(ref TRet backingField, TRet newValue, [CallerMemberName] string propertyName = null, IEqualityComparer<TRet> equalityComparer = default)
+        {
+            if (!equalityComparer.Equals(backingField, newValue))
+            {
+                backingField = newValue;
+                RaiseItemChanged(propertyName);
+            }
+
+            return newValue;
         }
     }
 }

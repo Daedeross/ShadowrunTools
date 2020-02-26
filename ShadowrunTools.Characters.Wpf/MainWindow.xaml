@@ -24,9 +24,6 @@
         </Menu>
         <StatusBar Grid.Row="2">
             <StatusBarItem>
-                <Button Command="{Binding NewCharacterCommand}">New</Button>
-            </StatusBarItem>
-            <StatusBarItem>
                 <TextBlock Text="{Binding CurrentCharacter.Name}"></TextBlock>
             </StatusBarItem>
         </StatusBar>
