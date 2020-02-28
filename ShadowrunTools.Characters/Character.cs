@@ -1,8 +1,10 @@
 ﻿using ShadowrunTools.Characters.Priorities;
 using ShadowrunTools.Characters.Prototypes;
 using ShadowrunTools.Characters.Traits;
+using ShadowrunTools.Characters.Validators;
 using ShadowrunTools.Serialization.Prototypes;
 using System;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
 
@@ -58,7 +60,6 @@ namespace ShadowrunTools.Characters
 
         private void OnAttributesCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            throw new NotImplementedException();
         }
 
         public void AddAttribute(IAttribute attribute)
@@ -84,9 +85,13 @@ namespace ShadowrunTools.Characters
                     skills = new TraitContainer<ISkill>(TraitCategories.ActiveSkill);
                     this[TraitCategories.ActiveSkill] = skills;
                 }
-                return ActiveSkills as ITraitContainer<ISkill>;
+                return skills as ITraitContainer<ISkill>;
             }
         }
+
+        public ISpecialChoice SpecialChoice => null;
+
+        public ObservableCollection<IValidatorItem> Statuses { get; set; } = new ObservableCollection<IValidatorItem>();
 
         public void AddActiveSkill(ISkill skill)
         {

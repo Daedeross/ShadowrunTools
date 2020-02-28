@@ -4,11 +4,13 @@ using ShadowrunTools.Characters.Model;
 using ShadowrunTools.Characters.Priorities;
 using ShadowrunTools.Characters.Prototypes;
 using ShadowrunTools.Characters.Traits;
+using ShadowrunTools.Characters.Validators;
 using ShadowrunTools.Characters.ViewModels.Traits;
 using ShadowrunTools.Serialization.Prototypes;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
@@ -25,6 +27,10 @@ namespace ShadowrunTools.Characters.ViewModels
             _character = character ?? throw new ArgumentNullException(nameof(character));
 
             _priorities = new PrioritiesViewModel(displaySettings, priorities, character.Priorities);
+
+            Statuses = new ObservableCollection<ValidatorItemViewModel>(_character.Statuses.Select(
+                item => new ValidatorItemViewModel(displaySettings, item)));
+            _character.Statuses.CollectionChanged += OnStatusesChanged;
 
             InitializeAttributes();
         }
@@ -78,6 +84,23 @@ namespace ShadowrunTools.Characters.ViewModels
         public ILeveledTrait Charisma { get; private set; }
 
         #endregion // Core Attributes
+
+        #region Status
+
+        public ObservableCollection<ValidatorItemViewModel> Statuses { get; protected set; }
+
+        private void OnStatusesChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            foreach (var oldItem in Statuses)
+            {
+                oldItem.Dispose();
+            }
+
+            Statuses = new ObservableCollection<ValidatorItemViewModel>(_character.Statuses.Select(
+                   item => new ValidatorItemViewModel(_displaySettings, item)));
+        }
+
+        #endregion
 
         private PrioritiesViewModel _priorities;
         public PrioritiesViewModel Priorities => _priorities;

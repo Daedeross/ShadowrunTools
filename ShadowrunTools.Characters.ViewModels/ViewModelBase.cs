@@ -27,6 +27,10 @@ namespace ShadowrunTools.Characters.ViewModels
             OnDisplaySettingsPropertyChanged(e.PropertyName);
         }
 
+        protected virtual void OnDispose(bool disposing)
+        {
+        }
+
         #region IDisposable Support
 
         private bool disposedValue = false;
@@ -35,6 +39,7 @@ namespace ShadowrunTools.Characters.ViewModels
         {
             if (!disposedValue)
             {
+                OnDispose(disposing);
                 if (disposing)
                 {
                     _displaySettings.PropertyChanged -= DisplaySettingsPropertyChanged;

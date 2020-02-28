@@ -1,4 +1,4 @@
-﻿namespace ShadowrunTools.Characters.Priorities
+﻿namespace ShadowrunTools.Characters
 {
     using ShadowrunTools.Characters.Model;
 

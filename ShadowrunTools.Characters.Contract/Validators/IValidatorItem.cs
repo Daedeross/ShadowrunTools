@@ -1,10 +1,6 @@
 ﻿namespace ShadowrunTools.Characters.Validators
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
-
-    public interface IValidatorItem
+    public interface IValidatorItem: INotifyItemChanged
     {
         bool IsValid { get; }
         string Label { get; }

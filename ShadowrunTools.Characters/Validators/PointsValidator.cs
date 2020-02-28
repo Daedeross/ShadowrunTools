@@ -11,14 +11,12 @@
 
         public PointsValidator(IRules rules)
         {
-
         }
 
         public bool IsValid { get; private set; } = true;
 
         private List<IValidatorItem> _items;
         public IReadOnlyCollection<IValidatorItem> Items => _items;
-
 
         public event NotifyCollectionChangedEventHandler CollectionChanged;
     }

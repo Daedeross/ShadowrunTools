@@ -16,7 +16,7 @@ namespace ShadowrunTools.Characters.Priorities
             get { return _metatypePriority; }
             set
             {
-                if (this.RaiseAndSetIfChanged(ref _metatypePriority, value))
+                if (this.RaiseAndSetIfValueChanged(ref _metatypePriority, value))
                 {
                     _metatypePriority = value;
                     RaiseItemChanged(nameof(MetatypePriority), nameof(MetavariantOptions), nameof(TotalPriorityPoints));
@@ -30,7 +30,7 @@ namespace ShadowrunTools.Characters.Priorities
             get { return _attributePriority; }
             set
             {
-                if (this.RaiseAndSetIfChanged(ref _attributePriority, value))
+                if (this.RaiseAndSetIfValueChanged(ref _attributePriority, value))
                 {
                     _attributePriority = value;
                     RaiseItemChanged(nameof(AttributePriority), nameof(AttributePoints), nameof(TotalPriorityPoints));
@@ -44,7 +44,7 @@ namespace ShadowrunTools.Characters.Priorities
             get { return _specialPriority; }
             set
             {
-                if (this.RaiseAndSetIfChanged(ref _specialPriority, value))
+                if (this.RaiseAndSetIfValueChanged(ref _specialPriority, value))
                 {
                     _specialPriority = value;
                     RaiseItemChanged(nameof(SpecialPriority), nameof(TotalPriorityPoints));
@@ -58,7 +58,7 @@ namespace ShadowrunTools.Characters.Priorities
             get { return _skillPriority; }
             set
             {
-                if (this.RaiseAndSetIfChanged(ref _skillPriority, value))
+                if (this.RaiseAndSetIfValueChanged(ref _skillPriority, value))
                 {
                     _skillPriority = value;
                     RaiseItemChanged(nameof(SkillPriority), nameof(SkillPoints), nameof(SkillGroupPoints), nameof(TotalPriorityPoints));
@@ -72,7 +72,7 @@ namespace ShadowrunTools.Characters.Priorities
             get { return _resourcePriority; }
             set
             {
-                if (this.RaiseAndSetIfChanged(ref _resourcePriority, value))
+                if (this.RaiseAndSetIfValueChanged(ref _resourcePriority, value))
                 {
                     _resourcePriority = value;
                     RaiseItemChanged(nameof(ResourcePriority), nameof(TotalPriorityPoints));
@@ -85,26 +85,26 @@ namespace ShadowrunTools.Characters.Priorities
         {
             var propertyNames = new List<string>{ nameof(ResourcePriority) };
 
-            if (this.RaiseAndSetIfChanged(ref _metatypePriority, metatype, nameof(MetatypePriority)))
+            if (this.RaiseAndSetIfValueChanged(ref _metatypePriority, metatype, nameof(MetatypePriority)))
             {
                 propertyNames.Add(nameof(MetatypePriority));
             }
-            if (this.RaiseAndSetIfChanged(ref _attributePriority, attribute, nameof(AttributePriority)))
+            if (this.RaiseAndSetIfValueChanged(ref _attributePriority, attribute, nameof(AttributePriority)))
             {
                 propertyNames.Add(nameof(AttributePriority));
                 propertyNames.Add(nameof(AttributePoints));
             }
-            if (this.RaiseAndSetIfChanged(ref _specialPriority, special, nameof(SpecialPriority)))
+            if (this.RaiseAndSetIfValueChanged(ref _specialPriority, special, nameof(SpecialPriority)))
             {
                 propertyNames.Add(nameof(SpecialPriority));
             }
-            if (this.RaiseAndSetIfChanged(ref _skillPriority, skill, nameof(SkillPriority)))
+            if (this.RaiseAndSetIfValueChanged(ref _skillPriority, skill, nameof(SkillPriority)))
             {
                 propertyNames.Add(nameof(SkillPriority));
                 propertyNames.Add(nameof(SkillPoints));
                 propertyNames.Add(nameof(SkillGroupPoints));
             }
-            if (this.RaiseAndSetIfChanged(ref _resourcePriority, resource, nameof(ResourcePriority)))
+            if (this.RaiseAndSetIfValueChanged(ref _resourcePriority, resource, nameof(ResourcePriority)))
             {
                 propertyNames.Add(nameof(ResourcePriority));
                 propertyNames.Add(nameof(Resources));

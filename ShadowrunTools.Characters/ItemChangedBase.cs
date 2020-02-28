@@ -13,9 +13,14 @@ namespace ShadowrunTools.Characters
             ItemChanged?.Invoke(this, new ItemChangedEventArgs(propertyNames));
         }
 
-        protected TRet RaiseAndSetIfChanged<TRet>(ref TRet backingField, TRet newValue, [CallerMemberName] string propertyName = null, IEqualityComparer<TRet> equalityComparer = default)
+        protected TRet RaiseAndSetIfChanged<TRet>(
+            ref TRet backingField,
+            TRet newValue,
+            [CallerMemberName] string propertyName = null,
+            IEqualityComparer<TRet> equalityComparer = null)
         {
-            if (!equalityComparer.Equals(backingField, newValue))
+            var comparer = equalityComparer ?? EqualityComparer<TRet>.Default;
+            if (!comparer.Equals(backingField, newValue))
             {
                 backingField = newValue;
                 RaiseItemChanged(propertyName);

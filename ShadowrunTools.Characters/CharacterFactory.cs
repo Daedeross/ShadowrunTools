@@ -40,6 +40,8 @@ namespace ShadowrunTools.Characters
                 character.Attributes[attributePrototype.Name] = character.CreateAttribute(attributePrototype);
             }
 
+            character.Statuses.Add(Validators.ValidatorFactory.AttributePointsValidator(character));
+
             return character;
         }
     }

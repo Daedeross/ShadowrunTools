@@ -8,6 +8,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
         <TabControl>
             <TabItem Header="Priorities">
                 <local:PrioritiesView DataContext="{Binding Priorities}" />
@@ -16,5 +20,6 @@
                 <local:AttributesView DataContext="{Binding}" />
             </TabItem>
         </TabControl>
+        <local:StatusBarView DataContext="{Binding}" Grid.Row="1" />
     </Grid>
 </UserControl>

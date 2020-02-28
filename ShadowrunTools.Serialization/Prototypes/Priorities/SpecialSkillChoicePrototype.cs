@@ -1,4 +1,5 @@
-﻿using ShadowrunTools.Characters.Model;
+﻿using ShadowrunTools.Characters;
+using ShadowrunTools.Characters.Model;
 using ShadowrunTools.Characters.Priorities;
 using System.Runtime.Serialization;
 

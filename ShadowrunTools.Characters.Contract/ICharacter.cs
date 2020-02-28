@@ -1,5 +1,7 @@
 ﻿using ShadowrunTools.Characters.Priorities;
 using ShadowrunTools.Characters.Traits;
+using ShadowrunTools.Characters.Validators;
+using System.Collections.ObjectModel;
 
 namespace ShadowrunTools.Characters
 {
@@ -11,9 +13,13 @@ namespace ShadowrunTools.Characters
 
         ICharacterMetatype Metatype { get; }
 
+        ISpecialChoice SpecialChoice { get; }
+
         ITraitContainer<IAttribute> Attributes { get; }
 
         ITraitContainer<ISkill> ActiveSkills { get; }
+
+        ObservableCollection<IValidatorItem> Statuses { get; }
 
         // ITraitContainer<IQuality> Qualities { get; }
 

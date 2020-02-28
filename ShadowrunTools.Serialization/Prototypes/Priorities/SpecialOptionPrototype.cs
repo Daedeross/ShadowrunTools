@@ -1,4 +1,5 @@
-﻿using ShadowrunTools.Characters.Priorities;
+﻿using ShadowrunTools.Characters;
+using ShadowrunTools.Characters.Priorities;
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;

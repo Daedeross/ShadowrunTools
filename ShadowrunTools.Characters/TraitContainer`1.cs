@@ -24,7 +24,7 @@ namespace ShadowrunTools.Characters
             set => base[key] = value;
         }
 
-        ICollection<T> IDictionary<string, T>.Values => throw new NotImplementedException();
+        ICollection<T> IDictionary<string, T>.Values => Values.Select(x => x as T).ToList();
 
         public void Add(string key, T value)
         {
