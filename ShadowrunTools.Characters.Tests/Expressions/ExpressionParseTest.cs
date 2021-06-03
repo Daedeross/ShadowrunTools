@@ -1,6 +1,7 @@
 ﻿using ExpressionEvaluator;
 using Moq;
 using ShadowrunTools.Characters.Factories;
+using ShadowrunTools.Characters.Priorities;
 using ShadowrunTools.Characters.Prototypes;
 using ShadowrunTools.Characters.Traits;
 using System.Collections.Generic;
@@ -61,6 +62,8 @@ namespace ShadowrunTools.Characters.Tests.Expressions
             var mockMetatype = new Mock<IMetavariantPrototype>();
             mockMetatype.SetupGet(x => x.Attributes).Returns(attribList);
 
+            var mockCharacterMetatype = new Mock<ICharacterMetatype>();
+
             var mockAttributePrototype = new Mock<IAttributePrototype>();
             mockAttributePrototype.SetupGet(x => x.Name).Returns("Robert");
             mockAttributePrototype.SetupGet(x => x.Book).Returns("Book");
@@ -70,9 +73,11 @@ namespace ShadowrunTools.Characters.Tests.Expressions
             mockAttributePrototype.SetupGet(x => x.SubCategory).Returns("Primary Attributes");
             mockAttributePrototype.SetupGet(x => x.TraitType).Returns(Model.TraitType.Attribute);
 
+            var mockPriorities = new Mock<ICharacterPriorities>();
+
             var factory = new TraitFactory(mockRules.Object);
 
-            var character = new Character(factory, mockMetatype.Object);
+            var character = new Character(factory, mockCharacterMetatype.Object, mockPriorities.Object);
 
             var attribute = character.CreateAttribute(mockAttributePrototype.Object);
             character.AddAttribute(attribute);

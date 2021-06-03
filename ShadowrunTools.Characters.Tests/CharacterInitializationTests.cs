@@ -1,5 +1,6 @@
 ﻿using Moq;
 using ShadowrunTools.Characters.Factories;
+using ShadowrunTools.Characters.Priorities;
 using ShadowrunTools.Characters.Prototypes;
 using ShadowrunTools.Characters.Traits;
 using System;
@@ -25,6 +26,7 @@ namespace ShadowrunTools.Characters.Tests
 
             var mockMetatype = new Mock<IMetavariantPrototype>();
             mockMetatype.SetupGet(x => x.Attributes).Returns(attribList);
+            var characterMetatype = new CharacterMetatype(mockMetatype.Object);
 
             var mockAttributePrototype = new Mock<IAttributePrototype>();
             mockAttributePrototype.SetupGet(x => x.Name).Returns("Robert");
@@ -35,9 +37,11 @@ namespace ShadowrunTools.Characters.Tests
             mockAttributePrototype.SetupGet(x => x.SubCategory).Returns("Primary Attributes");
             mockAttributePrototype.SetupGet(x => x.TraitType).Returns(Model.TraitType.Attribute);
 
+            var mockPriorities = new Mock<ICharacterPriorities>();
+
             var factory = new TraitFactory(mockRules.Object);
 
-            var character = new Character(factory, mockMetatype.Object);
+            var character = new Character(factory, characterMetatype, mockPriorities.Object);
 
             var attribute = character.CreateAttribute(mockAttributePrototype.Object);
             character.AddAttribute(attribute);
