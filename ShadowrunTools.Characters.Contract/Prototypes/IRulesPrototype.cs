@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ShadowrunTools.Characters.Prototypes
 {
-    public interface ISkillPrototype : ILeveledTraitPrototype
+    public interface IRulesPrototype
     {
     }
 }

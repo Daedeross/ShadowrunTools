@@ -2,7 +2,7 @@
 
 namespace ShadowrunTools.Characters.Prototypes
 {
-    public interface IMetavariantPrototype
+    public interface IMetavariantPrototype : IPrototype
     {
         /// <summary>
         /// The name of the Metavariant. eg: Human, Nartaki, Cyclops, etc

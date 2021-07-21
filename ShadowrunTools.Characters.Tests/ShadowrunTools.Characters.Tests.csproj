@@ -27,4 +27,10 @@
     <ProjectReference Include="..\ShadowrunTools.Expressions\ShadowrunTools.Expressions.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="TestArtifacts\**\*.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

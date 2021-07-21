@@ -2,6 +2,9 @@
 
 namespace ShadowrunTools.Characters.Traits
 {
+    /// <summary>
+    /// Represents any trait that can come in multiple levels/ranks
+    /// </summary>
     public interface ILeveledTrait: ITrait, IComparable<ILeveledTrait>, IAugmentable
     {
         /// <summary>

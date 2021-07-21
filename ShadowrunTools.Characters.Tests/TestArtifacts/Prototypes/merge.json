@@ -1,0 +1,13 @@
+{
+  "Attributes": [
+    {
+      "ShortName": "BOB",
+      "CustomOrder": "05",
+      "TraitType": "Attribute",
+      "Name": "Robert",
+      "SubCategory": "Physical Attributes",
+      "Book": "SR5",
+      "Page": 51
+    }
+  ]
+}

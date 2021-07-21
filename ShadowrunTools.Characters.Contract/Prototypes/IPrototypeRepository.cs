@@ -8,10 +8,19 @@
 
     public interface IPrototypeRepository
     {
+        /// <summary>
+        /// Collection of available metavariants.
+        /// </summary>
         IReadOnlyCollection<IMetavariantPrototype> Metavariants { get; }
 
+        /// <summary>
+        /// The default metatype that a character will be until a choice is made.
+        /// </summary>
         IMetavariantPrototype DefaultMetavariant { get; }
 
+        /// <summary>
+        /// The priority table
+        /// </summary>
         IPriorities Priorities { get; }
 
         ITraitPrototype GetTraitPrototype(TraitType traitType, string name);

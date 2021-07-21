@@ -7,12 +7,12 @@ namespace ShadowrunTools.Serialization
     public abstract class LeveledTraitLoader: TraitLoaderBase
     {
         [DataMember]
-        int ExtraMin { get; set; }
+        public int ExtraMin { get; set; }
         [DataMember]
-        int ExtraMax { get; set; }
+        public int ExtraMax { get; set; }
         [DataMember]
-        int BaseRating { get; set; }
+        public int BaseRating { get; set; }
         [DataMember]
-        int Improvement { get; set; }
+        public int Improvement { get; set; }
     }
 }

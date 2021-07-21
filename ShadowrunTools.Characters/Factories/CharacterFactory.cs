@@ -1,4 +1,5 @@
-﻿using ShadowrunTools.Characters.Priorities;
+﻿using ShadowrunTools.Characters.Loaders;
+using ShadowrunTools.Characters.Priorities;
 using ShadowrunTools.Characters.Prototypes;
 using ShadowrunTools.Serialization.Prototypes;
 using System;
@@ -11,8 +12,9 @@ namespace ShadowrunTools.Characters
         public static Character Create(IRules rules, IPrototypeRepository prototypes, ITraitFactory traitFactory)
         {
             var characterPrototype = CharacterPrototype.CreateFromRepository(prototypes);
-            var meta = prototypes.Metavariants.First(m => m.Name == "Elf");
+            var meta = prototypes.Metavariants.First(m => m.Name == "Elf"); // TODO: This is test code.
             var metavariant = new CharacterMetatype(meta);
+
             ICharacterPriorities characterPriorities = null;
             switch (rules.GenerationMethod)
             {
@@ -44,5 +46,11 @@ namespace ShadowrunTools.Characters
 
             return character;
         }
+
+
+        //public static ICharacter CreateFromLoader(ICharacterLoader loader, IPrototypeRepository prototypes, ITraitFactory traitFactory)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

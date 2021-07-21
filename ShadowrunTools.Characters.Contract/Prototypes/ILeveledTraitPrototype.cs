@@ -2,6 +2,7 @@
 {
     public interface ILeveledTraitPrototype: ITraitPrototype
     {
-
+        int Min { get; }
+        int Max { get; }
     }
 }

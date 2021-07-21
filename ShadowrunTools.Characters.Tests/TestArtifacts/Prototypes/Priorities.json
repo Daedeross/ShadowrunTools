@@ -1,0 +1,390 @@
+{
+  "Priorities": {
+    "Metatype": {
+      "A": {
+        "MetavariantOptions": [
+          {
+            "Metavariant": "Human",
+            "SpecialAttributePoints": 9,
+            "AdditionalKarmaCost": 0
+          },
+          {
+            "Metavariant": "Elf",
+            "SpecialAttributePoints": 8,
+            "AdditionalKarmaCost": 0
+          },
+          {
+            "Metavariant": "Dwarf",
+            "SpecialAttributePoints": 7,
+            "AdditionalKarmaCost": 0
+          },
+          {
+            "Metavariant": "Ork",
+            "SpecialAttributePoints": 7,
+            "AdditionalKarmaCost": 0
+          },
+          {
+            "Metavariant": "Troll",
+            "SpecialAttributePoints": 5,
+            "AdditionalKarmaCost": 0
+          }
+        ]
+      },
+      "B": {
+        "MetavariantOptions": [
+          {
+            "Metavariant": "Human",
+            "SpecialAttributePoints": 7,
+            "AdditionalKarmaCost": 0
+          },
+          {
+            "Metavariant": "Elf",
+            "SpecialAttributePoints": 6,
+            "AdditionalKarmaCost": 0
+          },
+          {
+            "Metavariant": "Dwarf",
+            "SpecialAttributePoints": 4,
+            "AdditionalKarmaCost": 0
+          },
+          {
+            "Metavariant": "Ork",
+            "SpecialAttributePoints": 4,
+            "AdditionalKarmaCost": 0
+          },
+          {
+            "Metavariant": "Troll",
+            "SpecialAttributePoints": 0,
+            "AdditionalKarmaCost": 0
+          }
+        ]
+      },
+      "C": {
+        "MetavariantOptions": [
+          {
+            "Metavariant": "Human",
+            "SpecialAttributePoints": 5,
+            "AdditionalKarmaCost": 0
+          },
+          {
+            "Metavariant": "Elf",
+            "SpecialAttributePoints": 3,
+            "AdditionalKarmaCost": 0
+          },
+          {
+            "Metavariant": "Dwarf",
+            "SpecialAttributePoints": 1,
+            "AdditionalKarmaCost": 0
+          },
+          {
+            "Metavariant": "Ork",
+            "SpecialAttributePoints": 0,
+            "AdditionalKarmaCost": 0
+          }
+        ]
+      },
+      "D": {
+        "MetavariantOptions": [
+          {
+            "Metavariant": "Human",
+            "SpecialAttributePoints": 3,
+            "AdditionalKarmaCost": 0
+          },
+          {
+            "Metavariant": "Elf",
+            "SpecialAttributePoints": 1,
+            "AdditionalKarmaCost": 0
+          }
+        ]
+      },
+      "E": {
+        "MetavariantOptions": [
+          {
+            "Metavariant": "Human",
+            "SpecialAttributePoints": 1,
+            "AdditionalKarmaCost": 0
+          }
+        ]
+      }
+    },
+    "Attributes": {
+      "A": {
+        "AttibutePoints": 24
+      },
+      "B": {
+        "AttibutePoints": 20
+      },
+      "C": {
+        "AttibutePoints": 16
+      },
+      "D": {
+        "AttibutePoints": 14
+      },
+      "E": {
+        "AttibutePoints": 12
+      }
+    },
+    "Specials": {
+      "A": {
+        "Options": [
+          {
+            "SkillOptions": [
+              {
+                "Rating": 5,
+                "Count": 2,
+                "Kind": "Category",
+                "Choice": "Magical"
+              }
+            ],
+            "SkillGroupOptions": [],
+            "Quality": "Magician",
+            "AttributeName": "Magic",
+            "AttributeRating": 6,
+            "FreeSpells": 10,
+            "FreeComplexForms": 0
+          },
+          {
+            "SkillOptions": [
+              {
+                "Rating": 5,
+                "Count": 2,
+                "Kind": "Category",
+                "Choice": "Magical"
+              }
+            ],
+            "SkillGroupOptions": [],
+            "Quality": "Mystic Adept",
+            "AttributeName": "Magic",
+            "AttributeRating": 6,
+            "FreeSpells": 10,
+            "FreeComplexForms": 0
+          },
+          {
+            "SkillOptions": [
+              {
+                "Rating": 5,
+                "Count": 2,
+                "Kind": "Category",
+                "Choice": "Resonance"
+              }
+            ],
+            "SkillGroupOptions": [],
+            "Quality": "Technomancer",
+            "AttributeName": "Resonance",
+            "AttributeRating": 6,
+            "FreeSpells": 0,
+            "FreeComplexForms": 5
+          }
+        ]
+      },
+      "B": {
+        "Options": [
+          {
+            "SkillOptions": [
+              {
+                "Rating": 4,
+                "Count": 2,
+                "Kind": "Category",
+                "Choice": "Magical"
+              }
+            ],
+            "SkillGroupOptions": [],
+            "Quality": "Magician",
+            "AttributeName": "Magic",
+            "AttributeRating": 4,
+            "FreeSpells": 7,
+            "FreeComplexForms": 0
+          },
+          {
+            "SkillOptions": [
+              {
+                "Rating": 4,
+                "Count": 2,
+                "Kind": "Category",
+                "Choice": "Magical"
+              }
+            ],
+            "SkillGroupOptions": [],
+            "Quality": "Mystic Adept",
+            "AttributeName": "Magic",
+            "AttributeRating": 4,
+            "FreeSpells": 7,
+            "FreeComplexForms": 0
+          },
+          {
+            "SkillOptions": [
+              {
+                "Rating": 4,
+                "Count": 2,
+                "Kind": "Category",
+                "Choice": "Resonance"
+              }
+            ],
+            "SkillGroupOptions": [],
+            "Quality": "Technomancer",
+            "AttributeName": "Resonance",
+            "AttributeRating": 4,
+            "FreeSpells": 0,
+            "FreeComplexForms": 2
+          },
+          {
+            "SkillOptions": [
+              {
+                "Rating": 4,
+                "Count": 1,
+                "Kind": "Category",
+                "Choice": "Active"
+              }
+            ],
+            "SkillGroupOptions": [],
+            "Quality": "Adept",
+            "AttributeName": "Magic",
+            "AttributeRating": 6,
+            "FreeSpells": 0,
+            "FreeComplexForms": 0
+          },
+          {
+            "SkillOptions": [],
+            "SkillGroupOptions": [
+              {
+                "Rating": 4,
+                "Count": 1,
+                "Kind": "Category",
+                "Choice": "Magical"
+              }
+            ],
+            "Quality": "Aspected Magician",
+            "AttributeName": "Magic",
+            "AttributeRating": 5,
+            "FreeSpells": 0,
+            "FreeComplexForms": 0
+          }
+        ]
+      },
+      "C": {
+        "Options": [
+          {
+            "SkillOptions": [],
+            "SkillGroupOptions": [],
+            "Quality": "Magician",
+            "AttributeName": "Magic",
+            "AttributeRating": 3,
+            "FreeSpells": 5,
+            "FreeComplexForms": 0
+          },
+          {
+            "SkillOptions": [],
+            "SkillGroupOptions": [],
+            "Quality": "Mystic Adept",
+            "AttributeName": "Magic",
+            "AttributeRating": 3,
+            "FreeSpells": 5,
+            "FreeComplexForms": 0
+          },
+          {
+            "SkillOptions": [],
+            "SkillGroupOptions": [],
+            "Quality": "Technomancer",
+            "AttributeName": "Resonance",
+            "AttributeRating": 3,
+            "FreeSpells": 0,
+            "FreeComplexForms": 1
+          },
+          {
+            "SkillOptions": [
+              {
+                "Rating": 2,
+                "Count": 1,
+                "Kind": "Category",
+                "Choice": "Active"
+              }
+            ],
+            "SkillGroupOptions": [],
+            "Quality": "Adept",
+            "AttributeName": "Magic",
+            "AttributeRating": 4,
+            "FreeSpells": 0,
+            "FreeComplexForms": 0
+          },
+          {
+            "SkillOptions": [],
+            "SkillGroupOptions": [
+              {
+                "Rating": 2,
+                "Count": 1,
+                "Kind": "Category",
+                "Choice": "Magical"
+              }
+            ],
+            "Quality": "Aspected Magician",
+            "AttributeName": "Magic",
+            "AttributeRating": 3,
+            "FreeSpells": 0,
+            "FreeComplexForms": 0
+          }
+        ]
+      },
+      "D": {
+        "Options": [
+          {
+            "SkillOptions": [],
+            "SkillGroupOptions": [],
+            "Quality": "Adept",
+            "AttributeName": "Magic",
+            "AttributeRating": 2,
+            "FreeSpells": 0,
+            "FreeComplexForms": 0
+          },
+          {
+            "SkillOptions": [],
+            "SkillGroupOptions": [],
+            "Quality": "Aspected Magician",
+            "AttributeName": "Magic",
+            "AttributeRating": 2,
+            "FreeSpells": 0,
+            "FreeComplexForms": 0
+          }
+        ]
+      }
+    },
+    "Skills": {
+      "A": {
+        "SkillPoints": 46,
+        "SkillGroupPoints": 10
+      },
+      "B": {
+        "SkillPoints": 36,
+        "SkillGroupPoints": 5
+      },
+      "C": {
+        "SkillPoints": 28,
+        "SkillGroupPoints": 2
+      },
+      "D": {
+        "SkillPoints": 22,
+        "SkillGroupPoints": 0
+      },
+      "E": {
+        "SkillPoints": 18,
+        "SkillGroupPoints": 0
+      }
+    },
+    "Resources": {
+      "A": {
+        "Resources": 450000.0
+      },
+      "B": {
+        "Resources": 275000.0
+      },
+      "C": {
+        "Resources": 140000.0
+      },
+      "D": {
+        "Resources": 50000.0
+      },
+      "E": {
+        "Resources": 6000.0
+      }
+    }
+  }
+}

@@ -10,12 +10,11 @@ namespace ShadowrunTools.Serialization.Prototypes.Priorities
     public class SpecialOptionPrototype : ISpecialOption
     {
         #region Serialized
-#pragma warning disable IDE1006 // Naming Styles
         [DataMember(Name = "SkillOptions")]
-        public List<SpecialSkillChoicePrototype> _SkillOptions { get; set; } = new List<SpecialSkillChoicePrototype>();
+        private List<SpecialSkillChoicePrototype> _skillOptions { get; set; } = new List<SpecialSkillChoicePrototype>();
+
         [DataMember(Name = "SkillGroupOptions")]
-        public List<SpecialSkillChoicePrototype> _SkillGroupOptions { get; set; } = new List<SpecialSkillChoicePrototype>();
-        #pragma warning restore IDE1006 // Naming Styles
+        private List<SpecialSkillChoicePrototype> _skillGroupOptions { get; set; } = new List<SpecialSkillChoicePrototype>();
         #endregion
         [DataMember]
         public string Quality { get; set; }
@@ -28,9 +27,8 @@ namespace ShadowrunTools.Serialization.Prototypes.Priorities
         [DataMember]
         public int FreeComplexForms { get; set; }
 
+        public IReadOnlyCollection<ISpecialSkillChoice> SkillOptions => _skillOptions;
 
-        public IReadOnlyCollection<ISpecialSkillChoice> SkillOptions => _SkillOptions;
-
-        public IReadOnlyCollection<ISpecialSkillChoice> SkillGroupOptions => _SkillGroupOptions;
+        public IReadOnlyCollection<ISpecialSkillChoice> SkillGroupOptions => _skillGroupOptions;
     }
 }

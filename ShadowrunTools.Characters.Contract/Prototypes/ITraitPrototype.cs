@@ -2,7 +2,10 @@
 
 namespace ShadowrunTools.Characters.Prototypes
 {
-    public interface ITraitPrototype
+    /// <summary>
+    /// Prototype for 
+    /// </summary>
+    public interface ITraitPrototype : IPrototype
     {
         TraitType TraitType { get; }
 

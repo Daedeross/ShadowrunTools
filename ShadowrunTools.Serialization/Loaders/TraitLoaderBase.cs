@@ -1,4 +1,6 @@
-﻿using ShadowrunTools.Characters.Model;
+﻿using ShadowrunTools.Characters.Loaders;
+using ShadowrunTools.Characters.Model;
+using ShadowrunTools.Serialization.Prototypes;
 using System;
 using System.Runtime.Serialization;
 
@@ -15,7 +17,7 @@ namespace ShadowrunTools.Serialization
         [DataMember]
         public string Name { get; set; }
         [DataMember]
-        public string Category { get; private set; }
+        public string Category { get; set; }
         [DataMember]
         public string SubCategory { get; set; }
         [DataMember]
@@ -24,5 +26,7 @@ namespace ShadowrunTools.Serialization
         public string Book { get; set; }
         [DataMember]
         public int Page { get; set; }
+        [DataMember]
+        public int PrototypeHash { get; set; }
     }
 }

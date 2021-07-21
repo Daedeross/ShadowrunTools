@@ -159,11 +159,11 @@ namespace ShadowrunTools.Serialization.Prototypes
                 {
                     level = new MetatypePriorityPrototype
                     {
-                        _MetavariantOptions = new List<PriorityMetavariantOptionPrototype>()
+                        _metavariantOptions = new List<PriorityMetavariantOptionPrototype>()
                     };
                     MetatypePrototypes[kvp.Key] = level;
                 }
-                level._MetavariantOptions.AddRange(kvp.Value._MetavariantOptions);
+                level._metavariantOptions.AddRange(kvp.Value._metavariantOptions);
             }
 
             foreach (var kvp in incomming.ResourcesPrototypes)
@@ -182,11 +182,11 @@ namespace ShadowrunTools.Serialization.Prototypes
                 {
                     level = new SpecialsPriorityPrototype
                     {
-                        _Options = new List<SpecialOptionPrototype>()
+                        _options = new List<SpecialOptionPrototype>()
                     };
                     SpecialsPrototyes[kvp.Key] = level;
                 }
-                level._Options.AddRange(kvp.Value._Options);
+                level._options.AddRange(kvp.Value._options);
             }
 
             Refresh();
