@@ -1,6 +1,7 @@
 ﻿using ShadowrunTools.Characters.Model;
 using ShadowrunTools.Characters.Prototypes;
 using ShadowrunTools.Foundation;
+using System;
 using System.Runtime.Serialization;
 
 namespace ShadowrunTools.Serialization.Prototypes
@@ -10,6 +11,8 @@ namespace ShadowrunTools.Serialization.Prototypes
     {
         private static int? _hash;
 
+        [DataMember(IsRequired = true, EmitDefaultValue = false)]
+        public Guid Id { get; set; }
         [DataMember(IsRequired = true, EmitDefaultValue = true)]
         public TraitType TraitType { get; set; }
         [DataMember]

@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net5.0-windows</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <NoWarn>NU1701</NoWarn>
   </PropertyGroup>
@@ -13,14 +13,20 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Castle.Windsor" Version="5.0.1" />
-    <PackageReference Include="Extended.Wpf.Toolkit" Version="3.7.0" />
-    <PackageReference Include="Nito.Mvvm.Async" Version="1.0.0-pre-03" />
-    <PackageReference Include="NLog" Version="4.6.8" />
-    <PackageReference Include="NLog.Config" Version="4.6.8" />
-    <PackageReference Include="ReactiveUI" Version="11.1.12" />
-    <PackageReference Include="ReactiveUI.Events.WPF" Version="11.1.12" />
-    <PackageReference Include="ReactiveUI.WPF" Version="11.1.12" />
+    <PackageReference Include="Castle.Windsor" Version="5.1.2" />
+    <PackageReference Include="Castle.Core" Version="4.4.1" />
+    <PackageReference Include="Dragablz" Version="0.0.3.223" />
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="4.3.0" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.5.0" />
+    <PackageReference Include="Moq" Version="4.17.2" />
+    <PackageReference Include="Nito.Mvvm.Async" Version="1.0.0-pre-04" />
+    <PackageReference Include="NLog" Version="5.0.0" />
+    <PackageReference Include="ReactiveMarbles.ObservableEvents.SourceGenerator" Version="1.1.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="ReactiveUI" Version="18.0.10" />
+    <PackageReference Include="ReactiveUI.WPF" Version="18.0.10" />
   </ItemGroup>
 
   <ItemGroup>

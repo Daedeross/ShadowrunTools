@@ -19,7 +19,7 @@ namespace ShadowrunTools.Characters.Factories
         {
             var id = Guid.NewGuid();
             var container = character.Attributes as ITraitContainer;
-            var attribute = new Traits.Attribute(id, prototype.Name, container, character, character.Metatype, _rules)
+            var attribute = new Traits.Attribute(id, prototype.GetHashCode(), prototype.Name, container, character, character.Metatype, _rules)
             {
                 SubCategory = prototype.SubCategory,
                 Book = prototype.Book,

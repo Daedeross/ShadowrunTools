@@ -58,5 +58,9 @@ namespace ShadowrunTools.Serialization
         public int MartialArtsTechniqueKarma { get; set; } = 5;
 
         public int InPlayQualityMult { get; set; } = 2;
+
+        public int MaxInitiationDiscounts { get; set; } = 3;
+
+        public int MaxSubmersionDiscounts { get; set; } = 3;
     }
 }

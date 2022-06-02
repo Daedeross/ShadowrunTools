@@ -10,6 +10,7 @@
     public class GameRules : PropertyList, IRules
     {
         public GenerationMethod GenerationMethod { get; set; }
+
         public int StartingKarma { get; set; }
 
         public int MaxAugment { get; set; }
@@ -21,6 +22,10 @@
         public int InPlaySkillCap { get; set; }
 
         public int StartingMaxedAttributeCount { get; set; }
+
+        public int MaxInitiationDiscounts { get; set; } = 3;
+
+        public int MaxSubmersionDiscounts { get; set; } = 3;
 
         public int AttributeKarmaMult { get; set; }
 

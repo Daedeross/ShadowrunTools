@@ -1,5 +1,7 @@
 ﻿namespace ShadowrunTools.Characters.Prototypes
 {
+    using System;
+
     /// <summary>
     /// Base interface for all prototypes.
     /// </summary>
@@ -13,6 +15,6 @@
     /// </remarks>
     public interface IPrototype
     {
-        int GetHashCode();
+        Guid Id { get; }
     }
 }

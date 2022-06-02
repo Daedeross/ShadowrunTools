@@ -43,6 +43,16 @@ namespace ShadowrunTools.Characters
         /// </summary>
         int StartingMaxedAttributeCount { get; }
 
+        /// <summary>
+        /// The maximum number of discounts that can be applied to the Karma cost of Initiation
+        /// </summary>
+        int MaxInitiationDiscounts { get; }
+
+        /// <summary>
+        /// The maximum number of discounts that can be applied to the Karma cost of Initiation
+        /// </summary>
+        int MaxSubmersionDiscounts { get; }
+
         #region Scaling Karma Costs
 
         /// <summary>

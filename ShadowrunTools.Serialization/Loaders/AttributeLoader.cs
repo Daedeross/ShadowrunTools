@@ -9,7 +9,6 @@ namespace ShadowrunTools.Serialization
     [DataContract(Name = "Attribute", Namespace = "http://schemas.shadowruntools.com/loaders")]
     public class AttributeLoader: LeveledTraitLoader
     {
-
         public static AttributeLoader Create(IAttribute attribute)
         {
             return new AttributeLoader

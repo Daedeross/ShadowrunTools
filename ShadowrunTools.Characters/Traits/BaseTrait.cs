@@ -17,6 +17,7 @@
         protected readonly IRules mRules;
 
         public BaseTrait(Guid id,
+            int prototypeHash,
             string name,
             string category,
             ITraitContainer container,
@@ -28,6 +29,7 @@
             Args.NotNull(root, nameof(root));
 
             Id = id;
+            PrototypeHash = prototypeHash;
             mOwner = container;
             mRoot = root;
             Category = category;
@@ -36,6 +38,8 @@
         }
 
         public Guid Id { get; private set; }
+
+        public int PrototypeHash { get; private set; }
 
         [Display(Label = "Name", Editable = false)]
         public string Name { get; set; }

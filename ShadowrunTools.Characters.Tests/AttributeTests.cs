@@ -66,12 +66,14 @@ namespace ShadowrunTools.Characters.Tests
             var mockContainer = new Mock<ITraitContainer>();
             var mockCharacter = new Mock<ICharacter>();
             var mockRules = new Mock<IRules>();
+            var hash = nameof(TestAttributeMinMax).GetHashCode();
+
             mockRules.SetupGet(x => x.MaxAugment)
                 .Returns(4);
 
             var id = new Guid();
 
-            var attribute = new Attribute(id, AttributeName, mockContainer.Object, mockCharacter.Object, metatype, mockRules.Object);
+            var attribute = new Attribute(id, hash, AttributeName, mockContainer.Object, mockCharacter.Object, metatype, mockRules.Object);
 
             Assert.Equal(min, attribute.Min);
             Assert.Equal(max, attribute.Max);
@@ -87,6 +89,7 @@ namespace ShadowrunTools.Characters.Tests
                 .Returns(4);
 
             var id = new Guid();
+            var hash = nameof(TestChangeNotification).GetHashCode();
 
             var mock = new Mock<ICharacterMetatype>();
 
@@ -112,7 +115,7 @@ namespace ShadowrunTools.Characters.Tests
                 }))
                 .Returns<string, IMetatypeAttribute>((name, attr) => name == AttributeName);
 
-            var attribute = new Attribute(id, AttributeName, mockContainer.Object, mockCharacter.Object, mock.Object, mockRules.Object);
+            var attribute = new Attribute(id, hash, AttributeName, mockContainer.Object, mockCharacter.Object, mock.Object, mockRules.Object);
 
             var raised = Assert.Raises<ItemChangedEventArgs>(
                 h => attribute.ItemChanged += h,

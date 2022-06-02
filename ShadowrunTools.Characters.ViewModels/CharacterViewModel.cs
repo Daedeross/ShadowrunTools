@@ -1,5 +1,4 @@
-﻿using Moq;
-using ReactiveUI;
+﻿using ReactiveUI;
 using ShadowrunTools.Characters.Model;
 using ShadowrunTools.Characters.Priorities;
 using ShadowrunTools.Characters.Prototypes;

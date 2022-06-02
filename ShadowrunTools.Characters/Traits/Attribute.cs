@@ -11,12 +11,13 @@
 
         public Attribute(
             Guid id,
+            int prototypeHash,
             string name,
             ITraitContainer container,
             ICategorizedTraitContainer root,
             ICharacterMetatype metatype,
             IRules rules)
-            : base(id, name, "Attribute", container, root, rules)
+            : base(id, prototypeHash, name, "Attribute", container, root, rules)
         {
             Metatype = metatype;
             Metatype.ItemChanged += OnMetatypeChanged;
