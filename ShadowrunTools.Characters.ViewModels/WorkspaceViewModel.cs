@@ -1,5 +1,7 @@
 ﻿namespace ShadowrunTools.Characters.ViewModels
 {
+    using DynamicData;
+    using DynamicData.Binding;
     using ReactiveUI;
     using ShadowrunTools.Characters.Prototypes;
     using ShadowrunTools.Serialization;
@@ -8,14 +10,18 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
+    using System.Reactive.Disposables;
+    using System.Reactive.Linq;
     using System.Windows.Input;
 
-    public class WorkspaceViewModel : ViewModelBase
+    public class WorkspaceViewModel : ViewModelBase, IWorkspaceViewModel
     {
         private IPrototypeRepository _prototypes;
-        private readonly DataLoader _dataLoader;
+        private readonly IDataLoader _dataLoader;
         private IRules _rules;
         private ITraitFactory _traitFactory;
+
+        private SourceList<ICharacterViewModel> _characters;
 
         public IPrototypeRepository Prototypes
         {
@@ -29,7 +35,10 @@
             }
         }
 
-        public ObservableCollection<CharacterViewModel> Characters { get; private set; }
+        public IObservableCollection<IDocumentViewModel> Documents => throw new NotImplementedException();
+
+        public IObservableCollection<ICharacterViewModel> Characters { get; } = new ObservableCollectionExtended<ICharacterViewModel>();
+
 
         private CharacterViewModel _currentCharacter;
         public CharacterViewModel CurrentCharacter
@@ -38,13 +47,19 @@
             set => this.RaiseAndSetIfChanged(ref _currentCharacter, value);
         }
 
-        public WorkspaceViewModel(DataLoader dataLoader, IRules rules, DisplaySettings displaySettings)
+        public WorkspaceViewModel(IDataLoader dataLoader, IRules rules, DisplaySettings displaySettings)
             : base(displaySettings)
         {
             _dataLoader = dataLoader ?? throw new ArgumentNullException(nameof(dataLoader));
             _rules = rules ?? throw new ArgumentNullException(nameof(rules));
             _traitFactory = new Factories.TraitFactory(rules);
-            Characters = new ObservableCollection<CharacterViewModel>();
+
+            _characters = new SourceList<ICharacterViewModel>();
+            _characters.Connect()
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .Bind(Characters)
+                .Subscribe()
+                .DisposeWith(Disposables);
         }
 
         #region Commands

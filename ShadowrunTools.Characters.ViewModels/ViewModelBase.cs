@@ -2,12 +2,15 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Reactive.Disposables;
 using System.Text;
 
 namespace ShadowrunTools.Characters.ViewModels
 {
     public abstract class ViewModelBase : ReactiveObject, IDisposable
     {
+        protected CompositeDisposable Disposables { get; } = new CompositeDisposable();
+
         protected DisplaySettings _displaySettings { get; private set; }
 
         public ViewModelBase(DisplaySettings displaySettings)
@@ -43,6 +46,7 @@ namespace ShadowrunTools.Characters.ViewModels
                 if (disposing)
                 {
                     _displaySettings.PropertyChanged -= DisplaySettingsPropertyChanged;
+                    Disposables.Dispose();
                 }
 
                 disposedValue = true;

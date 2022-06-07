@@ -13,5 +13,23 @@ namespace ShadowrunTools.Characters.Wpf
     /// </summary>
     public partial class App : Application
     {
+        private readonly Bootstrapper _bootstrapper;
+
+        public App()
+        {
+            _bootstrapper = new Bootstrapper().Setup();
+        }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+            _bootstrapper.DisplayRootView();
+        }
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            base.OnExit(e);
+            _bootstrapper.Dispose();
+        }
     }
 }

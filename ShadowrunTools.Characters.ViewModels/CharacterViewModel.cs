@@ -16,7 +16,7 @@ using System.Windows.Input;
 
 namespace ShadowrunTools.Characters.ViewModels
 {
-    public class CharacterViewModel: ViewModelBase
+    public class CharacterViewModel: ViewModelBase, ICharacterViewModel
     {
         private readonly ICharacter _character;
 

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28531.58
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShadowrunTools.Characters", "ShadowrunTools.Characters\ShadowrunTools.Characters.csproj", "{CBFE5E08-40F2-4ED1-8B8A-83CFDB547DFE}"
 EndProject
@@ -28,7 +28,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShadowrunTools.Characters.A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShadowrunTools.Expressions", "ShadowrunTools.Expressions\ShadowrunTools.Expressions.csproj", "{547CEC59-5D6D-42E6-95A0-0647C97496B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpressionEvaluator", "ExpressionEvaluator\ExpressionEvaluator.csproj", "{210E48E9-066E-49C7-8837-A6605BCEBB33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpressionEvaluator", "ExpressionEvaluator\ExpressionEvaluator.csproj", "{210E48E9-066E-49C7-8837-A6605BCEBB33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShadowrunTools.Characters.ViewModels.Contract", "ShadowrunTools.Characters.ViewModels.Contract\ShadowrunTools.Characters.ViewModels.Contract.csproj", "{11E9B604-C1FB-4D97-BA5D-7EC3FBAF0EBF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -80,6 +82,10 @@ Global
 		{210E48E9-066E-49C7-8837-A6605BCEBB33}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{210E48E9-066E-49C7-8837-A6605BCEBB33}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{210E48E9-066E-49C7-8837-A6605BCEBB33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11E9B604-C1FB-4D97-BA5D-7EC3FBAF0EBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11E9B604-C1FB-4D97-BA5D-7EC3FBAF0EBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11E9B604-C1FB-4D97-BA5D-7EC3FBAF0EBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11E9B604-C1FB-4D97-BA5D-7EC3FBAF0EBF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
