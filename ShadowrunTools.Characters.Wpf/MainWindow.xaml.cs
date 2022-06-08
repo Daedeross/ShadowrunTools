@@ -81,7 +81,7 @@ namespace ShadowrunTools.Characters.Wpf
 
             this.WhenActivated(d =>
             {
-                this.OneWayBind(viewModel, vm => vm.Characters, view => view.DocumentsTabControl.ItemsSource)
+                this.OneWayBind(ViewModel, vm => vm.Characters, view => view.DocumentsTabControl.ItemsSource)
                     .DisposeWith(d);
 
             });

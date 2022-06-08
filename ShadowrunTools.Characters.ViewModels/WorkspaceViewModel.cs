@@ -17,6 +17,7 @@
     public class WorkspaceViewModel : ViewModelBase, IWorkspaceViewModel
     {
         private IPrototypeRepository _prototypes;
+        private readonly IViewModelFactory _viewModelFactory;
         private readonly IDataLoader _dataLoader;
         private IRules _rules;
         private ITraitFactory _traitFactory;
@@ -47,11 +48,12 @@
             set => this.RaiseAndSetIfChanged(ref _currentCharacter, value);
         }
 
-        public WorkspaceViewModel(IDataLoader dataLoader, IRules rules, DisplaySettings displaySettings)
+        public WorkspaceViewModel(IViewModelFactory viewModelFactory!!, IDataLoader dataLoader!!, IRules rules!!, DisplaySettings displaySettings)
             : base(displaySettings)
         {
-            _dataLoader = dataLoader ?? throw new ArgumentNullException(nameof(dataLoader));
-            _rules = rules ?? throw new ArgumentNullException(nameof(rules));
+            _viewModelFactory = viewModelFactory;
+            _dataLoader = dataLoader;
+            _rules = rules;
             _traitFactory = new Factories.TraitFactory(rules);
 
             _characters = new SourceList<ICharacterViewModel>();
