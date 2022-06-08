@@ -11,6 +11,11 @@ namespace ShadowrunTools.Characters.Wpf.Views
         public CharacterView()
         {
             InitializeComponent();
+
+            this.WhenActivated(d =>
+            {
+                this
+            });
         }
     }
 }

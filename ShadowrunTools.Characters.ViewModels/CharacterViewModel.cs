@@ -1,4 +1,6 @@
-﻿using ReactiveUI;
+﻿using DynamicData;
+using DynamicData.Binding;
+using ReactiveUI;
 using ShadowrunTools.Characters.Model;
 using ShadowrunTools.Characters.Priorities;
 using ShadowrunTools.Characters.Prototypes;
@@ -58,8 +60,11 @@ namespace ShadowrunTools.Characters.ViewModels
             Intuition = intuition as IAttribute;
             Charisma = charisma as IAttribute;
 
-            Attributes = new ObservableCollection<AttributeViewModel>
-                (attributes.Values.Select(x => new AttributeViewModel(_displaySettings, x as IAttribute)));
+            _attributes = new SourceCache<AttributeViewModel, Guid>(attr => attr.Id);
+            foreach (var attr in attributes.Values)
+            {
+                _attributes.AddOrUpdate(new AttributeViewModel(_displaySettings, attr as IAttribute));
+            }
         }
 
         #region Character Properties
@@ -70,7 +75,8 @@ namespace ShadowrunTools.Characters.ViewModels
 
         #region Core Attributes
 
-        public ObservableCollection<AttributeViewModel> Attributes { get; set; }
+        private SourceCache<AttributeViewModel, Guid> _attributes;
+        public IObservableCollection<IAttributeViewModel> Attributes { get; set; } = new ObservableCollectionExtended<IAttributeViewModel>();
 
         public ILeveledTrait Body { get; private set; }
         public ILeveledTrait Agility { get; private set; }
