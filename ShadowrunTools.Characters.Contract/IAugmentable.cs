@@ -1,18 +1,19 @@
 ﻿using ShadowrunTools.Characters.Model;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace ShadowrunTools.Characters
 {
     /// <summary>
-    /// Intarface for Traits which can be augmented (i.e. modified by <see cref="IAugment">Augments</see>).
+    /// Interface for Traits which can be augmented (i.e. modified by <see cref="IAugment">Augments</see>).
     /// </summary>
     /// <remarks>
     /// Any trait that can be changed by an <see cref="IAugment">Augment</see>
     /// <em>must</em> implement this interface.
-    /// <see cref="LeveledTrait"/> for an abstract class that implements this.
+    /// See <see cref="LeveledTrait"/> for an abstract class that implements this.
     /// Most IAugmentable traits are descendants of <b>LeveledTrait</b>.
     /// </remarks>
-    public interface IAugmentable : INotifyItemChanged,
+    public interface IAugmentable : INotifyPropertyChanged,
         INamedItem /// Since Augments find their targets by name, every IAugmentable needs a name.
     {
         /// <summary>

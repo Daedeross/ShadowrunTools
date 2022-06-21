@@ -1,135 +1,90 @@
 ﻿namespace ShadowrunTools.Characters.Traits
 {
+    using ReactiveUI;
     using ShadowrunTools.Characters.Model;
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Collections.Specialized;
-    using System.ComponentModel;
     using System.Linq;
 
     public abstract class LeveledTrait : BaseTrait, ILeveledTrait
     {
-        protected readonly HashSet<string> RemovedNames = new HashSet<string>();
+        protected readonly HashSet<string> RemovedNames = new();
 
         public LeveledTrait(Guid id, int prototypeHash, string name, string category, ITraitContainer container, ICategorizedTraitContainer root, IRules rules)
             : base (id, prototypeHash, name, category, container, root, rules)
         {
             Augments = new ObservableCollection<IAugment>();
             Augments.CollectionChanged += OnAugmentCollectionChanged;
+
+            _baseRating = this.WhenAnyValue(
+                    me => me.Min,
+                    me => me.BaseIncrease,
+                    me => me.Max,
+                    (min, increase, max) => Math.Min(min + increase, max))
+                .ToProperty(this, me => me.BaseRating);
+
+            _improvedRating = this.WhenAnyValue(
+                    me => me.BaseRating,
+                    me => me.Improvement,
+                    me => me.Max,
+                    (rating, improvement, max) => Math.Min(rating + improvement, max))
+                .ToProperty(this, me => me.ImprovedRating);
+
+            _augmentedRating = this.WhenAnyValue(
+                    me => me.ImprovedRating,
+                    me => me.RatingBonus,
+                    me => me.AugmentedMax,
+                    (improved, bonus, max) => Math.Min(improved + bonus, max))
+                .ToProperty(this, me => me.AugmentedRating);
         }
 
-        protected int _extraMin;
-        public virtual int ExtraMin
+        private int m_ExtraMin;
+        public int ExtraMin
         {
-            get => _extraMin;
-            set
-            {
-                if (_extraMin != value)
-                {
-                    _extraMin = value;
-                    RaiseItemChanged(new[]
-                    {
-                        nameof(ExtraMin),
-                        nameof(Min),
-                        nameof(BaseRating),
-                        nameof(ImprovedRating),
-                        nameof(AugmentedRating),
-                    });
-                }
-            }
+            get => m_ExtraMin;
+            set => this.RaiseAndSetIfChanged(ref m_ExtraMin, value);
         }
+
         public abstract int Min { get; }
 
-        protected int _extraMax;
-        public virtual int ExtraMax
+        private int m_ExtraMax;
+        public int ExtraMax
         {
-            get => _extraMax;
-            set
-            {
-                if (_extraMax != value)
-                {
-                    _extraMax = value;
-                    RaiseItemChanged(new[]
-                    {
-                        nameof(ExtraMax),
-                        nameof(Max),
-                        nameof(AugmentedMax),
-                    });
-                }
-            }
+            get => m_ExtraMax;
+            set => this.RaiseAndSetIfChanged(ref m_ExtraMax, value);
         }
 
         public abstract int Max { get; }
 
-        protected int _baseIncrease;
-        public int BaseRating
+        private int m_BaseIncrease;
+        public int BaseIncrease
         {
-            get => Min + _baseIncrease;
-            set
-            {
-                if (value <= Max)
-                {
-                    var diff = value - Min;
-                    if (diff >= 0 && diff != _baseIncrease)
-                    {
-                        _baseIncrease = diff;
-                        RaiseItemChanged(new[]
-                        {
-                            nameof(BaseRating),
-                            nameof(ImprovedRating),
-                            nameof(AugmentedRating)
-                        });
-                    }
-                }
-            }
+            get => m_BaseIncrease;
+            set => this.RaiseAndSetIfChanged(ref m_BaseIncrease, value);
         }
 
-        protected double _ratingBonus;
-        public int RatingBonus
-        {
-            get
-            {
-                if (_ratingBonus > mRules.MaxAugment)
-                    _ratingBonus = mRules.MaxAugment;
-                if (_ratingBonus < 0)
-                    _ratingBonus = 0;
-                return (int)_ratingBonus;
-            }
-            protected set
-            {
-                if (value != _ratingBonus)
-                {
-                    _ratingBonus = value;
-                    RaiseItemChanged(new[]
-                    {
-                        nameof(AugmentedRating)
-                    });
-                }
-            }
-        }
+        private readonly ObservableAsPropertyHelper<int> _baseRating;
+        public int BaseRating => _baseRating.Value;
 
-        protected int _improvement;
+        private int m_Improvement;
         public int Improvement
         {
-            get => _improvement;
-            set
-            {
-                if (_improvement != value && value + BaseRating <= Max)
-                {
-                    _improvement = value;
-                    RaiseItemChanged(new[]
-                    {
-                        nameof(ImprovedRating),
-                        nameof(AugmentedRating)
-                    });
-                }
-            }
+            get => m_Improvement;
+            set => this.RaiseAndSetIfChanged(ref m_Improvement, value);
         }
 
-        public int ImprovedRating => BaseRating + Improvement;
+        private readonly ObservableAsPropertyHelper<int> _improvedRating;
+        public int ImprovedRating => _improvedRating.Value;
 
-        public int AugmentedRating => Math.Min(ImprovedRating + RatingBonus, AugmentedMax);
+
+        private double _ratingBonus;
+        public int RatingBonus => (int)_ratingBonus;
+
+
+        private readonly ObservableAsPropertyHelper<int> _augmentedRating;
+        public int AugmentedRating =>  _augmentedRating.Value;
 
         public abstract int AugmentedMax { get; }
 
@@ -148,8 +103,7 @@
 
         public void OnAugmentChanged(object sender, ItemChangedEventArgs e)
         {
-            var augment = sender as IAugment;
-            if (augment is null)
+            if (sender is not IAugment)
             {
                 Logger.Warn("Non-augment sent to OnAugmentChanged event on Trait:{0}", Name);
                 return;
@@ -162,7 +116,7 @@
 
         public void OnAugmentCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            HashSet<string> propNames = new HashSet<string>();
+            HashSet<string> propNames = new();
             if (e.NewItems != null)
             {
                 foreach (var item in e.NewItems)
@@ -252,8 +206,10 @@
                 _ratingBonus = mRules.MaxAugment;
             }
 
-            // Call ItemChanged
-            RaiseItemChanged(propNames.ToArray());
+            foreach (var name in propNames)
+            {
+                this.RaisePropertyChanged(name);
+            }
         }
 
         protected virtual HashSet<string> AddAugment(IAugment augment, HashSet<string> propNames)
@@ -262,7 +218,6 @@
             {
                 _ratingBonus += augment.Bonus;
                 propNames.Add(nameof(RatingBonus));
-                propNames.Add(nameof(AugmentedRating));
                 //propNames.Add(nameof(DisplayValue)); // TODO: maybe move to ViewModel?
             }
             if (augment.Kind == AugmentKind.Max)

@@ -14,7 +14,7 @@ namespace ShadowrunTools.Characters.Wpf.Views
 
             this.WhenActivated(d =>
             {
-                this
+                //this
             });
         }
     }

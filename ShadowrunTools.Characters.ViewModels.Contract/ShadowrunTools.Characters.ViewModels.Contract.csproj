@@ -10,4 +10,8 @@
     <PackageReference Include="ReactiveUI" Version="18.0.10" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ShadowrunTools.Characters.Contract\ShadowrunTools.Characters.Contract.csproj" />
+  </ItemGroup>
+
 </Project>

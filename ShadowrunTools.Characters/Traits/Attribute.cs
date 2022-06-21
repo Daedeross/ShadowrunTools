@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using ReactiveUI;
     using ShadowrunTools.Characters.Model;
 
     public class Attribute : LeveledTrait, IAttribute
@@ -37,18 +38,11 @@
 
         public override bool Independant { get => true; }
 
-        private string _customOrder;
+        private string m_CustomOrder;
         public string CustomOrder
         {
-            get { return _customOrder; }
-            set
-            {
-                if (_customOrder != value)
-                {
-                    _customOrder = value;
-                    RaiseItemChanged(new[] { nameof(CustomOrder) });
-                }
-            }
+            get => m_CustomOrder;
+            set => this.RaiseAndSetIfChanged(ref m_CustomOrder, value);
         }
 
         protected void OnMetatypeChanged(object sender, ItemChangedEventArgs e)
@@ -104,9 +98,9 @@
             if (AugmentedMax != oldAugmented)
                 propNames.Add(nameof(AugmentedMax));
 
-            if (propNames.Any())
+            foreach (var name in propNames)
             {
-                RaiseItemChanged(propNames.ToArray());
+                this.RaisePropertyChanged(name);
             }
         }
     }

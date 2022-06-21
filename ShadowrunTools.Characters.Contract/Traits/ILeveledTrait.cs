@@ -28,21 +28,30 @@ namespace ShadowrunTools.Characters.Traits
         int Max { get; }
 
         /// <summary>
+        /// Increase to the BaseRating from Attribute Points or Life Modules.
+        /// </summary>
+        int BaseIncrease { get; set; }
+
+        /// <summary>
         /// The Base Rating of the trait, before extras and Karma Improvement.
         /// </summary>
-        int BaseRating { get; set; }
-        /// <summary>
-        /// Any Bonus to the Rating, from <see cref="IAugment"/>s
-        /// </summary>
-        int RatingBonus { get; }
+        int BaseRating { get; }
+
         /// <summary>
         /// The improvement to the <see cref="BaseRating"/> from Karma Advancement
         /// </summary>
         int Improvement { get; set; }
+
         /// <summary>
         /// The "actual" rating before bonus, Base + Karma Improvement
         /// </summary>
-        int ImprovedRating { get;}
+        int ImprovedRating { get; }
+
+        /// <summary>
+        /// Any Bonus to the Rating, from <see cref="IAugment"/>s
+        /// </summary>
+        int RatingBonus { get; }
+
         /// <summary>
         /// The rating after bonus
         /// </summary>
