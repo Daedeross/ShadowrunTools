@@ -32,7 +32,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpressionEvaluator", "Expr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShadowrunTools.Characters.ViewModels.Contract", "ShadowrunTools.Characters.ViewModels.Contract\ShadowrunTools.Characters.ViewModels.Contract.csproj", "{11E9B604-C1FB-4D97-BA5D-7EC3FBAF0EBF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShadowrunTools.Dsl", "F:\projects\ShadowrunToolsNeo\SimpleDsl\ShadowrunTools.Dsl.csproj", "{4BA7B35A-A55E-481C-B653-409AB7112C9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShadowrunTools.Dsl", "ShadowrunTools.Dsl\ShadowrunTools.Dsl.csproj", "{4BA7B35A-A55E-481C-B653-409AB7112C9B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

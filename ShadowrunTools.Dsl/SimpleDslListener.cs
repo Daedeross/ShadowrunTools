@@ -52,21 +52,7 @@ namespace SimpleDsl
 
         public Expression VisitExpression([NotNull] CharacterBuilderParser.ExpressionContext context)
         {
-            return context switch
-            {
-                CharacterBuilderParser.ParentheticalExpressionContext ctx => VisitParentheticalExpression(ctx),
-                CharacterBuilderParser.FunctionCallContext ctx            => VisitFunctionCall(ctx),
-                CharacterBuilderParser.AtomicExpressionContext ctx        => VisitAtomicExpression(ctx),
-                CharacterBuilderParser.PowerExpressionContext ctx         => VisitPowerExpression(ctx),
-                CharacterBuilderParser.NumericUnaryExpressionContext ctx  => VisitNumericUnaryExpression(ctx),
-                CharacterBuilderParser.BooleanUnaryExpressionContext ctx  => VisitBooleanUnaryExpression(ctx),
-                CharacterBuilderParser.MulDivExpressionContext ctx        => VisitMulDivExpression(ctx),
-                CharacterBuilderParser.AddSubExpressionContext ctx        => VisitAddSubExpression(ctx),
-                CharacterBuilderParser.ComparisonExpressionContext ctx    => VisitComparisonExpression(ctx),
-                CharacterBuilderParser.BooleanBinaryExpressionContext ctx => VisitBooleanBinaryExpression(ctx),
-                CharacterBuilderParser.TernaryExpressionContext ctx       => VisitTernaryExpression(ctx),
-                _ => throw new NotSupportedException("Unsupported expression type")
-            };
+            return context.Accept(this);
         }
 
         public override Expression VisitParentheticalExpression([NotNull] CharacterBuilderParser.ParentheticalExpressionContext context)
