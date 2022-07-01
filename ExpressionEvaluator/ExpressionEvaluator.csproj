@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
@@ -9,7 +9,7 @@
     <PackageReference Include="Antlr4.Runtime.Standard" Version="4.8.0" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
   </ItemGroup>
-  <PropertyGroup>
+  <!--<PropertyGroup>
     <PreBuildEvent>java -jar "$(SolutionDir)Antlr4\antlr-4.8-complete.jar" -Dlanguage=CSharp -visitor $(MSBuildProjectDirectory)\Parser\CSharp4.g4</PreBuildEvent>
-  </PropertyGroup>
+  </PropertyGroup>-->
 </Project>

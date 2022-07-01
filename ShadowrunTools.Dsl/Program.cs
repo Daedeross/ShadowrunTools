@@ -1,5 +1,5 @@
 ﻿// Template generated code from Antlr4BuildTasks.Template v 8.17
-namespace SimpleDsl
+namespace ShadowrunTools.Dsl
 {
     using Antlr4.Runtime;
     using System.Text;
@@ -29,7 +29,7 @@ namespace SimpleDsl
 
         static void Try(string input)
         {
-            var visitor = new SimpleDslVisitor<int>();
+            var visitor = new CharacterBuilderDslVisitor<int>();
 
             var str = new AntlrInputStream(input);
             System.Console.WriteLine(input);

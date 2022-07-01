@@ -27,21 +27,21 @@ namespace ShadowrunTools.Characters.ViewModels.Traits
             : base(displaySettings, leveledTrait)
         {
             _leveledTrait = leveledTrait;
-            _leveledTrait.ItemChanged += OnTraitChanged;
+            //_leveledTrait.ItemChanged += OnTraitChanged;
         }
 
-        public event EventHandler<ItemChangedEventArgs> ItemChanged
-        {
-            add
-            {
-                _leveledTrait.ItemChanged += value;
-            }
+        //public event EventHandler<ItemChangedEventArgs> ItemChanged
+        //{
+        //    add
+        //    {
+        //        _leveledTrait.ItemChanged += value;
+        //    }
 
-            remove
-            {
-                _leveledTrait.ItemChanged -= value;
-            }
-        }
+        //    remove
+        //    {
+        //        _leveledTrait.ItemChanged -= value;
+        //    }
+        //}
 
         public int ExtraMin { get => _leveledTrait.ExtraMin; set => _leveledTrait.ExtraMin = value; }
 
@@ -51,7 +51,9 @@ namespace ShadowrunTools.Characters.ViewModels.Traits
 
         public int Max => _leveledTrait.Max;
 
-        public int BaseRating { get => _leveledTrait.BaseRating; set => _leveledTrait.BaseRating = value; }
+        public int BaseIncrease { get; set; }
+
+        public int BaseRating { get => _leveledTrait.BaseRating; }
 
         public int RatingBonus => _leveledTrait.RatingBonus;
 

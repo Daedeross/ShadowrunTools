@@ -25,6 +25,7 @@
     <ProjectReference Include="..\ShadowrunTools.Characters.Contract\ShadowrunTools.Characters.Contract.csproj" />
     <ProjectReference Include="..\ShadowrunTools.Characters.ViewModels\ShadowrunTools.Characters.ViewModels.csproj" />
     <ProjectReference Include="..\ShadowrunTools.Characters\ShadowrunTools.Characters.csproj" />
+    <ProjectReference Include="..\ShadowrunTools.Dsl\ShadowrunTools.Dsl.csproj" />
     <ProjectReference Include="..\ShadowrunTools.Expressions\ShadowrunTools.Expressions.csproj" />
   </ItemGroup>
 

@@ -6,6 +6,8 @@ namespace ShadowrunTools.Characters
 {
     public interface IScope<out T>
     {
+        T Owner { get; }
+
         T Me { get; }
 
         ICategorizedTraitContainer Traits { get; }

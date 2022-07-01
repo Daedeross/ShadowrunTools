@@ -1,30 +1,50 @@
 ﻿using Antlr4;
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Tree;
+using ShadowrunTools.Characters;
+using ShadowrunTools.Characters.Traits;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimpleDsl
+namespace ShadowrunTools.Dsl
 {
-    public class SimpleDslVisitor<TScope> : CharacterBuilderBaseVisitor<Expression>
+    public class CharacterBuilderDslVisitor<TTrait> : CharacterBuilderBaseVisitor<Expression>
     {
         private readonly IReadOnlyDictionary<string, MethodInfo> _functions;
         private readonly ParameterExpression _scope;
+        private readonly Expression _me;
+        private readonly Expression _categories;
+        private readonly PropertyInfo _categoriesIndexer;
+        private readonly PropertyInfo _traitsIndexer;
+        private readonly IEnumerable<Type> _traitTypes;
 
-        public SimpleDslVisitor()
+        public CharacterBuilderDslVisitor()
+            : this(new Dictionary<string, MethodInfo>(),
+                  new[] { typeof(ILeveledTrait), typeof(IAttribute)} )
         {
-            _scope = Expression.Parameter(typeof(TScope), "scope");
         }
 
-        public SimpleDslVisitor(IReadOnlyDictionary<string, MethodInfo> functions)
+        public CharacterBuilderDslVisitor(IReadOnlyDictionary<string, MethodInfo> functions,
+            Type[] otherTypes)
         {
             _functions = functions;
+            var type = typeof(IScope<TTrait>);
+            _scope = Expression.Parameter(type, "scope");
+            _me = Expression.Property(_scope, type.GetProperty(nameof(IScope<TTrait>.Me)));
+            _categories = Expression.Property(_scope, type.GetProperty(nameof(IScope<TTrait>.Traits)));
+            _categoriesIndexer = typeof(IDictionary<string, ITraitContainer>).GetProperty("Item");
+            _traitsIndexer = typeof(IDictionary<string, ITrait>).GetProperty("Item");
+
+            _traitTypes = otherTypes;
         }
+
+        public ParameterExpression Scope => _scope;
 
         public override Expression Visit(IParseTree tree)
         {
@@ -94,11 +114,21 @@ namespace SimpleDsl
             return Expression.Not(VisitExpression(context.expression()));
         }
 
+        private Expression MakeDouble(Expression expression)
+        {
+            if (expression.Type == typeof(double))
+            {
+                return expression;
+            }
+
+            return Expression.Convert(expression, typeof(double));
+        }
+
         public override Expression VisitMulDivExpression([NotNull] CharacterBuilderParser.MulDivExpressionContext context)
         {
             var op = context.op;
-            var left = VisitExpression(context.expression(0));
-            var right = VisitExpression(context.expression(1));
+            var left = MakeDouble(VisitExpression(context.expression(0)));
+            var right = MakeDouble(VisitExpression(context.expression(1)));
 
             return op.Type switch
             {
@@ -111,8 +141,8 @@ namespace SimpleDsl
         public override Expression VisitAddSubExpression([NotNull] CharacterBuilderParser.AddSubExpressionContext context)
         {
             var op = context.op;
-            var left = VisitExpression(context.expression(0));
-            var right = VisitExpression(context.expression(1));
+            var left =  MakeDouble(VisitExpression(context.expression(0)));
+            var right = MakeDouble(VisitExpression(context.expression(1)));
 
             return op.Type switch
             {
@@ -235,24 +265,57 @@ namespace SimpleDsl
 
         public override Expression VisitVariable([NotNull] CharacterBuilderParser.VariableContext context)
         {
-            string property = context.COLON() is null ? "Rating" : context.property().GetText();
+            string property = context.COLON() is null ? "AugmentedRating" : context.property().GetText();
 
-            return base.VisitVariable(context);
+            var trait = context.trait().Accept(this);
+
+            if (trait.Type.GetProperty(property) is null)
+            {
+                foreach (var type in _traitTypes.Where(t => typeof(ITrait).IsAssignableFrom(t)))
+                {
+                    var pi = type.GetProperty(property);
+                    if (pi is not null)
+                    {
+                        return Expression.Property(Expression.Convert(trait, type), pi);
+                    }
+                }
+            }
+
+            return Expression.Property(trait, property);
         }
 
         public override Expression VisitTrait([NotNull] CharacterBuilderParser.TraitContext context)
         {
-            return base.VisitTrait(context);
+            var category = context.trait_type().Accept(this);
+            var name = context.trait_name().Accept(this);
+
+            return Expression.MakeIndex(category, _traitsIndexer, new[] { name } );
         }
 
         public override Expression VisitTrait_type([NotNull] CharacterBuilderParser.Trait_typeContext context)
         {
-            return base.VisitTrait_type(context);
+            var name = Expression.Constant(context.GetText(), typeof(string));
+            return Expression.MakeIndex(_categories, _categoriesIndexer, new[] { name });
         }
 
         public override Expression VisitTrait_name([NotNull] CharacterBuilderParser.Trait_nameContext context)
         {
-            return base.VisitTrait_name(context);
+            return Expression.Constant(context.GetText(), typeof(string));
+        }
+
+        public override Expression VisitSelf([NotNull] CharacterBuilderParser.SelfContext context)
+        {
+            return _me;
+        }
+
+        public override Expression VisitAncestor([NotNull] CharacterBuilderParser.AncestorContext context)
+        {
+            return base.VisitAncestor(context);
+        }
+
+        public override Expression VisitAugment([NotNull] CharacterBuilderParser.AugmentContext context)
+        {
+            throw new NotSupportedException();
         }
     }
 }

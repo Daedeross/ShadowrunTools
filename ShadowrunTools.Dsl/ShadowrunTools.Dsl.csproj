@@ -19,4 +19,8 @@
         <Antlr4 Include="CharacterBuilder.g4" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\ShadowrunTools.Characters.Contract\ShadowrunTools.Characters.Contract.csproj" />
+    </ItemGroup>
+
 </Project>
