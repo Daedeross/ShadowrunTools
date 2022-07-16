@@ -25,7 +25,7 @@ namespace ShadowrunTools.Characters
         AugmentKind Kind { get; }
 
         /// <summary>
-        /// Array indexed by the owner's Rating to determin the  bonus to give.
+        /// Array indexed by the owner's Rating to determine the bonus to give.
         /// If owner does not have a rating or it is out of range for the array,
         /// Index zero [0] is used.
         /// </summary>

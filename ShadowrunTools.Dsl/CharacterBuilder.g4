@@ -14,13 +14,14 @@ target
 
 expression
     : LPAREN expression RPAREN                              #parentheticalExpression
+    | has                                                   #hasExpression
     | function                                              #functionCall
     | atom                                                  #atomicExpression
     | expression POW expression                             #powerExpression
     | op=(PLUS | MINUS) expression                          #numericUnaryExpression
-    | NOT expression                                        #booleanUnaryExpression
     | expression op=(TIMES | DIV) expression                #mulDivExpression
     | expression op=(PLUS | MINUS) expression               #addSubExpression
+    | NOT expression                                        #booleanUnaryExpression
     | expression op=(GT | LT | EQ | GEQ | LEQ) expression   #comparisonExpression
     | expression op=(AND | OR) expression                   #booleanBinaryExpression
     | expression QMARK expression COLON expression          #ternaryExpression
@@ -31,8 +32,11 @@ string_literal : NORMALSTRING | CHARSTRING ;
 numeric_literal : (INT | FLOAT) ;
 boolean_literal : TRUE | FALSE ;
 
+has : HAS LPAREN LBRACKET trait_type RBRACKET trait_name RPAREN ;
+
 function : NAME LPAREN argList RPAREN ;
 argList : expression (',' expression)* ;
+
 
 variable : trait | trait COLON property ;
 property : NAME;
@@ -44,6 +48,7 @@ ancestor : 'owner';// | ANCESTOR LPAREN expression RPAREN ;
 
 // LEXER
 
+HAS : 'has' ;
 TRUE : 'TRUE' | 'true';
 FALSE : 'FALSE' | 'false';
 LPAREN : '(' ;

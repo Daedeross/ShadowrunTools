@@ -12,7 +12,13 @@
     {
         protected readonly HashSet<string> RemovedNames = new();
 
-        public LeveledTrait(Guid id, int prototypeHash, string name, string category, ITraitContainer container, ICategorizedTraitContainer root, IRules rules)
+        public LeveledTrait(Guid id,
+                            int prototypeHash,
+                            string name,
+                            string category,
+                            ITraitContainer container,
+                            ICategorizedTraitContainer root,
+                            IRules rules)
             : base (id, prototypeHash, name, category, container, root, rules)
         {
             Augments = new ObservableCollection<IAugment>();

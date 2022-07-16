@@ -12,11 +12,13 @@ namespace ShadowrunTools.Serialization.Prototypes
     {
         [DataMember(IsRequired = true, EmitDefaultValue = false)]
         public Guid Id { get; set; }
+
         /// <summary>
         /// The name of the Metavariant. eg: Human, Nartaki, Cyclops, etc
         /// </summary>
         [DataMember]
         public string Name { get; set; }
+
         /// <summary>
         /// The "Primary Subspecies." eg: Human, Elf, Ork, etc.
         /// </summary>

@@ -29,7 +29,7 @@ namespace ShadowrunTools.Dsl
 
         static void Try(string input)
         {
-            var visitor = new CharacterBuilderDslVisitor<int>();
+            var visitor = new DslExpressionVisitor<int>();
 
             var str = new AntlrInputStream(input);
             System.Console.WriteLine(input);
