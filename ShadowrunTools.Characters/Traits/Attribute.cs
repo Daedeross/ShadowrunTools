@@ -46,7 +46,7 @@
         public int MetatypeMin
         {
             get => m_MetatypeMin;
-            set => this.RaiseAndSetIfChanged(ref m_MetatypeMin, value);
+            protected set => this.RaiseAndSetIfChanged(ref m_MetatypeMin, value);
         }
 
         protected readonly ObservableAsPropertyHelper<int> _min;
@@ -60,7 +60,7 @@
         public int MetatypeMax
         {
             get => m_MetatypeMax;
-            set => this.RaiseAndSetIfChanged(ref m_MetatypeMax, value);
+            protected set => this.RaiseAndSetIfChanged(ref m_MetatypeMax, value);
         }
 
         protected readonly ObservableAsPropertyHelper<int> _max;

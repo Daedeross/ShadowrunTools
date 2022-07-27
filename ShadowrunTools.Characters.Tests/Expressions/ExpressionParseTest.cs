@@ -77,9 +77,9 @@ namespace ShadowrunTools.Characters.Tests.Expressions
 
             var factory = new TraitFactory(mockRules.Object);
 
-            var character = new Character(factory, metatype, mockPriorities.Object);
+            var character = new Character(metatype, mockPriorities.Object);
 
-            var attribute = character.CreateAttribute(mockAttributePrototype.Object);
+            var attribute = factory.CreateAttribute(character, mockAttributePrototype.Object);
             character.AddAttribute(attribute);
 
             IExpressionScope<IAttribute> scope = new TraitScope

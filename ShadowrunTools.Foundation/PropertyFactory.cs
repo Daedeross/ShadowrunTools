@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Concurrent;
+using System.Linq;
 
 namespace ShadowrunTools.Foundation
 {
@@ -7,6 +9,7 @@ namespace ShadowrunTools.Foundation
         public static IPropertyList CreateFromObject(object obj, bool inherit = false)
         {
             var type = obj.GetType();
+
             var props = type.GetProperties();
 
             IPropertyList dict = new PropertyList(props.Length);
@@ -29,6 +32,19 @@ namespace ShadowrunTools.Foundation
             }
 
             return dict;
+        }
+
+        public static void SetFromPropertyList(object obj, IPropertyList propList)
+        {
+            var type = obj.GetType();
+
+            var props = type.GetProperties()
+                .ToDictionary(pi => pi.Name, pi => pi);
+
+            foreach (var prop in propList.Where(p => p.Value.Editable))
+            {
+                props[prop.Key].SetValue(obj, prop.Value);
+            }
         }
     }
 }

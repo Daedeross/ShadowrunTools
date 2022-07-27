@@ -2,5 +2,6 @@
 {
     public interface IQuality : ILeveledTrait
     {
+        bool HasRating { get; }
     }
 }

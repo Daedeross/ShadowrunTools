@@ -42,9 +42,9 @@ namespace ShadowrunTools.Characters.Tests
 
             var factory = new TraitFactory(mockRules.Object);
 
-            var character = new Character(factory, metatype, priorities.Object);
+            var character = new Character(metatype, priorities.Object);
 
-            var attribute = character.CreateAttribute(mockAttributePrototype.Object);
+            var attribute = factory.CreateAttribute(character, mockAttributePrototype.Object);
             character.AddAttribute(attribute);
 
             Assert.Equal(2, attribute.Min);

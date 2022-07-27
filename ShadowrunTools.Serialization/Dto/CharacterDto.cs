@@ -1,30 +1,33 @@
-﻿namespace ShadowrunTools.Serialization.Loaders
+﻿namespace ShadowrunTools.Serialization
 {
-    using ShadowrunTools.Characters.Loaders;
+    using ShadowrunTools.Characters.Model;
     using ShadowrunTools.Characters.Prototypes;
     using System.Collections.Generic;
     using System.Runtime.Serialization;
 
     [DataContract(Name = "Character", Namespace = "http://schemas.shadowruntools.com/loaders")]
-    public class CharacterLoader// : ICharacterLoader
+    public class CharacterDto// : ICharacterLoader
     {
         [DataMember(IsRequired = true, EmitDefaultValue = true)]
         public string Name { get; set; }
+
+        [DataMember]
+        public GenerationMethod GenerationMethod { get; set; }
 
         //[DataMember]
         //public Dictionary<string, IPrototype> Prototypes { get; set; }
 
         [DataMember]
-        public CharacterPrioritiesLoader Priorities { get; set; }
+        public CharacterPrioritiesDto Priorities { get; set; }
 
         [DataMember]
-        public CharacterMetatypeLoader Metatype { get; set; }
+        public CharacterMetatypeDto Metatype { get; set; }
 
         [DataMember]
-        public SpecialChoiceLoader SpecialChoice { get; set; }
+        public SpecialChoiceDto SpecialChoice { get; set; }
 
         [DataMember]
-        public Dictionary<string, AttributeLoader> Attributes { get; set; }
+        public Dictionary<string, AttributeDto> Attributes { get; set; }
 
         //ITraitContainer<ISkill> ActiveSkills { get; set; }
     }

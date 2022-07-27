@@ -2,11 +2,15 @@
 using ShadowrunTools.Characters.Prototypes;
 using ShadowrunTools.Foundation;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using System.Runtime.Serialization;
 
 namespace ShadowrunTools.Serialization.Prototypes
 {
     [DataContract(Name = "TraitPrototype", Namespace = "http://schemas.shadowruntools.com/prototypes")]
+    [KnownType(nameof(KnownTypes))]
     public abstract class TraitPrototypeBase: ITraitPrototype
     {
         private static int? _hash;
@@ -35,5 +39,14 @@ namespace ShadowrunTools.Serialization.Prototypes
 
             return _hash.Value;
         }
+
+        private static Lazy<Type[]> _knownTypes = new Lazy<Type[]>(
+            () =>
+                Assembly.GetAssembly(typeof(TraitPrototypeBase))
+                    .GetTypes()
+                    .Where(t => typeof(TraitPrototypeBase).IsAssignableFrom(t))
+                    .ToArray()
+            );
+        public static Type[] KnownTypes() => _knownTypes.Value;
     }
 }

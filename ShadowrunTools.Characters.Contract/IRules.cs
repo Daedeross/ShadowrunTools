@@ -6,7 +6,7 @@ namespace ShadowrunTools.Characters
     /// <summary>
     /// Interface for repository of game rules information
     /// </summary>
-    public interface IRules: IPropertyList
+    public interface IRules: INotifyItemChanged
     {
         /// <summary>
         /// The method used to generate the character. <see cref="GenerationMethod"/>

@@ -1,22 +1,30 @@
-﻿using ShadowrunTools.Characters.Loaders;
+﻿using ShadowrunTools.Characters.Model;
 using ShadowrunTools.Characters.Priorities;
 using ShadowrunTools.Characters.Prototypes;
 using ShadowrunTools.Serialization.Prototypes;
 using System;
 using System.Linq;
 
-namespace ShadowrunTools.Characters
+namespace ShadowrunTools.Characters.Factories
 {
-    public static class CharacterFactory
+    public class CharacterFactory : ICharacterFactory
     {
-        public static Character Create(IRules rules, IPrototypeRepository prototypes, ITraitFactory traitFactory)
+        private readonly ITraitFactory _traitFactory;
+        private readonly IRules _rules;
+
+        public CharacterFactory(IRules rules, ITraitFactory traitFactory)
+        {
+            _rules = rules;
+            _traitFactory = traitFactory;
+        }
+
+        public ICharacter Create(IPrototypeRepository prototypes, ICharacterMetatype metavariant)
         {
             var characterPrototype = CharacterPrototype.CreateFromRepository(prototypes);
-            var meta = prototypes.Metavariants.First(m => m.Name == "Elf"); // TODO: This is test code.
-            var metavariant = new CharacterMetatype(meta);
+
 
             ICharacterPriorities characterPriorities = null;
-            switch (rules.GenerationMethod)
+            switch (_rules.GenerationMethod)
             {
                 case Model.GenerationMethod.NPC:
                     throw new NotImplementedException();
@@ -36,10 +44,11 @@ namespace ShadowrunTools.Characters
                     break;
             }
 
-            var character = new Character(traitFactory, metavariant, characterPriorities);
+            var character = new Character(metavariant, characterPriorities);
+            character.GenerationMethod = _rules.GenerationMethod;
             foreach (var attributePrototype in characterPrototype.CoreAttributes)
             {
-                character.Attributes[attributePrototype.Name] = character.CreateAttribute(attributePrototype);
+                character.Attributes[attributePrototype.Name] = _traitFactory.CreateAttribute(character, attributePrototype);
             }
 
             character.Statuses.Add(Validators.ValidatorFactory.AttributePointsValidator(character));
@@ -47,10 +56,17 @@ namespace ShadowrunTools.Characters
             return character;
         }
 
+        public ICharacter Create(IPrototypeRepository prototypes, string metavariantName)
+        {
+            var meta = prototypes.Metavariants.First(m => m.Name == metavariantName);
+            var metavariant = new CharacterMetatype(meta);
 
-        //public static ICharacter CreateFromLoader(ICharacterLoader loader, IPrototypeRepository prototypes, ITraitFactory traitFactory)
-        //{
-        //    throw new NotImplementedException();
-        //}
+            return Create(prototypes, metavariant);
+        }
+
+        public ICharacter Create(IPrototypeRepository prototypes)
+        {
+            return Create(prototypes, "Elf");// TODO: This is test code.
+        }
     }
 }

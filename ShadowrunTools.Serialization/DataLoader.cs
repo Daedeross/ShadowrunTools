@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using ShadowrunTools.Characters;
 using ShadowrunTools.Characters.Priorities;
 using ShadowrunTools.Characters.Prototypes;
-using ShadowrunTools.Serialization.Loaders;
+using ShadowrunTools.Serialization;
 using ShadowrunTools.Serialization.Prototypes;
 using System;
 using System.Collections.Generic;
@@ -16,6 +16,7 @@ namespace ShadowrunTools.Serialization
     {
         private readonly JsonSerializer _serializer;
         private readonly ILogger _logger;
+
         public IPrototypeRepository Repository { get; protected set; }
 
         public List<string> CurrentFiles { get; set; } 
@@ -60,34 +61,29 @@ namespace ShadowrunTools.Serialization
 
         #region ICharacterPersistence
 
-        public void SaveCharacter(string filename, ICharacter character)
+        public void SaveCharacter(string filename, ICharacterLoader loader, ICharacter character)
         {
             using (var stream = new StreamWriter(filename))
             {
-                SaveCharacter(stream, character);
+                SaveCharacter(stream, loader, character);
             }
         }
 
-        public void SaveCharacter(Stream stream, ICharacter character)
+        public void SaveCharacter(Stream stream, ICharacterLoader loader, ICharacter character)
         {
             using (var writer = new StreamWriter(stream))
             {
-                SaveCharacter(writer, character);
+                SaveCharacter(writer, loader, character);
             }
         }
 
-        private void SaveCharacter(TextWriter textWriter, ICharacter character)
+        private void SaveCharacter(TextWriter textWriter, ICharacterLoader loader, ICharacter character)
         {
-            var loader = new CharacterLoader();
-            loader.Name = character.Name;
-            loader.Priorities = CharacterPrioritiesLoader.Create(character.Priorities);
-            loader.Metatype = CharacterMetatypeLoader.Create(character.Metatype);
-            loader.Attributes = character.Attributes.ToDictionary(kvp => kvp.Key, kvp => AttributeLoader.Create(kvp.Value));
-
-            _serializer.Serialize(textWriter, loader);
+            var dto = loader.ToDto(character);
+            _serializer.Serialize(textWriter, dto);
         }
 
-        public ICharacter LoadCharacter(string filename, IPrototypeRepository prototypeRepository)
+        public ICharacter LoadCharacter(string filename, ICharacterLoader loader)
         {
             ICharacter character = null;
 
@@ -100,10 +96,9 @@ namespace ShadowrunTools.Serialization
             using (var stream = new StreamReader(filename))
             using (var reader = new JsonTextReader(stream))
             {
-                var dto = _serializer.Deserialize<CharacterLoader>(reader);
+                var dto = _serializer.Deserialize<CharacterDto>(reader);
+                return loader.FromDto(dto);
             }
-
-            return character;
         }
 
         #endregion

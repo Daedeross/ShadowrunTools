@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using ShadowrunTools.Characters.Factories;
 using ShadowrunTools.Characters.Model;
 using ShadowrunTools.Characters.Wpf.Resources.Prototypes;
 using ShadowrunTools.Serialization;
@@ -20,6 +21,12 @@ namespace ShadowrunTools.Characters.Tests.Loaders
             var logger = new Castle.Core.Logging.NullLogger();
             var serializer = new JsonSerializer();
             serializer.Formatting = Formatting.Indented;
+
+            var rules = new GameRules
+            {
+                GenerationMethod = GenerationMethod.Priority
+            };
+
             var dataLoader = new TestData(serializer, logger)
             {
                 CurrentFiles = new List<string>
@@ -31,12 +38,11 @@ namespace ShadowrunTools.Characters.Tests.Loaders
                 }
             };
 
-            var rules = new RulesPrototype();
-
             var prototypes = dataLoader.ReloadAll();
             var defaultMeta = prototypes.DefaultMetavariant;
-            var traitFactory = new Factories.TraitFactory(rules);
-            var character = CharacterFactory.Create(rules, prototypes, traitFactory);
+            var traitFactory = new TraitFactory(rules);
+            var characterFactory = new CharacterFactory(rules, traitFactory);
+            var character = characterFactory.Create(prototypes);
 
             character.Name = "Test Character";
 
@@ -47,12 +53,13 @@ namespace ShadowrunTools.Characters.Tests.Loaders
             character.Priorities.ResourcePriority = PriorityLevel.E;
 
             ICharacterPersistence loader = dataLoader;
+            var characterLoader = new CharacterLoader(new TraitLoader(prototypes, rules), prototypes);
 
             var filename = "testChar.sr5";
 
-            loader.SaveCharacter(filename, character);
+            loader.SaveCharacter(filename, characterLoader, character);
 
-            var newChar = loader.LoadCharacter(filename, prototypes);
+            var newChar = loader.LoadCharacter(filename, characterLoader);
 
             Assert.Equal(character.Name, newChar.Name);
             Assert.Equal(character.Priorities.AttributePriority, newChar.Priorities.AttributePriority);

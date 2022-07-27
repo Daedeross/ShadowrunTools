@@ -1,4 +1,5 @@
-﻿using ShadowrunTools.Characters.Priorities;
+﻿using ShadowrunTools.Characters.Model;
+using ShadowrunTools.Characters.Priorities;
 using ShadowrunTools.Characters.Prototypes;
 using ShadowrunTools.Characters.Traits;
 using ShadowrunTools.Characters.Validators;
@@ -12,21 +13,18 @@ namespace ShadowrunTools.Characters
 {
     public class Character: CategorizedTraitContainer, ICharacter, INotifyItemChanged
     {
-        private readonly ITraitFactory _traitFactory;
-
         public string Name { get; set; }
+
+        public GenerationMethod GenerationMethod { get; set; }
 
         public ICharacterPriorities Priorities { get; private set; }
 
         public ICharacterMetatype Metatype { get; private set; }
 
         public Character(
-            ITraitFactory traitFactory,
             ICharacterMetatype characterMetatype,
             ICharacterPriorities characterPriorities)
         {
-            _traitFactory = traitFactory ?? throw new ArgumentNullException(nameof(traitFactory));
-
             Metatype = characterMetatype;
             Priorities = characterPriorities;
         }
@@ -67,10 +65,10 @@ namespace ShadowrunTools.Characters
             Attributes[attribute.Name] = attribute;
         }
 
-        internal IAttribute CreateAttribute(IAttributePrototype prototype)
-        {
-            return _traitFactory.CreateAttribute(this, prototype);
-        }
+        //internal IAttribute CreateAttribute(IAttributePrototype prototype)
+        //{
+        //    return _traitFactory.CreateAttribute(this, prototype);
+        //}
 
         #endregion // Attributes
 
@@ -98,10 +96,11 @@ namespace ShadowrunTools.Characters
             ActiveSkills[skill.Name] = skill;
         }
 
-        internal ISkill CreateSkill(ISkillPrototype prototype)
-        {
-            return _traitFactory.CreateSkill(this, prototype);
-        }
+        // TODO: Move to factory
+        //internal ISkill CreateSkill(ISkillPrototype prototype)
+        //{
+        //    return _traitFactory.CreateSkill(this, prototype);
+        //}
 
         #endregion // Skills
     }

@@ -1,13 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using ShadowrunTools.Characters.Prototypes;
 using ShadowrunTools.Characters.Traits;
 using ShadowrunTools.Foundation;
+using ShadowrunTools.Serialization;
 
 namespace ShadowrunTools.Characters.Factories
 {
-    public class TraitFactory : ITraitFactory
+    public class TraitFactory : ITraitFactoryInternal
     {
-        private IRules _rules;
+        private readonly IRules _rules;
 
         public TraitFactory(IRules rules)
         {

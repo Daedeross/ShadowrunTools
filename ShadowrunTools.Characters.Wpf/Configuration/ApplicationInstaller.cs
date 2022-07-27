@@ -8,6 +8,7 @@ using Castle.Windsor;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using ShadowrunTools.Characters.ViewModels;
+using ShadowrunTools.Foundation;
 using ShadowrunTools.Serialization;
 using System;
 using System.Collections.Generic;
@@ -57,8 +58,15 @@ namespace ShadowrunTools.Characters.Wpf.Configuration
                     .Named(nameof(WindsorViewLocator)),
                 Component.For<IDataLoader>()
                     .ImplementedBy<DataLoader>(),
-                Component.For<IRules>()
-                    .ImplementedBy<RulesPrototype>()
+                Component.For<IRules>()             // TODO: replace with loading of settings
+                    .UsingFactoryMethod(kernel =>
+                    {
+                        var pl = PropertyFactory.CreateFromObject(new RulesPrototype(), false);
+                        var rules = new GameRules();
+                        rules.CommitEdit(pl);
+
+                        return rules;
+                    })
                     .LifestyleSingleton(),
                 Component.For<DisplaySettings>()
                     .ImplementedBy<DisplaySettings>()

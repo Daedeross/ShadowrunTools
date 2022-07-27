@@ -7,10 +7,10 @@
     <NoWarn>NU1701</NoWarn>
   </PropertyGroup>
 
-  <ItemGroup>
+  <!--<ItemGroup>
     <None Remove="Views\PrioritiesView.xaml" />
     <None Remove="Views\PriorityCellView.xaml" />
-  </ItemGroup>
+  </ItemGroup>-->
 
   <ItemGroup>
     <PackageReference Include="Castle.LoggingFacility" Version="5.1.2" />
@@ -22,10 +22,6 @@
     <PackageReference Include="Moq" Version="4.17.2" />
     <PackageReference Include="Nito.Mvvm.Async" Version="1.0.0-pre-04" />
     <PackageReference Include="NLog" Version="5.0.0" />
-    <PackageReference Include="ReactiveMarbles.ObservableEvents.SourceGenerator" Version="1.1.4">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
     <PackageReference Include="ReactiveUI" Version="18.0.10" />
     <PackageReference Include="ReactiveUI.WPF" Version="18.0.10" />
   </ItemGroup>
@@ -41,10 +37,10 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
+  <!--<ItemGroup>
     <Compile Update="Views\PrioritiesView.xaml.cs" />
     <Compile Update="Views\PriorityCellView.xaml.cs" />
-  </ItemGroup>
+  </ItemGroup>-->
 
   <ItemGroup>
     <Page Update="ControlTemplates\BrushPaletts.xaml">

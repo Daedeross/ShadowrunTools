@@ -3,6 +3,7 @@
     using DynamicData;
     using DynamicData.Binding;
     using ReactiveUI;
+    using ShadowrunTools.Characters.Factories;
     using ShadowrunTools.Characters.Prototypes;
     using ShadowrunTools.Serialization;
     using ShadowrunTools.Serialization.Prototypes;
@@ -20,7 +21,8 @@
         private readonly IViewModelFactory _viewModelFactory;
         private readonly IDataLoader _dataLoader;
         private IRules _rules;
-        private ITraitFactory _traitFactory;
+        private readonly ITraitFactory _traitFactory;
+        private readonly CharacterFactory _characterFactory;
 
         private SourceList<ICharacterViewModel> _characters;
 
@@ -54,7 +56,10 @@
             _viewModelFactory = viewModelFactory;
             _dataLoader = dataLoader;
             _rules = rules;
+
+            // TODO: these will eventually be injected
             _traitFactory = new Factories.TraitFactory(rules);
+            _characterFactory = new CharacterFactory(rules, _traitFactory);
 
             _characters = new SourceList<ICharacterViewModel>();
             _characters.Connect()
@@ -85,7 +90,7 @@
             var prototypes = Prototypes;
             var defaultMeta = prototypes.DefaultMetavariant;
 
-            var character = CharacterFactory.Create(_rules, prototypes, _traitFactory);
+            var character = _characterFactory.Create(prototypes);
             character.Name = "New Character";
             var viewModel = new CharacterViewModel(_displaySettings, character, prototypes.Priorities);
             Characters.Add(viewModel);

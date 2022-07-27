@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 
 namespace ShadowrunTools.Serialization.Prototypes
 {
-    [DataContract(Name = "AttributePrototype", Namespace = "http://schemas.shadowruntools.com/prototypes")]
+    [DataContract(Name = "LeveledTraitPrototype", Namespace = "http://schemas.shadowruntools.com/prototypes")]
     public class LeveledTraitPrototype: TraitPrototypeBase, ILeveledTraitPrototype
     {
         private static int? _hash;

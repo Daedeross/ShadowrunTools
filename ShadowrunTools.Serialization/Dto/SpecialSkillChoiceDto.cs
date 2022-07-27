@@ -1,10 +1,10 @@
-﻿namespace ShadowrunTools.Characters.Loaders
+﻿namespace ShadowrunTools.Serialization
 {
     using ShadowrunTools.Characters.Model;
     using System.Runtime.Serialization;
 
-    [DataContract(Name = "SpecialSkillChoiceLoader", Namespace = "http://schemas.shadowruntools.com/loaders")]
-    public class SpecialSkillChoiceLoader
+    [DataContract(Name = "SpecialSkillChoice", Namespace = "http://schemas.shadowruntools.com/loaders")]
+    public class SpecialSkillChoiceDto
     {
         [DataMember]
         public int Rating { get; set; }
