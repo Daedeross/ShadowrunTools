@@ -11,10 +11,10 @@ namespace ShadowrunTools.Serialization.Prototypes.Priorities
         #region Serialized
         #pragma warning disable IDE1006 // Naming Styles
         [DataMember(Name = "Options")]
-        public List<SpecialOptionPrototype> _Options { get; set; } = new List<SpecialOptionPrototype>();
+        internal List<SpecialOptionPrototype> _options { get; set; } = new List<SpecialOptionPrototype>();
         #pragma warning restore IDE1006 // Naming Styles
         #endregion
 
-        public IReadOnlyCollection<ISpecialOption> Options => _Options;
+        public IReadOnlyCollection<ISpecialOption> Options => _options;
     }
 }

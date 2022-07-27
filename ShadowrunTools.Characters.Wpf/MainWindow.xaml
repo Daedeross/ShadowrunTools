@@ -3,8 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ShadowrunTools.Characters.Wpf"
+        xmlns:rxui="http://reactiveui.net"
         xmlns:views="clr-namespace:ShadowrunTools.Characters.Wpf.Views"
+        xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
         mc:Ignorable="d"
         Title="MainWindow" Height="800" Width="1325">
     <Grid>
@@ -16,7 +17,7 @@
 
         <Menu Grid.Row="0">
             <MenuItem Header="_File">
-                <MenuItem Header="_New" Command="{Binding NewCharacterCommand}" />
+                <MenuItem Header="_New" Name="NewButton" />
             </MenuItem>
             <MenuItem Header="_Characters" >
                 <MenuItem Header="Not Implemented" />
@@ -24,32 +25,10 @@
         </Menu>
         <StatusBar Grid.Row="2">
             <StatusBarItem>
-                <TextBlock Text="{Binding CurrentCharacter.Name}"></TextBlock>
+                <TextBlock >Status Here</TextBlock>
             </StatusBarItem>
         </StatusBar>
-        <!--<views:CharacterView Grid.Row="1" DataContext="{Binding CurrentCharacter}" />-->
-        <TabControl Grid.Row="1" ItemsSource="{Binding Characters}"
-                    SelectedItem="{Binding CurrentCharacter}">
-            <TabControl.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Name}" />
-                </DataTemplate>
-            </TabControl.ItemTemplate>
-            <TabControl.ContentTemplate>
-                <DataTemplate>
-                    <views:CharacterView DataContext="{Binding}" />
-                </DataTemplate>
-            </TabControl.ContentTemplate>
-            <!--<TabControl.ItemContainerStyle>
-                <Style TargetType="TabItem">
-                    <Setter Property="Header" Value="{Binding Name}" />
-                    <Setter Property="Content">
-                        <Setter.Value>
-                            <views:CharacterView DataContext="{Binding}" />
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </TabControl.ItemContainerStyle>-->
-        </TabControl>
+        <dragablz:TabablzControl x:Name="DocumentsTabControl">
+        </dragablz:TabablzControl>
     </Grid>
 </Window>

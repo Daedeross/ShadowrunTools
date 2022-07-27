@@ -1,5 +1,6 @@
 ﻿using ShadowrunTools.Characters.Prototypes;
 using ShadowrunTools.Characters.Traits;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ShadowrunTools.Characters
 {

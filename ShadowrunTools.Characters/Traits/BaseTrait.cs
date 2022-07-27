@@ -5,10 +5,11 @@
     using System.ComponentModel;
     using System.Linq;
     using NLog;
+    using ReactiveUI;
     using ShadowrunTools.Characters.Model;
     using ShadowrunTools.Foundation;
 
-    public abstract class BaseTrait : ItemChangedBase, ITrait
+    public abstract class BaseTrait : ReactiveObject, ITrait
     {
         protected static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
 
@@ -17,6 +18,7 @@
         protected readonly IRules mRules;
 
         public BaseTrait(Guid id,
+            int prototypeHash,
             string name,
             string category,
             ITraitContainer container,
@@ -28,6 +30,7 @@
             Args.NotNull(root, nameof(root));
 
             Id = id;
+            PrototypeHash = prototypeHash;
             mOwner = container;
             mRoot = root;
             Category = category;
@@ -37,18 +40,56 @@
 
         public Guid Id { get; private set; }
 
+        public int PrototypeHash { get; private set; }
+
         [Display(Label = "Name", Editable = false)]
-        public string Name { get; set; }
+        private string m_Name;
+        public string Name
+        {
+            get => m_Name;
+            set => this.RaiseAndSetIfChanged(ref m_Name, value);
+        }
+
         [Display(Editable = false)]
-        public string Category { get; private set; }
+        private string m_Category;
+        public string Category
+        {
+            get => m_Category;
+            set => this.RaiseAndSetIfChanged(ref m_Category, value);
+        }
+
         [Display(Editable = true)]
-        public string SubCategory { get; set; }
+        private string m_SubCategory;
+        public string SubCategory
+        {
+            get => m_SubCategory;
+            set => this.RaiseAndSetIfChanged(ref m_SubCategory, value);
+        }
+
         [Display(Editable = true)]
-        public string UserNotes { get; set; }
+        private string m_UserNotes;
+        public string UserNotes
+        {
+            get => m_UserNotes;
+            set => this.RaiseAndSetIfChanged(ref m_UserNotes, value);
+        }
+
         [Display(Editable = true)]
-        public string Book { get; set; }
+        private string m_Book;
+        public string Book
+        {
+            get => m_Book;
+            set => this.RaiseAndSetIfChanged(ref m_Book, value);
+        }
+
         [Display(Editable = true)]
-        public int Page { get; set; }
+        private int m_Page;
+        public int Page
+        {
+            get => m_Page;
+            set => this.RaiseAndSetIfChanged(ref m_Page, value);
+        }
+
 
         public abstract TraitType TraitType { get; }
 
@@ -77,9 +118,9 @@
             var (valid, names) = OnBeforeCommitEdit(newProperties);
             if (valid)
             {
-                if (names.Any())
+                foreach (var name in names)
                 {
-                    RaiseItemChanged(names.ToArray());
+                    this.RaisePropertyChanged(name);
                 }
             }
         }

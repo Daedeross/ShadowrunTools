@@ -2,25 +2,28 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net5.0-windows</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <NoWarn>NU1701</NoWarn>
   </PropertyGroup>
 
-  <ItemGroup>
+  <!--<ItemGroup>
     <None Remove="Views\PrioritiesView.xaml" />
     <None Remove="Views\PriorityCellView.xaml" />
-  </ItemGroup>
+  </ItemGroup>-->
 
   <ItemGroup>
-    <PackageReference Include="Castle.Windsor" Version="5.0.1" />
-    <PackageReference Include="Extended.Wpf.Toolkit" Version="3.7.0" />
-    <PackageReference Include="Nito.Mvvm.Async" Version="1.0.0-pre-03" />
-    <PackageReference Include="NLog" Version="4.6.8" />
-    <PackageReference Include="NLog.Config" Version="4.6.8" />
-    <PackageReference Include="ReactiveUI" Version="11.1.12" />
-    <PackageReference Include="ReactiveUI.Events.WPF" Version="11.1.12" />
-    <PackageReference Include="ReactiveUI.WPF" Version="11.1.12" />
+    <PackageReference Include="Castle.LoggingFacility" Version="5.1.2" />
+    <PackageReference Include="Castle.Windsor" Version="5.1.2" />
+    <PackageReference Include="Castle.Core" Version="4.4.1" />
+    <PackageReference Include="Dragablz" Version="0.0.3.223" />
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="4.3.0" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.5.0" />
+    <PackageReference Include="Moq" Version="4.17.2" />
+    <PackageReference Include="Nito.Mvvm.Async" Version="1.0.0-pre-04" />
+    <PackageReference Include="NLog" Version="5.0.0" />
+    <PackageReference Include="ReactiveUI" Version="18.0.10" />
+    <PackageReference Include="ReactiveUI.WPF" Version="18.0.10" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,10 +37,10 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
+  <!--<ItemGroup>
     <Compile Update="Views\PrioritiesView.xaml.cs" />
     <Compile Update="Views\PriorityCellView.xaml.cs" />
-  </ItemGroup>
+  </ItemGroup>-->
 
   <ItemGroup>
     <Page Update="ControlTemplates\BrushPaletts.xaml">
@@ -76,6 +79,10 @@
     <Page Update="Views\TraitEditView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Configuration\" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,3 @@
-
 namespace ShadowrunTools.Validators
 
 open ShadowrunTools.Characters.Validators;
@@ -13,10 +12,11 @@ module Validators =
     let rec ValidateAttributes (rules: IRules) (attributes: IAttribute list) =
         match attributes with
         | [] -> true
-        | attr :: attrs -> (ValidateInPlayAttribute rules attr) && ValidateAttributes rules attrs
+        | attr :: attrs -> match (ValidateInPlayAttribute rules attr) with
+                           | true -> ValidateAttributes rules attrs
+                           | false -> false
 
     let Validate (character: ICharacter) (rules: IRules) =
         character.Attributes.Values
         |> Seq.toList
-        |> (ValidateAttributes rules) 
-
+        |> (ValidateAttributes rules)

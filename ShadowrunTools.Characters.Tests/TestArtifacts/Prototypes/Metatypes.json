@@ -1,0 +1,108 @@
+{
+  "Metavariants": [
+    {
+      "Id": "e16218e4-670d-44b4-80ec-c1384e401385",
+      "Name": "Human",
+      "Metatype": "Human",
+      "Attributes": [
+        {
+          "Name": "Body",
+          "Min": 1,
+          "Max": 6
+        },
+        {
+          "Name": "Agility",
+          "Min": 1,
+          "Max": 6
+        },
+        {
+          "Name": "Reaction",
+          "Min": 1,
+          "Max": 6
+        },
+        {
+          "Name": "Strength",
+          "Min": 1,
+          "Max": 6
+        },
+        {
+          "Name": "Willpower",
+          "Min": 1,
+          "Max": 6
+        },
+        {
+          "Name": "Logic",
+          "Min": 1,
+          "Max": 6
+        },
+        {
+          "Name": "Intuition",
+          "Min": 1,
+          "Max": 6
+        },
+        {
+          "Name": "Charisma",
+          "Min": 1,
+          "Max": 6
+        },
+        {
+          "Name": "Edge",
+          "Min": 2,
+          "Max": 7
+        }
+      ]
+    },
+    {
+      "Id": "918ed7cc-85ba-4ccf-bf09-44b7bd48d5f8",
+      "Name": "Elf",
+      "Metatype": "Elf",
+      "Attributes": [
+        {
+          "Name": "Body",
+          "Min": 1,
+          "Max": 6
+        },
+        {
+          "Name": "Agility",
+          "Min": 2,
+          "Max": 7
+        },
+        {
+          "Name": "Reaction",
+          "Min": 1,
+          "Max": 6
+        },
+        {
+          "Name": "Strength",
+          "Min": 1,
+          "Max": 6
+        },
+        {
+          "Name": "Willpower",
+          "Min": 1,
+          "Max": 6
+        },
+        {
+          "Name": "Logic",
+          "Min": 1,
+          "Max": 6
+        },
+        {
+          "Name": "Intuition",
+          "Min": 1,
+          "Max": 6
+        },
+        {
+          "Name": "Charisma",
+          "Min": 3,
+          "Max": 8
+        },
+        {
+          "Name": "Edge",
+          "Min": 1,
+          "Max": 6
+        }
+      ]
+    }
+  ]
+}

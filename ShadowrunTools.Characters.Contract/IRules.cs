@@ -6,7 +6,7 @@ namespace ShadowrunTools.Characters
     /// <summary>
     /// Interface for repository of game rules information
     /// </summary>
-    public interface IRules: IPropertyList
+    public interface IRules: INotifyItemChanged
     {
         /// <summary>
         /// The method used to generate the character. <see cref="GenerationMethod"/>
@@ -42,6 +42,16 @@ namespace ShadowrunTools.Characters
         /// The maximum number of attributes that can have the highest available rating during character creation.
         /// </summary>
         int StartingMaxedAttributeCount { get; }
+
+        /// <summary>
+        /// The maximum number of discounts that can be applied to the Karma cost of Initiation
+        /// </summary>
+        int MaxInitiationDiscounts { get; }
+
+        /// <summary>
+        /// The maximum number of discounts that can be applied to the Karma cost of Initiation
+        /// </summary>
+        int MaxSubmersionDiscounts { get; }
 
         #region Scaling Karma Costs
 

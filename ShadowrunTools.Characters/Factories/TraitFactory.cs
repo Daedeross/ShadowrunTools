@@ -1,13 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using ShadowrunTools.Characters.Prototypes;
 using ShadowrunTools.Characters.Traits;
 using ShadowrunTools.Foundation;
+using ShadowrunTools.Serialization;
 
 namespace ShadowrunTools.Characters.Factories
 {
-    public class TraitFactory : ITraitFactory
+    public class TraitFactory : ITraitFactoryInternal
     {
-        private IRules _rules;
+        private readonly IRules _rules;
 
         public TraitFactory(IRules rules)
         {
@@ -19,7 +23,7 @@ namespace ShadowrunTools.Characters.Factories
         {
             var id = Guid.NewGuid();
             var container = character.Attributes as ITraitContainer;
-            var attribute = new Traits.Attribute(id, prototype.Name, container, character, character.Metatype, _rules)
+            var attribute = new Traits.Attribute(id, prototype.GetHashCode(), prototype.Name, container, character, character.Metatype, _rules)
             {
                 SubCategory = prototype.SubCategory,
                 Book = prototype.Book,

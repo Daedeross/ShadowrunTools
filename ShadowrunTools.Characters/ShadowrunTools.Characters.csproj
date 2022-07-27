@@ -6,8 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NLog" Version="4.6.8" />
-    <PackageReference Include="NLog.Config" Version="4.6.8" />
+    <PackageReference Include="NLog" Version="5.0.0" />
+    <PackageReference Include="ReactiveUI" Version="18.0.10" />
   </ItemGroup>
 
   <ItemGroup>

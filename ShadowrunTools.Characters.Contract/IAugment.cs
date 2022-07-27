@@ -15,23 +15,23 @@ namespace ShadowrunTools.Characters
     /// It is up to the targeted trait (which must implement <see cref="IAugmentable"/>)
     /// how to handle the Augment.
     /// </remarks>
-    public interface IAugment: IDisposable, INotifyItemChanged
+    public interface IAugment : IDisposable, INotifyItemChanged
     {
         IAugmentable Target { get; set; }
 
         /// <summary>
-        /// See <see cref="AugmentKind"/>. Essentialy determines what property is modified.
+        /// See <see cref="AugmentKind"/>. Essentialy determines what property on the target <see cref="IAugmentable"/> should be modified.
         /// </summary>
         AugmentKind Kind { get; }
 
         /// <summary>
-        /// Array indexed by the owner's Rating to determin the  bonus to give.
+        /// Array indexed by the owner's Rating to determine the bonus to give.
         /// If owner does not have a rating or it is out of range for the array,
         /// Index zero [0] is used.
         /// </summary>
         double[] BonusArray { get; set; }
 
-        double Bonus { get;}
+        double Bonus { get; }
 
         /// <summary>
         /// The name of the Trait that this Augment modifies.

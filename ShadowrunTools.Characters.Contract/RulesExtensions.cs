@@ -49,7 +49,7 @@ namespace ShadowrunTools.Characters
         public static int InitiationKarma(this IRules rules, int value, int min = 0, int discounts = 0)
         {
             int val = 0;
-            discounts = Math.Min(discounts, 3);
+            discounts = Math.Min(discounts, rules.MaxInitiationDiscounts);
             discounts = Math.Max(discounts, 0);
             for (int i = min + 1; i <= value; i++)
             {

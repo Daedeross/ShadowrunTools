@@ -11,8 +11,8 @@ namespace ShadowrunTools.Characters.Tests
     {
         internal class TestBaseTrait : BaseTrait
         {
-            public TestBaseTrait(Guid id, ITraitContainer container, ICategorizedTraitContainer root, IRules rules)
-                : base(id, "Trait", "Hai", container, root, rules)
+            public TestBaseTrait(Guid id, int prototypeHash, ITraitContainer container, ICategorizedTraitContainer root, IRules rules)
+                : base(id, prototypeHash, "Trait", "Hai", container, root, rules)
             {
             }
 
@@ -27,12 +27,13 @@ namespace ShadowrunTools.Characters.Tests
             var rootMock = new Mock<ICategorizedTraitContainer>().Object;
             var ownerMock = new Mock<ITraitContainer>().Object;
             var rulesMock = new Mock<IRules>().Object;
+            var hash = 42;
 
             var id = Guid.NewGuid();
 
-            var trait = new TestBaseTrait(id, ownerMock, rootMock, rulesMock);
-            Assert.Throws<ArgumentNullException>(() => new TestBaseTrait(id, null, rootMock, rulesMock));
-            Assert.Throws<ArgumentNullException>(() => new TestBaseTrait(id, ownerMock, null, rulesMock));
+            var trait = new TestBaseTrait(id, hash, ownerMock, rootMock, rulesMock);
+            Assert.Throws<ArgumentNullException>(() => new TestBaseTrait(id, hash, null, rootMock, rulesMock));
+            Assert.Throws<ArgumentNullException>(() => new TestBaseTrait(id, hash, ownerMock, null, rulesMock));
         }
     }
 }
