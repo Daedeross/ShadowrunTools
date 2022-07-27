@@ -10,13 +10,11 @@ namespace ShadowrunTools.Characters.Factories
 {
     public class CharacterLoader : ICharacterLoader
     {
-        private readonly IPrototypeRepository _prototypes;
         private readonly ITraitLoader _loader;
 
-        public CharacterLoader(ITraitLoader loader!!, IPrototypeRepository prototypes!!)
+        public CharacterLoader(ITraitLoader loader)
         {
-            _loader = loader;
-            _prototypes = prototypes;
+            _loader = loader ?? throw new ArgumentNullException(nameof(loader));
         }
 
         public ICharacter FromDto(CharacterDto dto)

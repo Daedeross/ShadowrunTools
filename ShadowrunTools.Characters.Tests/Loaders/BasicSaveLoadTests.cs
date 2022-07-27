@@ -19,8 +19,10 @@ namespace ShadowrunTools.Characters.Tests.Loaders
         public void SimpleCharacterSaveLoadTest()
         {
             var logger = new Castle.Core.Logging.NullLogger();
-            var serializer = new JsonSerializer();
-            serializer.Formatting = Formatting.Indented;
+            var serializer = new JsonSerializer
+            {
+                Formatting = Formatting.Indented
+            };
 
             var rules = new GameRules
             {
@@ -39,7 +41,6 @@ namespace ShadowrunTools.Characters.Tests.Loaders
             };
 
             var prototypes = dataLoader.ReloadAll();
-            var defaultMeta = prototypes.DefaultMetavariant;
             var traitFactory = new TraitFactory(rules);
             var characterFactory = new CharacterFactory(rules, traitFactory);
             var character = characterFactory.Create(prototypes);
@@ -53,7 +54,7 @@ namespace ShadowrunTools.Characters.Tests.Loaders
             character.Priorities.ResourcePriority = PriorityLevel.E;
 
             ICharacterPersistence loader = dataLoader;
-            var characterLoader = new CharacterLoader(new TraitLoader(prototypes, rules), prototypes);
+            var characterLoader = new CharacterLoader(new TraitLoader(prototypes, rules));
 
             var filename = "testChar.sr5";
 

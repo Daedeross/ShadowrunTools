@@ -4,6 +4,8 @@ using Avalonia.Controls.ApplicationLifetimes;
 //using Avalonia.Logging.Serilog;
 using Avalonia.ReactiveUI;
 
+#nullable enable
+
 namespace ShadowrunTools.Characters.Avalonia
 {
     class Program
@@ -18,7 +20,7 @@ namespace ShadowrunTools.Characters.Avalonia
         public static AppBuilder BuildAvaloniaApp()
             => AppBuilder.Configure<App>()
                 .UsePlatformDetect()
-                .LogToDebug()
+                .LogToTrace()
                 .UseReactiveUI();
     }
 }

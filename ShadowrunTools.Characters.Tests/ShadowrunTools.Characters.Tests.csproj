@@ -18,7 +18,6 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.2-beta1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,7 +25,6 @@
     <ProjectReference Include="..\ShadowrunTools.Characters.ViewModels\ShadowrunTools.Characters.ViewModels.csproj" />
     <ProjectReference Include="..\ShadowrunTools.Characters\ShadowrunTools.Characters.csproj" />
     <ProjectReference Include="..\ShadowrunTools.Dsl\ShadowrunTools.Dsl.csproj" />
-    <ProjectReference Include="..\ShadowrunTools.Expressions\ShadowrunTools.Expressions.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -6,6 +6,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
+#nullable enable
+
 namespace ShadowrunTools.Characters.Wpf
 {
     /// <summary>

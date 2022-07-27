@@ -77,7 +77,7 @@ namespace ShadowrunTools.Characters.Tests
 
             public int DependentProperty2 => _model.DependentProperty2;
 
-            public OaphTraitViewModel(IOaphTrait model!!)
+            public OaphTraitViewModel(IOaphTrait model)
             {
                 _model = model;
 

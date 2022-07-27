@@ -15,7 +15,7 @@ namespace ShadowrunTools.Characters.Factories
         private readonly IPrototypeRepository _prototypeRepository;
         private readonly IRules _rules;
 
-        public TraitLoader(IPrototypeRepository prototypeRepository!!, IRules rules!!)
+        public TraitLoader(IPrototypeRepository prototypeRepository, IRules rules)
         {
             _prototypeRepository = prototypeRepository;
             _rules = rules;

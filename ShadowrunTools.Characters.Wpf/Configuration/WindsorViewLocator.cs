@@ -9,6 +9,8 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
+#nullable enable
+
 namespace ShadowrunTools.Characters.Wpf.Configuration
 {
     internal class WindsorViewLocator : IViewLocator
@@ -16,7 +18,7 @@ namespace ShadowrunTools.Characters.Wpf.Configuration
         private readonly IViewFactory _viewFactory;
         private readonly MethodInfo _resolve;
         private readonly ConcurrentDictionary<Type, Func<IViewFor?>> _cache
-            = new ConcurrentDictionary<Type, Func<IViewFor?>>();
+            = new();
 
         public WindsorViewLocator(IViewFactory viewFactory)
         {

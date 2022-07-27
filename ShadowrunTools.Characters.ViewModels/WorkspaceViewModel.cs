@@ -50,7 +50,7 @@
             set => this.RaiseAndSetIfChanged(ref _currentCharacter, value);
         }
 
-        public WorkspaceViewModel(IViewModelFactory viewModelFactory!!, IDataLoader dataLoader!!, IRules rules!!, DisplaySettings displaySettings)
+        public WorkspaceViewModel(IViewModelFactory viewModelFactory, IDataLoader dataLoader, IRules rules, DisplaySettings displaySettings)
             : base(displaySettings)
         {
             _viewModelFactory = viewModelFactory;

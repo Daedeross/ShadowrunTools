@@ -26,10 +26,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShadowrunTools.Characters.W
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShadowrunTools.Characters.Avalonia", "ShadowrunTools.Characters.Avalonia\ShadowrunTools.Characters.Avalonia.csproj", "{1CF1FCC3-49AD-4558-9393-89000448300C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShadowrunTools.Expressions", "ShadowrunTools.Expressions\ShadowrunTools.Expressions.csproj", "{547CEC59-5D6D-42E6-95A0-0647C97496B3}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpressionEvaluator", "ExpressionEvaluator\ExpressionEvaluator.csproj", "{210E48E9-066E-49C7-8837-A6605BCEBB33}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShadowrunTools.Characters.ViewModels.Contract", "ShadowrunTools.Characters.ViewModels.Contract\ShadowrunTools.Characters.ViewModels.Contract.csproj", "{11E9B604-C1FB-4D97-BA5D-7EC3FBAF0EBF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShadowrunTools.Dsl", "ShadowrunTools.Dsl\ShadowrunTools.Dsl.csproj", "{4BA7B35A-A55E-481C-B653-409AB7112C9B}"
@@ -76,14 +72,6 @@ Global
 		{1CF1FCC3-49AD-4558-9393-89000448300C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CF1FCC3-49AD-4558-9393-89000448300C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1CF1FCC3-49AD-4558-9393-89000448300C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{547CEC59-5D6D-42E6-95A0-0647C97496B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{547CEC59-5D6D-42E6-95A0-0647C97496B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{547CEC59-5D6D-42E6-95A0-0647C97496B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{547CEC59-5D6D-42E6-95A0-0647C97496B3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{210E48E9-066E-49C7-8837-A6605BCEBB33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{210E48E9-066E-49C7-8837-A6605BCEBB33}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{210E48E9-066E-49C7-8837-A6605BCEBB33}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{210E48E9-066E-49C7-8837-A6605BCEBB33}.Release|Any CPU.Build.0 = Release|Any CPU
 		{11E9B604-C1FB-4D97-BA5D-7EC3FBAF0EBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{11E9B604-C1FB-4D97-BA5D-7EC3FBAF0EBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11E9B604-C1FB-4D97-BA5D-7EC3FBAF0EBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
