@@ -1,4 +1,5 @@
 ﻿using ShadowrunTools.Characters.Model;
+using ShadowrunTools.Foundation;
 using System.Collections.Generic;
 
 namespace ShadowrunTools.Characters.Priorities
@@ -20,9 +21,13 @@ namespace ShadowrunTools.Characters.Priorities
         private readonly Dictionary<PriorityLevel, IResourcesPriority> _resources;
         public IReadOnlyDictionary<PriorityLevel, IResourcesPriority> Resources => _resources;
 
-        //public GamePriorities(Priorities)
-        //{
-
-        //}
+        public GamePriorities(IPriorities source)
+        {
+            _metatype = source.Metatype.Copy();
+            _attributes = source.Attributes.Copy();
+            _specials = source.Specials.Copy();
+            _skills = source.Skills.Copy();
+            _resources = source.Resources.Copy();
+        }
     }
 }
