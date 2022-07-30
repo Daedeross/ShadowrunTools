@@ -6,13 +6,15 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Linq;
+using System.Reactive.Linq;
 using System.Text;
 using System.Windows.Input;
 
 namespace ShadowrunTools.Characters.ViewModels.Traits
 {
-    public class LeveledTraitViewModel : TraitViewModelBase, ILeveledTrait
+    public abstract class LeveledTraitViewModel : TraitViewModelBase, ILeveledTraitViewModel
     {
         private readonly ILeveledTrait _leveledTrait;
         private static readonly ISet<string> _propertyNames;
@@ -27,21 +29,28 @@ namespace ShadowrunTools.Characters.ViewModels.Traits
             : base(displaySettings, leveledTrait)
         {
             _leveledTrait = leveledTrait;
-            //_leveledTrait.ItemChanged += OnTraitChanged;
+
+            _displayRating = this.WhenAnyValue(x => x.ImprovedRating, x => x.AugmentedRating, (imp, aug) => aug > imp ? $"{imp}({aug})" : $"{imp}")
+                .ToProperty(this, x => x.DisplayRating);
+
+            _maxBaseIncrease = this.WhenAnyValue(x => x.Min, x => x.Max, x => x.Improvement, (min, max, imp) => max - min - imp)
+                .ToProperty(this, x => x.MaxBaseIncrease);
+
+            _maxImprovement = this.WhenAnyValue(x => x.Min, x => x.Max, x => x.BaseIncrease, (min, max, inc) => max - min - inc)
+                .ToProperty(this, x => x.MaxImprovement);
+
         }
 
-        //public event EventHandler<ItemChangedEventArgs> ItemChanged
-        //{
-        //    add
-        //    {
-        //        _leveledTrait.ItemChanged += value;
-        //    }
+        private ObservableAsPropertyHelper<string> _displayRating;
+        public string DisplayRating => _displayRating.Value;
 
-        //    remove
-        //    {
-        //        _leveledTrait.ItemChanged -= value;
-        //    }
-        //}
+        private ObservableAsPropertyHelper<int> _maxBaseIncrease;
+        public int MaxBaseIncrease => _maxBaseIncrease.Value;
+
+        private ObservableAsPropertyHelper<int> _maxImprovement;
+        public int MaxImprovement => _maxImprovement.Value;
+
+        #region ILeveledTrait
 
         public int ExtraMin { get => _leveledTrait.ExtraMin; set => _leveledTrait.ExtraMin = value; }
 
@@ -51,7 +60,7 @@ namespace ShadowrunTools.Characters.ViewModels.Traits
 
         public int Max => _leveledTrait.Max;
 
-        public int BaseIncrease { get; set; }
+        public int BaseIncrease { get => _leveledTrait.BaseIncrease; set => _leveledTrait.BaseIncrease = value; }
 
         public int BaseRating { get => _leveledTrait.BaseRating; }
 
@@ -66,8 +75,6 @@ namespace ShadowrunTools.Characters.ViewModels.Traits
         public int AugmentedMax => _leveledTrait.AugmentedMax;
 
         public ObservableCollection<IAugment> Augments => _leveledTrait.Augments;
-
-        #region ILeveledTrait
 
         public int CompareTo(ILeveledTrait other)
         {
@@ -95,15 +102,5 @@ namespace ShadowrunTools.Characters.ViewModels.Traits
 
         #endregion
 
-        protected override void OnTraitChanged(object sender, ItemChangedEventArgs e)
-        {
-            foreach (var propName in e.PropertyNames)
-            {
-                if (_propertyNames.Contains(propName))
-                {
-                    this.RaisePropertyChanged(propName);
-                }
-            }
-        }
     }
 }

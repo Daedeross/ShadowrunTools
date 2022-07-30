@@ -19,7 +19,7 @@ namespace ShadowrunTools.Serialization
 
         public IPrototypeRepository Repository { get; protected set; }
 
-        public List<string> CurrentFiles { get; set; } 
+        public List<string> CurrentFiles { get; set; } = new List<string>();
 
         public DataLoader(JsonSerializer serializer, ILogger logger)
         {

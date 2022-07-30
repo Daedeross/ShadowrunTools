@@ -21,50 +21,21 @@ namespace ShadowrunTools.Characters.ViewModels
     public class CharacterViewModel: ViewModelBase, ICharacterViewModel
     {
         private readonly ICharacter _character;
+        private readonly IViewModelFactory _viewModelFactory;
 
-        public CharacterViewModel(DisplaySettings displaySettings, ICharacter character, IPriorities priorities)
+        public CharacterViewModel(DisplaySettings displaySettings, ICharacter character, IViewModelFactory viewModelFactory)
             : base(displaySettings)
         {
             _character = character ?? throw new ArgumentNullException(nameof(character));
+            _viewModelFactory = viewModelFactory ?? throw new ArgumentNullException(nameof(viewModelFactory));
 
-            _priorities = new PrioritiesViewModel(displaySettings, priorities, character.Priorities);
+            Priorities = _viewModelFactory.For<IPrioritiesViewModel, ICharacter>(_character);
+            Common = _viewModelFactory.For<ICommonViewModel, ICharacter>(_character);
 
             Statuses = new ObservableCollection<ValidatorItemViewModel>(_character.Statuses.Select(
                 item => new ValidatorItemViewModel(displaySettings, item)));
             _character.Statuses.CollectionChanged += OnStatusesChanged;
 
-            InitializeAttributes();
-        }
-
-        private void InitializeAttributes()
-        {
-            var attributes = _character[TraitCategories.Attribute];
-
-            var body     = attributes["Body"];
-            var agility  = attributes["Agility"];
-            var reaction = attributes["Reaction"];
-            var strength = attributes["Strength"];
-
-            var willpower = attributes["Willpower"];
-            var logic     = attributes["Logic"];
-            var intuition = attributes["Intuition"];
-            var charisma  = attributes["Charisma"];
-
-            Body = body as IAttribute;
-            Agility = agility as IAttribute;
-            Reaction = reaction as IAttribute;
-            Strength = strength as IAttribute;
-
-            Willpower = willpower as IAttribute;
-            Logic = logic as IAttribute;
-            Intuition = intuition as IAttribute;
-            Charisma = charisma as IAttribute;
-
-            _attributes = new SourceCache<AttributeViewModel, Guid>(attr => attr.Id);
-            foreach (var attr in attributes.Values)
-            {
-                _attributes.AddOrUpdate(new AttributeViewModel(_displaySettings, attr as IAttribute));
-            }
         }
 
         #region Character Properties
@@ -73,22 +44,13 @@ namespace ShadowrunTools.Characters.ViewModels
 
         #endregion // Character Properties
 
-        #region Core Attributes
+        #region Child ViewModels
 
-        private SourceCache<AttributeViewModel, Guid> _attributes;
-        public IObservableCollection<IAttributeViewModel> Attributes { get; set; } = new ObservableCollectionExtended<IAttributeViewModel>();
+        public IPrioritiesViewModel Priorities { get; private set; }
 
-        public ILeveledTrait Body { get; private set; }
-        public ILeveledTrait Agility { get; private set; }
-        public ILeveledTrait Reaction { get; private set; }
-        public ILeveledTrait Strength { get; private set; }
+        public ICommonViewModel Common { get; private set; }
 
-        public ILeveledTrait Willpower { get; private set; }
-        public ILeveledTrait Logic { get; private set; }
-        public ILeveledTrait Intuition { get; private set; }
-        public ILeveledTrait Charisma { get; private set; }
-
-        #endregion // Core Attributes
+        #endregion // Child ViewModels
 
         #region Status
 
@@ -106,9 +68,6 @@ namespace ShadowrunTools.Characters.ViewModels
         }
 
         #endregion
-
-        private PrioritiesViewModel _priorities;
-        public PrioritiesViewModel Priorities => _priorities;
 
         #region Commands
 

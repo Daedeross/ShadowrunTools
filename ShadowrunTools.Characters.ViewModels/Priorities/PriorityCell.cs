@@ -1,13 +1,11 @@
 ﻿using ReactiveUI;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 
 namespace ShadowrunTools.Characters.ViewModels
 {
-    public class PriorityCell : ViewModelBase
+    public class PriorityCell : ViewModelBase, IPriorityCell
     {
         public List<string> Items { get; private set; }
         public string VisibleItems { get; private set; }

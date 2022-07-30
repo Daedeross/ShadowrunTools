@@ -1,6 +1,7 @@
 {
   "Metavariants": [
     {
+      "Id": "e16218e4-670d-44b4-80ec-c1384e401385",
       "Name": "Human",
       "Metatype": "Human",
       "Attributes": [
@@ -52,6 +53,7 @@
       ]
     },
     {
+      "Id": "918ed7cc-85ba-4ccf-bf09-44b7bd48d5f8",
       "Name": "Elf",
       "Metatype": "Elf",
       "Attributes": [
@@ -94,6 +96,162 @@
           "Name": "Charisma",
           "Min": 3,
           "Max": 8
+        },
+        {
+          "Name": "Edge",
+          "Min": 1,
+          "Max": 6
+        }
+      ]
+    },
+    {
+      "Id": "46ed84d0-4fa7-4226-b1ac-82aedc79c866",
+      "Name": "Dwarf",
+      "Metatype": "Dwarf",
+      "Attributes": [
+        {
+          "Name": "Body",
+          "Min": 3,
+          "Max": 8
+        },
+        {
+          "Name": "Agility",
+          "Min": 1,
+          "Max": 6
+        },
+        {
+          "Name": "Reaction",
+          "Min": 1,
+          "Max": 5
+        },
+        {
+          "Name": "Strength",
+          "Min": 3,
+          "Max": 8
+        },
+        {
+          "Name": "Willpower",
+          "Min": 2,
+          "Max": 7
+        },
+        {
+          "Name": "Logic",
+          "Min": 1,
+          "Max": 6
+        },
+        {
+          "Name": "Intuition",
+          "Min": 1,
+          "Max": 6
+        },
+        {
+          "Name": "Charisma",
+          "Min": 1,
+          "Max": 6
+        },
+        {
+          "Name": "Edge",
+          "Min": 1,
+          "Max": 6
+        }
+      ]
+    },
+    {
+      "Id": "facce70e-9ba9-46d7-8dca-504d3af89300",
+      "Name": "Ork",
+      "Metatype": "Ork",
+      "Attributes": [
+        {
+          "Name": "Body",
+          "Min": 4,
+          "Max": 9
+        },
+        {
+          "Name": "Agility",
+          "Min": 1,
+          "Max": 6
+        },
+        {
+          "Name": "Reaction",
+          "Min": 1,
+          "Max": 6
+        },
+        {
+          "Name": "Strength",
+          "Min": 3,
+          "Max": 8
+        },
+        {
+          "Name": "Willpower",
+          "Min": 1,
+          "Max": 6
+        },
+        {
+          "Name": "Logic",
+          "Min": 1,
+          "Max": 5
+        },
+        {
+          "Name": "Intuition",
+          "Min": 1,
+          "Max": 6
+        },
+        {
+          "Name": "Charisma",
+          "Min": 1,
+          "Max": 5
+        },
+        {
+          "Name": "Edge",
+          "Min": 1,
+          "Max": 6
+        }
+      ]
+    },
+    {
+      "Id": "8b2fa92d-16f3-4c63-96e4-c77afa074205",
+      "Name": "Troll",
+      "Metatype": "Troll",
+      "Attributes": [
+        {
+          "Name": "Body",
+          "Min": 5,
+          "Max": 10
+        },
+        {
+          "Name": "Agility",
+          "Min": 1,
+          "Max": 5
+        },
+        {
+          "Name": "Reaction",
+          "Min": 1,
+          "Max": 6
+        },
+        {
+          "Name": "Strength",
+          "Min": 5,
+          "Max": 10
+        },
+        {
+          "Name": "Willpower",
+          "Min": 1,
+          "Max": 6
+        },
+        {
+          "Name": "Logic",
+          "Min": 1,
+          "Max": 5
+        },
+        {
+          "Name": "Intuition",
+          "Min": 1,
+          "Max": 5
+        },
+        {
+          "Name": "Charisma",
+          "Min": 1,
+          "Max": 4
         },
         {
           "Name": "Edge",

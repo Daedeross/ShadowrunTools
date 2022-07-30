@@ -6,20 +6,10 @@ using System.Text;
 
 namespace ShadowrunTools.Characters.ViewModels
 {
-    public interface ICharacterViewModel : IDocumentViewModel, IViewModel<ICharacter>
+    public interface ICharacterViewModel : IViewModel<ICharacter>, IDocumentViewModel
     {
-        string Name { get; set; }
+        IPrioritiesViewModel Priorities { get; }
 
-        IObservableCollection<IAttributeViewModel> Attributes { get; }
-
-        ILeveledTrait Body { get; }
-        ILeveledTrait Agility { get; }
-        ILeveledTrait Reaction { get; }
-        ILeveledTrait Strength { get; }
-
-        ILeveledTrait Willpower { get; }
-        ILeveledTrait Logic { get; }
-        ILeveledTrait Intuition { get; }
-        ILeveledTrait Charisma { get; }
+        ICommonViewModel Common { get; }
     }
 }

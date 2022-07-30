@@ -9,5 +9,7 @@
     public interface IDataLoader
     {
         IPrototypeRepository ReloadAll();
+
+        List<string> CurrentFiles { get; }
     }
 }

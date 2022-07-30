@@ -1,5 +1,6 @@
 ﻿using ReactiveUI;
 using ShadowrunTools.Characters.ViewModels;
+using System.Reactive.Disposables;
 
 namespace ShadowrunTools.Characters.Wpf.Views
 {
@@ -14,7 +15,11 @@ namespace ShadowrunTools.Characters.Wpf.Views
 
             this.WhenActivated(d =>
             {
-                //this
+                this.Bind(ViewModel, vm => vm.Priorities, view => view.Priorities.ViewModel)
+                    .DisposeWith(d);
+
+                this.Bind(ViewModel, vm => vm.Common, view => view.Attributes.ViewModel)
+                    .DisposeWith(d);
             });
         }
     }

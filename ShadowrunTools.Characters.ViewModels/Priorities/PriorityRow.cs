@@ -7,22 +7,22 @@ using System.Text;
 
 namespace ShadowrunTools.Characters.ViewModels
 {
-    public class PriorityRow : ViewModelBase
+    public class PriorityRow : ViewModelBase, IPriorityRow
     {
         private readonly IPriorities _priorities;
         private readonly ICharacterPriorities _characterPriorities;
 
         public PriorityLevel Level { get; private set; }
 
-        public PriorityCell Metatype { get; set; }
+        public IPriorityCell Metatype { get; set; }
 
-        public PriorityCell Attributes { get; set; }
+        public IPriorityCell Attributes { get; set; }
 
-        public PriorityCell Specials { get; set; }
+        public IPriorityCell Specials { get; set; }
 
-        public PriorityCell Skills { get; set; }
+        public IPriorityCell Skills { get; set; }
 
-        public PriorityCell Resources { get; set; }
+        public IPriorityCell Resources { get; set; }
 
         public PriorityRow(DisplaySettings displaySettings,
             PriorityLevel level,

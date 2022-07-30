@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ShadowrunTools.Characters.ViewModels
 {
-    public interface IAttributeViewModel : IViewModel<IAttribute>, IAttribute
+    public interface IQualityViewModel : IViewModel<IQuality>, IQuality
     {
     }
 }

@@ -20,7 +20,9 @@ namespace ShadowrunTools.Characters
 
         ITraitContainer<IAttribute> Attributes { get; }
 
-        ITraitContainer<ISkill> ActiveSkills { get; }
+        ITraitContainer<ISkill> Skills { get; }
+
+        ITraitContainer<IQuality> Qualities { get; }
 
         ObservableCollection<IValidatorItem> Statuses { get; }
 

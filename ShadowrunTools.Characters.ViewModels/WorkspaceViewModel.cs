@@ -38,16 +38,16 @@
             }
         }
 
-        public IObservableCollection<IDocumentViewModel> Documents => throw new NotImplementedException();
+        public IObservableCollection<IViewContainer> Documents { get; } = new ObservableCollectionExtended<IViewContainer>();
 
         public IObservableCollection<ICharacterViewModel> Characters { get; } = new ObservableCollectionExtended<ICharacterViewModel>();
 
 
-        private CharacterViewModel _currentCharacter;
-        public CharacterViewModel CurrentCharacter
+        private IViewContainer _currentTab;
+        public IViewContainer CurrentTab
         {
-            get => _currentCharacter;
-            set => this.RaiseAndSetIfChanged(ref _currentCharacter, value);
+            get => _currentTab;
+            set => this.RaiseAndSetIfChanged(ref _currentTab, value);
         }
 
         public WorkspaceViewModel(IViewModelFactory viewModelFactory, IDataLoader dataLoader, IRules rules, DisplaySettings displaySettings)
@@ -88,13 +88,32 @@
         protected virtual void NewCharacterExecute()
         {
             var prototypes = Prototypes;
-            var defaultMeta = prototypes.DefaultMetavariant;
 
             var character = _characterFactory.Create(prototypes);
             character.Name = "New Character";
-            var viewModel = new CharacterViewModel(_displaySettings, character, prototypes.Priorities);
+            //var viewModel = new CharacterViewModel(_displaySettings, character, prototypes.Priorities);
+            //var viewModel = _viewModelFactory.For<ICharacterViewModel, ICharacter>(character);
+            var viewModel = _viewModelFactory.Character(character, prototypes.Priorities);
             Characters.Add(viewModel);
-            CurrentCharacter = viewModel;
+            var document = _viewModelFactory.CreateContainer(character.Name, viewModel, true);
+            CurrentTab = document;
+            Documents.Add(document);
+        }
+
+        public ICommand LoadDataFile { get; }
+
+        public void LoadDataFileExecute()
+        {
+
+        }
+
+        public void LoadDataFiles(string[] filesNames)
+        {
+            if (filesNames.Any())
+            {
+                _dataLoader.CurrentFiles.AddRange(filesNames);
+                _dataLoader.ReloadAll();
+            }
         }
 
         #endregion

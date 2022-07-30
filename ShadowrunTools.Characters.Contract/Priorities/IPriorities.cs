@@ -7,7 +7,7 @@ namespace ShadowrunTools.Characters.Priorities
 {
     public interface IPriorities
     {
-        IReadOnlyDictionary<PriorityLevel ,IMetatypePriority> Metatype { get; }
+        IReadOnlyDictionary<PriorityLevel, IMetatypePriority> Metatype { get; }
 
         IReadOnlyDictionary<PriorityLevel, IAttributesPriority> Attributes { get; }
 

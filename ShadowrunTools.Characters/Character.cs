@@ -13,6 +13,14 @@ namespace ShadowrunTools.Characters
 {
     public class Character: CategorizedTraitContainer, ICharacter, INotifyItemChanged
     {
+        public Character(
+            ICharacterMetatype characterMetatype,
+            ICharacterPriorities characterPriorities)
+        {
+            Metatype = characterMetatype;
+            Priorities = characterPriorities;
+        }
+
         public string Name { get; set; }
 
         public GenerationMethod GenerationMethod { get; set; }
@@ -21,13 +29,9 @@ namespace ShadowrunTools.Characters
 
         public ICharacterMetatype Metatype { get; private set; }
 
-        public Character(
-            ICharacterMetatype characterMetatype,
-            ICharacterPriorities characterPriorities)
-        {
-            Metatype = characterMetatype;
-            Priorities = characterPriorities;
-        }
+        public ISpecialChoice SpecialChoice => null;
+
+        public ObservableCollection<IValidatorItem> Statuses { get; set; } = new ObservableCollection<IValidatorItem>();
 
         #region INotifyItemChanged
 
@@ -65,42 +69,40 @@ namespace ShadowrunTools.Characters
             Attributes[attribute.Name] = attribute;
         }
 
-        //internal IAttribute CreateAttribute(IAttributePrototype prototype)
-        //{
-        //    return _traitFactory.CreateAttribute(this, prototype);
-        //}
-
         #endregion // Attributes
 
-        #region Skills
 
-        public ITraitContainer<ISkill> ActiveSkills
+        #region Qualities
+
+        public ITraitContainer<IQuality> Qualities
         {
             get
             {
-                if (!TryGetValue(TraitCategories.ActiveSkill, out ITraitContainer skills))
+                if (!TryGetValue(TraitCategories.Quality, out ITraitContainer skills))
                 {
-                    skills = new TraitContainer<ISkill>(TraitCategories.ActiveSkill);
-                    this[TraitCategories.ActiveSkill] = skills;
+                    skills = new TraitContainer<IQuality>(TraitCategories.Quality);
+                    this[TraitCategories.Skill] = skills;
+                }
+                return skills as ITraitContainer<IQuality>;
+            }
+        }
+
+        #endregion // Qualities
+
+        #region Skills
+
+        public ITraitContainer<ISkill> Skills
+        {
+            get
+            {
+                if (!TryGetValue(TraitCategories.Skill, out ITraitContainer skills))
+                {
+                    skills = new TraitContainer<ISkill>(TraitCategories.Skill);
+                    this[TraitCategories.Skill] = skills;
                 }
                 return skills as ITraitContainer<ISkill>;
             }
         }
-
-        public ISpecialChoice SpecialChoice => null;
-
-        public ObservableCollection<IValidatorItem> Statuses { get; set; } = new ObservableCollection<IValidatorItem>();
-
-        public void AddActiveSkill(ISkill skill)
-        {
-            ActiveSkills[skill.Name] = skill;
-        }
-
-        // TODO: Move to factory
-        //internal ISkill CreateSkill(ISkillPrototype prototype)
-        //{
-        //    return _traitFactory.CreateSkill(this, prototype);
-        //}
 
         #endregion // Skills
     }

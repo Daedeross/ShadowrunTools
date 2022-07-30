@@ -17,7 +17,8 @@
 
         <Menu Grid.Row="0">
             <MenuItem Header="_File">
-                <MenuItem Header="_New" Name="NewButton" />
+                <MenuItem Header="_New" Name="NewButton" Command="ApplicationCommands.New" />
+                <MenuItem Header="_Load Data" Name="LoadDataButton" Click="LoadDataButton_Click" />
             </MenuItem>
             <MenuItem Header="_Characters" >
                 <MenuItem Header="Not Implemented" />
@@ -28,7 +29,17 @@
                 <TextBlock >Status Here</TextBlock>
             </StatusBarItem>
         </StatusBar>
-        <dragablz:TabablzControl x:Name="DocumentsTabControl">
+        <dragablz:TabablzControl Grid.Row="1" x:Name="DocumentsTabControl">
+            <dragablz:TabablzControl.HeaderItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Title}" />
+                </DataTemplate>
+            </dragablz:TabablzControl.HeaderItemTemplate>
+            <dragablz:TabablzControl.ContentTemplate>
+                <DataTemplate>
+                    <rxui:ViewModelViewHost ViewModel="{Binding Content}" />
+                </DataTemplate>
+            </dragablz:TabablzControl.ContentTemplate>
         </dragablz:TabablzControl>
     </Grid>
 </Window>

@@ -1,6 +1,7 @@
 {
   "Attributes": [
     {
+      "Id": "972c38e9-c2dd-4693-b9d5-2298fedf0158",
       "ShortName": "BOD",
       "CustomOrder": "00",
       "TraitType": "Attribute",
@@ -10,6 +11,7 @@
       "Page": 51
     },
     {
+      "Id": "1808c09d-e8f8-4972-ae4d-0ff7cae00d5e",
       "ShortName": "AGI",
       "CustomOrder": "01",
       "TraitType": "Attribute",
@@ -19,6 +21,7 @@
       "Page": 51
     },
     {
+      "Id": "0cd0c66d-efe8-4c34-8d2b-e75e278b6e98",
       "ShortName": "REA",
       "CustomOrder": "02",
       "TraitType": "Attribute",
@@ -28,6 +31,7 @@
       "Page": 51
     },
     {
+      "Id": "e8207222-ab11-4d3d-a304-c7911711af63",
       "ShortName": "STR",
       "CustomOrder": "03",
       "TraitType": "Attribute",
@@ -37,6 +41,7 @@
       "Page": 51
     },
     {
+      "Id": "68200af9-9f70-4bee-b275-079290d6a026",
       "ShortName": "WIL",
       "CustomOrder": "10",
       "TraitType": "Attribute",
@@ -46,6 +51,7 @@
       "Page": 51
     },
     {
+      "Id": "9f986025-2cf6-4663-a94d-1f022753df56",
       "ShortName": "LOG",
       "CustomOrder": "11",
       "TraitType": "Attribute",
@@ -55,6 +61,7 @@
       "Page": 51
     },
     {
+      "Id": "ec7e03f1-7bfe-4763-9ec9-d72291f2f2e1",
       "ShortName": "INT",
       "CustomOrder": "12",
       "TraitType": "Attribute",
@@ -64,6 +71,7 @@
       "Page": 51
     },
     {
+      "Id": "fa5631da-b680-47ab-83a4-ef5149d7d729",
       "ShortName": "CHA",
       "CustomOrder": "13",
       "TraitType": "Attribute",
@@ -73,6 +81,7 @@
       "Page": 51
     },
     {
+      "Id": "f473fd89-a4a6-46dd-85a6-6233957035b6",
       "ShortName": "EDG",
       "CustomOrder": "20",
       "TraitType": "Attribute",
@@ -82,6 +91,7 @@
       "Page": 51
     },
     {
+      "Id": "100ceb2b-b424-41dc-a5ec-926aa3fd42e5",
       "ShortName": "MAG",
       "CustomOrder": "21",
       "TraitType": "Attribute",
@@ -91,6 +101,7 @@
       "Page": 51
     },
     {
+      "Id": "b14750c5-6804-43ae-aa44-723b3f534773",
       "ShortName": "RES",
       "CustomOrder": "22",
       "TraitType": "Attribute",

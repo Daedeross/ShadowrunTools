@@ -7,7 +7,9 @@ using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using ShadowrunTools.Characters.Priorities;
 using ShadowrunTools.Characters.ViewModels;
+using ShadowrunTools.Characters.Wpf.ViewModel;
 using ShadowrunTools.Foundation;
 using ShadowrunTools.Serialization;
 using System;
@@ -56,6 +58,15 @@ namespace ShadowrunTools.Characters.Wpf.Configuration
                 Component.For<ReactiveUI.IViewLocator>()
                     .ImplementedBy<WindsorViewLocator>()
                     .Named(nameof(WindsorViewLocator)),
+                Component.For<IViewContainer>()
+                    .ImplementedBy<ViewContainer>()
+                    .LifestyleTransient(),
+                Component.For<DisplaySettings>()
+                    .ImplementedBy<DisplaySettings>()
+                    .LifestyleSingleton());
+
+            // TODO: The following should eventually be scoped to a settings file or the like.
+            container.Register(
                 Component.For<IDataLoader>()
                     .ImplementedBy<DataLoader>(),
                 Component.For<IRules>()             // TODO: replace with loading of settings
@@ -68,9 +79,16 @@ namespace ShadowrunTools.Characters.Wpf.Configuration
                         return rules;
                     })
                     .LifestyleSingleton(),
-                Component.For<DisplaySettings>()
-                    .ImplementedBy<DisplaySettings>()
-                    .LifestyleSingleton());
+                Component.For<IPriorities>()
+                    .UsingFactoryMethod(kernel =>
+                    {
+                        var loader = kernel.Resolve<IDataLoader>();
+                        var repo = loader.ReloadAll();
+                        kernel.ReleaseComponent(loader);
+
+                        return repo.Priorities;
+                    }));
+
 
             container.Register(
                 Classes.FromAssemblyContaining<MainWindow>()

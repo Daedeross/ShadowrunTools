@@ -23,12 +23,14 @@
     </UserControl.Resources>
     <ToggleButton Margin="-6,0" Padding="0" IsChecked="{Binding IsSelected, Mode=TwoWay}" >
         <TextBlock Text="{Binding VisibleItems}" >
-            <TextBlock.ToolTip>
-                <ListBox ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-                         ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                         ItemsSource="{Binding Items}">
-                </ListBox>
-            </TextBlock.ToolTip>
         </TextBlock>
     </ToggleButton>
+    <UserControl.ToolTip>
+        <ListBox Margin="0"
+                 Padding="0"
+                         ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                         ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                         ItemsSource="{Binding Items}">
+        </ListBox>
+    </UserControl.ToolTip>
 </UserControl>

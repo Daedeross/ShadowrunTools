@@ -81,12 +81,41 @@ namespace ShadowrunTools.Characters.Wpf
 
             this.WhenActivated(d =>
             {
-                this.OneWayBind(ViewModel, vm => vm.Characters, view => view.DocumentsTabControl.ItemsSource)
+                this.OneWayBind(ViewModel, vm => vm.Documents, view => view.DocumentsTabControl.ItemsSource)
                     .DisposeWith(d);
+
+                this.BindCommand(ViewModel, vm => vm.NewCharacterCommand, view => view.NewButton)
+                    .DisposeWith(d);
+
+                this.Bind(ViewModel, vm => vm.CurrentTab, view => view.DocumentsTabControl.SelectedValue)
+                    .DisposeWith(d);
+
+                // Test Code
+                var files = System.IO.Directory.EnumerateFiles(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources/Prototypes"));
+                ViewModel.LoadDataFiles(files.ToArray());
 
             });
 
             DataContext = ViewModel;
+        }
+
+        public void LoadFileDialog(Action<string[]> callback)
+        {
+            var dialog = new Microsoft.Win32.OpenFileDialog();
+            dialog.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            dialog.Multiselect = true;
+
+            var result = dialog.ShowDialog();
+
+            if (result == true)
+            {
+                callback(dialog.FileNames);
+            }
+        }
+
+        private void LoadDataButton_Click(object sender, RoutedEventArgs e)
+        {
+            LoadFileDialog(ViewModel.LoadDataFiles);
         }
     }
 }

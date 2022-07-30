@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:ShadowrunTools.Characters.Wpf.Views"
              mc:Ignorable="d" 
              d:DesignHeight="24" d:DesignWidth="100">
-    <StatusBar ItemsSource="{Binding Statuses}">
+    <StatusBar >
+        <!--ItemsSource="{Binding Statuses}"-->
         <StatusBar.ItemTemplate>
             <DataTemplate>
                 <StatusBarItem>

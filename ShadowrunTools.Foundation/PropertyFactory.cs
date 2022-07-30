@@ -41,9 +41,9 @@ namespace ShadowrunTools.Foundation
             var props = type.GetProperties()
                 .ToDictionary(pi => pi.Name, pi => pi);
 
-            foreach (var prop in propList.Where(p => p.Value.Editable))
+            foreach (var kvp in propList.Where(p => p.Value.Editable))
             {
-                props[prop.Key].SetValue(obj, prop.Value);
+                props[kvp.Key].SetValue(obj, kvp.Value.Value);
             }
         }
     }

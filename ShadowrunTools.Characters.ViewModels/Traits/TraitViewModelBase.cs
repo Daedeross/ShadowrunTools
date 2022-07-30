@@ -5,13 +5,14 @@ using ShadowrunTools.Characters.Traits;
 using ShadowrunTools.Foundation;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
 
 namespace ShadowrunTools.Characters.ViewModels.Traits
 {   
-    public class TraitViewModelBase: ViewModelBase, ITrait
+    public abstract class TraitViewModelBase: ViewModelBase, ITrait
     {
         private readonly ITrait _trait;
         private static readonly ISet<string> _propertyNames;
@@ -26,9 +27,9 @@ namespace ShadowrunTools.Characters.ViewModels.Traits
             : base(displaySettings)
         {
             _trait = trait ?? throw new ArgumentNullException(nameof(trait));
-            var notify = trait as INotifyItemChanged ?? throw new ArgumentException("Trait must implement INotifyItemChanged");
 
-            notify.ItemChanged += OnTraitChanged;
+            var notify = trait as INotifyPropertyChanged ?? throw new ArgumentException("Trait must implement INotifyPropertyChanged");
+            notify.PropertyChanged += TraitChanged;
         }
 
         #region ITrait
@@ -100,16 +101,15 @@ namespace ShadowrunTools.Characters.ViewModels.Traits
 
         #endregion // Commands
 
-        protected virtual void OnTraitChanged(object sender, ItemChangedEventArgs e)
+        private void TraitChanged(object sender, PropertyChangedEventArgs e)
         {
-            foreach (var propName in e.PropertyNames)
+            if (Equals(_trait, sender))
             {
-                if (_propertyNames.Contains(propName))
-                {
-                    this.RaisePropertyChanged(propName);
-                }
+                OnTraitChanged(e.PropertyName);
             }
         }
+
+        protected abstract void OnTraitChanged(string propertyName);
 
         private bool _disposed = false;
 
@@ -121,6 +121,7 @@ namespace ShadowrunTools.Characters.ViewModels.Traits
             {
                 if (!_disposed)
                 {
+                    (_trait as INotifyPropertyChanged).PropertyChanged -= TraitChanged;
                     _trait.Dispose();
 
                     _disposed = true;

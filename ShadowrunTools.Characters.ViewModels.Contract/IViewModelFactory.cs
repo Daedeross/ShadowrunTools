@@ -1,4 +1,5 @@
-﻿using ShadowrunTools.Characters.ViewModels;
+﻿using ShadowrunTools.Characters.Priorities;
+using ShadowrunTools.Characters.ViewModels;
 using System.Collections.Generic;
 
 namespace ShadowrunTools.Characters
@@ -9,6 +10,10 @@ namespace ShadowrunTools.Characters
 
         TViewModel For<TViewModel, TModel>(TModel model) where TViewModel : class, IViewModel<TModel>;
 
-        public void Release(IViewModel viewModel);
+        ICharacterViewModel Character(ICharacter character, IPriorities priorities);
+
+        IViewContainer CreateContainer(string title, IViewModel content, bool ownsContent);
+
+        void Release(object viewModel);
     }
 }

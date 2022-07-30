@@ -1,40 +1,35 @@
 ﻿using ReactiveUI;
 using ShadowrunTools.Characters.Traits;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Reactive.Linq;
 using System.Reflection;
+using System.Text;
 using System.Windows.Input;
 
 namespace ShadowrunTools.Characters.ViewModels.Traits
 {
-    public class AttributeViewModel : LeveledTraitViewModel, IAttributeViewModel
+    public class QualityViewModel : LeveledTraitViewModel, IQualityViewModel
     {
-        private readonly IAttribute _attribute;
+        private readonly IQuality _quality;
         private static readonly ISet<string> _propertyNames;
 
-        static AttributeViewModel()
+        static QualityViewModel()
         {
-            _propertyNames = new HashSet<string>(typeof(AttributeViewModel)
+            _propertyNames = new HashSet<string>(typeof(QualityViewModel)
                 .GetProperties(BindingFlags.Instance | BindingFlags.Public)
-                .Where(p => ! typeof(ICommand).IsAssignableFrom(p.PropertyType))
+                .Where(p => !typeof(ICommand).IsAssignableFrom(p.PropertyType))
                 .Select(pi => pi.Name));
         }
 
-        public AttributeViewModel(DisplaySettings displaySettings, IAttribute model)
+        public QualityViewModel(DisplaySettings displaySettings, IQuality model)
             : base(displaySettings, model)
         {
-            _attribute = model;
+            _quality = model;
         }
 
-        #region IAttribute
-
-        public string ShortName => _attribute.ShortName;
-
-        public string CustomOrder { get => _attribute.CustomOrder; set => _attribute.CustomOrder = value; }
-
-        #endregion
+        public bool HasRating => _quality.HasRating;
 
         protected override void OnTraitChanged(string propertyName)
         {

@@ -1,11 +1,11 @@
-﻿using System;
+﻿using ShadowrunTools.Characters.Traits;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ShadowrunTools.Characters.ViewModels
 {
-    public interface IDocumentViewModel : IViewModel
+    public interface ISkillViewModel: IViewModel<ISkill>
     {
-        public string Name { get; set; }
     }
 }
