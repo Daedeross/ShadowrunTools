@@ -17,10 +17,10 @@
         </Grid.RowDefinitions>
         <TabControl>
             <TabItem Header="Priorities">
-                <rxui:ViewModelViewHost x:Name="Priorities" />
+                <local:PrioritiesView x:Name="Priorities" />
             </TabItem>
             <TabItem Header="Attributes">
-                <rxui:ViewModelViewHost x:Name="Attributes" />
+                <local:AttributesView x:Name="Attributes" />
             </TabItem>
         </TabControl>
         <local:StatusBarView DataContext="{Binding}" Grid.Row="1" />

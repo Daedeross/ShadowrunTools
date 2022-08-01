@@ -2,9 +2,9 @@
 using ShadowrunTools.Characters.Traits;
 using System.Diagnostics.CodeAnalysis;
 
-namespace ShadowrunTools.Characters
+namespace ShadowrunTools.Characters.Factories
 {
-    public interface ITraitFactory
+    public interface ITraitFactory : IFactory
     {
         IAttribute CreateAttribute(ICharacter character, IAttributePrototype prototype);
 

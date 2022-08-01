@@ -1,4 +1,5 @@
 ﻿using DynamicData.Binding;
+using ShadowrunTools.Characters.Factories;
 using ShadowrunTools.Characters.Traits;
 using System;
 using System.Collections.Generic;

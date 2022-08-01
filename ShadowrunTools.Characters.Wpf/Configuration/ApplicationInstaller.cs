@@ -7,9 +7,12 @@ using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using ShadowrunTools.Characters.Factories;
 using ShadowrunTools.Characters.Priorities;
+using ShadowrunTools.Characters.Traits;
 using ShadowrunTools.Characters.ViewModels;
 using ShadowrunTools.Characters.Wpf.ViewModel;
+using ShadowrunTools.Dsl;
 using ShadowrunTools.Foundation;
 using ShadowrunTools.Serialization;
 using System;
@@ -48,6 +51,23 @@ namespace ShadowrunTools.Characters.Wpf.Configuration
             //        .LifestyleSingleton());
 
             container.Register(
+                Classes.FromAssemblyContaining<CharacterFactory>()
+                    .BasedOn<IFactory>()
+                    .WithServiceFromInterface()
+                    .LifestyleSingleton(),
+                Component.For(typeof(IDslParser<>))
+                    .ImplementedBy(typeof(DslParser<>))
+                    .LifestyleSingleton(),
+                Component.For(typeof(IAugmentFactory<>))
+                    .ImplementedBy(typeof(IAugmentFactory<>))
+                    .LifestyleSingleton(),
+                Classes.FromAssemblyContaining<BaseTrait>()
+                    .BasedOn<ITrait>()
+                    .WithServiceFromInterface()
+                    .LifestyleTransient()
+                );
+
+            container.Register(
                 Classes.FromAssemblyContaining<MainWindow>()
                     .BasedOn(typeof(ReactiveUI.IViewFor<>))
                     .WithServiceSelf()
@@ -67,7 +87,7 @@ namespace ShadowrunTools.Characters.Wpf.Configuration
 
             // TODO: The following should eventually be scoped to a settings file or the like.
             container.Register(
-                Component.For<IDataLoader>()
+                Component.For<IDataLoader>()        // TODO: rplace with named dependency based on settings file
                     .ImplementedBy<DataLoader>(),
                 Component.For<IRules>()             // TODO: replace with loading of settings
                     .UsingFactoryMethod(kernel =>
@@ -88,7 +108,6 @@ namespace ShadowrunTools.Characters.Wpf.Configuration
 
                         return repo.Priorities;
                     }));
-
 
             container.Register(
                 Classes.FromAssemblyContaining<MainWindow>()
