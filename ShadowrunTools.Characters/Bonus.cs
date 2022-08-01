@@ -14,6 +14,7 @@ namespace ShadowrunTools.Characters
         public Bonus(IAugment source, string targetProperty)
         {
             Source = source;
+            Source.PropertyChanged += OnAugmentChanged;
             _targetProperty = GetTruePropertyName(targetProperty);
         }
 
@@ -22,6 +23,7 @@ namespace ShadowrunTools.Characters
         public double Amount => Source.Amount;
 
         private string _targetProperty;
+
         public string TargetProperty
         {
             get => _targetProperty;
@@ -72,5 +74,30 @@ namespace ShadowrunTools.Characters
                 return $"Bonus{result}";
             }
         }
+
+        #region IDisposable
+
+        private bool disposedValue;
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    Source.PropertyChanged -= OnAugmentChanged;
+                }
+
+                disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+            Dispose(disposing: true);
+            System.GC.SuppressFinalize(this);
+        }
+
+        #endregion
     }
 }

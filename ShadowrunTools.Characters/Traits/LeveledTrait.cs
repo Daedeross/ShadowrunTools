@@ -120,6 +120,8 @@
                 (k, v) => { v.Add(bonus); return v; });
 
             _bonusToPropCache[bonus] = bonus.TargetProperty;
+
+            RecalcBonus(bonus.TargetProperty);
         }
 
         public virtual void RemoveBonus(IBonus bonus)

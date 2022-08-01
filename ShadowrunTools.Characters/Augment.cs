@@ -41,12 +41,15 @@ namespace ShadowrunTools.Characters
                 })
                 .ToDictionary(a => (a.Category, a.Name), a => (a.Trait, a.Property));
 
-            _watchedProperties = _watchedTraits
+            var watchedProperties = _watchedTraits
                 .Where(kvp => kvp.Value.trait != null)
-                .Select(kvp => new { kvp.Value.trait, kvp.Value.property })
-                .GroupBy(a => a.trait)
-                .ToDictionary(g => g.Key, g => g.Select(a => a.property).ToList());
+                .Select(kvp => new { kvp.Value.trait, kvp.Value.property });
 
+            _watchedProperties = new Dictionary<ITrait, List<string>>();
+            foreach (var tuple in watchedProperties)
+            {
+                AddPropertyToWatched(tuple.trait, tuple.property);
+            }
 
             var _targets = targets.ToList();
             _targetedTraits = _targets
@@ -92,7 +95,7 @@ namespace ShadowrunTools.Characters
             {
                 foreach (var (category, name, trait) in e.OldItems)
                 {
-                    OnTraitRemoved(category, name, trait);
+                    calc |= OnTraitRemoved(category, name, trait);
                 }
                 calc = true;
             }
@@ -100,9 +103,8 @@ namespace ShadowrunTools.Characters
             {
                 foreach (var (category, name, trait) in e.NewItems)
                 {
-                    OnTraitAdded(category, name, trait);
+                    calc |= OnTraitAdded(category, name, trait);
                 }
-                calc = true;
             }
             if (calc)
             {
@@ -110,12 +112,14 @@ namespace ShadowrunTools.Characters
             }
         }
 
-        private void OnTraitAdded(string category, string name, ITrait trait)
+        private bool OnTraitAdded(string category, string name, ITrait trait)
         {
             if (trait == null)
             {
                 throw new ArgumentNullException(nameof(trait));
             }
+
+            bool recalc = false;
 
             if (_watchedTraits.TryGetValue((category, name), out var watch))
             {
@@ -126,6 +130,7 @@ namespace ShadowrunTools.Characters
 
                 watch.trait = trait;
                 AddPropertyToWatched(trait, watch.property);
+                recalc = true;
             }
 
             if (trait is IAugmentable augmentable)
@@ -141,10 +146,14 @@ namespace ShadowrunTools.Characters
                     AddPropertyToTargeted(augmentable, target.property);
                 }
             }
+
+            return recalc;
         }
 
-        private void OnTraitRemoved(string category, string name, ITrait trait)
+        private bool OnTraitRemoved(string category, string name, ITrait trait)
         {
+            bool recalc = false;
+
             if (_watchedTraits.TryGetValue((category, name), out var tuple))
             {
                 if (tuple.trait != trait)
@@ -154,6 +163,7 @@ namespace ShadowrunTools.Characters
 
                 RemovePropertyFromWatched(trait, tuple.property);
                 tuple.trait = null;
+                recalc = true;
             }
 
             if (trait is IAugmentable augmentable)
@@ -169,6 +179,8 @@ namespace ShadowrunTools.Characters
                     RemovePropertyFromTargeted(augmentable, target.property);
                 }
             }
+
+            return recalc;
         }
 
         private void AddPropertyToWatched(ITrait trait, string property)
@@ -233,11 +245,13 @@ namespace ShadowrunTools.Characters
                 k =>
                 {
                     var bonus = new Bonus(this, property);
+                    trait.AddBonus(bonus);
                     return new List<IBonus> { bonus };
                 },
                 (k, v) =>
                 {
                     var bonus = new Bonus(this, property);
+                    trait.AddBonus(bonus);
                     v.Add(bonus);
                     return v;
                 });
@@ -257,6 +271,7 @@ namespace ShadowrunTools.Characters
             if (_bonuses.TryGetValue(trait, out var bonuses))
             {
                 var bonus = bonuses.Find(b => string.Equals(b.TargetProperty, property));
+                bonus.Dispose();
                 if(bonuses.Remove(bonus))
                 {
                     trait.RemoveBonus(bonus);
@@ -296,6 +311,7 @@ namespace ShadowrunTools.Characters
                         foreach (var bonus in kvp.Value)
                         {
                             kvp.Key.RemoveBonus(bonus);
+                            bonus.Dispose();
                         }
                     }
 
