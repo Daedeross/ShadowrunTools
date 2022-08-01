@@ -1,4 +1,5 @@
 ﻿using Antlr4.Runtime.Tree;
+using ShadowrunTools.Characters;
 using ShadowrunTools.Characters.Model;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Linq.Expressions;
 namespace ShadowrunTools.Dsl
 {
     public class DslVisitor<T> : CharacterBuilderBaseVisitor<ParsedScript<T>>
+        where T : class, INamedItem
     {
         private readonly DslExpressionVisitor<T> _expressionVisitor;
         private readonly DslAugmentVisitor<T> _augmentVisitor;

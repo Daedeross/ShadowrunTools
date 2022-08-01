@@ -6,9 +6,10 @@ using System.Runtime.Serialization;
 
 namespace ShadowrunTools.Serialization.Prototypes
 {
+#pragma warning disable CS0649
     [KnownType(typeof(MetatypeAttributePrototype))]
     [DataContract(Name = "MetatypePrototype", Namespace = "http://schemas.shadowruntools.com/prototypes")]
-    public class MetavariantPrototype: IMetavariantPrototype
+    public class MetavariantPrototype : IMetavariantPrototype
     {
         [DataMember(IsRequired = true, EmitDefaultValue = false)]
         public Guid Id { get; set; }
@@ -30,4 +31,6 @@ namespace ShadowrunTools.Serialization.Prototypes
 
         public IReadOnlyCollection<IMetatypeAttribute> Attributes => _attributes;
     }
+
+#pragma warning restore CS0649
 }

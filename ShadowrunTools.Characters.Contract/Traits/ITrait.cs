@@ -1,5 +1,6 @@
 ﻿using ShadowrunTools.Characters.Model;
 using System;
+using System.ComponentModel;
 
 namespace ShadowrunTools.Characters.Traits
 {
@@ -19,7 +20,7 @@ namespace ShadowrunTools.Characters.Traits
     /// Gear: Stuff that costs Items, weapons, foci, implants, lifestyle, etc
     /// GearMod: A modification to Gear, does not exist by itself and is "part of" a gear.
     /// </remarks>
-    public interface ITrait: INamedItem, IEditable, IDisposable, IEquatable<ITrait> 
+    public interface ITrait: INamedItem, IEditable, IDisposable, IEquatable<ITrait> , INotifyPropertyChanged
     {
         /// <summary>
         /// A unique Id of the trait,

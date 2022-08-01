@@ -6,10 +6,8 @@ using System.Collections.ObjectModel;
 
 namespace ShadowrunTools.Characters
 {
-    public interface ICharacter: ICategorizedTraitContainer
+    public interface ICharacter: ICategorizedTraitContainer, INamedItem
     {
-        string Name { get; set; }
-
         GenerationMethod GenerationMethod { get; }
 
         ICharacterPriorities Priorities { get; }

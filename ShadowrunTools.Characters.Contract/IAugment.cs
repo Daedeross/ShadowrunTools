@@ -1,5 +1,7 @@
 ﻿using ShadowrunTools.Characters.Model;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace ShadowrunTools.Characters
 {
@@ -15,27 +17,10 @@ namespace ShadowrunTools.Characters
     /// It is up to the targeted trait (which must implement <see cref="IAugmentable"/>)
     /// how to handle the Augment.
     /// </remarks>
-    public interface IAugment : IDisposable, INotifyItemChanged
+    public interface IAugment : IDisposable, INotifyPropertyChanged
     {
-        IAugmentable Target { get; set; }
+        IEnumerable<IAugmentable> Targets { get; }
 
-        /// <summary>
-        /// See <see cref="AugmentKind"/>. Essentialy determines what property on the target <see cref="IAugmentable"/> should be modified.
-        /// </summary>
-        AugmentKind Kind { get; }
-
-        /// <summary>
-        /// Array indexed by the owner's Rating to determine the bonus to give.
-        /// If owner does not have a rating or it is out of range for the array,
-        /// Index zero [0] is used.
-        /// </summary>
-        double[] BonusArray { get; set; }
-
-        double Bonus { get; }
-
-        /// <summary>
-        /// The name of the Trait that this Augment modifies.
-        /// </summary>
-        string TargetName { get; }
+        double Amount { get; }
     }
 }

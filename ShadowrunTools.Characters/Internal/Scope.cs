@@ -1,6 +1,7 @@
 ﻿namespace ShadowrunTools.Characters.Internal
 {
     public class Scope<T> : IScope<T>
+        where T : class, INamedItem
     {
         public T Owner { get; init; }
 

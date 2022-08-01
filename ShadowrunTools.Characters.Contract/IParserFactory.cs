@@ -2,7 +2,8 @@
 {
     public interface IParserFactory
     {
-        IDslParser<T> Create<T>();
+        IDslParser<T> Create<T>()
+            where T : class, INamedItem;
 
         void Release(object parser);
     }

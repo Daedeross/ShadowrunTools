@@ -71,7 +71,6 @@ namespace ShadowrunTools.Characters
 
         #endregion // Attributes
 
-
         #region Qualities
 
         public ITraitContainer<IQuality> Qualities

@@ -59,6 +59,7 @@
             mMessage = message;
             _validation = validation;
             _propertyNames = new HashSet<string>(propertyNames);
+            _collection = collection;
 
             _collection.CollectionChanged += OnCollectionChanged;
             foreach (var kvp in collection)

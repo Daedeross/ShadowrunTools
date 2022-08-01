@@ -8,6 +8,7 @@ using System.Linq.Expressions;
 namespace ShadowrunTools.Dsl
 {
     public class DslParser<T> : IDslParser<T>
+        where T : class, INamedItem
     {
         private readonly DslVisitor<T> _visitor;
 

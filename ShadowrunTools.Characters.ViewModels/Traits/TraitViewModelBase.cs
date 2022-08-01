@@ -15,13 +15,6 @@ namespace ShadowrunTools.Characters.ViewModels.Traits
     public abstract class TraitViewModelBase: ViewModelBase, ITrait
     {
         private readonly ITrait _trait;
-        private static readonly ISet<string> _propertyNames;
-
-        static TraitViewModelBase()
-        {
-            _propertyNames = new HashSet<string>(typeof(TraitViewModelBase)
-                .GetProperties(System.Reflection.BindingFlags.Instance).Select(pi => pi.Name));
-        }
 
         public TraitViewModelBase(DisplaySettings displaySettings, ITrait trait)
             : base(displaySettings)

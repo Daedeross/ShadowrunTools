@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 namespace ShadowrunTools.Dsl
 {
     public class DslExpressionVisitor<TTrait> : CharacterBuilderBaseVisitor<Payload<Expression>>
+        where TTrait : class, INamedItem
     {
         private static readonly Expression DefaultNumericValue = Expression.Constant(0d);
 

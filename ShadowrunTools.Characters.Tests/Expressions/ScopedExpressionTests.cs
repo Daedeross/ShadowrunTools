@@ -17,6 +17,7 @@ namespace ShadowrunTools.Characters.Tests.Expressions
     public class ScopedExpressionTests
     {
         private static IDslParser<T> MakeParser<T>()
+            where T : class, INamedItem
         {
             var expressionVisitor = new DslExpressionVisitor<T>();
             return new DslParser<T>(

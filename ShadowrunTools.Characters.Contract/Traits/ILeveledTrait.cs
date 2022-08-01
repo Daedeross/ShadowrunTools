@@ -5,12 +5,12 @@ namespace ShadowrunTools.Characters.Traits
     /// <summary>
     /// Represents any trait that can come in multiple levels/ranks
     /// </summary>
-    public interface ILeveledTrait: ITrait, IComparable<ILeveledTrait>, IAugmentable
+    public interface ILeveledTrait: ITrait, IComparable<ILeveledTrait>
     {
         /// <summary>
         /// Added to the (base) minimum.
         /// </summary>
-        int ExtraMin { get; set; }
+        int BonusMin { get; }
 
         /// <summary>
         /// The actual Minimum level, after accounting for any extras.
@@ -20,7 +20,7 @@ namespace ShadowrunTools.Characters.Traits
         /// <summary>
         /// Added to the (base) maximum.
         /// </summary>
-        int ExtraMax { get; set; }
+        int BonusMax { get; }
 
         /// <summary>
         /// The actual Maximum level, after accounting for any extras.
@@ -50,7 +50,7 @@ namespace ShadowrunTools.Characters.Traits
         /// <summary>
         /// Any Bonus to the Rating, from <see cref="IAugment"/>s
         /// </summary>
-        int RatingBonus { get; }
+        int BonusRating { get; }
 
         /// <summary>
         /// The rating after bonus

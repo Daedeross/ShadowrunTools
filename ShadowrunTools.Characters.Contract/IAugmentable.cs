@@ -1,4 +1,5 @@
 ﻿using ShadowrunTools.Characters.Model;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 
@@ -17,38 +18,25 @@ namespace ShadowrunTools.Characters
         INamedItem /// Since Augments find their targets by name, every IAugmentable needs a name.
     {
         /// <summary>
-        /// Collection of Augments that target this trait.
+        /// Collection of <see cref="IBonus"/>es that target this trait.
         /// </summary>
         /// <remarks>
         /// It is up to the implementing class to subscribe to this collection's
         /// CollectionChanged event.
         /// </remarks>
-        ObservableCollection<IAugment> Augments { get; }
+        IEnumerable<IBonus> Bonuses { get; }
 
         /// <summary>
-        /// Method to handle when a subscribed Augment's property changes.
+        /// Add a bonus to the trait.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <remarks>
-        /// While it should actualy be up to the implementing class what to call
-        /// this method, enforcing this name helps with descedant classes to override
-        /// it. It is recomended to make this method virtual (or abstract).
-        /// </remarks>
-        void OnAugmentChanged(object sender, ItemChangedEventArgs e);
+        /// <param name="bonus"></param>
+        void AddBonus(IBonus bonus);
 
         /// <summary>
-        /// To be used to handle Augments.CollectionChanged
+        /// Removes a <see cref="IBonus"/> from the trait.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        void OnAugmentCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e);
-
-        /// <summary>
-        /// Callback called by IAugment when it is Disposed
-        /// </summary>
-        /// <param name="kind"></param>
-        void OnAugmentRemoving(AugmentKind kind);
+        /// <param name="bonus"></param>
+        void RemoveBonus(IBonus bonus);
     }
 }
 

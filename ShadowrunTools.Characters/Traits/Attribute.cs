@@ -26,12 +26,12 @@
 
             _min = this.WhenAnyValue(
                     me => me.MetatypeMin,
-                    me => me.ExtraMin,
+                    me => me.BonusMin,
                     (baseMin, extraMin) => baseMin + extraMin)
                 .ToProperty(this, me => me.Min);
             _max = this.WhenAnyValue(
                     me => me.MetatypeMax,
-                    me => me.ExtraMax,
+                    me => me.BonusMax,
                     (baseMax, extraMax) => baseMax + extraMax)
                 .ToProperty(this, me => me.Max);
         }

@@ -2,15 +2,16 @@
 {
     using ReactiveUI;
     using ShadowrunTools.Characters.Model;
+    using ShadowrunTools.Foundation;
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Collections.Specialized;
+    using System.ComponentModel;
     using System.Linq;
 
-    public abstract class LeveledTrait : BaseTrait, ILeveledTrait
+    public abstract class LeveledTrait : BaseTrait, ILeveledTrait, IAugmentable
     {
-        protected readonly HashSet<string> RemovedNames = new();
 
         public LeveledTrait(Guid id,
                             int prototypeHash,
@@ -19,11 +20,8 @@
                             ITraitContainer container,
                             ICategorizedTraitContainer root,
                             IRules rules)
-            : base (id, prototypeHash, name, category, container, root, rules)
+            : base(id, prototypeHash, name, category, container, root, rules)
         {
-            Augments = new ObservableCollection<IAugment>();
-            Augments.CollectionChanged += OnAugmentCollectionChanged;
-
             _baseRating = this.WhenAnyValue(
                     me => me.Min,
                     me => me.BaseIncrease,
@@ -40,14 +38,14 @@
 
             _augmentedRating = this.WhenAnyValue(
                     me => me.ImprovedRating,
-                    me => me.RatingBonus,
+                    me => me.BonusRating,
                     me => me.AugmentedMax,
                     (improved, bonus, max) => Math.Min(improved + bonus, max))
                 .ToProperty(this, me => me.AugmentedRating);
         }
 
-        private int m_ExtraMin;
-        public int ExtraMin
+        protected int m_ExtraMin;
+        public int BonusMin
         {
             get => m_ExtraMin;
             set => this.RaiseAndSetIfChanged(ref m_ExtraMin, value);
@@ -55,8 +53,8 @@
 
         public abstract int Min { get; }
 
-        private int m_ExtraMax;
-        public int ExtraMax
+        protected int m_ExtraMax;
+        public int BonusMax
         {
             get => m_ExtraMax;
             set => this.RaiseAndSetIfChanged(ref m_ExtraMax, value);
@@ -64,7 +62,7 @@
 
         public abstract int Max { get; }
 
-        private int m_BaseIncrease;
+        protected int m_BaseIncrease;
         public int BaseIncrease
         {
             get => m_BaseIncrease;
@@ -74,7 +72,7 @@
         private readonly ObservableAsPropertyHelper<int> _baseRating;
         public int BaseRating => _baseRating.Value;
 
-        private int m_Improvement;
+        protected int m_Improvement;
         public int Improvement
         {
             get => m_Improvement;
@@ -84,17 +82,17 @@
         private readonly ObservableAsPropertyHelper<int> _improvedRating;
         public int ImprovedRating => _improvedRating.Value;
 
-
-        private double _ratingBonus;
-        public int RatingBonus => (int)_ratingBonus;
-
+        private int m_BonusRating;
+        public int BonusRating
+        {
+            get => m_BonusRating;
+            set => this.RaiseAndSetIfChanged(ref m_BonusRating, value);
+        }
 
         private readonly ObservableAsPropertyHelper<int> _augmentedRating;
-        public int AugmentedRating =>  _augmentedRating.Value;
+        public int AugmentedRating => _augmentedRating.Value;
 
         public abstract int AugmentedMax { get; }
-
-        public ObservableCollection<IAugment> Augments { get; }
 
         public int CompareTo(ILeveledTrait other)
         {
@@ -107,131 +105,83 @@
 
         #region IAugmentable Implemenation
 
-        public void OnAugmentChanged(object sender, ItemChangedEventArgs e)
+
+        private readonly Dictionary<string, List<IBonus>> _propToBonusMap = new();
+
+        private readonly Dictionary<IBonus, string> _bonusToPropCache = new();
+        public IEnumerable<IBonus> Bonuses => _bonusToPropCache.Keys;
+
+        public virtual void AddBonus(IBonus bonus)
         {
-            if (sender is not IAugment)
-            {
-                Logger.Warn("Non-augment sent to OnAugmentChanged event on Trait:{0}", Name);
-                return;
-            }
-            if (e.PropertyNames.Contains(nameof(IAugment.Bonus)))
-            {
-                RecalcBonus();
-            }
+            bonus.PropertyChanged += OnBonusPropertyChanged;
+            _propToBonusMap.AddOrUpdate(
+                bonus.TargetProperty,
+                k => new List<IBonus> { bonus },
+                (k, v) => { v.Add(bonus); return v; });
+
+            _bonusToPropCache[bonus] = bonus.TargetProperty;
         }
 
-        public void OnAugmentCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        public virtual void RemoveBonus(IBonus bonus)
         {
-            HashSet<string> propNames = new();
-            if (e.NewItems != null)
-            {
-                foreach (var item in e.NewItems)
-                {
-                    if (item is IAugment augment)
-                    {
-                        OnAugmentAdded(augment);
+            bonus.PropertyChanged -= OnBonusPropertyChanged;
+            _propToBonusMap[bonus.TargetProperty].Remove(bonus);
+            _bonusToPropCache.Remove(bonus);
 
-                        propNames.Add(augment.TargetName);
-                        augment.ItemChanged -= this.OnAugmentChanged;
-                    }
-                }
-            }
-            if (e.OldItems != null)
-            {
-                foreach (var item in e.OldItems)
-                {
-                    if (item is IAugment augment)
-                    {
-                        OnAugmentRemoved(augment);
-
-                        augment.ItemChanged += this.OnAugmentChanged;
-                    }
-                }
-            }
+            RecalcBonus(bonus.TargetProperty);
         }
 
-        public virtual void OnAugmentRemoving(AugmentKind kind)
+        protected virtual void RecalcBonus(string propertyName)
         {
-            switch (kind)
+            var value = GetBonus(propertyName);
+            switch (propertyName)
             {
-                case AugmentKind.None:
+                case nameof(BonusMin):
+                    BonusMin = (int)Math.Floor(value);
                     break;
-                case AugmentKind.Rating:
-                    RemovedNames.Add(nameof(RatingBonus));
-                    RemovedNames.Add(nameof(AugmentedRating));
-                    //RemovedNames.Add(nameof(DisplayValue)); // TODO: maybe move to ViewModel?
+                case nameof(BonusMax):
+                    BonusMax = (int)Math.Floor(value);
                     break;
-                case AugmentKind.Max:
-                    RemovedNames.Add(nameof(Max));
-                    break;
-                case AugmentKind.DamageValue:
-                    break;
-                case AugmentKind.DamageType:
-                    break;
-                case AugmentKind.Accuracy:
-                    break;
-                case AugmentKind.Availability:
-                    break;
-                case AugmentKind.Restriction:
-                    break;
-                case AugmentKind.RC:
-                    break;
-                case AugmentKind.AP:
+                case nameof(BonusRating):
+                    BonusRating = (int)Math.Floor(value);
                     break;
                 default:
                     break;
             }
         }
 
-        protected virtual void OnAugmentAdded(IAugment augment) { }
-
-        protected virtual void OnAugmentRemoved(IAugment augment) { }
-
-        protected virtual void RecalcBonus(HashSet<string> propNames = null)
+        protected double GetBonus(string propName)
         {
-            //create HashSet if needed
-            if (propNames == null)
-                propNames = new HashSet<string>();
-
-            foreach (string name in RemovedNames)
+            if (_propToBonusMap.TryGetValue(propName, out var bonuses))
             {
-                propNames.Add(name);
+                return bonuses
+                    .Select(b => b.Amount)
+                    .Sum();
             }
-            RemovedNames.Clear();
-
-            //Clear Bonus
-            ExtraMax = 0;
-            ExtraMin = 0;
-            _ratingBonus = 0;
-
-            foreach (var a in Augments)
-                propNames = AddAugment(a, propNames);
-
-            if (_ratingBonus > mRules.MaxAugment)
+            else
             {
-                _ratingBonus = mRules.MaxAugment;
-            }
-
-            foreach (var name in propNames)
-            {
-                this.RaisePropertyChanged(name);
+                return 0d;
             }
         }
 
-        protected virtual HashSet<string> AddAugment(IAugment augment, HashSet<string> propNames)
+        private void OnBonusPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (augment.Kind == AugmentKind.Rating)
+            var bonus = (IBonus)sender;
+            if (!_bonusToPropCache.ContainsKey(bonus))
             {
-                _ratingBonus += augment.Bonus;
-                propNames.Add(nameof(RatingBonus));
-                //propNames.Add(nameof(DisplayValue)); // TODO: maybe move to ViewModel?
+                throw new InvalidOperationException("Sanity check failed. Trait is subscribed to a Bonus it does not have.");
             }
-            if (augment.Kind == AugmentKind.Max)
+            if (e.PropertyName == nameof(IBonus.TargetProperty))
             {
-                ExtraMax += (int)augment.Bonus;
-                propNames.Add(nameof(Max));
+                var oldProp = _bonusToPropCache[bonus];
+                RecalcBonus(oldProp);
+                _bonusToPropCache[bonus] = bonus.TargetProperty;
+                RecalcBonus(bonus.TargetProperty);
             }
-            return propNames;
+            else if (e.PropertyName == nameof(IBonus.Amount))
+            {
+                RecalcBonus(bonus.TargetProperty);
+            }
         }
 
         #endregion IAugmentable Implemenation
