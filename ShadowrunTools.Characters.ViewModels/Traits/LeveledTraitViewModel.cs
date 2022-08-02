@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
+using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Text;
 using System.Windows.Input;
@@ -24,13 +25,16 @@ namespace ShadowrunTools.Characters.ViewModels.Traits
             _leveledTrait = leveledTrait;
 
             _displayRating = this.WhenAnyValue(x => x.ImprovedRating, x => x.AugmentedRating, (imp, aug) => aug > imp ? $"{imp}({aug})" : $"{imp}")
-                .ToProperty(this, x => x.DisplayRating);
+                .ToProperty(this, x => x.DisplayRating)
+                .DisposeWith(Disposables);
 
             _maxBaseIncrease = this.WhenAnyValue(x => x.Min, x => x.Max, x => x.Improvement, (min, max, imp) => max - min - imp)
-                .ToProperty(this, x => x.MaxBaseIncrease);
+                .ToProperty(this, x => x.MaxBaseIncrease)
+                .DisposeWith(Disposables);
 
             _maxImprovement = this.WhenAnyValue(x => x.Min, x => x.Max, x => x.BaseIncrease, (min, max, inc) => max - min - inc)
-                .ToProperty(this, x => x.MaxImprovement);
+                .ToProperty(this, x => x.MaxImprovement)
+                .DisposeWith(Disposables);
         }
 
         private readonly ObservableAsPropertyHelper<string> _displayRating;

@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Reactive.Disposables;
     using ReactiveUI;
     using ShadowrunTools.Characters.Model;
 
@@ -28,12 +29,15 @@
                     me => me.MetatypeMin,
                     me => me.BonusMin,
                     (baseMin, extraMin) => baseMin + extraMin)
-                .ToProperty(this, me => me.Min);
+                .ToProperty(this, me => me.Min)
+                .DisposeWith(Disposables);
+
             _max = this.WhenAnyValue(
                     me => me.MetatypeMax,
                     me => me.BonusMax,
                     (baseMax, extraMax) => baseMax + extraMax)
-                .ToProperty(this, me => me.Max);
+                .ToProperty(this, me => me.Max)
+                .DisposeWith(Disposables);
         }
 
         public string ShortName { get; set; }

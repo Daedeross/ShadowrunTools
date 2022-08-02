@@ -1,18 +1,15 @@
 ﻿namespace ShadowrunTools.Characters.Traits
 {
     using ReactiveUI;
-    using ShadowrunTools.Characters.Model;
     using ShadowrunTools.Foundation;
     using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Collections.Specialized;
     using System.ComponentModel;
     using System.Linq;
+    using System.Reactive.Disposables;
 
     public abstract class LeveledTrait : BaseTrait, ILeveledTrait, IAugmentable
     {
-
         public LeveledTrait(Guid id,
                             int prototypeHash,
                             string name,
@@ -27,21 +24,24 @@
                     me => me.BaseIncrease,
                     me => me.Max,
                     (min, increase, max) => Math.Min(min + increase, max))
-                .ToProperty(this, me => me.BaseRating);
+                .ToProperty(this, me => me.BaseRating)
+                .DisposeWith(Disposables);
 
             _improvedRating = this.WhenAnyValue(
                     me => me.BaseRating,
                     me => me.Improvement,
                     me => me.Max,
                     (rating, improvement, max) => Math.Min(rating + improvement, max))
-                .ToProperty(this, me => me.ImprovedRating);
+                .ToProperty(this, me => me.ImprovedRating)
+                .DisposeWith(Disposables);
 
             _augmentedRating = this.WhenAnyValue(
                     me => me.ImprovedRating,
                     me => me.BonusRating,
                     me => me.AugmentedMax,
                     (improved, bonus, max) => Math.Min(improved + bonus, max))
-                .ToProperty(this, me => me.AugmentedRating);
+                .ToProperty(this, me => me.AugmentedRating)
+                .DisposeWith(Disposables);
         }
 
         protected int m_ExtraMin;
@@ -187,5 +187,28 @@
         }
 
         #endregion IAugmentable Implemenation
+
+        #region IDisposable
+
+        private bool disposedValue = false;
+        protected override void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    foreach (var bonus in _bonusToPropCache.Keys.ToList())
+                    {
+                        RemoveBonus(bonus);
+                    }
+                }
+
+                disposedValue = true;
+            }
+            base.Dispose(disposing);
+        }
+
+
+        #endregion
     }
 }

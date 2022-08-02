@@ -34,6 +34,11 @@ namespace ShadowrunTools.Characters
         int StartingMaxedSkillCount { get; }
 
         /// <summary>
+        /// The maximum rating of skills in character creation.
+        /// </summary>
+        int StartingMaxSkillRating { get; }
+
+        /// <summary>
         /// The maximum rating for available to skills in-play (i.e. due to Advancement)
         /// </summary>
         int InPlaySkillCap { get; }
@@ -52,6 +57,11 @@ namespace ShadowrunTools.Characters
         /// The maximum number of discounts that can be applied to the Karma cost of Initiation
         /// </summary>
         int MaxSubmersionDiscounts { get; }
+
+        /// <summary>
+        /// The maximum rating a skill can be raised to "in-play"
+        /// </summary>
+        int InPlayMaxSkillRating { get; }
 
         #region Scaling Karma Costs
 

@@ -15,6 +15,8 @@
         MeleeWeapon,
         RangedWeapon,
         Implant,
+        Vehicle,
+        Accessory,
         Contact,
     }
 }

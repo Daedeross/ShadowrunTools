@@ -1,10 +1,15 @@
-﻿using System;
+﻿using ShadowrunTools.Characters.Contract.Model;
 using System.Collections.Generic;
-using System.Text;
 
 namespace ShadowrunTools.Characters.Prototypes
 {
     public interface ISkillPrototype : ILeveledTraitPrototype
     {
+        bool TrainedOnly { get; }
+        SkillType SkillType { get; }
+        string GroupName { get; }
+        string LinkedAttribute { get; }
+        string UsualLimit { get; }
+        List<string> Specializations { get; }
     }
 }

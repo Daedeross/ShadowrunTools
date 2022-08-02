@@ -4,18 +4,21 @@
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Linq;
+    using System.Reactive.Disposables;
     using NLog;
     using ReactiveUI;
     using ShadowrunTools.Characters.Model;
     using ShadowrunTools.Foundation;
 
-    public abstract class BaseTrait : ReactiveObject, ITrait
+    public abstract class BaseTrait : ReactiveObject, ITrait, IDisposable
     {
         protected static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
 
         protected readonly ITraitContainer mOwner;
         protected readonly ICategorizedTraitContainer mRoot;
         protected readonly IRules mRules;
+
+        protected CompositeDisposable Disposables { get; } = new CompositeDisposable();
 
         public BaseTrait(Guid id,
             int prototypeHash,
@@ -89,7 +92,6 @@
             get => m_Page;
             set => this.RaiseAndSetIfChanged(ref m_Page, value);
         }
-
 
         public abstract TraitType TraitType { get; }
 
@@ -211,30 +213,18 @@
             {
                 if (disposing)
                 {
-                    // TODO: dispose managed state (managed objects).
+                    Disposables.Dispose();
                 }
-
-                // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
-                // TODO: set large fields to null.
 
                 disposedValue = true;
             }
         }
-
-        // TODO: override a finalizer only if Dispose(bool disposing) above has code to free unmanaged resources.
-        // ~BaseTrait()
-        // {
-        //   // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
-        //   Dispose(false);
-        // }
 
         // This code added to correctly implement the disposable pattern.
         public void Dispose()
         {
             // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
             Dispose(true);
-            // TODO: uncomment the following line if the finalizer is overridden above.
-            // GC.SuppressFinalize(this);
         }
         #endregion
     }

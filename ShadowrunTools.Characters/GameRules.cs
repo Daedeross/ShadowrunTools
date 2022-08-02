@@ -91,6 +91,12 @@
         [Display(Editable = true)]
         public int InPlayQualityMult { get; set; }
 
+        [Display(Editable = true)]
+        public int StartingMaxSkillRating { get; set; }
+
+        [Display(Editable = true)]
+        public int InPlayMaxSkillRating { get; }
+
         public IPropertyList BeginEdit()
         {
             _oldProperties = PropertyFactory.CreateFromObject(this, false);
