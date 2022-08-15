@@ -37,7 +37,21 @@ namespace ShadowrunTools.Characters.Factories
 
         public ISkill CreateSkill(ICharacter character, ISkillPrototype prototype)
         {
-            throw new NotImplementedException();
+            var container = character.Skills as ITraitContainer;
+            var attribute = character.Attributes[prototype.LinkedAttribute];
+            var skill = new Skill(prototype.Id, prototype.GetHashCode(), prototype.Name, prototype.Category, prototype.SkillType, attribute, container, character, _rules)
+            {
+                SubCategory = prototype.SubCategory,
+                Book = prototype.Book,
+                Page = prototype.Page,
+
+                GroupName = prototype.GroupName,
+                AllowDefault = !prototype.TrainedOnly,
+                UsualLimit = prototype.UsualLimit,
+                SuggestedSpecializations = prototype.Specializations,
+            };
+
+            return skill;
         }
     }
 }

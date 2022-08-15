@@ -20,6 +20,9 @@ namespace ShadowrunTools.Characters.Wpf.Views
 
                 this.Bind(ViewModel, vm => vm.Common, view => view.Attributes.ViewModel)
                     .DisposeWith(d);
+
+                this.Bind(ViewModel, vm => vm.Skills, view => view.Skills.ViewModel)
+                    .DisposeWith(d);
             });
         }
     }

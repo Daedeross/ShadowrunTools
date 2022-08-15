@@ -2,28 +2,50 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:ShadowrunTools.Characters.Wpf"
+             xmlns:cv="clr-namespace:ShadowrunTools.Characters.Wpf.Converters"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:mui="http://schemas.modernwpf.com/2019"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              >
     <Application.Resources>
         <ResourceDictionary>
+            <cv:IntegerToStringConverter x:Key="IntegerToStringConverter" />
+            <cv:IntegerValidationRule x:Key="IntegerValidationRule" />
+            <cv:FlagsEnumConverter x:Key="FlagsEnumConverter" />
+            <cv:IndexFromItemConverter x:Key="IndexFromItemConverter" />
+            <cv:ComparableConverter x:Key="ComparableConverter" />
+            <cv:ObjectToStringConverter x:Key="ObjectToStringConverter" />
+            <cv:ObjectTypeConverter x:Key="ObjectTypeConverter" />
+            <cv:DamageToRemainingConverter x:Key="DamageToRemainingConverter" />
+            <Style TargetType="ListView">
+                <Setter Property="ItemContainerStyle" Value="{StaticResource myListViewItemStyle}"/>
+            </Style>
             <ResourceDictionary.MergedDictionaries>
+                <!--<mui:ThemeResources />
+                <mui:XamlControlsResources />-->
+                <!-- MahApps.Metro resource dictionaries. Make sure that all file names are Case Sensitive! -->
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <!--<ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />-->
+                <!-- Theme setting -->
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Blue.xaml" />
+
+                <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="Red" SecondaryColor="Amber" >
+                    <materialDesign:BundledTheme.ColorAdjustment>
+                        <materialDesign:ColorAdjustment DesiredContrastRatio="7"
+                                                        Colors="All"
+                                                        Contrast="Medium" />
+                    </materialDesign:BundledTheme.ColorAdjustment>
+                </materialDesign:BundledTheme>
+                <!--<ResourceDictionary Source="\Resources\Theme.xaml" />-->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.MahApps;component/Themes/MaterialDesignTheme.MahApps.Fonts.xaml" />
+                <ResourceDictionary Source="\Resources\mystyles.xaml" />
+                <ResourceDictionary Source="\Resources\AppIcons.xaml" />
                 <ResourceDictionary Source=".\ControlTemplates\BrushPaletts.xaml" />
                 <ResourceDictionary Source=".\ControlTemplates\ListStyles.xaml" />
                 <ResourceDictionary Source=".\ControlTemplates\PriorityRadioButton.xaml" />
                 <ResourceDictionary Source=".\ControlTemplates\Glyphs.xaml" />
-                <!--<ResourceDictionary Source=".\ControlTemplates\ListViewTemplate.xaml" />-->
-                <ResourceDictionary>
-                    <Style TargetType="ListView">
-                        <Setter Property="ItemContainerStyle" Value="{StaticResource myListViewItemStyle}"/>
-                    </Style>
-                    <!--<Style x:Key="BonusLevelStyle" TargetType="TextBlock">
-                        <Setter Property="FontStyle" Value="Italic" />
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding BonusLevel}" Value="0">
-                                <Setter Property="FontStyle" Value="Normal" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>-->
-                </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

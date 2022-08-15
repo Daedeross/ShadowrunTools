@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ShadowrunTools.Characters.Wpf.Views"
-             xmlns:xtk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              mc:Ignorable="d" MinHeight="34" >
     <Grid>
         <Grid.ColumnDefinitions>
@@ -28,7 +28,7 @@
                 </TextBlock>
             </Label.Content>
         </Label>
-        <xtk:IntegerUpDown Grid.Column="1"
+        <mah:NumericUpDown Grid.Column="1"
                            Name="SpinEdit"
                            Value="{Binding BaseRating}"
                            Minimum="{Binding Min}" Maximum="{Binding Max}" />

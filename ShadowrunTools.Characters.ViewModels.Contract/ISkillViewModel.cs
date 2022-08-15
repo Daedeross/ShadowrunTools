@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ShadowrunTools.Characters.ViewModels
 {
-    public interface ISkillViewModel: IViewModel<ISkill>
+    public interface ISkillViewModel: IViewModel<ISkill>, ILeveledTraitViewModel, ISkill
     {
     }
 }

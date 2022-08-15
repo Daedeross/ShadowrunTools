@@ -22,7 +22,6 @@ namespace ShadowrunTools.Characters.Factories
         {
             var characterPrototype = CharacterPrototype.CreateFromRepository(prototypes);
 
-
             ICharacterPriorities characterPriorities = null;
             switch (_rules.GenerationMethod)
             {
@@ -49,6 +48,11 @@ namespace ShadowrunTools.Characters.Factories
             foreach (var attributePrototype in characterPrototype.CoreAttributes)
             {
                 character.Attributes[attributePrototype.Name] = _traitFactory.CreateAttribute(character, attributePrototype);
+            }
+
+            foreach (var skillPrototype in characterPrototype.Skills)
+            {
+                character.Skills[skillPrototype.Name] = _traitFactory.CreateSkill(character, skillPrototype);
             }
 
             character.Statuses.Add(Validators.ValidatorFactory.AttributePointsValidator(character));

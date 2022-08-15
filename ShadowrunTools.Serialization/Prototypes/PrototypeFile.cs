@@ -14,5 +14,8 @@
         public List<MetavariantPrototype> Metavariants { get; set; }
         [DataMember(IsRequired = false, EmitDefaultValue = false)]
         public PrioritiesPrototype Priorities { get; set; }
+        [DataMember(IsRequired = false, EmitDefaultValue = false)]
+        public List<SkillPrototype> Skills { get; set; }
+
     }
 }

@@ -31,6 +31,7 @@ namespace ShadowrunTools.Characters.ViewModels
 
             Priorities = _viewModelFactory.For<IPrioritiesViewModel, ICharacter>(_character);
             Common = _viewModelFactory.For<ICommonViewModel, ICharacter>(_character);
+            Skills = _viewModelFactory.For<ICharacterSkillsViewModel, ICharacter>(_character);
 
             Statuses = new ObservableCollection<ValidatorItemViewModel>(_character.Statuses.Select(
                 item => new ValidatorItemViewModel(displaySettings, item)));
@@ -49,6 +50,8 @@ namespace ShadowrunTools.Characters.ViewModels
         public IPrioritiesViewModel Priorities { get; private set; }
 
         public ICommonViewModel Common { get; private set; }
+
+        public ICharacterSkillsViewModel Skills { get; private set; }
 
         #endregion // Child ViewModels
 

@@ -8,6 +8,8 @@ namespace ShadowrunTools.Serialization.Prototypes
     {
         public List<IAttributePrototype> CoreAttributes { get; private set; }
 
+        public List<ISkillPrototype> Skills { get; private set; } 
+
         public static ICharacterPrototype CreateFromRepository(IPrototypeRepository repository)
         {
             var attributes = repository.GetTraits<AttributePrototype>().Values;
@@ -16,7 +18,8 @@ namespace ShadowrunTools.Serialization.Prototypes
 
             return new CharacterPrototype
             {
-                CoreAttributes = coreAttributes.ToList<IAttributePrototype>()
+                CoreAttributes = coreAttributes.ToList<IAttributePrototype>(),
+                Skills = repository.GetTraits<SkillPrototype>().Values.ToList<ISkillPrototype>(),
             };
         }
     }

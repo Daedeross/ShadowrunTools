@@ -15,12 +15,15 @@
             <RowDefinition />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-        <TabControl>
+        <TabControl HorizontalAlignment="Stretch">
             <TabItem Header="Priorities">
                 <local:PrioritiesView x:Name="Priorities" />
             </TabItem>
             <TabItem Header="Attributes">
                 <local:AttributesView x:Name="Attributes" />
+            </TabItem>
+            <TabItem Header="Skills" >
+                <local:CharacterSkillsView x:Name="Skills"/>
             </TabItem>
         </TabControl>
         <local:StatusBarView DataContext="{Binding}" Grid.Row="1" />

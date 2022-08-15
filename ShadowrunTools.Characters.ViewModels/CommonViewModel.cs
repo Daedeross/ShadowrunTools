@@ -43,7 +43,7 @@ namespace ShadowrunTools.Characters.ViewModels
                 .DisposeWith(Disposables);
         }
 
-        private IObservableCollection<IAttributeViewModel> _attributes = new ObservableCollectionExtended<IAttributeViewModel>();
+        private IObservableCollection<IAttributeViewModel> _attributes;
         public IObservableCollection<IAttributeViewModel> Attributes => _attributes;
 
         private IObservableCollection<IQualityViewModel> _qualities = new ObservableCollectionExtended<IQualityViewModel>();

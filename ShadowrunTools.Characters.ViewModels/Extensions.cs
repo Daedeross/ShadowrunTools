@@ -3,6 +3,7 @@ using DynamicData.Binding;
 using ShadowrunTools.Characters.Traits;
 using System;
 using System.Collections.Generic;
+using System.Reactive.Linq;
 using System.Text;
 
 namespace ShadowrunTools.Characters.ViewModels
@@ -43,6 +44,19 @@ namespace ShadowrunTools.Characters.ViewModels
                     return factory.For<TViewModel, TModel>(kvp.Value);
                 })
                 .OnItemRemoved(factory.Release);
+        }
+        public static IObservableCache<TViewModel, string> ToViewModelCache<TViewModel, TModel>(this ITraitContainer<TModel> source, IViewModelFactory factory)
+            where TModel : class, ITrait
+            where TViewModel : class, IViewModel<TModel>
+        {
+            return source
+                .AsObservableChangeSet(kvp => kvp.Key)
+                .Transform(kvp =>
+                {
+                    return factory.For<TViewModel, TModel>(kvp.Value);
+                })
+                .OnItemRemoved(factory.Release)
+                .AsObservableCache();
         }
     }
 }

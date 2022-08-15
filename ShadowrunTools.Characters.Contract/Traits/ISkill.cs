@@ -1,4 +1,5 @@
-﻿using ShadowrunTools.Characters.Contract.Model;
+﻿using DynamicData.Binding;
+using ShadowrunTools.Characters.Contract.Model;
 using System.Collections.Generic;
 
 namespace ShadowrunTools.Characters.Traits
@@ -20,6 +21,11 @@ namespace ShadowrunTools.Characters.Traits
         /// The attribute that is usually added to the pool when using the skill.
         /// </summary>
         IAttribute LinkedAttribute { get; }
+
+        /// <summary>
+        /// True if the skill can be used when rating is zero.
+        /// </summary>
+        bool AllowDefault { get; }
         
         /// <summary>
         /// Will probably be removed from ISkill, placed in the ViewModel
@@ -39,6 +45,11 @@ namespace ShadowrunTools.Characters.Traits
         /// <summary>
         /// Specializations purchased.
         /// </summary>
-        IList<string> Specializations { get; }
+        IObservableCollection<string> Specializations { get; }
+
+        /// <summary>
+        /// Suggested Specializations, loaded from prototype;
+        /// </summary>
+        IReadOnlyCollection<string> SuggestedSpecializations { get; }
     }
 }

@@ -11,10 +11,10 @@ namespace ShadowrunTools.Serialization.Prototypes.Priorities
     {
         #region Serialized
         [DataMember(Name = "SkillOptions")]
-        private List<SpecialSkillChoicePrototype> _skillOptions { get; set; } = new List<SpecialSkillChoicePrototype>();
+        internal List<SpecialSkillChoicePrototype> _skillOptions { get; set; } = new List<SpecialSkillChoicePrototype>();
 
         [DataMember(Name = "SkillGroupOptions")]
-        private List<SpecialSkillChoicePrototype> _skillGroupOptions { get; set; } = new List<SpecialSkillChoicePrototype>();
+        internal List<SpecialSkillChoicePrototype> _skillGroupOptions { get; set; } = new List<SpecialSkillChoicePrototype>();
         #endregion
         [DataMember]
         public string Quality { get; set; }

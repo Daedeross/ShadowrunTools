@@ -1,4 +1,5 @@
-﻿using ReactiveUI;
+﻿using DynamicData.Binding;
+using ReactiveUI;
 using ShadowrunTools.Characters.Contract.Model;
 using ShadowrunTools.Characters.Model;
 using System;
@@ -25,14 +26,21 @@ namespace ShadowrunTools.Characters.Traits
             SkillType = skillType;
             LinkedAttribute = linkedAttribuye;
 
+            
+
             _totalPool = this
-                .WhenAnyValue(x => x.ImprovedRating, x => x.LinkedAttribute.ImprovedRating, (sk, at) => sk + at)
+                .WhenAnyValue(x => x.ImprovedRating, x => x.LinkedAttribute.ImprovedRating, x => x.AllowDefault, (skill_rat, attr_rat, alw_def) => (skill_rat > 0 || alw_def) ? skill_rat + attr_rat : 0)
                 .ToProperty(this, x => x.TotalPool)
                 .DisposeWith(Disposables);
 
             _augmentedPool = this
-                .WhenAnyValue(x => x.AugmentedRating, x => x.LinkedAttribute.AugmentedRating, (sk, at) => sk + at)
+                .WhenAnyValue(x => x.AugmentedRating, x => x.LinkedAttribute.AugmentedRating, x => x.AllowDefault, (skill_rat, attr_rat, alw_def) => (skill_rat > 0 || alw_def) ? skill_rat + attr_rat : 0)
                 .ToProperty(this, x => x.AugmentedPool)
+                .DisposeWith(Disposables);
+
+            _augmentedMax = this
+                .WhenAnyValue(x => x.Max, max => (int)Math.Floor(max * 1.5))
+                .ToProperty(this, x => x.AugmentedMax)
                 .DisposeWith(Disposables);
         }
 
@@ -47,24 +55,34 @@ namespace ShadowrunTools.Characters.Traits
 
         public IAttribute LinkedAttribute { get; }
 
-        private ObservableAsPropertyHelper<int> _totalPool;
+        private bool m_AllowDefault;
+        public bool AllowDefault
+        {
+            get => m_AllowDefault;
+            set => this.RaiseAndSetIfChanged(ref m_AllowDefault, value);
+        }
+
+        private readonly ObservableAsPropertyHelper<int> _totalPool;
         public int TotalPool => _totalPool.Value;
 
-        private ObservableAsPropertyHelper<int> _augmentedPool;
+        private readonly ObservableAsPropertyHelper<int> _augmentedPool;
         public int AugmentedPool => _augmentedPool.Value;
 
-        public string UsualLimit => throw new NotImplementedException();
+        public string UsualLimit { get; set; }
 
-        public IList<string> Specializations => throw new NotImplementedException();
+        public IObservableCollection<string> Specializations { get; } = new ObservableCollectionExtended<string>();
 
-        public override int Min => 1;
+        public IReadOnlyCollection<string> SuggestedSpecializations { get; set; }
+
+        public override int Min => 0;
 
         public override int Max => mRules.StartingMaxSkillRating;
 
-        public override int AugmentedMax => throw new NotImplementedException();
+        private readonly ObservableAsPropertyHelper<int> _augmentedMax;
+        public override int AugmentedMax => _augmentedMax?.Value ?? Max;
 
-        public override TraitType TraitType => throw new NotImplementedException();
+        public override TraitType TraitType => TraitType.Skill;
 
-        public override bool Independant => throw new NotImplementedException();
+        public override bool Independant { get; } = false;
     }
 }

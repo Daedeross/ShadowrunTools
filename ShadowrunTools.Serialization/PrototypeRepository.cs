@@ -86,6 +86,11 @@ namespace ShadowrunTools.Serialization
             {
                 _priorities.MergeWith(prototypeFile.Priorities);
             }
+
+            if (prototypeFile.Skills != null)
+            {
+                MergeTraitCollection(prototypeFile.Skills);
+            }
         }
 
         public void MergeTraitCollection(IEnumerable<ITraitPrototype> collection)

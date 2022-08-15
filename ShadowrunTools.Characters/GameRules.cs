@@ -92,7 +92,7 @@
         public int InPlayQualityMult { get; set; }
 
         [Display(Editable = true)]
-        public int StartingMaxSkillRating { get; set; }
+        public int StartingMaxSkillRating { get; set; } = 6;
 
         [Display(Editable = true)]
         public int InPlayMaxSkillRating { get; }

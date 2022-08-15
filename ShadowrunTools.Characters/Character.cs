@@ -80,7 +80,7 @@ namespace ShadowrunTools.Characters
                 if (!TryGetValue(TraitCategories.Quality, out ITraitContainer skills))
                 {
                     skills = new TraitContainer<IQuality>(TraitCategories.Quality);
-                    this[TraitCategories.Skill] = skills;
+                    this[TraitCategories.Quality] = skills;
                 }
                 return skills as ITraitContainer<IQuality>;
             }

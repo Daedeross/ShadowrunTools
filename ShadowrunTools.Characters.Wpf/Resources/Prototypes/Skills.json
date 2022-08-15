@@ -1,0 +1,994 @@
+{
+  "Skills": [
+    {
+      "TrainedOnly": false,
+      "SkillType": "Active",
+      "LinkedAttribute": "Agility",
+      "UsualLimit": null,
+      "Specializations": [
+        "Bow",
+        "Crossbow",
+        "Non-Standard Ammunition",
+        "Slingshot"
+      ],
+      "Id": "3e50064a-e6b6-454b-84fa-f741fabb01be",
+      "TraitType": "Skill",
+      "Name": "Archery",
+      "SubCategory": "Combat Active",
+      "Book": "SR5",
+      "Page": 130
+    },
+    {
+      "TrainedOnly": false,
+      "SkillType": "Active",
+      "GroupName": "Firearms",
+      "LinkedAttribute": "Agility",
+      "UsualLimit": null,
+      "Specializations": [
+        "Assault Rifles",
+        "Cyber-Implant",
+        "Machine Pistols",
+        "Submachine Guns"
+      ],
+      "Id": "ac318acf-c18a-4b09-bb9c-5037b97c52e2",
+      "TraitType": "Skill",
+      "Name": "Automatics",
+      "SubCategory": "Combat Active",
+      "Book": "SR5",
+      "Page": 130
+    },
+    {
+      "TrainedOnly": false,
+      "SkillType": "Active",
+      "GroupName": "Close Combat",
+      "LinkedAttribute": "Agility",
+      "UsualLimit": null,
+      "Specializations": [
+        "Axes",
+        "Knives",
+        "Swords",
+        "Parrying"
+      ],
+      "Id": "4a48c210-ae3f-4226-9829-30ececce5054",
+      "TraitType": "Skill",
+      "Name": "Blades",
+      "SubCategory": "Combat Active",
+      "Book": "SR5",
+      "Page": 130
+    },
+    {
+      "TrainedOnly": false,
+      "SkillType": "Active",
+      "GroupName": "Close Combat",
+      "LinkedAttribute": "Agility",
+      "UsualLimit": null,
+      "Specializations": [
+        "Batons",
+        "Hammers",
+        "Saps",
+        "Staves",
+        "Parrying"
+      ],
+      "Id": "ebd256cf-eadd-4f63-bb35-a40f7e248b4d",
+      "TraitType": "Skill",
+      "Name": "Clubs",
+      "SubCategory": "Combat Active",
+      "Book": "SR5",
+      "Page": 131
+    },
+    {
+      "TrainedOnly": false,
+      "SkillType": "Active",
+      "LinkedAttribute": "Agility",
+      "UsualLimit": null,
+      "Specializations": [
+        "Assault Cannons",
+        "Grenade Launchers",
+        "Guided Missiles",
+        "Machine Guns",
+        "Rocket Launchers"
+      ],
+      "Id": "536178e7-ff85-4170-9016-2d307a608e3b",
+      "TraitType": "Skill",
+      "Name": "Heavy Weapons",
+      "SubCategory": "Combat Active",
+      "Book": "SR5",
+      "Page": 132
+    },
+    {
+      "TrainedOnly": false,
+      "SkillType": "Active",
+      "GroupName": "Firearms",
+      "LinkedAttribute": "Agility",
+      "UsualLimit": null,
+      "Specializations": [
+        "Extended-Range Shots",
+        "Long-Range Shots",
+        "Shotguns",
+        "Sniper Rifles"
+      ],
+      "Id": "b58e6aca-61a4-4f34-830e-18f553ff68e2",
+      "TraitType": "Skill",
+      "Name": "Longarms",
+      "SubCategory": "Combat Active",
+      "Book": "SR5",
+      "Page": 132
+    },
+    {
+      "TrainedOnly": false,
+      "SkillType": "Active",
+      "GroupName": "Firearms",
+      "LinkedAttribute": "Agility",
+      "UsualLimit": null,
+      "Specializations": [
+        "Holdouts",
+        "Revolvers",
+        "Semi-Automatics",
+        "Tasers"
+      ],
+      "Id": "bc141714-4587-44be-94d4-92ea574d1e00",
+      "TraitType": "Skill",
+      "Name": "Pistols",
+      "SubCategory": "Combat Active",
+      "Book": "SR5",
+      "Page": 132
+    },
+    {
+      "TrainedOnly": false,
+      "SkillType": "Active",
+      "LinkedAttribute": "Agility",
+      "UsualLimit": null,
+      "Specializations": [
+        "Aerodynamic",
+        "Blades",
+        "Non-Aerodynamic"
+      ],
+      "Id": "6627adb7-7fe2-4bbb-a02a-d4babc9977f9",
+      "TraitType": "Skill",
+      "Name": "Throwing Weapons",
+      "SubCategory": "Combat Active",
+      "Book": "SR5",
+      "Page": 132
+    },
+    {
+      "TrainedOnly": false,
+      "SkillType": "Active",
+      "GroupName": "Close Combat",
+      "LinkedAttribute": "Agility",
+      "UsualLimit": null,
+      "Specializations": [
+        "Blocking",
+        "Cyber Implants",
+        "Subduing Combat"
+      ],
+      "Id": "cea56526-ae91-4d61-a09f-a734689d908f",
+      "TraitType": "Skill",
+      "Name": "Unarmed Combat",
+      "SubCategory": "Combat Active",
+      "Book": "SR5",
+      "Page": 132
+    },
+    {
+      "TrainedOnly": false,
+      "SkillType": "Active",
+      "GroupName": "Stealth",
+      "LinkedAttribute": "Intuition",
+      "UsualLimit": "Mental",
+      "Specializations": [
+        "Camouflage",
+        "Cosmetic",
+        "Theatrical",
+        "Trideo & Video"
+      ],
+      "Id": "a7ece189-e425-4419-b66a-5b8d2b8e68e4",
+      "TraitType": "Skill",
+      "Name": "Disguise",
+      "SubCategory": "Physical Active",
+      "Book": "SR5",
+      "Page": 133
+    },
+    {
+      "TrainedOnly": false,
+      "SkillType": "Active",
+      "LinkedAttribute": "Body",
+      "UsualLimit": "Physical",
+      "Specializations": [
+        "Liquid Breathing Apparatus",
+        "Mixed Gas",
+        "Oxygen Extraction",
+        "SCUBA",
+        "Arctic",
+        "Cave",
+        "Commercial",
+        "Millitary"
+      ],
+      "Id": "ed067790-ee7c-4a9c-ba37-749a91b609bd",
+      "TraitType": "Skill",
+      "Name": "Diving",
+      "SubCategory": "Physical Active",
+      "Book": "SR5",
+      "Page": 133
+    },
+    {
+      "TrainedOnly": false,
+      "SkillType": "Active",
+      "LinkedAttribute": "Agility",
+      "UsualLimit": "Physical",
+      "Specializations": [
+        "Contorionism",
+        "Cuffs",
+        "Ropes",
+        "Zip Ties"
+      ],
+      "Id": "bb41843b-aef9-4d94-adf7-471fc979ea9e",
+      "TraitType": "Skill",
+      "Name": "Escape Artist",
+      "SubCategory": "Physical Active",
+      "Book": "SR5",
+      "Page": 133
+    },
+    {
+      "TrainedOnly": false,
+      "SkillType": "Active",
+      "LinkedAttribute": "Body",
+      "UsualLimit": "Physical",
+      "Specializations": [
+        "BASE Jumping",
+        "Break-Fall",
+        "Bungee",
+        "HALO",
+        "Low Altitude",
+        "Parachute",
+        "Static Line",
+        "Wingsuit",
+        "Zipline"
+      ],
+      "Id": "4b6aa7d1-4c72-4247-b8a2-3f4d80e6848c",
+      "TraitType": "Skill",
+      "Name": "Free-Fall",
+      "SubCategory": "Physical Active",
+      "Book": "SR5",
+      "Page": 133
+    },
+    {
+      "TrainedOnly": false,
+      "SkillType": "Active",
+      "GroupName": "Athletics",
+      "LinkedAttribute": "Agility",
+      "UsualLimit": "Physical",
+      "Specializations": [
+        "Balance",
+        "Climbing",
+        "Dance",
+        "Leaping",
+        "Parkour",
+        "Rolling"
+      ],
+      "Id": "40a8ded5-35d9-43a2-9e4f-d7a2ed670bd0",
+      "TraitType": "Skill",
+      "Name": "Gymnastics",
+      "SubCategory": "Physical Active",
+      "Book": "SR5",
+      "Page": 133
+    },
+    {
+      "TrainedOnly": true,
+      "SkillType": "Active",
+      "GroupName": "Stealth",
+      "LinkedAttribute": "Agility",
+      "UsualLimit": "Physical",
+      "Specializations": [
+        "Legerdemain",
+        "Pickpocket",
+        "Pilfering"
+      ],
+      "Id": "bb35e697-f103-4017-94a3-34e573f98b11",
+      "TraitType": "Skill",
+      "Name": "Palming",
+      "SubCategory": "Physical Active",
+      "Book": "SR5",
+      "Page": 133
+    },
+    {
+      "TrainedOnly": false,
+      "SkillType": "Active",
+      "LinkedAttribute": "Intuition",
+      "UsualLimit": "Mental",
+      "Specializations": [
+        "Hearing",
+        "Scent",
+        "Searching",
+        "Taste",
+        "Touch",
+        "Visual"
+      ],
+      "Id": "33aabd2b-4d68-4377-8baf-11b99d08b9c2",
+      "TraitType": "Skill",
+      "Name": "Perception",
+      "SubCategory": "Physical Active",
+      "Book": "SR5",
+      "Page": 133
+    },
+    {
+      "TrainedOnly": false,
+      "SkillType": "Active",
+      "GroupName": "Athletics",
+      "LinkedAttribute": "Strength",
+      "UsualLimit": "Physical",
+      "Specializations": [
+        "Distance, Sprinting",
+        "Desert",
+        "Forest",
+        "Jungle",
+        "Mountain",
+        "Polar",
+        "Urban"
+      ],
+      "Id": "1ee70774-8230-45a2-bf42-b6cf8c0700e5",
+      "TraitType": "Skill",
+      "Name": "Running",
+      "SubCategory": "Physical Active",
+      "Book": "SR5",
+      "Page": 133
+    },
+    {
+      "TrainedOnly": false,
+      "SkillType": "Active",
+      "GroupName": "Stealth",
+      "LinkedAttribute": "Agility",
+      "UsualLimit": "Physical",
+      "Specializations": [
+        "Desert",
+        "Forest",
+        "Jungle",
+        "Mountain",
+        "Polar",
+        "Urban"
+      ],
+      "Id": "871d9a39-16bf-431d-abf6-60fd7ae3992a",
+      "TraitType": "Skill",
+      "Name": "Sneaking",
+      "SubCategory": "Physical Active",
+      "Book": "SR5",
+      "Page": 133
+    },
+    {
+      "TrainedOnly": false,
+      "SkillType": "Active",
+      "GroupName": "Outdoors",
+      "LinkedAttribute": "Willpower",
+      "UsualLimit": "Mental",
+      "Specializations": [
+        "Desert",
+        "Forest",
+        "Jungle",
+        "Mountain",
+        "Polar",
+        "Urban"
+      ],
+      "Id": "39515ef3-c48f-4f50-b028-b7d44bb7e799",
+      "TraitType": "Skill",
+      "Name": "Survival",
+      "SubCategory": "Physical Active",
+      "Book": "SR5",
+      "Page": 133
+    },
+    {
+      "TrainedOnly": false,
+      "SkillType": "Active",
+      "GroupName": "Athletics",
+      "LinkedAttribute": "Strength",
+      "UsualLimit": "Physical",
+      "Specializations": [
+        "Dash",
+        "Long Dostance"
+      ],
+      "Id": "a67185d3-8b43-4cbe-bcdc-fd35c69dc1d2",
+      "TraitType": "Skill",
+      "Name": "Swimming",
+      "SubCategory": "Physical Active",
+      "Book": "SR5",
+      "Page": 134
+    },
+    {
+      "TrainedOnly": false,
+      "SkillType": "Active",
+      "GroupName": "Outdoors",
+      "LinkedAttribute": "Intuition",
+      "UsualLimit": "Mental",
+      "Specializations": [
+        "Desert",
+        "Forest",
+        "Jungle",
+        "Mountain",
+        "Polar",
+        "Urban"
+      ],
+      "Id": "5645870a-031a-46ff-b435-467aa2486491",
+      "TraitType": "Skill",
+      "Name": "Tracking",
+      "SubCategory": "Physical Active",
+      "Book": "SR5",
+      "Page": 134
+    },
+    {
+      "TrainedOnly": false,
+      "SkillType": "Active",
+      "GroupName": "Acting",
+      "LinkedAttribute": "Charisma",
+      "UsualLimit": "Social",
+      "Specializations": [
+        "Fast Talking",
+        "Seduction"
+      ],
+      "Id": "12b7c29e-1f5a-4070-8499-e9c38977072c",
+      "TraitType": "Skill",
+      "Name": "Con",
+      "SubCategory": "Social",
+      "Book": "SR5",
+      "Page": 138
+    },
+    {
+      "TrainedOnly": false,
+      "SkillType": "Active",
+      "GroupName": "Influence",
+      "LinkedAttribute": "Charisma",
+      "UsualLimit": "Social",
+      "Specializations": [
+        "Corporate",
+        "High Society",
+        "Media",
+        "Mercenary",
+        "Street",
+        "Yakuza"
+      ],
+      "Id": "cf609aac-7147-4f82-81dc-fd9a874ef597",
+      "TraitType": "Skill",
+      "Name": "Etiquette",
+      "SubCategory": "Social",
+      "Book": "SR5",
+      "Page": 138
+    },
+    {
+      "TrainedOnly": false,
+      "SkillType": "Active",
+      "GroupName": "Acting",
+      "LinkedAttribute": "Charisma",
+      "UsualLimit": "Social",
+      "Specializations": [
+        "Dwarf",
+        "Elf",
+        "Human",
+        "Ork",
+        "Troll"
+      ],
+      "Id": "2918e4eb-f8fb-4336-834a-555c113344b0",
+      "TraitType": "Skill",
+      "Name": "Impersonation",
+      "SubCategory": "Social",
+      "Book": "SR5",
+      "Page": 138
+    },
+    {
+      "TrainedOnly": false,
+      "SkillType": "Active",
+      "LinkedAttribute": "Charisma",
+      "UsualLimit": "Social",
+      "Specializations": [
+        "Combat",
+        "Physical",
+        "Technical",
+        "Resonance",
+        "Social",
+        "Language",
+        "Magical",
+        "Academic Knowledge",
+        "Street Knowledge"
+      ],
+      "Id": "180dc1ae-1c6b-4fc5-aff3-ad1c728b2e2d",
+      "TraitType": "Skill",
+      "Name": "Instruction",
+      "SubCategory": "Social",
+      "Book": "SR5",
+      "Page": 138
+    },
+    {
+      "TrainedOnly": false,
+      "SkillType": "Active",
+      "LinkedAttribute": "Charisma",
+      "UsualLimit": "Social",
+      "Specializations": [
+        "Interrogation",
+        "Mental",
+        "Physical",
+        "Torture"
+      ],
+      "Id": "f6ae7389-8db7-4a58-a1d8-4c8b6ea54d80",
+      "TraitType": "Skill",
+      "Name": "Intimidation",
+      "SubCategory": "Social",
+      "Book": "SR5",
+      "Page": 139
+    },
+    {
+      "TrainedOnly": false,
+      "SkillType": "Active",
+      "GroupName": "Influence",
+      "LinkedAttribute": "Charisma",
+      "UsualLimit": "Social",
+      "Specializations": [
+        "Command",
+        "Direct",
+        "Inspire",
+        "Rally"
+      ],
+      "Id": "c8af67e2-0f98-4df2-afc4-a1dd019254ca",
+      "TraitType": "Skill",
+      "Name": "Leadership",
+      "SubCategory": "Social",
+      "Book": "SR5",
+      "Page": 139
+    },
+    {
+      "TrainedOnly": false,
+      "SkillType": "Active",
+      "GroupName": "Influence",
+      "LinkedAttribute": "Charisma",
+      "UsualLimit": "Social",
+      "Specializations": [
+        "Bargaining",
+        "Contracts",
+        "Diplomacy"
+      ],
+      "Id": "d362f6ee-2061-43db-bfb6-56f259d0103f",
+      "TraitType": "Skill",
+      "Name": "Negotiation",
+      "SubCategory": "Social",
+      "Book": "SR5",
+      "Page": 139
+    },
+    {
+      "TrainedOnly": false,
+      "SkillType": "Active",
+      "GroupName": "Acting",
+      "LinkedAttribute": "Charisma",
+      "UsualLimit": "Social",
+      "Specializations": [
+        "Presentation",
+        "Acting",
+        "Comedy"
+      ],
+      "Id": "fac6dbc2-3922-42ee-9e79-922e187acc26",
+      "TraitType": "Skill",
+      "Name": "Performance",
+      "SubCategory": "Social",
+      "Book": "SR5",
+      "Page": 139
+    },
+    {
+      "TrainedOnly": true,
+      "SkillType": "Active",
+      "GroupName": "Engineering",
+      "LinkedAttribute": "Logic",
+      "UsualLimit": "Mental",
+      "Specializations": [
+        "Aerospace",
+        "Fixed Wing",
+        "LTA (blimp)",
+        "Rotary Wing",
+        "Tilt Wing",
+        "Vector Thrust"
+      ],
+      "Id": "b2e45ea4-d5d0-421b-906a-7d1ba091365b",
+      "TraitType": "Skill",
+      "Name": "Aeronautics Mechanic",
+      "SubCategory": "Technical",
+      "Book": "SR5",
+      "Page": 143
+    },
+    {
+      "TrainedOnly": false,
+      "SkillType": "Active",
+      "LinkedAttribute": "Charisma",
+      "UsualLimit": "Mental",
+      "Specializations": [
+        "Cat",
+        "Bird",
+        "Hell Hound",
+        "Horse",
+        "Dolphin"
+      ],
+      "Id": "c5b79ddb-187f-4c35-ae59-2b70fa0f1bc9",
+      "TraitType": "Skill",
+      "Name": "Animal Handling",
+      "SubCategory": "Technical",
+      "Book": "SR5",
+      "Page": 143
+    },
+    {
+      "TrainedOnly": false,
+      "SkillType": "Active",
+      "LinkedAttribute": "Logic",
+      "UsualLimit": "Mental",
+      "Specializations": [
+        "Armor",
+        "Artillery",
+        "Explosives",
+        "Firearms",
+        "Melee Weapons",
+        "Heavy Weapons",
+        "Weapon Accessories"
+      ],
+      "Id": "8e08bb35-58d6-4c4d-8d19-3ed4314f63d8",
+      "TraitType": "Skill",
+      "Name": "Armorer",
+      "SubCategory": "Technical",
+      "Book": "SR5",
+      "Page": 143
+    },
+    {
+      "TrainedOnly": true,
+      "SkillType": "Active",
+      "LinkedAttribute": "Intuition",
+      "UsualLimit": "Mental",
+      "Specializations": [
+        "Cooking",
+        "Sculpting",
+        "Drawing",
+        "Carpentry",
+        "Fashion",
+        "Painting"
+      ],
+      "Id": "8dadd5b7-d868-4e48-9f4e-2b463e8817d2",
+      "TraitType": "Skill",
+      "Name": "Artisan",
+      "SubCategory": "Technical",
+      "Book": "SR5",
+      "Page": 143
+    },
+    {
+      "TrainedOnly": true,
+      "SkillType": "Active",
+      "GroupName": "Engineering",
+      "LinkedAttribute": "Logic",
+      "UsualLimit": "Mental",
+      "Specializations": [
+        "Walker",
+        "Hover",
+        "Tracked",
+        "Wheeled"
+      ],
+      "Id": "02c8bb88-e93a-476d-921b-af215080dc88",
+      "TraitType": "Skill",
+      "Name": "Automotive Mechanic",
+      "SubCategory": "Technical",
+      "Book": "SR5",
+      "Page": 143
+    },
+    {
+      "TrainedOnly": true,
+      "SkillType": "Active",
+      "LinkedAttribute": "Logic",
+      "UsualLimit": "Mental",
+      "Specializations": [
+        "Bioinformatics",
+        "Bioware",
+        "Cloning",
+        "Gene Therapy",
+        "Vat Maintenance"
+      ],
+      "Id": "8e2886fa-77d2-4345-920e-b457e5c79368",
+      "TraitType": "Skill",
+      "Name": "Biotechnology",
+      "SubCategory": "Technical",
+      "Book": "SR5",
+      "Page": 144
+    },
+    {
+      "TrainedOnly": true,
+      "SkillType": "Active",
+      "LinkedAttribute": "Logic",
+      "UsualLimit": "Mental",
+      "Specializations": [
+        "Analytical",
+        "Biochemistry",
+        "Inorganic",
+        "Organic",
+        "Physical"
+      ],
+      "Id": "320165f5-7429-43e4-b925-8e4a4e01f13b",
+      "TraitType": "Skill",
+      "Name": "Chemistry",
+      "SubCategory": "Technical",
+      "Book": "SR5",
+      "Page": 144
+    },
+    {
+      "TrainedOnly": false,
+      "SkillType": "Active",
+      "GroupName": "Electronics",
+      "LinkedAttribute": "Logic",
+      "UsualLimit": "Mental",
+      "Specializations": [
+        "Edit File",
+        "Matrix Perception",
+        "Matrix Search"
+      ],
+      "Id": "745b464f-7408-439c-860b-97e62bc8f670",
+      "TraitType": "Skill",
+      "Name": "Computer",
+      "SubCategory": "Technical",
+      "Book": "SR5",
+      "Page": 144
+    },
+    {
+      "TrainedOnly": false,
+      "SkillType": "Active",
+      "GroupName": "Cracking",
+      "LinkedAttribute": "Logic",
+      "UsualLimit": "Mental",
+      "Specializations": [
+        "Devices",
+        "Grids",
+        "IC",
+        "Personas",
+        "Sprites"
+      ],
+      "Id": "28a0ff9f-0b07-4759-8c7f-3f0f35c2ece7",
+      "TraitType": "Skill",
+      "Name": "Cybercombat",
+      "SubCategory": "Technical",
+      "Book": "SR5",
+      "Page": 144
+    },
+    {
+      "TrainedOnly": true,
+      "SkillType": "Active",
+      "GroupName": "Biotech",
+      "LinkedAttribute": "Logic",
+      "UsualLimit": "Mental",
+      "Specializations": [
+        "Bodyware",
+        "Cyberlimbs",
+        "Headware",
+        "Repair"
+      ],
+      "Id": "c1533b2b-707e-4840-8dfc-91cd03685f38",
+      "TraitType": "Skill",
+      "Name": "Cybertechnology",
+      "SubCategory": "Technical",
+      "Book": "SR5",
+      "Page": 144
+    },
+    {
+      "TrainedOnly": false,
+      "SkillType": "Active",
+      "LinkedAttribute": "Logic",
+      "UsualLimit": "Mental",
+      "Specializations": [
+        "Commercial Explosives",
+        "Defusing",
+        "Improvised Explosives",
+        "Plastic Explosives"
+      ],
+      "Id": "88c59627-23b8-4c76-999d-9e26e625e635",
+      "TraitType": "Skill",
+      "Name": "Demolitions",
+      "SubCategory": "Technical",
+      "Book": "SR5",
+      "Page": 144
+    },
+    {
+      "TrainedOnly": true,
+      "SkillType": "Active",
+      "GroupName": "Cracking",
+      "LinkedAttribute": "Logic",
+      "UsualLimit": "Mental",
+      "Specializations": [
+        "Communications",
+        "Encryption",
+        "Jamming",
+        "Sensor Operations"
+      ],
+      "Id": "3c1a14a8-ddec-4add-8728-aa437500bdee",
+      "TraitType": "Skill",
+      "Name": "Electronic Warfare",
+      "SubCategory": "Technical",
+      "Book": "SR5",
+      "Page": 144
+    },
+    {
+      "TrainedOnly": false,
+      "SkillType": "Active",
+      "GroupName": "Biotech",
+      "LinkedAttribute": "Logic",
+      "UsualLimit": "Mental",
+      "Specializations": [
+        "Gunshot Wounds",
+        "Resuscitation",
+        "Broken Bones",
+        "Burns",
+        "Concussions"
+      ],
+      "Id": "b5b4d5be-f962-489a-bd52-8289024ae9e8",
+      "TraitType": "Skill",
+      "Name": "First Aid",
+      "SubCategory": "Technical",
+      "Book": "SR5",
+      "Page": 144
+    },
+    {
+      "TrainedOnly": false,
+      "SkillType": "Active",
+      "LinkedAttribute": "Logic",
+      "UsualLimit": "Mental",
+      "Specializations": [
+        "Counterfeiting",
+        "Credstick Forgery",
+        "False ID",
+        "Image Doctoring",
+        "Paper Forgery"
+      ],
+      "Id": "45505328-e9e1-4194-82be-b6eb0c08d358",
+      "TraitType": "Skill",
+      "Name": "Forgery",
+      "SubCategory": "Technical",
+      "Book": "SR5",
+      "Page": 144
+    },
+    {
+      "TrainedOnly": false,
+      "SkillType": "Active",
+      "GroupName": "Cracking",
+      "LinkedAttribute": "Logic",
+      "UsualLimit": "Mental",
+      "Specializations": [
+        "Devices",
+        "Files",
+        "Hosts",
+        "Personas"
+      ],
+      "Id": "39e7a544-c9b8-4511-8933-d98d3782a818",
+      "TraitType": "Skill",
+      "Name": "Hacking",
+      "SubCategory": "Technical",
+      "Book": "SR5",
+      "Page": 145
+    },
+    {
+      "TrainedOnly": true,
+      "SkillType": "Active",
+      "GroupName": "Electronics",
+      "LinkedAttribute": "Logic",
+      "UsualLimit": "Mental",
+      "Specializations": [
+        "Commlinks",
+        "Cyberdecks",
+        "Smartguns",
+        "RCCs"
+      ],
+      "Id": "eb7de47a-8d0c-41c8-b606-2e25bacc2bf3",
+      "TraitType": "Skill",
+      "Name": "Hardware",
+      "SubCategory": "Technical",
+      "Book": "SR5",
+      "Page": 145
+    },
+    {
+      "TrainedOnly": true,
+      "SkillType": "Active",
+      "GroupName": "Engineering",
+      "LinkedAttribute": "Logic",
+      "UsualLimit": "Mental",
+      "Specializations": [
+        "Electrical Power Systems",
+        "Hydraulics",
+        "HVAC",
+        "Industrial Robotics",
+        "Structural",
+        "Welding"
+      ],
+      "Id": "884f2afd-9332-4e48-a629-0ac6967c1d6e",
+      "TraitType": "Skill",
+      "Name": "Industrial Mechanic",
+      "SubCategory": "Technical",
+      "Book": "SR5",
+      "Page": 145
+    },
+    {
+      "TrainedOnly": true,
+      "SkillType": "Active",
+      "LinkedAttribute": "Agility",
+      "UsualLimit": "Mental",
+      "Specializations": [
+        "Combination",
+        "Keypad",
+        "Maglock",
+        "Tumbler",
+        "Voice Recognition"
+      ],
+      "Id": "f1e58643-10e8-49a0-b6a7-ff1763804b15",
+      "TraitType": "Skill",
+      "Name": "Locksmith",
+      "SubCategory": "Technical",
+      "Book": "SR5",
+      "Page": 145
+    },
+    {
+      "TrainedOnly": true,
+      "SkillType": "Active",
+      "GroupName": "Biotech",
+      "LinkedAttribute": "Logic",
+      "UsualLimit": "Mental",
+      "Specializations": [
+        "Cosmetic Surgery",
+        "Extended Care",
+        "Implant Surgery",
+        "Magical Health",
+        "Organ Culture",
+        "Trauma Surgery"
+      ],
+      "Id": "7ad33a22-d876-4f35-a4b7-27c14867cf52",
+      "TraitType": "Skill",
+      "Name": "Medicine",
+      "SubCategory": "Technical",
+      "Book": "SR5",
+      "Page": 145
+    },
+    {
+      "TrainedOnly": true,
+      "SkillType": "Active",
+      "GroupName": "Engineering",
+      "LinkedAttribute": "Logic",
+      "UsualLimit": "Mental",
+      "Specializations": [
+        "Motorboat",
+        "Sailboat",
+        "Ship",
+        "Submarine"
+      ],
+      "Id": "5b4ed64e-a723-4e2f-87c9-9ef79fae6e67",
+      "TraitType": "Skill",
+      "Name": "Nautical Mechanic",
+      "SubCategory": "Technical",
+      "Book": "SR5",
+      "Page": 145
+    },
+    {
+      "TrainedOnly": false,
+      "SkillType": "Active",
+      "GroupName": "Outdoors",
+      "LinkedAttribute": "Logic",
+      "UsualLimit": "Mental",
+      "Specializations": [
+        "Augmented Reality Markers",
+        "Celestial",
+        "Compass",
+        "Maps",
+        "GPS"
+      ],
+      "Id": "c625e4ef-bf9e-4b71-95d1-2ebaa2eb2be0",
+      "TraitType": "Skill",
+      "Name": "Navigation",
+      "SubCategory": "Technical",
+      "Book": "SR5",
+      "Page": 145
+    },
+    {
+      "TrainedOnly": true,
+      "SkillType": "Active",
+      "GroupName": "Electronics",
+      "LinkedAttribute": "Logic",
+      "UsualLimit": "Mental",
+      "Specializations": [
+        "Data Bombs"
+      ],
+      "Id": "68f76c2a-6391-4cd4-823c-9081f211e457",
+      "TraitType": "Skill",
+      "Name": "Software",
+      "SubCategory": "Technical",
+      "Book": "SR5",
+      "Page": 145
+    }
+  ]
+}

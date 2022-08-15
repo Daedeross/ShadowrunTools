@@ -11,5 +11,7 @@ namespace ShadowrunTools.Characters.ViewModels
         IPrioritiesViewModel Priorities { get; }
 
         ICommonViewModel Common { get; }
+
+        ICharacterSkillsViewModel Skills { get; }
     }
 }

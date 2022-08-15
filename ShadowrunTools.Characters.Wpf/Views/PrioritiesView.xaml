@@ -6,7 +6,6 @@
                           xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                           xmlns:vm="clr-namespace:ShadowrunTools.Characters.ViewModels;assembly=ShadowrunTools.Characters.ViewModels.Contract"
                           xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
-                          xmlns:xtk="http://schemas.xceed.com/wpf/xaml/toolkit"
                           xmlns:rxui="http://reactiveui.net"
                           xmlns:local="clr-namespace:ShadowrunTools.Characters.Wpf.Views"
                           mc:Ignorable="d" 

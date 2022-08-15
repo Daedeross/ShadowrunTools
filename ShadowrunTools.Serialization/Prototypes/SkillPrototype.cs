@@ -18,7 +18,7 @@ namespace ShadowrunTools.Serialization.Prototypes
         [DataMember]
         public SkillType SkillType { get; set; }
 
-        [DataMember]
+        [DataMember(IsRequired = false, EmitDefaultValue = false)]
         public string GroupName { get; set; }
 
         [DataMember]

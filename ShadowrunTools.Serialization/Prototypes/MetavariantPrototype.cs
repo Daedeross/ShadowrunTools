@@ -27,7 +27,7 @@ namespace ShadowrunTools.Serialization.Prototypes
         public string Metatype { get; set; }
 
         [DataMember(Name = "Attributes")]
-        private List<MetatypeAttributePrototype> _attributes;
+        internal List<MetatypeAttributePrototype> _attributes;
 
         public IReadOnlyCollection<IMetatypeAttribute> Attributes => _attributes;
     }

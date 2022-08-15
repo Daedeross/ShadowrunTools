@@ -9,6 +9,7 @@
                           xmlns:vm="clr-namespace:ShadowrunTools.Characters.ViewModels;assembly=ShadowrunTools.Characters.ViewModels.Contract"
                           xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
                           xmlns:rxui="http://reactiveui.net"
+                          xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                           xmlns:local="clr-namespace:ShadowrunTools.Characters.Wpf.Views"
                           mc:Ignorable="d" 
                           d:DesignHeight="450" d:DesignWidth="800">
@@ -43,7 +44,7 @@
                     <GridViewColumn Header="Points">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <xtk:IntegerUpDown Name="PointsSpin"
+                                <mah:NumericUpDown Name="PointsSpin"
                                                    Value="{Binding BaseIncrease}"
                                                    Minimum="0" Maximum="{Binding MaxBaseIncrease}" />
                             </DataTemplate>
@@ -52,7 +53,7 @@
                     <GridViewColumn Header="Karma">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <xtk:IntegerUpDown Name="KarmaSpin"
+                                <mah:NumericUpDown Name="KarmaSpin"
                                                    Value="{Binding Improvement}"
                                                    Minimum="0" Maximum="{Binding MaxImprovement}" />
                             </DataTemplate>
