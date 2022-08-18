@@ -28,7 +28,7 @@
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
-        <Menu Grid.Row="0">
+        <Menu Grid.Row="0" materialDesign:MenuAssist.TopLevelMenuItemHeight="32" >
             <MenuItem Header="_File">
                 <MenuItem Header="_New" Name="NewButton" Command="ApplicationCommands.New" />
                 <MenuItem Header="_Load Data" Name="LoadDataButton" Click="LoadDataButton_Click" />
@@ -43,6 +43,9 @@
             </StatusBarItem>
         </StatusBar>
         <dragablz:TabablzControl Grid.Row="1" x:Name="DocumentsTabControl">
+            <!--<dragablz:TabablzControl.InterTabController>
+                <dragablz:InterTabController />
+            </dragablz:TabablzControl.InterTabController>-->
             <dragablz:TabablzControl.HeaderItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Title}" />
