@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ShadowrunTools.Characters.Traits
+﻿namespace ShadowrunTools.Characters.Traits
 {
+    using System.Collections.Generic;
+
     public interface ISkillGroup : ILeveledTrait
     {
         IEnumerable<string> Skills { get; set; }

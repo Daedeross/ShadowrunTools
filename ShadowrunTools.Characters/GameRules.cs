@@ -95,7 +95,10 @@
         public int StartingMaxSkillRating { get; set; } = 6;
 
         [Display(Editable = true)]
-        public int InPlayMaxSkillRating { get; }
+        public int InPlayMaxSkillRating { get; } = 12;
+
+        [Display(Editable = true)]
+        public int SkillDefaultAdjustment { get; } = -1;
 
         public IPropertyList BeginEdit()
         {

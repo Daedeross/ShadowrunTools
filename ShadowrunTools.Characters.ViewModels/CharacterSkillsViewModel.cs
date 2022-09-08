@@ -19,7 +19,7 @@ namespace ShadowrunTools.Characters.ViewModels
         private readonly ICharacter _character;
 
         private readonly IObservableCache<ISkillViewModel, string> _skillsCache;
-        private readonly IConnectableObservable<IChangeSet<ISkillViewModel, string>> _skillsChanges;
+        private readonly IObservable<IChangeSet<ISkillViewModel, string>> _skillsChanges;
 
         public CharacterSkillsViewModel(DisplaySettings displaySettings, IViewModelFactory viewModelFactory, ICharacter model)
             : base(displaySettings)
@@ -34,14 +34,14 @@ namespace ShadowrunTools.Characters.ViewModels
                 _character.Skills.Values.Select(_viewModelFactory.For<ISkillViewModel, ISkill>));
 
             var activeFilter = this
-                .WhenAnyValue(x => x.SelectedActiveSkillFilter, x => x.ActiveSkillFilterText)
+                .WhenAnyValue(x => x.SelectedActiveSkillFilter, x => x.ActiveSkillSearchText)
                 .Select(tuple => BuildActiveFilter(tuple.Item1, tuple.Item2));
 
             var knowledgeFilter = this
-                .WhenAnyValue(x => x.SelectedKnowledgeSkillFilter, x => x.KnowledgeFilterText)
+                .WhenAnyValue(x => x.SelectedKnowledgeSkillFilter, x => x.KnowledgeSkillSearchText)
                 .Select(tuple => BuildKnowledgeFilter(tuple.Item1, tuple.Item2));
 
-            _skillsChanges = _skillsCache.Connect().Publish();
+            _skillsChanges = _skillsCache.Connect();//.Publish();
 
             _skillsChanges
                 .ObserveOn(RxApp.MainThreadScheduler)
@@ -66,13 +66,13 @@ namespace ShadowrunTools.Characters.ViewModels
                 .DisposeWith(Disposables);
         }
 
-        private IObservableCollection<ISkillViewModel> _skills = new ObservableCollectionExtended<ISkillViewModel>();
+        private ObservableCollectionExtended<ISkillViewModel> _skills = new ObservableCollectionExtended<ISkillViewModel>();
         public IObservableCollection<ISkillViewModel> Skills => _skills;
 
-        private IObservableCollection<ISkillViewModel> _activeSkills = new ObservableCollectionExtended<ISkillViewModel>();
+        private ObservableCollectionExtended<ISkillViewModel> _activeSkills = new ObservableCollectionExtended<ISkillViewModel>();
         public IObservableCollection<ISkillViewModel> ActiveSkills => _activeSkills;
 
-        private IObservableCollection<ISkillViewModel> _knowledgeSkills = new ObservableCollectionExtended<ISkillViewModel>();
+        private ObservableCollectionExtended<ISkillViewModel> _knowledgeSkills = new ObservableCollectionExtended<ISkillViewModel>();
         public IObservableCollection<ISkillViewModel> KnowledgeSkills => _knowledgeSkills;
 
         public IObservableCollection<ISkillGroupViewModel> SkillGroups { get; set; }
@@ -80,7 +80,7 @@ namespace ShadowrunTools.Characters.ViewModels
         #region Filtering
 
         private string m_ActiveSkillFilterText;
-        public string ActiveSkillFilterText
+        public string ActiveSkillSearchText
         {
             get => m_ActiveSkillFilterText;
             set => this.RaiseAndSetIfChanged(ref m_ActiveSkillFilterText, value);
@@ -96,7 +96,7 @@ namespace ShadowrunTools.Characters.ViewModels
         }
 
         private string m_KnowledgeFilterText;
-        public string KnowledgeFilterText
+        public string KnowledgeSkillSearchText
         {
             get => m_KnowledgeFilterText;
             set => this.RaiseAndSetIfChanged(ref m_KnowledgeFilterText, value);
@@ -113,19 +113,40 @@ namespace ShadowrunTools.Characters.ViewModels
 
         private Func<ISkill, bool> BuildActiveFilter(string selectedFilter, string searchText)
         {
-            var filter = SkillHelpers.IsActiveSkill;
+            Predicate<ISkill> filterPredicate = null;
+            Predicate<ISkill> searchPredicate = null;
 
             if (selectedFilter != null && SkillHelpers.ActiveSkillFilters.TryGetValue(selectedFilter, out var built_in))
             {
-                filter = (skill) => filter(skill) && built_in(skill);
+                filterPredicate = (skill) => built_in(skill);
             }
 
             if (!string.IsNullOrWhiteSpace(searchText))
             {
-                filter = (skill) => filter(skill) && skill.Name.Contains(searchText);
+                searchPredicate = (skill) => skill.Name.Contains(searchText, StringComparison.OrdinalIgnoreCase);
             }
-
-            return filter;
+            if (filterPredicate is null)
+            {
+                if (searchPredicate is null)
+                {
+                    return SkillHelpers.IsActiveSkill;
+                }
+                else
+                {
+                    return (skill) => SkillHelpers.IsActiveSkill(skill) && searchPredicate(skill);
+                }
+            }
+            else
+            {
+                if (searchPredicate is null)
+                {
+                    return (skill) => SkillHelpers.IsActiveSkill(skill) && filterPredicate(skill);
+                }
+                else
+                {
+                    return (skill) => SkillHelpers.IsActiveSkill(skill) && filterPredicate(skill) && searchPredicate(skill);
+                }
+            }
         }
         private Func<ISkill, bool> BuildKnowledgeFilter(string selectedFilter, string searchText)
         {

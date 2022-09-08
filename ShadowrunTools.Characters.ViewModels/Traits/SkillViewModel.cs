@@ -1,15 +1,17 @@
-﻿using DynamicData.Binding;
-using ReactiveUI;
-using ShadowrunTools.Characters.Contract.Model;
-using ShadowrunTools.Characters.Traits;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reactive.Disposables;
-using System.Reflection;
-using System.Windows.Input;
-
-namespace ShadowrunTools.Characters.ViewModels.Traits
+﻿namespace ShadowrunTools.Characters.ViewModels.Traits
 {
+    using DynamicData.Binding;
+    using ReactiveUI;
+    using ShadowrunTools.Characters.Contract.Model;
+    using ShadowrunTools.Characters.Traits;
+    using System.Collections.Generic;
+    using System.Collections.Specialized;
+    using System.Linq;
+    using System.Reactive.Disposables;
+    using System.Reactive.Linq;
+    using System.Reflection;
+    using System.Windows.Input;
+
     public class SkillViewModel : LeveledTraitViewModel, ISkillViewModel
     {
         private const int SpecializationBonus = 2;
@@ -36,6 +38,8 @@ namespace ShadowrunTools.Characters.ViewModels.Traits
                     (pool, spec) => spec > 0 ? $"{pool} ({pool + SpecializationBonus})" : $"{pool}")
                 .ToProperty(this, x => x.DisplayPool)
                 .DisposeWith(Disposables);
+
+            Specializations.CollectionChanged += OnSpecializationsChanged;
         }
 
         #region ISkill Implementation
@@ -62,6 +66,21 @@ namespace ShadowrunTools.Characters.ViewModels.Traits
         public IReadOnlyCollection<string> SuggestedSpecializations => _skill.SuggestedSpecializations;
 
         #endregion
+
+        private string m_DisplaySpecializations;
+        public string DisplaySpecializations
+        {
+            get => m_DisplaySpecializations;
+            set => this.RaiseAndSetIfChanged(ref m_DisplaySpecializations, value);
+        }
+
+        private void OnSpecializationsChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null || e.OldItems != null)
+            {
+                DisplaySpecializations = string.Join(", ", Specializations.ToArray());
+            }
+        }
 
         protected override void OnTraitChanged(string propertyName)
         {

@@ -32,9 +32,9 @@ namespace ShadowrunTools.Characters.ViewModels.Internal
             { "Attribute: Resonance", s => string.Equals(s.LinkedAttribute?.Name, AttributeNames.Resonance) },
         };
 
-        public static IReadOnlyDictionary<string, Func<ISkill, bool>> ActiveSkillFilters = new Dictionary<string, Func<ISkill, bool>>
+        public static IReadOnlyDictionary<string, Func<ISkill, bool>> ActiveSkillFilters = SharedFilters.Concat(new Dictionary<string, Func<ISkill, bool>>
         {
-            { "Un-Grouped"      , s => string.IsNullOrWhiteSpace(s.GroupName) },
+            { "Un-Grouped"                     , s => string.IsNullOrWhiteSpace(s.GroupName) },
             //{ "In Broken Skill Group", s => string.IsNullOrWhiteSpace(s.GroupName) },  // TODO: Implement skill groups
             { "Category: Combat Active"        , s => string.Equals(s.SubCategory, SkillCategories.CombatActive) },
             { "Category: Physical Active"      , s => string.Equals(s.SubCategory, SkillCategories.PhysicalActive) },
@@ -44,17 +44,15 @@ namespace ShadowrunTools.Characters.ViewModels.Internal
             { "Category: Resonance Active"     , s => string.Equals(s.SubCategory, SkillCategories.ResonanceActive) },
             { "Category: Technical Active"     , s => string.Equals(s.SubCategory, SkillCategories.TechnicalActive) },
             { "Category: Vehicle Active"       , s => string.Equals(s.SubCategory, SkillCategories.VehicleActive) },
-        }.Concat(SharedFilters)
-            .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+        }).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
 
-        public static IReadOnlyDictionary<string, Func<ISkill, bool>> KnowledgeSkillFilters = new Dictionary<string, Func<ISkill, bool>>
+        public static IReadOnlyDictionary<string, Func<ISkill, bool>> KnowledgeSkillFilters = SharedFilters.Concat(new Dictionary<string, Func<ISkill, bool>>
         {
             { "Category: Academic Knowledge"    , s => string.Equals(s.SubCategory, SkillCategories.AcademicKnowledge) },
             { "Category: Interest Knowledge"    , s => string.Equals(s.SubCategory, SkillCategories.InterestKnowledge) },
             { "Category: Professional Knowledge", s => string.Equals(s.SubCategory, SkillCategories.ProfessionalKnowledge) },
             { "Category: Street Knowledge"      , s => string.Equals(s.SubCategory, SkillCategories.StreetKnowledge) },
             { "Category: Language"              , s => string.Equals(s.SubCategory, SkillCategories.Language) },
-        }.Concat(SharedFilters)
-            .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+        }).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
     }
 }

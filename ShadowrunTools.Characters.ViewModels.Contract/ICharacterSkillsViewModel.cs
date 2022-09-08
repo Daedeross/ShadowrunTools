@@ -21,9 +21,9 @@ namespace ShadowrunTools.Characters.ViewModels
 
         string SelectedActiveSkillFilter { get; set; }
 
-        string ActiveSkillFilterText { get; set; }
+        string ActiveSkillSearchText { get; set; }
 
-        string KnowledgeFilterText { get; set; }
+        string KnowledgeSkillSearchText { get; set; }
 
         string SelectedKnowledgeSkillFilter { get; set; }
     }

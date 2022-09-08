@@ -8,5 +8,7 @@ namespace ShadowrunTools.Characters.ViewModels
     public interface ISkillViewModel: IViewModel<ISkill>, ILeveledTraitViewModel, ISkill
     {
         public string DisplayPool { get; }
+
+        public string DisplaySpecializations { get; }
     }
 }

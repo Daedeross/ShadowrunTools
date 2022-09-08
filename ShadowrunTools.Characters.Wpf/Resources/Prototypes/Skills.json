@@ -424,7 +424,7 @@
       "Id": "12b7c29e-1f5a-4070-8499-e9c38977072c",
       "TraitType": "Skill",
       "Name": "Con",
-      "SubCategory": "Social",
+      "SubCategory": "Social Active",
       "Book": "SR5",
       "Page": 138
     },
@@ -445,7 +445,7 @@
       "Id": "cf609aac-7147-4f82-81dc-fd9a874ef597",
       "TraitType": "Skill",
       "Name": "Etiquette",
-      "SubCategory": "Social",
+      "SubCategory": "Social Active",
       "Book": "SR5",
       "Page": 138
     },
@@ -465,7 +465,7 @@
       "Id": "2918e4eb-f8fb-4336-834a-555c113344b0",
       "TraitType": "Skill",
       "Name": "Impersonation",
-      "SubCategory": "Social",
+      "SubCategory": "Social Active",
       "Book": "SR5",
       "Page": 138
     },
@@ -488,7 +488,7 @@
       "Id": "180dc1ae-1c6b-4fc5-aff3-ad1c728b2e2d",
       "TraitType": "Skill",
       "Name": "Instruction",
-      "SubCategory": "Social",
+      "SubCategory": "Social Active",
       "Book": "SR5",
       "Page": 138
     },
@@ -506,7 +506,7 @@
       "Id": "f6ae7389-8db7-4a58-a1d8-4c8b6ea54d80",
       "TraitType": "Skill",
       "Name": "Intimidation",
-      "SubCategory": "Social",
+      "SubCategory": "Social Active",
       "Book": "SR5",
       "Page": 139
     },
@@ -525,7 +525,7 @@
       "Id": "c8af67e2-0f98-4df2-afc4-a1dd019254ca",
       "TraitType": "Skill",
       "Name": "Leadership",
-      "SubCategory": "Social",
+      "SubCategory": "Social Active",
       "Book": "SR5",
       "Page": 139
     },
@@ -543,7 +543,7 @@
       "Id": "d362f6ee-2061-43db-bfb6-56f259d0103f",
       "TraitType": "Skill",
       "Name": "Negotiation",
-      "SubCategory": "Social",
+      "SubCategory": "Social Active",
       "Book": "SR5",
       "Page": 139
     },
@@ -561,7 +561,7 @@
       "Id": "fac6dbc2-3922-42ee-9e79-922e187acc26",
       "TraitType": "Skill",
       "Name": "Performance",
-      "SubCategory": "Social",
+      "SubCategory": "Social Active",
       "Book": "SR5",
       "Page": 139
     },
@@ -582,7 +582,7 @@
       "Id": "b2e45ea4-d5d0-421b-906a-7d1ba091365b",
       "TraitType": "Skill",
       "Name": "Aeronautics Mechanic",
-      "SubCategory": "Technical",
+      "SubCategory": "Technical Active",
       "Book": "SR5",
       "Page": 143
     },
@@ -601,7 +601,7 @@
       "Id": "c5b79ddb-187f-4c35-ae59-2b70fa0f1bc9",
       "TraitType": "Skill",
       "Name": "Animal Handling",
-      "SubCategory": "Technical",
+      "SubCategory": "Technical Active",
       "Book": "SR5",
       "Page": 143
     },
@@ -622,7 +622,7 @@
       "Id": "8e08bb35-58d6-4c4d-8d19-3ed4314f63d8",
       "TraitType": "Skill",
       "Name": "Armorer",
-      "SubCategory": "Technical",
+      "SubCategory": "Technical Active",
       "Book": "SR5",
       "Page": 143
     },
@@ -642,7 +642,7 @@
       "Id": "8dadd5b7-d868-4e48-9f4e-2b463e8817d2",
       "TraitType": "Skill",
       "Name": "Artisan",
-      "SubCategory": "Technical",
+      "SubCategory": "Technical Active",
       "Book": "SR5",
       "Page": 143
     },
@@ -661,7 +661,7 @@
       "Id": "02c8bb88-e93a-476d-921b-af215080dc88",
       "TraitType": "Skill",
       "Name": "Automotive Mechanic",
-      "SubCategory": "Technical",
+      "SubCategory": "Technical Active",
       "Book": "SR5",
       "Page": 143
     },
@@ -680,7 +680,7 @@
       "Id": "8e2886fa-77d2-4345-920e-b457e5c79368",
       "TraitType": "Skill",
       "Name": "Biotechnology",
-      "SubCategory": "Technical",
+      "SubCategory": "Technical Active",
       "Book": "SR5",
       "Page": 144
     },
@@ -699,7 +699,7 @@
       "Id": "320165f5-7429-43e4-b925-8e4a4e01f13b",
       "TraitType": "Skill",
       "Name": "Chemistry",
-      "SubCategory": "Technical",
+      "SubCategory": "Technical Active",
       "Book": "SR5",
       "Page": 144
     },
@@ -717,7 +717,7 @@
       "Id": "745b464f-7408-439c-860b-97e62bc8f670",
       "TraitType": "Skill",
       "Name": "Computer",
-      "SubCategory": "Technical",
+      "SubCategory": "Technical Active",
       "Book": "SR5",
       "Page": 144
     },
@@ -737,7 +737,7 @@
       "Id": "28a0ff9f-0b07-4759-8c7f-3f0f35c2ece7",
       "TraitType": "Skill",
       "Name": "Cybercombat",
-      "SubCategory": "Technical",
+      "SubCategory": "Technical Active",
       "Book": "SR5",
       "Page": 144
     },
@@ -756,7 +756,7 @@
       "Id": "c1533b2b-707e-4840-8dfc-91cd03685f38",
       "TraitType": "Skill",
       "Name": "Cybertechnology",
-      "SubCategory": "Technical",
+      "SubCategory": "Technical Active",
       "Book": "SR5",
       "Page": 144
     },
@@ -774,7 +774,7 @@
       "Id": "88c59627-23b8-4c76-999d-9e26e625e635",
       "TraitType": "Skill",
       "Name": "Demolitions",
-      "SubCategory": "Technical",
+      "SubCategory": "Technical Active",
       "Book": "SR5",
       "Page": 144
     },
@@ -793,7 +793,7 @@
       "Id": "3c1a14a8-ddec-4add-8728-aa437500bdee",
       "TraitType": "Skill",
       "Name": "Electronic Warfare",
-      "SubCategory": "Technical",
+      "SubCategory": "Technical Active",
       "Book": "SR5",
       "Page": 144
     },
@@ -813,7 +813,7 @@
       "Id": "b5b4d5be-f962-489a-bd52-8289024ae9e8",
       "TraitType": "Skill",
       "Name": "First Aid",
-      "SubCategory": "Technical",
+      "SubCategory": "Technical Active",
       "Book": "SR5",
       "Page": 144
     },
@@ -832,7 +832,7 @@
       "Id": "45505328-e9e1-4194-82be-b6eb0c08d358",
       "TraitType": "Skill",
       "Name": "Forgery",
-      "SubCategory": "Technical",
+      "SubCategory": "Technical Active",
       "Book": "SR5",
       "Page": 144
     },
@@ -851,7 +851,7 @@
       "Id": "39e7a544-c9b8-4511-8933-d98d3782a818",
       "TraitType": "Skill",
       "Name": "Hacking",
-      "SubCategory": "Technical",
+      "SubCategory": "Technical Active",
       "Book": "SR5",
       "Page": 145
     },
@@ -870,7 +870,7 @@
       "Id": "eb7de47a-8d0c-41c8-b606-2e25bacc2bf3",
       "TraitType": "Skill",
       "Name": "Hardware",
-      "SubCategory": "Technical",
+      "SubCategory": "Technical Active",
       "Book": "SR5",
       "Page": 145
     },
@@ -891,7 +891,7 @@
       "Id": "884f2afd-9332-4e48-a629-0ac6967c1d6e",
       "TraitType": "Skill",
       "Name": "Industrial Mechanic",
-      "SubCategory": "Technical",
+      "SubCategory": "Technical Active",
       "Book": "SR5",
       "Page": 145
     },
@@ -910,7 +910,7 @@
       "Id": "f1e58643-10e8-49a0-b6a7-ff1763804b15",
       "TraitType": "Skill",
       "Name": "Locksmith",
-      "SubCategory": "Technical",
+      "SubCategory": "Technical Active",
       "Book": "SR5",
       "Page": 145
     },
@@ -931,7 +931,7 @@
       "Id": "7ad33a22-d876-4f35-a4b7-27c14867cf52",
       "TraitType": "Skill",
       "Name": "Medicine",
-      "SubCategory": "Technical",
+      "SubCategory": "Technical Active",
       "Book": "SR5",
       "Page": 145
     },
@@ -950,7 +950,7 @@
       "Id": "5b4ed64e-a723-4e2f-87c9-9ef79fae6e67",
       "TraitType": "Skill",
       "Name": "Nautical Mechanic",
-      "SubCategory": "Technical",
+      "SubCategory": "Technical Active",
       "Book": "SR5",
       "Page": 145
     },
@@ -970,7 +970,7 @@
       "Id": "c625e4ef-bf9e-4b71-95d1-2ebaa2eb2be0",
       "TraitType": "Skill",
       "Name": "Navigation",
-      "SubCategory": "Technical",
+      "SubCategory": "Technical Active",
       "Book": "SR5",
       "Page": 145
     },
@@ -986,7 +986,7 @@
       "Id": "68f76c2a-6391-4cd4-823c-9081f211e457",
       "TraitType": "Skill",
       "Name": "Software",
-      "SubCategory": "Technical",
+      "SubCategory": "Technical Active",
       "Book": "SR5",
       "Page": 145
     }

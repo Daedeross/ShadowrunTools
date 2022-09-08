@@ -1,8 +1,8 @@
-﻿using ShadowrunTools.Characters.Model;
-using ShadowrunTools.Foundation;
-
-namespace ShadowrunTools.Characters
+﻿namespace ShadowrunTools.Characters
 {
+    using ShadowrunTools.Characters.Model;
+    using ShadowrunTools.Foundation;
+
     /// <summary>
     /// Interface for repository of game rules information
     /// </summary>
@@ -62,6 +62,12 @@ namespace ShadowrunTools.Characters
         /// The maximum rating a skill can be raised to "in-play"
         /// </summary>
         int InPlayMaxSkillRating { get; }
+
+        /// <summary>
+        /// The ammount added to an attribute to get the pool for a skill with no rating.
+        /// (defult -1)
+        /// </summary>
+        int SkillDefaultAdjustment { get; }
 
         #region Scaling Karma Costs
 

@@ -60,4 +60,8 @@
       <ProjectReference Include="..\ShadowrunTools.Serialization\ShadowrunTools.Serialization.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Views\" />
+    </ItemGroup>
+
 </Project>

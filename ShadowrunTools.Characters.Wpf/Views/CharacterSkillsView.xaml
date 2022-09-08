@@ -8,32 +8,240 @@
                           xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
                           xmlns:vm="clr-namespace:ShadowrunTools.Characters.ViewModels;assembly=ShadowrunTools.Characters.ViewModels.Contract"
                           xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+                          xmlns:sys="clr-namespace:System.Collections;assembly=System.Collections.NonGeneric"
                           xmlns:rxui="http://reactiveui.net"
                           xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+                          xmlns:h="clr-namespace:ShadowrunTools.Characters.Wpf.Helpers"
                           xmlns:local="clr-namespace:ShadowrunTools.Characters.Wpf.Views"
                           mc:Ignorable="d" 
-                          d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="2*" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="1*" />
-        </Grid.RowDefinitions>
-        <materialDesign:DialogHost Name="ActiveSkillsDialogHost">
-            <materialDesign:DialogHost.DialogContentTemplate>
-                <DataTemplate>
-                    <rxui:ViewModelViewHost ViewModel="{Binding}" />
-                </DataTemplate>
-            </materialDesign:DialogHost.DialogContentTemplate>
-            <ListView x:Name="ActiveSkills" materialDesign:DataGridAssist.ColumnHeaderPadding="3">
+                          d:DesignHeight="450" d:DesignWidth="1000">
+    <UserControl.Resources>
+        <sys:ArrayList x:Key="SortDefinitions">
+        </sys:ArrayList>
+    </UserControl.Resources>
+    <materialDesign:DialogHost Name="SkillsDialogHost">
+        <materialDesign:DialogHost.DialogContentTemplate>
+            <DataTemplate>
+                <rxui:ViewModelViewHost ViewModel="{Binding}" />
+            </DataTemplate>
+        </materialDesign:DialogHost.DialogContentTemplate>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+            <!--<DataGrid x:Name="ActiveSkills"
+                      Padding="2"
+                      materialDesign:DataGridAssist.CellPadding="8 2 2 2"
+                      VerticalAlignment="Stretch"
+                      HorizontalAlignment="Stretch"
+                      CanUserReorderColumns="True"
+                      AutoGenerateColumns="False"
+                      CanUserSortColumns="False"
+                      IsReadOnly="False"
+                      SelectionMode="Single"
+                      SelectionUnit="CellOrRowHeader">
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell" BasedOn="{StaticResource MaterialDesignDataGridCell}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                    <Grid Background="{TemplateBinding Background}" Margin="8 2 2 2">
+                                        <ContentPresenter VerticalAlignment="Center" />
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </DataGrid.CellStyle>
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Active Skills" MinWidth="200">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}" >
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignTextBlock}">
+                                            <Setter Property="FontStyle" Value="Normal" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding AllowDefault}" Value="False">
+                                                    <Setter Property="FontStyle" Value="Italic" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Binding="{Binding LinkedAttribute.ShortName}" IsReadOnly="True" />
+                    <DataGridTemplateColumn Header="Points" Width="78" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <mah:NumericUpDown Margin="0, 0"
+                                                   Value="{Binding BaseIncrease, Mode=TwoWay}"
+                                                   Minimum="0"
+                                                   Maximum="{Binding MaxBaseIncrease}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Karma" Width="78">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <mah:NumericUpDown Margin="0, 0"
+                                                       Value="{Binding Improvement}"
+                                                       Minimum="0"
+                                                       Maximum="{Binding MaxImprovement}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Rating">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock HorizontalAlignment="Center" FontWeight="Bold" Text="{Binding DisplayRating}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Pool">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock HorizontalAlignment="Center" Text="{Binding DisplayPool}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Specializations" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="{Binding DisplaySpecializations}" />
+                                    <Button Grid.Column="1" Name="AddSpecialization"
+                                                Height="24" Width="24"
+                                                Style="{StaticResource MaterialDesignIconButton}">
+                                        <materialDesign:PackIcon Kind="PlusThick" />
+                                    </Button>
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>-->
+            <ListView x:Name="SkillGroups"
+                      Grid.Row="0"
+                      Grid.Column="0"
+                      Grid.RowSpan="2"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="3">
                 <ListView.View>
                     <GridView AllowsColumnReorder="False">
+                        <GridView.ColumnHeaderContainerStyle>
+                            <Style TargetType="GridViewColumnHeader" BasedOn="{StaticResource ResourceKey={x:Type GridViewColumnHeader}}" >
+                                <Setter Property="IsEnabled" Value="False" />
+                            </Style>
+                        </GridView.ColumnHeaderContainerStyle>
+                        <GridViewColumn Header="Skill Groups" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
+                        <GridViewColumn Header="Points" Width="78">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <mah:NumericUpDown Margin="-4, 0"
+                                                       Value="{Binding BaseIncrease}"
+                                                       Minimum="0"
+                                                       Maximum="{Binding MaxBaseIncrease}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Karma" Width="78">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <mah:NumericUpDown Margin="-4, 0"
+                                                       Value="{Binding Improvement}"
+                                                       Minimum="0"
+                                                       Maximum="{Binding MaxImprovement}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Grid Grid.Column="1"
+                  Grid.Row="0"
+                  >
+                <Grid.Resources>
+                    <Style TargetType="Label" BasedOn="{StaticResource MaterialDesignLabel}">
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="VerticalContentAlignment" Value="Center" />
+                        <Setter Property="Margin" Value="6 4 6 4" />
+                    </Style>
+                </Grid.Resources>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" >Sort:</Label>
+                <ComboBox Name="ActiveSkillSortCombo" Grid.Column="1"
+                          SelectedIndex="0"
+                          Width="150">
+                </ComboBox>
+                <Label Grid.Column="2" >Filter:</Label>
+                <ComboBox Name="ActiveSkillFilterCombo"
+                          Grid.Column="3"
+                          SelectedIndex="0"
+                          Width="200"
+                          ItemsSource="{Binding ActiveSkillFilters}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Separator Grid.Column="4" Width="5" Visibility="Hidden" />
+                <!--<Label Grid.Column="4" >Search:</Label>-->
+                <TextBox Name="ActiveSkillSearchBox"
+                         Grid.Column="5"
+                         Margin="6 3"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         VerticalAlignment="Center"
+                         materialDesign:TextFieldAssist.HasClearButton="True"
+                         materialDesign:HintAssist.Hint="Search"
+                         Text="{Binding ActiveSkillSearchText}"
+                         ></TextBox>
+                <Button Grid.Column="6"
+                        Style="{StaticResource MaterialDesignRaisedButton}"
+                        IsEnabled="False">Add Exotic Skill</Button>
+            </Grid>
+            <ListView x:Name="ActiveSkills"
+                      Grid.Row="1"
+                      Grid.Column="1"
+                      HorizontalAlignment="Stretch"
+                      Visibility="Visible"
+                      SizeChanged="ActiveSkills_SizeChanged"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="3"
+                      materialDesign:ListBoxItemAssist.ShowSelection="False">
+                <ListView.View>
+                    <GridView AllowsColumnReorder="False">
+                        <GridView.ColumnHeaderContainerStyle>
+                            <Style TargetType="GridViewColumnHeader" BasedOn="{StaticResource ResourceKey={x:Type GridViewColumnHeader}}" >
+                                <Setter Property="IsEnabled" Value="False" />
+                            </Style>
+                        </GridView.ColumnHeaderContainerStyle>
                         <GridViewColumn Header="Active Skills" Width="200" >
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Name}">
-                                        <TextBlock.Style>
-                                            <Style TargetType="TextBlock">
+                                    <Label Content="{Binding Name}">
+                                        <Label.Style>
+                                            <Style TargetType="Label">
                                                 <Setter Property="FontStyle" Value="Normal" />
                                                 <Style.Triggers>
                                                     <DataTrigger Binding="{Binding AllowDefault}" Value="False">
@@ -41,8 +249,8 @@
                                                     </DataTrigger>
                                                 </Style.Triggers>
                                             </Style>
-                                        </TextBlock.Style>
-                                    </TextBlock>
+                                        </Label.Style>
+                                    </Label>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -81,81 +289,101 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Specializations">
+                        <GridViewColumn Header="Specializations" h:MyListBoxItemAssist.FillRemaining="True">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition Width="auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="{Binding DisplaySpecializations}" />
+                                        <Button Grid.Column="1" Name="AddSpecialization"
+                                                Height="24" Width="24"
+                                                Style="{StaticResource MaterialDesignIconButton}">
+                                            <materialDesign:PackIcon Kind="PlusThick" />
+                                        </Button>
+                                    </Grid>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>
-        </materialDesign:DialogHost>
-        <GridSplitter Grid.Row="1" Height="3"
-                      Background="SkyBlue"
-                      ShowsPreview="True"
-                      HorizontalAlignment="Stretch"
-                      />
-        <ListView x:Name="KnowledgeSkills"
-                  Grid.Row="2"
-                  materialDesign:DataGridAssist.ColumnHeaderPadding="3">
-            <ListView.View>
-                <GridView AllowsColumnReorder="False">
-                    <GridViewColumn Header="Knowledge Skills" Width="200" >
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Name}">
-                                    <TextBlock.Style>
-                                        <Style TargetType="TextBlock">
-                                            <Setter Property="FontStyle" Value="Normal" />
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding AllowDefault}" Value="False">
-                                                    <Setter Property="FontStyle" Value="Italic" />
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </TextBlock.Style>
-                                </TextBlock>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding LinkedAttribute.ShortName}" />
-                    <GridViewColumn Header="Points">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <mah:NumericUpDown Margin="-4, 0"
-                                                   Value="{Binding BaseIncrease}"
-                                                   Minimum="0"
-                                                   Maximum="{Binding MaxBaseIncrease}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Karma">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <mah:NumericUpDown Margin="-4, 0"
-                                                   Value="{Binding Improvement}"
-                                                   Minimum="0"
-                                                   Maximum="{Binding MaxImprovement}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Rating">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock HorizontalAlignment="Center" FontWeight="Bold" Text="{Binding DisplayRating}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Pool">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock HorizontalAlignment="Center" Text="{Binding DisplayPool}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
-    </Grid>
+            <GridSplitter Grid.Row="2"
+                          Grid.ColumnSpan="2"
+                          Height="3"
+                          Background="SkyBlue"
+                          ShowsPreview="True"
+                          HorizontalAlignment="Stretch"
+                          />
+            <ListView x:Name="KnowledgeSkills"
+                      Grid.ColumnSpan="2"
+                      Grid.Row="3"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="3">
+                <ListView.View>
+                    <GridView AllowsColumnReorder="False">
+                        <GridView.ColumnHeaderContainerStyle>
+                            <Style TargetType="GridViewColumnHeader" BasedOn="{StaticResource ResourceKey={x:Type GridViewColumnHeader}}" >
+                                <Setter Property="IsEnabled" Value="False" />
+                            </Style>
+                        </GridView.ColumnHeaderContainerStyle>
+                        <GridViewColumn Header="Knowledge Skills" Width="200" >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="FontStyle" Value="Normal" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding AllowDefault}" Value="False">
+                                                        <Setter Property="FontStyle" Value="Italic" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding LinkedAttribute.ShortName}" />
+                        <GridViewColumn Header="Points">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <mah:NumericUpDown Margin="-4, 0"
+                                                       Value="{Binding BaseIncrease}"
+                                                       Minimum="0"
+                                                       Maximum="{Binding MaxBaseIncrease}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Karma">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <mah:NumericUpDown Margin="-4, 0"
+                                                       Value="{Binding Improvement}"
+                                                       Minimum="0"
+                                                       Maximum="{Binding MaxImprovement}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Rating">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock HorizontalAlignment="Center" FontWeight="Bold" Text="{Binding DisplayRating}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Pool">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock HorizontalAlignment="Center" Text="{Binding DisplayPool}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+    </materialDesign:DialogHost>
 </rxui:ReactiveUserControl>

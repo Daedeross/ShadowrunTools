@@ -1,14 +1,13 @@
-﻿using DynamicData.Binding;
-using ReactiveUI;
-using ShadowrunTools.Characters.Contract.Model;
-using ShadowrunTools.Characters.Model;
-using System;
-using System.Collections.Generic;
-using System.Reactive.Disposables;
-using System.Text;
-
-namespace ShadowrunTools.Characters.Traits
+﻿namespace ShadowrunTools.Characters.Traits
 {
+    using DynamicData.Binding;
+    using ReactiveUI;
+    using ShadowrunTools.Characters.Contract.Model;
+    using ShadowrunTools.Characters.Model;
+    using System;
+    using System.Collections.Generic;
+    using System.Reactive.Disposables;
+
     public class Skill : LeveledTrait, ISkill
     {
         public Skill(
@@ -25,8 +24,6 @@ namespace ShadowrunTools.Characters.Traits
         {
             SkillType = skillType;
             LinkedAttribute = linkedAttribuye;
-
-            
 
             _totalPool = this
                 .WhenAnyValue(x => x.ImprovedRating, x => x.LinkedAttribute.ImprovedRating, x => x.AllowDefault, (skill_rat, attr_rat, alw_def) => (skill_rat > 0 || alw_def) ? skill_rat + attr_rat : 0)

@@ -61,8 +61,24 @@ namespace ShadowrunTools.Characters.Wpf.Helpers
         public static void SetRippleBrush(DependencyObject element, bool value)
         {
             element.SetValue(RippleBrushProperty, value);
-        } 
+        }
         #endregion
+        
+        #region FillRemaining
 
+        // Using a DependencyProperty as the backing store for FillRemaining.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty FillRemainingProperty =
+            DependencyProperty.RegisterAttached("FillRemaining", typeof(bool), typeof(MyListBoxItemAssist), new PropertyMetadata(false));
+
+        public static bool GetFillRemaining(DependencyObject element)
+        {
+            return (bool)element.GetValue(FillRemainingProperty);
+        }
+        public static void SetFillRemaining(DependencyObject element, bool value)
+        {
+            element.SetValue(FillRemainingProperty, value);
+        }
+
+        #endregion
     }
 }

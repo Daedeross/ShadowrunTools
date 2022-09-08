@@ -14,10 +14,8 @@
                           d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition
-          Height="*" />
-            <RowDefinition
-          Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <ListView Name="MainList">
             <ListView.View>
