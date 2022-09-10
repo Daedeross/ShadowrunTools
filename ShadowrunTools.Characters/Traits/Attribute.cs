@@ -1,11 +1,10 @@
 ﻿namespace ShadowrunTools.Characters.Traits
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Reactive.Disposables;
     using ReactiveUI;
     using ShadowrunTools.Characters.Model;
+    using System;
+    using System.Linq;
+    using System.Reactive.Disposables;
 
     public class Attribute : LeveledTrait, IAttribute
     {
@@ -37,6 +36,18 @@
                     me => me.BonusMax,
                     (baseMax, extraMax) => baseMax + extraMax)
                 .ToProperty(this, me => me.Max)
+                .DisposeWith(Disposables);
+
+            _points = this.WhenAnyValue(me => me.BaseIncrease)
+                .ToProperty(this, me => me.Points)
+                .DisposeWith(Disposables);
+
+            _karma = this.WhenAnyValue(
+                me => me.BaseRating,
+                me => me.ImprovedRating,
+                me => me.mRules.AttributeKarmaMult,
+                (@base, improved, mult) => mRules.AttributeKarma(@base, improved))
+                .ToProperty(this, me => me.Karma)
                 .DisposeWith(Disposables);
         }
 
@@ -80,6 +91,17 @@
         {
             get => m_CustomOrder;
             set => this.RaiseAndSetIfChanged(ref m_CustomOrder, value);
+        }
+
+        private ObservableAsPropertyHelper<int> _points;
+        public int Points => _points.Value;
+
+        private ObservableAsPropertyHelper<int> _karma;
+        public int Karma => _karma.Value;
+
+        public override bool Improve(ImprovementSource source = ImprovementSource.Karma, int value = 1)
+        {
+            throw new NotSupportedException();
         }
 
         protected void OnMetatypeChanged(object sender, ItemChangedEventArgs e)

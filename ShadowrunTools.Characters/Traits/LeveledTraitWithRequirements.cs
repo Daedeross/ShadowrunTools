@@ -5,20 +5,22 @@
     using ShadowrunTools.Characters.Model;
     using System;
 
-    public class TraitWithRequirements : BaseTrait, IHavePrerequisite, IHaveTaboo
+    public abstract class LeveledTraitWithRequirements : LeveledTrait, IHavePrerequisite, IHaveTaboo
     {
         private readonly IDslParser<ITrait> _parser;
         private readonly IScope<ITrait> _scope;
 
-        public TraitWithRequirements(Guid id,
-                                     int prototypeHash,
-                                     string name,
-                                     string category,
-                                     ITraitContainer container,
-                                     ICategorizedTraitContainer root,
-                                     IRules rules,
-                                     IDslParser<ITrait> parser)
-            : base(id, prototypeHash, name, category, container, root, rules)
+        public LeveledTraitWithRequirements(
+            Guid id,
+            int prototypeHash,
+            string name,
+            string category,
+            ITraitContainer container,
+            ICategorizedTraitContainer root,
+            IRules rules,
+            IDslParser<ITrait> parser,
+            LeveledTraitObservables inits = LeveledTraitObservables.All)
+            : base(id, prototypeHash, name, category, container, root, rules, inits)
         {
             _parser = parser;
 

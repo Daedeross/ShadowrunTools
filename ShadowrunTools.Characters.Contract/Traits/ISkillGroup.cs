@@ -1,10 +1,11 @@
 ﻿namespace ShadowrunTools.Characters.Traits
 {
+    using DynamicData.Binding;
     using System.Collections.Generic;
 
     public interface ISkillGroup : ILeveledTrait
     {
-        IEnumerable<string> Skills { get; set; }
+        IReadOnlyList<string> SkillNames { get; }
 
         bool Broken { get; }
     }

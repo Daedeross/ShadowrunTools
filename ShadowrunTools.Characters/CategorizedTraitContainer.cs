@@ -1,12 +1,12 @@
-﻿using ShadowrunTools.Characters.Traits;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
-
-namespace ShadowrunTools.Characters
+﻿namespace ShadowrunTools.Characters
 {
+    using ShadowrunTools.Characters.Traits;
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Collections.Specialized;
+    using System.Linq;
+
     public class CategorizedTraitContainer : ICategorizedTraitContainer
     {
         private Dictionary<string, ITraitContainer> _categories;
@@ -50,6 +50,8 @@ namespace ShadowrunTools.Characters
         public int Count => _categories.Count;
 
         public bool IsReadOnly => false;
+
+        public bool InPlay { get; set; }
 
         public void Add(string key, ITraitContainer value)
         {

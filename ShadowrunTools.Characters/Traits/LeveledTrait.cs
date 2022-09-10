@@ -1,6 +1,8 @@
 ﻿namespace ShadowrunTools.Characters.Traits
 {
     using ReactiveUI;
+    using ShadowrunTools.Characters.Internal;
+    using ShadowrunTools.Characters.Model;
     using ShadowrunTools.Foundation;
     using System;
     using System.Collections.Generic;
@@ -16,32 +18,42 @@
                             string category,
                             ITraitContainer container,
                             ICategorizedTraitContainer root,
-                            IRules rules)
+                            IRules rules,
+                            LeveledTraitObservables inits = LeveledTraitObservables.All)
             : base(id, prototypeHash, name, category, container, root, rules)
         {
-            _baseRating = this.WhenAnyValue(
-                    me => me.Min,
-                    me => me.BaseIncrease,
-                    me => me.Max,
-                    (min, increase, max) => Math.Min(min + increase, max))
-                .ToProperty(this, me => me.BaseRating)
-                .DisposeWith(Disposables);
+            if (inits.HasFlag(LeveledTraitObservables.BaseRating))
+            {
+                _baseRating = this.WhenAnyValue(
+                        me => me.Min,
+                        me => me.BaseIncrease,
+                        me => me.Max,
+                        (min, increase, max) => Math.Min(min + increase, max))
+                    .ToProperty(this, me => me.BaseRating)
+                    .DisposeWith(Disposables);
+            }
 
-            _improvedRating = this.WhenAnyValue(
-                    me => me.BaseRating,
-                    me => me.Improvement,
-                    me => me.Max,
-                    (rating, improvement, max) => Math.Min(rating + improvement, max))
-                .ToProperty(this, me => me.ImprovedRating)
-                .DisposeWith(Disposables);
+            if (inits.HasFlag(LeveledTraitObservables.ImprovedRating))
+            {
+                _improvedRating = this.WhenAnyValue(
+                            me => me.BaseRating,
+                            me => me.Improvement,
+                            me => me.Max,
+                            (rating, improvement, max) => Math.Min(rating + improvement, max))
+                        .ToProperty(this, me => me.ImprovedRating)
+                        .DisposeWith(Disposables); 
+            }
 
-            _augmentedRating = this.WhenAnyValue(
-                    me => me.ImprovedRating,
-                    me => me.BonusRating,
-                    me => me.AugmentedMax,
-                    (improved, bonus, max) => Math.Min(improved + bonus, max))
-                .ToProperty(this, me => me.AugmentedRating)
-                .DisposeWith(Disposables);
+            if (inits.HasFlag(LeveledTraitObservables.AugmentedRating))
+            {
+                _augmentedRating = this.WhenAnyValue(
+                            me => me.ImprovedRating,
+                            me => me.BonusRating,
+                            me => me.AugmentedMax,
+                            (improved, bonus, max) => Math.Min(improved + bonus, max))
+                        .ToProperty(this, me => me.AugmentedRating)
+                        .DisposeWith(Disposables); 
+            }
         }
 
         protected int m_ExtraMin;
@@ -63,23 +75,42 @@
         public abstract int Max { get; }
 
         protected int m_BaseIncrease;
-        public int BaseIncrease
+        public virtual int BaseIncrease
         {
             get => m_BaseIncrease;
-            set => this.RaiseAndSetIfChanged(ref m_BaseIncrease, value);
+            set
+            {
+                if (value > 0 && value < Max - Min)
+                {
+                    this.RaiseAndSetIfChanged(ref m_BaseIncrease, value);
+                }
+                else
+                {
+                    this.RaisePropertyChanged(); // in case update came from a data-bound UI, this will reset it to previous value;
+                }
+            }
         }
 
-        private readonly ObservableAsPropertyHelper<int> _baseRating;
+        protected ObservableAsPropertyHelper<int> _baseRating;
         public int BaseRating => _baseRating.Value;
 
         protected int m_Improvement;
-        public int Improvement
+        public virtual int Improvement
         {
-            get => m_Improvement;
-            set => this.RaiseAndSetIfChanged(ref m_Improvement, value);
+            get => m_Improvement; set
+            {
+                if (value > 0 && value < Max - BaseRating)
+                {
+                    this.RaiseAndSetIfChanged(ref m_Improvement, value);
+                }
+                else
+                {
+                    this.RaisePropertyChanged(); // in case update came from a data-bound UI, this will reset it to previous value;
+                }
+            }
         }
 
-        private readonly ObservableAsPropertyHelper<int> _improvedRating;
+        protected ObservableAsPropertyHelper<int> _improvedRating;
         public int ImprovedRating => _improvedRating.Value;
 
         private int m_BonusRating;
@@ -89,7 +120,7 @@
             set => this.RaiseAndSetIfChanged(ref m_BonusRating, value);
         }
 
-        private readonly ObservableAsPropertyHelper<int> _augmentedRating;
+        protected ObservableAsPropertyHelper<int> _augmentedRating;
         public int AugmentedRating => _augmentedRating.Value;
 
         public abstract int AugmentedMax { get; }
@@ -102,6 +133,9 @@
             }
             return ImprovedRating.CompareTo(other.ImprovedRating);
         }
+
+        /// <inheritdoc />
+        public abstract bool Improve(ImprovementSource source = ImprovementSource.Karma, int value = 1);
 
         #region IAugmentable Implemenation
 

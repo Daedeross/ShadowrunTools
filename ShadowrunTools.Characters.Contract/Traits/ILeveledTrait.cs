@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShadowrunTools.Characters.Model;
+using System;
 
 namespace ShadowrunTools.Characters.Traits
 {
@@ -61,5 +62,13 @@ namespace ShadowrunTools.Characters.Traits
         /// The maximum augmented rating for this trait
         /// </summary>
         int AugmentedMax { get; }
+
+        /// <summary>
+        /// Improve the trait's rating by one (1) using Karma.
+        /// Only usable when In-play.
+        /// </summary>
+        /// <param name="source">The source of the improvement.</param>
+        /// <returns>True if the improvement is valid.</returns>
+        bool Improve(ImprovementSource source = ImprovementSource.Karma, int value = 1);
     }
 }

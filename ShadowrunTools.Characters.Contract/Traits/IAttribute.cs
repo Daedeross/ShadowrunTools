@@ -1,5 +1,7 @@
 ﻿namespace ShadowrunTools.Characters.Traits
 {
+    using ShadowrunTools.Characters.Contract;
+
     /// <summary>
     /// Includes the core 8 Attributes (STR, CHA, etc.), Special Attributes (MAG or RES), and all the derrived ones.
     /// </summary>
@@ -13,7 +15,7 @@
     /// Living Persona: (implementations TBD)
     /// Reputation: (only in-play, TBD)
     /// </remarks>
-    public interface IAttribute: ILeveledTrait, IOrderOverride
+    public interface IAttribute: ILeveledTrait, IOrderOverride, IPointCost, IKarmaCost
     {
         string ShortName { get; }
     }

@@ -20,13 +20,7 @@
         public int MaxAugment { get; set; }
 
         [Display(Editable = true)]
-        public int StartingSkillCap { get; set; }
-
-        [Display(Editable = true)]
         public int StartingMaxedSkillCount { get; set; }
-
-        [Display(Editable = true)]
-        public int InPlaySkillCap { get; set; }
 
         [Display(Editable = true)]
         public int StartingMaxedAttributeCount { get; set; }

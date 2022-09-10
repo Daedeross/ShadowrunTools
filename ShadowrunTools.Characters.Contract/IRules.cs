@@ -24,11 +24,6 @@
         int MaxAugment { get; }
 
         /// <summary>
-        /// The maximum rating for available to skills during character creation.
-        /// </summary>
-        int StartingSkillCap { get; }
-
-        /// <summary>
         /// The maximum number of skills that can have the highest available rating during character creation.
         /// </summary>
         int StartingMaxedSkillCount { get; }
@@ -37,11 +32,6 @@
         /// The maximum rating of skills in character creation.
         /// </summary>
         int StartingMaxSkillRating { get; }
-
-        /// <summary>
-        /// The maximum rating for available to skills in-play (i.e. due to Advancement)
-        /// </summary>
-        int InPlaySkillCap { get; }
 
         /// <summary>
         /// The maximum number of attributes that can have the highest available rating during character creation.

@@ -7,6 +7,8 @@ namespace ShadowrunTools.Characters
 {
     public interface ICategorizedTraitContainer: IDictionary<string, ITraitContainer>, INotifyCollectionChanged
     {
+        bool InPlay { get; }
+
         IEnumerable<ITrait> GetTraitsByName(string name);
 
         event EventHandler<TraitsChangedEventArgs> TraitsChanged;

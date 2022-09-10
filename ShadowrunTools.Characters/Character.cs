@@ -1,16 +1,16 @@
-﻿using ShadowrunTools.Characters.Model;
-using ShadowrunTools.Characters.Priorities;
-using ShadowrunTools.Characters.Prototypes;
-using ShadowrunTools.Characters.Traits;
-using ShadowrunTools.Characters.Validators;
-using ShadowrunTools.Serialization.Prototypes;
-using System;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.Linq;
-
-namespace ShadowrunTools.Characters
+﻿namespace ShadowrunTools.Characters
 {
+    using ShadowrunTools.Characters.Model;
+    using ShadowrunTools.Characters.Priorities;
+    using ShadowrunTools.Characters.Prototypes;
+    using ShadowrunTools.Characters.Traits;
+    using ShadowrunTools.Characters.Validators;
+    using ShadowrunTools.Serialization.Prototypes;
+    using System;
+    using System.Collections.ObjectModel;
+    using System.Collections.Specialized;
+    using System.Linq;
+
     public class Character: CategorizedTraitContainer, ICharacter, INotifyItemChanged
     {
         public Character(
