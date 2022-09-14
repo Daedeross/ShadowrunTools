@@ -104,7 +104,7 @@
 
         #endregion
 
-        internal Improvement ImproveSkill(ISkill skill, int amount)
+        internal Improvement ImproveSkill(ISkill skill, Improvement improvement)
         {
             if (amount == 0)
             {

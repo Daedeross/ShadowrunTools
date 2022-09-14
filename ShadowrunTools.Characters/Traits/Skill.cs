@@ -14,6 +14,8 @@
     {
         private readonly SkillGroup _skillGroup;
         private readonly IObservableCollection<Improvement> _improvements; // shared instance owned by the _skillGroup
+        private readonly Improvement _chargenPointsImprovement;
+        private readonly Improvement _chargenKarmaImprovement;
 
         public Skill(
             Guid id,
@@ -92,11 +94,22 @@
         private int _chargenImprovment;
         public override int Improvement
         {
-            get => base.Improvement;
+            get => m_Improvement + _chargenImprovment;
             set
             {
-                var diff = value - Improvement;
-                _skillGroup.ImproveSkill(this, )
+                if (mRoot.InPlay)
+                {
+                    var diff = value - ImprovedRating;
+
+                    while (diff-- > 0)
+                    {
+                        Improve();
+                    }
+                }
+                else
+                {
+                    this.RaiseAndSetIfChanged(ref _chargenImprovment, value);
+                }
             }
         }
 
@@ -152,19 +165,19 @@
                 if (ImprovedRating + value < Max)
                 {
                     var oldValue = ImprovedRating;
-                    int cost = 0;
+                    var newValue = ImprovedRating + value;
 
-                    Improvement++;
+                    int cost = 0;
 
                     switch (source)
                     {
                         case ImprovementSource.Free:
                             break;
                         case ImprovementSource.Points:
-                            cost = 1;
+                            cost = value;
                             break;
                         case ImprovementSource.Karma:
-                            cost = ImprovedRating * mRules.ActiveSkillKarmaMult;
+                            cost = mRules.ActiveSkillKarma(oldValue, newValue);
                             break;
                         case ImprovementSource.Group:
                             break;
@@ -185,16 +198,27 @@
 
         private IObservableCollection<Improvement> AddToGroup(IEnumerable<Improvement> improvements)
         {
-            var sorted = improvements.OrderBy(i => i.NewValue).ToList();
-            int newValue = 0;
+            List<Improvement> sorted;
 
-            foreach (var improvement in sorted)
+            if (improvements.Any())
             {
-                if (improvement.OldValue != newValue)
+                sorted = improvements.OrderBy(i => i.NewValue).ToList();
+                int newValue = 0;
+
+                foreach (var improvement in sorted)
                 {
-                    throw new InvalidOperationException("Skill improvements do not line up.");
+                    if (improvement.OldValue != newValue)
+                    {
+                        throw new InvalidOperationException("Skill improvements do not line up.");
+                    }
+                    newValue = improvement.NewValue;
                 }
-                newValue = improvement.NewValue;
+
+                
+            }
+            else
+            {
+                sorted = new();
             }
 
             return _skillGroup.AddSkill(this, sorted);
