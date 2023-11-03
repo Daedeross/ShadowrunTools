@@ -35,6 +35,7 @@ namespace ShadowrunTools.Characters.Traits
 
         /// <summary>
         /// The Base Rating of the trait, before extras and Karma Improvement.
+        /// (usually <see cref="Min"/>+<see cref="BaseIncrease"/>, capped at <see cref="Max"/>).
         /// </summary>
         int BaseRating { get; }
 
@@ -54,7 +55,7 @@ namespace ShadowrunTools.Characters.Traits
         int BonusRating { get; }
 
         /// <summary>
-        /// The rating after bonus
+        /// The rating after bonus.
         /// </summary>
         int AugmentedRating { get; }
 

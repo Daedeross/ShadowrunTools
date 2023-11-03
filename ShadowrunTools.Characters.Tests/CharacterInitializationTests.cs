@@ -16,6 +16,7 @@ namespace ShadowrunTools.Characters.Tests
         public void TestCreateAttribute()
         {
             var mockRules = new Mock<IRules>();
+            var mockParserFactory = new Mock<IParserFactory>();
 
             var mockMetaAttribute = new Mock<IMetatypeAttribute>();
             mockMetaAttribute.SetupGet(x => x.Name).Returns("Robert");
@@ -40,7 +41,7 @@ namespace ShadowrunTools.Characters.Tests
             mockAttributePrototype.SetupGet(x => x.SubCategory).Returns("Primary Attributes");
             mockAttributePrototype.SetupGet(x => x.TraitType).Returns(Model.TraitType.Attribute);
 
-            var factory = new TraitFactory(mockRules.Object);
+            var factory = new TraitFactory(mockRules.Object, mockParserFactory.Object);
 
             var character = new Character(metatype, priorities.Object);
 

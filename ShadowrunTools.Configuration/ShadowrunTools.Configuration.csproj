@@ -1,18 +1,20 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-  <Import Project="../shared.app.props" />
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>net6</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ReactiveUI" Version="19.5.1" />
+    <PackageReference Include="Castle.Windsor" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ShadowrunTools.Characters.Contract\ShadowrunTools.Characters.Contract.csproj" />
     <ProjectReference Include="..\ShadowrunTools.Characters.ViewModels.Contract\ShadowrunTools.Characters.ViewModels.Contract.csproj" />
+    <ProjectReference Include="..\ShadowrunTools.Characters.ViewModels\ShadowrunTools.Characters.ViewModels.csproj" />
     <ProjectReference Include="..\ShadowrunTools.Characters\ShadowrunTools.Characters.csproj" />
+    <ProjectReference Include="..\ShadowrunTools.Dsl\ShadowrunTools.Dsl.csproj" />
+    <ProjectReference Include="..\ShadowrunTools.Foundation\ShadowrunTools.Foundation.csproj" />
     <ProjectReference Include="..\ShadowrunTools.Serialization\ShadowrunTools.Serialization.csproj" />
   </ItemGroup>
 

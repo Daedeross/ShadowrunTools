@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Moq;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using ShadowrunTools.Characters.Factories;
 using ShadowrunTools.Characters.Model;
@@ -40,8 +41,10 @@ namespace ShadowrunTools.Characters.Tests.Loaders
                 }
             };
 
+            var mockParserFactory = new Mock<IParserFactory>();
+
             var prototypes = dataLoader.ReloadAll();
-            var traitFactory = new TraitFactory(rules);
+            var traitFactory = new TraitFactory(rules, mockParserFactory.Object);
             var characterFactory = new CharacterFactory(rules, traitFactory);
             var character = characterFactory.Create(prototypes);
 

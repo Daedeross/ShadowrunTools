@@ -39,6 +39,7 @@ namespace ShadowrunTools.Characters.Wpf
     using ReactiveUI;
     using ShadowrunTools.Characters.ViewModels;
     using ShadowrunTools.Characters.Wpf.Configuration;
+    using ShadowrunTools.Configuration;
     using Splat;
     using System;
 
@@ -55,6 +56,9 @@ namespace ShadowrunTools.Characters.Wpf
         {
             Locator.SetLocator(new CastleWindsorDependencyResolver(_container));
             _container.Install(new ApplicationInstaller());
+            _container.Install(new DslInstaller());
+            _container.Install(new ViewModelInstaller());
+            _container.Install(new CharacterInstaller());
             Locator.CurrentMutable.InitializeSplat();
             Locator.CurrentMutable.InitializeReactiveUI();
             Locator.CurrentMutable.RegisterLazySingleton(() => _container.Resolve<IViewLocator>(nameof(WindsorViewLocator)), typeof(IViewLocator));

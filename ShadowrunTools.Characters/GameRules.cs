@@ -94,6 +94,9 @@
         [Display(Editable = true)]
         public int SkillDefaultAdjustment { get; } = -1;
 
+        [Display(Editable = true)]
+        public bool CanBreakSkillGroupsAtCharGen { get; } = false;
+
         public IPropertyList BeginEdit()
         {
             _oldProperties = PropertyFactory.CreateFromObject(this, false);

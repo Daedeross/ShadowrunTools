@@ -12,6 +12,19 @@
 
     public abstract class LeveledTrait : BaseTrait, ILeveledTrait, IAugmentable
     {
+        /// <summary>
+        /// The constructor for <see cref="LeveledTrait"/>
+        /// </summary>
+        /// <param name="id"><seealso cref="BaseTrait"/></param>
+        /// <param name="prototypeHash"><seealso cref="BaseTrait"/></param>
+        /// <param name="name"><seealso cref="BaseTrait"/></param>
+        /// <param name="category"><seealso cref="BaseTrait"/></param>
+        /// <param name="container"><seealso cref="BaseTrait"/></param>
+        /// <param name="root"><seealso cref="BaseTrait"/></param>
+        /// <param name="rules"><seealso cref="BaseTrait"/></param>
+        /// <param name="inits"><see cref="LeveledTraitObservables"/> enum flags telling 
+        /// the constructor which boservable to initialize.
+        /// Any Observable left uninitialized must be handled by the decendant class.</param>
         public LeveledTrait(Guid id,
                             int prototypeHash,
                             string name,
@@ -92,7 +105,7 @@
         }
 
         protected ObservableAsPropertyHelper<int> _baseRating;
-        public int BaseRating => _baseRating.Value;
+        public int BaseRating => _baseRating?.Value ?? default;
 
         protected int m_Improvement;
         public virtual int Improvement
@@ -111,7 +124,7 @@
         }
 
         protected ObservableAsPropertyHelper<int> _improvedRating;
-        public int ImprovedRating => _improvedRating.Value;
+        public int ImprovedRating => _improvedRating?.Value ?? default;
 
         private int m_BonusRating;
         public int BonusRating
@@ -121,7 +134,7 @@
         }
 
         protected ObservableAsPropertyHelper<int> _augmentedRating;
-        public int AugmentedRating => _augmentedRating.Value;
+        public int AugmentedRating => _augmentedRating?.Value ?? default;
 
         public abstract int AugmentedMax { get; }
 
@@ -241,7 +254,6 @@
             }
             base.Dispose(disposing);
         }
-
 
         #endregion
     }

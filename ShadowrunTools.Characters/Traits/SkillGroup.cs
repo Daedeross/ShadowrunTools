@@ -3,7 +3,6 @@
     using DynamicData.Binding;
     using ReactiveUI;
     using ShadowrunTools.Characters;
-    using ShadowrunTools.Characters.Internal;
     using ShadowrunTools.Characters.Model;
     using System;
     using System.Collections.Generic;
@@ -22,7 +21,6 @@
             string category,
             ITraitContainer container,
             ICategorizedTraitContainer root,
-            IList<ISkill> skills,
             IRules rules,
             IDslParser<ITrait> parser)
             : base(id, prototypeHash, name, category, container, root, rules, parser)
@@ -106,6 +104,7 @@
 
         internal Improvement ImproveSkill(ISkill skill, Improvement improvement)
         {
+            var amount = improvement.NewValue - improvement.OldValue;
             if (amount == 0)
             {
                 return null;
@@ -116,18 +115,20 @@
                 {
                 }
             }
-            else
+            else // negative ?
             {
-
+                return null;        // TODO: maybe allow undos?
             }
 
             RecalcBroken();
-            RecalcBonus();
+            //RecalcBonus();          // TODO: Check if this is still needed
+
+            return null;
         }
 
         public override bool Improve(ImprovementSource source = ImprovementSource.Karma, int value = 1)
         {
-            if (Broken || source == ImprovementSource.Points)
+            if (Broken || source != ImprovementSource.Karma)
             {
                 return false;
             }
@@ -156,11 +157,19 @@
             }
         }
 
+        /// <summary>
+        /// Add a skill to this group.
+        /// </summary>
+        /// <param name="skill"></param>
+        /// <param name="improvements"></param>
+        /// <returns></returns>
         internal IObservableCollection<Improvement> AddSkill(ISkill skill, IEnumerable<Improvement> improvements)
         {
             var output = new ObservableCollectionExtended<Improvement>(improvements);
             _skills.Add(skill, output);
             skill.PropertyChanged += OnSkillChanged;
+
+            Hidden = _skills.Count > 1;
 
             return output;
         }
@@ -191,7 +200,7 @@
         {
             if (mRoot.InPlay)
             {
-                var rating = _skills.Keys.Min(s => s.Improvements.Max(i => i.NewValue));
+                var rating = _skills.Values.Min(imp => imp.Max(i => i.NewValue));
                 var in_play = rating - _chargenImprovment - BaseRating;
                 this.RaiseAndSetIfChanged(ref m_Improvement, in_play, nameof(Improvement));
             }
@@ -215,7 +224,7 @@
                 if (source == ImprovementSource.Points)
                 {
                     // Cannot break skill groups with points (SR5 p88)
-                    return _skills.Keys.All(s => s.BaseIncrease == 0);
+                    return mRules.CanBreakSkillGroupsAtCharGen || _skills.Keys.All(s => s.BaseIncrease == 0);
                 }
                 else if (source == ImprovementSource.Karma)
                 {

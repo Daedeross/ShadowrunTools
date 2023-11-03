@@ -39,54 +39,64 @@
             Category = category;
             Name = name;
             mRules = rules;
+
+            m_Hidden = false;
         }
 
         public Guid Id { get; private set; }
 
         public int PrototypeHash { get; private set; }
 
-        [Display(Label = "Name", Editable = false)]
+        private bool m_Hidden;
+        [Display(Editable = false)]
+        public virtual bool Hidden
+        {
+            get => m_Hidden;
+            set => this.RaiseAndSetIfChanged(ref m_Hidden, value);
+        }
+
         private string m_Name;
+        [Display(Label = "Name", Editable = false)]
         public string Name
         {
             get => m_Name;
             set => this.RaiseAndSetIfChanged(ref m_Name, value);
         }
 
-        [Display(Editable = false)]
         private string m_Category;
+        [Display(Editable = false)]
         public string Category
         {
             get => m_Category;
             set => this.RaiseAndSetIfChanged(ref m_Category, value);
         }
 
-        [Display(Editable = true)]
         private string m_SubCategory;
+        [Display(Editable = true)]
         public string SubCategory
         {
             get => m_SubCategory;
             set => this.RaiseAndSetIfChanged(ref m_SubCategory, value);
         }
 
-        [Display(Editable = true)]
         private string m_UserNotes;
+        [Display(Editable = true)]
         public string UserNotes
         {
             get => m_UserNotes;
             set => this.RaiseAndSetIfChanged(ref m_UserNotes, value);
         }
 
-        [Display(Editable = true)]
         private string m_Book;
+        [Display(Editable = true)]
         public string Book
         {
             get => m_Book;
             set => this.RaiseAndSetIfChanged(ref m_Book, value);
         }
 
-        [Display(Editable = true)]
         private int m_Page;
+        [Display(Editable = true)]
         public int Page
         {
             get => m_Page;

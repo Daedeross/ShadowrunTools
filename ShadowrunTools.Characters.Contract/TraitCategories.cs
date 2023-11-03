@@ -5,5 +5,6 @@
         public const string Attribute = "Attribute";
         public const string Quality = "Quality";
         public const string Skill = "Skill";
+        public const string SkillGroup = "SkillGroup";
     }
 }

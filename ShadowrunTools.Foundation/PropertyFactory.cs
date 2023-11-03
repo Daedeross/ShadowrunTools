@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Linq;
 
 namespace ShadowrunTools.Foundation
@@ -43,7 +42,14 @@ namespace ShadowrunTools.Foundation
 
             foreach (var kvp in propList.Where(p => p.Value.Editable))
             {
-                props[kvp.Key].SetValue(obj, kvp.Value.Value);
+                if (props.TryGetValue(kvp.Key, out var pi))
+                {
+                    pi.SetValue(obj, kvp.Value.Value);
+                }
+                else
+                {
+                    Console.WriteLine($"Warning: Unknown property '{kvp.Key}'.");   // TODO: ILogger
+                }
             }
         }
     }

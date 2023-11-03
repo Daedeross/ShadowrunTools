@@ -13,7 +13,6 @@
     public class Skill : LeveledTraitWithRequirements, ISkill
     {
         private readonly SkillGroup _skillGroup;
-        private readonly IObservableCollection<Improvement> _improvements; // shared instance owned by the _skillGroup
         private readonly Improvement _chargenPointsImprovement;
         private readonly Improvement _chargenKarmaImprovement;
 
@@ -70,7 +69,7 @@
                 .ToProperty(this, x => x.AugmentedMax)
                 .DisposeWith(Disposables);
 
-            _improvements = AddToGroup(improvements);
+            AddToGroup(improvements);
         }
 
         #region Overrides
@@ -80,7 +79,8 @@
             get => base.BaseIncrease;
             set
             {
-                if (_skillGroup.BaseRating > 0)
+                // RAW, cannot break skill groups at chargen
+                if (_skillGroup.BaseRating > 0 && ! mRules.CanBreakSkillGroupsAtCharGen)
                 {
                     this.RaiseAndSetIfChanged(ref m_BaseIncrease, 0);
                 }
@@ -196,7 +196,13 @@
             return false;
         }
 
-        private IObservableCollection<Improvement> AddToGroup(IEnumerable<Improvement> improvements)
+        /// <summary>
+        /// Adds skill to skill group.
+        /// </summary>
+        /// <param name="improvements"></param>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException"></exception>
+        private void AddToGroup(IEnumerable<Improvement> improvements)
         {
             List<Improvement> sorted;
 
@@ -221,7 +227,7 @@
                 sorted = new();
             }
 
-            return _skillGroup.AddSkill(this, sorted);
+            _skillGroup.AddSkill(this, sorted);
         }
     }
 }

@@ -50,7 +50,11 @@
             set => this.RaiseAndSetIfChanged(ref _currentTab, value);
         }
 
-        public WorkspaceViewModel(IViewModelFactory viewModelFactory, IDataLoader dataLoader, IRules rules, DisplaySettings displaySettings)
+        public WorkspaceViewModel(IViewModelFactory viewModelFactory,
+                                  IDataLoader dataLoader,
+                                  IRules rules,
+                                  ITraitFactory traitFactory,
+                                  DisplaySettings displaySettings)
             : base(displaySettings)
         {
             _viewModelFactory = viewModelFactory;
@@ -58,7 +62,7 @@
             _rules = rules;
 
             // TODO: these will eventually be injected
-            _traitFactory = new Factories.TraitFactory(rules);
+            _traitFactory = traitFactory; //= new Factories.TraitFactory(rules);
             _characterFactory = new CharacterFactory(rules, _traitFactory);
 
             _characters = new SourceList<ICharacterViewModel>();
@@ -77,10 +81,7 @@
         {
             get
             {
-                if (mNewCharacterCommand is null)
-                {
-                    mNewCharacterCommand = ReactiveCommand.Create(NewCharacterExecute);
-                }
+                mNewCharacterCommand ??= ReactiveCommand.Create(NewCharacterExecute);
                 return mNewCharacterCommand;
             }
         }

@@ -10,6 +10,18 @@
         private readonly IDslParser<ITrait> _parser;
         private readonly IScope<ITrait> _scope;
 
+        /// <summary>
+        /// The constructor for <see cref="LeveledTraitWithRequirements"/>
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="prototypeHash"></param>
+        /// <param name="name"></param>
+        /// <param name="category"></param>
+        /// <param name="container"></param>
+        /// <param name="root"></param>
+        /// <param name="rules"></param>
+        /// <param name="parser"></param>
+        /// <param name="inits"></param>
         public LeveledTraitWithRequirements(
             Guid id,
             int prototypeHash,

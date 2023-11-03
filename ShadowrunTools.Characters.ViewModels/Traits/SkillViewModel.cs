@@ -89,5 +89,19 @@
                 this.RaisePropertyChanged(propertyName);
             }
         }
+
+        private bool _disposed = false;
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+
+            if (disposing)
+            {
+                if (!_disposed)
+                {
+                    Specializations.CollectionChanged -= OnSpecializationsChanged;
+                }
+            }
+        }
     }
 }

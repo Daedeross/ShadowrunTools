@@ -114,8 +114,8 @@ namespace ShadowrunTools.Characters.ViewModels.Traits
             {
                 if (!_disposed)
                 {
-                    (_trait as INotifyPropertyChanged).PropertyChanged -= TraitChanged;
-                    _trait.Dispose();
+                    _trait.PropertyChanged -= TraitChanged;
+                    _trait?.Dispose();
 
                     _disposed = true;
                 }

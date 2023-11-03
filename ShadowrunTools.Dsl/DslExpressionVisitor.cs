@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace ShadowrunTools.Dsl
 {
-    public class DslExpressionVisitor<TTrait> : CharacterBuilderBaseVisitor<Payload<Expression>>
+    public class DslExpressionVisitor<TTrait> : CharacterBuilderBaseVisitor<Payload<Expression>>, IDslExpressionVisitor<TTrait>
         where TTrait : class, INamedItem
     {
         private static readonly Expression DefaultNumericValue = Expression.Constant(0d);
@@ -28,9 +28,9 @@ namespace ShadowrunTools.Dsl
         private readonly PropertyInfo _traitsIndexer;
         private readonly IEnumerable<Type> _traitTypes;
 
-        public HashSet<PropertyReference> _watchedProperties = new();
+        private HashSet<PropertyReference> _watchedProperties = new();
 
-        public IEnumerable<PropertyReference> WatchedProperties => _watchedProperties;
+        public ICollection<PropertyReference> WatchedProperties => _watchedProperties;
 
         public DslExpressionVisitor()
             : this(new Dictionary<string, MethodInfo>(),

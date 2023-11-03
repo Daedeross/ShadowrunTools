@@ -1,22 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using ShadowrunTools.Characters.Prototypes;
-using ShadowrunTools.Characters.Traits;
-using ShadowrunTools.Foundation;
-using ShadowrunTools.Serialization;
-
-namespace ShadowrunTools.Characters.Factories
+﻿namespace ShadowrunTools.Characters.Factories
 {
-    public class TraitFactory : ITraitFactoryInternal
+    using ShadowrunTools.Characters.Model;
+    using ShadowrunTools.Characters.Prototypes;
+    using ShadowrunTools.Characters.Traits;
+    using ShadowrunTools.Foundation;
+    using System;
+    using System.Collections.Generic;
+
+    public class TraitFactory : ITraitFactory//, ITraitFactoryInternal
     {
         private readonly IRules _rules;
+        private readonly IParserFactory _parserFactory;
 
-        public TraitFactory(IRules rules)
+        public TraitFactory(IRules rules, IParserFactory parserFactory)
         {
             Args.NotNull(rules, nameof(rules));
             _rules = rules;
+            _parserFactory = parserFactory;
         }
 
         public IAttribute CreateAttribute(ICharacter character, IAttributePrototype prototype)
@@ -39,7 +39,15 @@ namespace ShadowrunTools.Characters.Factories
         {
             var container = character.Skills as ITraitContainer;
             var attribute = character.Attributes[prototype.LinkedAttribute];
-            var skill = new Skill(prototype.Id, prototype.GetHashCode(), prototype.Name, prototype.Category, prototype.SkillType, attribute, container, character, _rules)
+            var parser = _parserFactory.Create<ITrait>();
+
+            var groupName = string.IsNullOrEmpty(prototype.GroupName)
+                ? prototype.Name : prototype.GroupName;
+
+            var skillGroup = GetOrCreateSkillGroup(character, groupName);
+
+            var skill = new Skill(prototype.Id, prototype.GetHashCode(), prototype.Name, prototype.Category,
+                prototype.SkillType, attribute, skillGroup, Array.Empty<Improvement>(), container, character, _rules, parser)
             {
                 SubCategory = prototype.SubCategory,
                 Book = prototype.Book,
@@ -52,6 +60,31 @@ namespace ShadowrunTools.Characters.Factories
             };
 
             return skill;
+        }
+
+        public ISkillGroup GetOrCreateSkillGroup(ICharacter character, string groupName)
+        {
+            var container = character.GetOrAdd(TraitCategories.SkillGroup, () => new TraitContainer<ISkillGroup>(TraitCategories.SkillGroup));
+
+            if (container.TryGetValue(groupName, out var trait))
+            {
+                if (trait is ISkillGroup group)
+                {
+                    return group;
+                }
+                else
+                {
+                    throw new InvalidCastException($"Trait of incorrect type in SkillGroup container. {trait.TraitType}");
+                }
+            }
+
+            return CreateSkillGroup(character, container, groupName);
+        }
+
+        private ISkillGroup CreateSkillGroup(ICharacter character, ITraitContainer category, string groupName)
+        {
+            var parser = _parserFactory.Create<ITrait>();
+            return new SkillGroup(Guid.NewGuid(), groupName.GetHashCode(), groupName, category.Name, category, character, _rules, parser);
         }
     }
 }

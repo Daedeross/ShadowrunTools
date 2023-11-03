@@ -32,6 +32,11 @@ namespace ShadowrunTools.Characters.Tests.Augments
             public override TraitType TraitType => TraitType.None;
 
             public override bool Independant => true;
+
+            public override bool Improve(ImprovementSource source = ImprovementSource.Karma, int value = 1)
+            {
+                throw new NotImplementedException();
+            }
         }
 
         public static IEnumerable<object[]> BonusTestData()

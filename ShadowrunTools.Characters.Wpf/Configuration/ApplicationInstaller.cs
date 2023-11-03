@@ -37,35 +37,11 @@ namespace ShadowrunTools.Characters.Wpf.Configuration
 
             container.AddFacility<LoggingFacility>(f => f.LogUsing<NullLogFactory>());
 
-            container.Register(
-                Classes.FromAssemblyNamed("ShadowrunTools.Characters.ViewModels")
-                    .BasedOn<IViewModel>()
-                    .WithServiceDefaultInterfaces()
-                    .LifestyleTransient(),
-                Component.For<IViewModelFactory>()
-                    .AsFactory());
-
             //container.Register(
             //    Component.For<IRoller>()
             //        .ImplementedBy<Roller>()
             //        .LifestyleSingleton());
 
-            container.Register(
-                Classes.FromAssemblyContaining<CharacterFactory>()
-                    .BasedOn<IFactory>()
-                    .WithServiceFromInterface()
-                    .LifestyleSingleton(),
-                Component.For(typeof(IDslParser<>))
-                    .ImplementedBy(typeof(DslParser<>))
-                    .LifestyleSingleton(),
-                Component.For(typeof(IAugmentFactory<>))
-                    .ImplementedBy(typeof(IAugmentFactory<>))
-                    .LifestyleSingleton(),
-                Classes.FromAssemblyContaining<BaseTrait>()
-                    .BasedOn<ITrait>()
-                    .WithServiceFromInterface()
-                    .LifestyleTransient()
-                );
 
             container.Register(
                 Classes.FromAssemblyContaining<MainWindow>()

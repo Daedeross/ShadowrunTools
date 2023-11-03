@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace ShadowrunTools.Dsl
 {
-    public class DslAugmentVisitor<T> : CharacterBuilderBaseVisitor<IntermediateParsedAugment<T>>
+    public class DslAugmentVisitor<T> : CharacterBuilderBaseVisitor<IntermediateParsedAugment<T>>, IDslAugmentVisitor<T>
         where T : class, INamedItem
     {
-        private readonly DslExpressionVisitor<T> _expressionVisitor;
+        private readonly IDslExpressionVisitor<T> _expressionVisitor;
 
-        public DslAugmentVisitor(DslExpressionVisitor<T> expressionVisitor)
+        public DslAugmentVisitor(IDslExpressionVisitor<T> expressionVisitor)
         {
             _expressionVisitor = expressionVisitor;
         }

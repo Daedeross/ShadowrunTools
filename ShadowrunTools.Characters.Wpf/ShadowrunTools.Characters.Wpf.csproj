@@ -3,28 +3,31 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
+    <LangVersion>latest</LangVersion>
     <UseWPF>true</UseWPF>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
     <NoWarn>NU1701</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Castle.LoggingFacility" Version="5.1.2" />
-    <PackageReference Include="Castle.Windsor" Version="5.1.2" />
-    <PackageReference Include="Castle.Core" Version="4.4.1" />
-    <PackageReference Include="Dragablz" Version="0.0.3.223" />
-    <PackageReference Include="MahApps.Metro" Version="2.4.9" />
-    <PackageReference Include="MaterialDesignThemes" Version="4.5.0" />
-    <PackageReference Include="MaterialDesignThemes.MahApps" Version="0.2.2" />
-    <PackageReference Include="Moq" Version="4.17.2" />
+    <PackageReference Include="Castle.LoggingFacility" Version="6.0.0" />
+    <PackageReference Include="Castle.Windsor" Version="6.0.0" />
+    <PackageReference Include="Castle.Core" Version="5.1.1" />
+    <PackageReference Include="Dragablz" Version="0.0.3.234" />
+    <PackageReference Include="MahApps.Metro" Version="2.4.10" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.9.0" />
+    <PackageReference Include="MaterialDesignThemes.MahApps" Version="0.3.0" />
+    <PackageReference Include="Moq" Version="4.20.69" />
     <PackageReference Include="Nito.Mvvm.Async" Version="1.0.0-pre-04" />
-    <PackageReference Include="NLog" Version="5.0.2" />
-    <PackageReference Include="ReactiveUI" Version="18.3.1" />
-    <PackageReference Include="ReactiveUI.WPF" Version="18.3.1" />
+    <PackageReference Include="NLog" Version="5.2.5" />
+    <PackageReference Include="ReactiveUI" Version="19.5.1" />
+    <PackageReference Include="ReactiveUI.WPF" Version="19.5.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ShadowrunTools.Characters.ViewModels\ShadowrunTools.Characters.ViewModels.csproj" />
     <ProjectReference Include="..\ShadowrunTools.Characters\ShadowrunTools.Characters.csproj" />
+    <ProjectReference Include="..\ShadowrunTools.Configuration\ShadowrunTools.Configuration.csproj" />
     <ProjectReference Include="..\ShadowrunTools.Dsl\ShadowrunTools.Dsl.csproj" />
   </ItemGroup>
 

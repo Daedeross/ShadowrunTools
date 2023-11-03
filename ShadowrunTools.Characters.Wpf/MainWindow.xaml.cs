@@ -83,9 +83,11 @@ namespace ShadowrunTools.Characters.Wpf
 
         public void LoadFileDialog(Action<string[]> callback)
         {
-            var dialog = new Microsoft.Win32.OpenFileDialog();
-            dialog.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            dialog.Multiselect = true;
+            var dialog = new Microsoft.Win32.OpenFileDialog
+            {
+                InitialDirectory = AppDomain.CurrentDomain.BaseDirectory,
+                Multiselect = true
+            };
 
             var result = dialog.ShowDialog();
 

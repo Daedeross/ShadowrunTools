@@ -8,17 +8,17 @@ using System.Linq.Expressions;
 
 namespace ShadowrunTools.Dsl
 {
-    public class DslVisitor<T> : CharacterBuilderBaseVisitor<ParsedScript<T>>
+    public class DslVisitor<T> : CharacterBuilderBaseVisitor<ParsedScript<T>>, IDslVisitor<T>
         where T : class, INamedItem
     {
-        private readonly DslExpressionVisitor<T> _expressionVisitor;
-        private readonly DslAugmentVisitor<T> _augmentVisitor;
+        private readonly IDslExpressionVisitor<T> _expressionVisitor;
+        private readonly IDslAugmentVisitor<T> _augmentVisitor;
 
-        public IEnumerable<PropertyReference> WatchedProperties => _expressionVisitor.WatchedProperties;
+        public ICollection<PropertyReference> WatchedProperties => _expressionVisitor.WatchedProperties;
 
         public ParameterExpression Scope => _expressionVisitor.Scope;
 
-        public DslVisitor(DslExpressionVisitor<T> expressionVisitor, DslAugmentVisitor<T> augmentVisitor)
+        public DslVisitor(IDslExpressionVisitor<T> expressionVisitor, IDslAugmentVisitor<T> augmentVisitor)
         {
             _expressionVisitor = expressionVisitor;
             _augmentVisitor = augmentVisitor;
@@ -26,7 +26,7 @@ namespace ShadowrunTools.Dsl
 
         public void Clear()
         {
-            _expressionVisitor._watchedProperties.Clear();
+            _expressionVisitor.WatchedProperties.Clear();
         }
 
 

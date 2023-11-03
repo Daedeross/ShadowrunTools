@@ -133,5 +133,11 @@
         int InPlayQualityMult { get; }
 
         #endregion // Flat Karma Costs
+
+        #region Optional Rules
+
+        public bool CanBreakSkillGroupsAtCharGen { get; }
+
+        #endregion
     }
 }

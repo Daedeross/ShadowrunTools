@@ -34,6 +34,10 @@ namespace ShadowrunTools.Characters.ViewModels.Traits
 
         public string CustomOrder { get => _attribute.CustomOrder; set => _attribute.CustomOrder = value; }
 
+        public int Points => _attribute.Points;
+
+        public int Karma => _attribute.Karma;
+
         #endregion
 
         protected override void OnTraitChanged(string propertyName)

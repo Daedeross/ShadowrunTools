@@ -21,7 +21,7 @@ namespace ShadowrunTools.Characters.Tests.Expressions
         {
             var expressionVisitor = new DslExpressionVisitor<T>();
             return new DslParser<T>(
-            new DslVisitor<T>(expressionVisitor, new DslAugmentVisitor<T>(expressionVisitor)));
+                new DslVisitor<T>(expressionVisitor, new DslAugmentVisitor<T>(expressionVisitor)));
         }
 
         [Fact]

@@ -10,9 +10,9 @@ namespace ShadowrunTools.Dsl
     public class DslParser<T> : IDslParser<T>
         where T : class, INamedItem
     {
-        private readonly DslVisitor<T> _visitor;
+        private readonly IDslVisitor<T> _visitor;
 
-        public DslParser(DslVisitor<T> visitor)
+        public DslParser(IDslVisitor<T> visitor)
         {
             _visitor = visitor;
         }

@@ -29,6 +29,11 @@ namespace ShadowrunTools.Characters.Traits
         Guid Id { get; }
 
         /// <summary>
+        /// If true, Trait should not be show in UI.
+        /// </summary>
+        bool Hidden { get; }
+
+        /// <summary>
         /// If true, the trait can be add or removed by the user.
         /// If false, the trait was added by another entity and is dependant on that entity.
         /// (eg. Qualities, Skill, and Spells granted in the 'Special' column in the Priority Table)

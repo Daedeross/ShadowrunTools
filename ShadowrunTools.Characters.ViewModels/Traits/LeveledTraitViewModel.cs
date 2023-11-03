@@ -1,20 +1,20 @@
-﻿using ReactiveUI;
-using ShadowrunTools.Characters.Model;
-using ShadowrunTools.Characters.Prototypes;
-using ShadowrunTools.Characters.Traits;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Linq;
-using System.Reactive.Disposables;
-using System.Reactive.Linq;
-using System.Text;
-using System.Windows.Input;
-
-namespace ShadowrunTools.Characters.ViewModels.Traits
+﻿namespace ShadowrunTools.Characters.ViewModels.Traits
 {
+    using ReactiveUI;
+    using ShadowrunTools.Characters.Model;
+    using ShadowrunTools.Characters.Prototypes;
+    using ShadowrunTools.Characters.Traits;
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Collections.Specialized;
+    using System.ComponentModel;
+    using System.Linq;
+    using System.Reactive.Disposables;
+    using System.Reactive.Linq;
+    using System.Text;
+    using System.Windows.Input;
+
     public abstract class LeveledTraitViewModel : TraitViewModelBase, ILeveledTraitViewModel
     {
         private readonly ILeveledTrait _leveledTrait;
@@ -74,6 +74,8 @@ namespace ShadowrunTools.Characters.ViewModels.Traits
         {
             return _leveledTrait.CompareTo(other);
         }
+
+        public bool Improve(ImprovementSource source = ImprovementSource.Karma, int value = 1) => _leveledTrait.Improve(source, value);
 
         #endregion
 
