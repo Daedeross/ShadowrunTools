@@ -3,7 +3,6 @@
     using ShadowrunTools.Characters.Model;
     using ShadowrunTools.Foundation;
     using System;
-    using System.Collections.Generic;
     using System.Linq;
 
     public class GameRules : IRules, IEditable

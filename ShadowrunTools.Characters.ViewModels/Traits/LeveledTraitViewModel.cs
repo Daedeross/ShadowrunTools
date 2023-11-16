@@ -2,18 +2,8 @@
 {
     using ReactiveUI;
     using ShadowrunTools.Characters.Model;
-    using ShadowrunTools.Characters.Prototypes;
     using ShadowrunTools.Characters.Traits;
-    using System;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Collections.Specialized;
-    using System.ComponentModel;
-    using System.Linq;
     using System.Reactive.Disposables;
-    using System.Reactive.Linq;
-    using System.Text;
-    using System.Windows.Input;
 
     public abstract class LeveledTraitViewModel : TraitViewModelBase, ILeveledTraitViewModel
     {
@@ -56,11 +46,15 @@
 
         public int Max => _leveledTrait.Max;
 
+        public bool CanChangeBaseRating => _leveledTrait.CanChangeBaseRating;
+
         public int BaseIncrease { get => _leveledTrait.BaseIncrease; set => _leveledTrait.BaseIncrease = value; }
 
         public int BaseRating { get => _leveledTrait.BaseRating; }
 
         public int BonusRating => _leveledTrait.BonusRating;
+
+        public bool CanChangeImprovedRating => _leveledTrait.CanChangeImprovedRating;
 
         public int Improvement { get => _leveledTrait.Improvement; set => _leveledTrait.Improvement = value; }
 

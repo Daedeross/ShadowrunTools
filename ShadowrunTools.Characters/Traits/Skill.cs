@@ -70,6 +70,13 @@
                 .DisposeWith(Disposables);
 
             AddToGroup(improvements);
+
+            _canChangeBaseRating = this.WhenAnyValue(
+                me => me.mRoot.InPlay,
+                me => me._skillGroup.BaseIncrease,
+                (inPlay, groupIncrease) => !(inPlay || groupIncrease != 0))
+                .ToProperty(this, x => x.CanChangeBaseRating)
+                .DisposeWith(Disposables);
         }
 
         #region Overrides
@@ -90,6 +97,9 @@
                 }
             }
         }
+
+        private ObservableAsPropertyHelper<bool> _canChangeBaseRating;
+        public override bool CanChangeBaseRating => _canChangeBaseRating.Value;
 
         private int _chargenImprovment;
         public override int Improvement
@@ -220,7 +230,6 @@
                     newValue = improvement.NewValue;
                 }
 
-                
             }
             else
             {

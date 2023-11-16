@@ -34,6 +34,8 @@ namespace ShadowrunTools.Characters.Wpf.Views
                     .DisposeWith(d);
                 this.Bind(ViewModel, vm => vm.ActiveSkillSearchText, view => view.ActiveSkillSearchBox.Text)
                     .DisposeWith(d);
+                this.OneWayBind(ViewModel, vm => vm.SkillGroups, view => view.SkillGroups.ItemsSource)
+                    .DisposeWith(d);
             });
         }
 

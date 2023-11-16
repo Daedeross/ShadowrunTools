@@ -31,6 +31,11 @@
                 .WhenAnyValue(x => x.Max, max => (int)Math.Ceiling(max * 1.5))
                 .ToProperty(this, x => x.AugmentedMax)
                 .DisposeWith(Disposables);
+
+            _canChangeBaseRating = this
+                .WhenAnyValue(x => x.Broken, broken => !broken)
+                .ToProperty(this, x => x.CanChangeBaseRating)
+                .DisposeWith(Disposables);
         }
 
         public IReadOnlyList<string> SkillNames { get; }
@@ -55,12 +60,16 @@
 
         #region Overridden
 
+
+        private ObservableAsPropertyHelper<bool> _canChangeBaseRating;
+        public override bool CanChangeBaseRating => _canChangeBaseRating.Value;
+
         public override int BaseIncrease
         {
             get => base.BaseIncrease;
             set
             {
-                if (CanChange(ImprovementSource.Points) && value > 0)
+                if (CanChange(ImprovementSource.Points) && value >= 0)
                 {
                     this.RaiseAndSetIfChanged(ref m_BaseIncrease, value);
                 }
@@ -77,7 +86,7 @@
             get => m_Improvement + _chargenImprovment;
             set
             {
-                if (CanChange(ImprovementSource.Karma) && value > 0)
+                if (CanChange(ImprovementSource.Karma) && value >= 0)
                 {
                     if (mRoot.InPlay)
                     {
@@ -169,7 +178,7 @@
             _skills.Add(skill, output);
             skill.PropertyChanged += OnSkillChanged;
 
-            Hidden = _skills.Count > 1;
+            Hidden = _skills.Count <= 1;
 
             return output;
         }

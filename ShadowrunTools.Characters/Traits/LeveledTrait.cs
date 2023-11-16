@@ -104,6 +104,11 @@
             }
         }
 
+        public virtual bool CanChangeBaseRating
+        {
+            get => true;
+        }
+
         protected ObservableAsPropertyHelper<int> _baseRating;
         public int BaseRating => _baseRating?.Value ?? default;
 
@@ -121,6 +126,11 @@
                     this.RaisePropertyChanged(); // in case update came from a data-bound UI, this will reset it to previous value;
                 }
             }
+        }
+
+        public virtual bool CanChangeImprovedRating
+        {
+            get => true;
         }
 
         protected ObservableAsPropertyHelper<int> _improvedRating;

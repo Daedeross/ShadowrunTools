@@ -1,15 +1,12 @@
 ﻿namespace ShadowrunTools.Characters
 {
+    using DynamicData.Binding;
     using ShadowrunTools.Characters.Model;
     using ShadowrunTools.Characters.Priorities;
-    using ShadowrunTools.Characters.Prototypes;
     using ShadowrunTools.Characters.Traits;
     using ShadowrunTools.Characters.Validators;
-    using ShadowrunTools.Serialization.Prototypes;
     using System;
-    using System.Collections.ObjectModel;
     using System.Collections.Specialized;
-    using System.Linq;
 
     public class Character: CategorizedTraitContainer, ICharacter, INotifyItemChanged
     {
@@ -31,7 +28,7 @@
 
         public ISpecialChoice SpecialChoice => null;
 
-        public ObservableCollection<IValidatorItem> Statuses { get; set; } = new ObservableCollection<IValidatorItem>();
+        public IObservableCollection<IValidatorItem> Statuses { get; set; } = new ObservableCollectionExtended<IValidatorItem>();
 
         #region INotifyItemChanged
 
@@ -100,6 +97,19 @@
                     this[TraitCategories.Skill] = skills;
                 }
                 return skills as ITraitContainer<ISkill>;
+            }
+        }
+
+        public ITraitContainer<ISkillGroup> SkillGroups
+        {
+            get
+            {
+                if (!TryGetValue(TraitCategories.SkillGroup, out ITraitContainer skillGroups))
+                {
+                    skillGroups = new TraitContainer<ISkillGroup>(TraitCategories.SkillGroup);
+                    this[TraitCategories.SkillGroup] = skillGroups;
+                }
+                return skillGroups as ITraitContainer<ISkillGroup>;
             }
         }
 

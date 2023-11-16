@@ -43,6 +43,7 @@ namespace ShadowrunTools.Characters.ViewModels
                 {
                     return factory.For<TViewModel, TModel>(kvp.Value);
                 })
+              
                 .OnItemRemoved(factory.Release);
         }
         public static IObservableCache<TViewModel, string> ToViewModelCache<TViewModel, TModel>(this ITraitContainer<TModel> source, IViewModelFactory factory)

@@ -1,19 +1,17 @@
 ﻿using DynamicData.Binding;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace ShadowrunTools.Characters.ViewModels
 {
     public interface ICharacterSkillsViewModel : IViewModel<ICharacter>
     {
+        IObservableCollection<ISkillGroupViewModel> SkillGroups { get; }
+
         IObservableCollection<ISkillViewModel> Skills { get; }
 
         IObservableCollection<ISkillViewModel> ActiveSkills { get; }
 
         IObservableCollection<ISkillViewModel> KnowledgeSkills { get; }
-
-        IObservableCollection<ISkillGroupViewModel> SkillGroups { get; }
 
         IReadOnlyCollection<string> ActiveSkillFilters { get; }
 

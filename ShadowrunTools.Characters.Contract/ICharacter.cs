@@ -1,8 +1,8 @@
-﻿using ShadowrunTools.Characters.Model;
+﻿using DynamicData.Binding;
+using ShadowrunTools.Characters.Model;
 using ShadowrunTools.Characters.Priorities;
 using ShadowrunTools.Characters.Traits;
 using ShadowrunTools.Characters.Validators;
-using System.Collections.ObjectModel;
 
 namespace ShadowrunTools.Characters
 {
@@ -20,11 +20,11 @@ namespace ShadowrunTools.Characters
 
         ITraitContainer<ISkill> Skills { get; }
 
+        ITraitContainer<ISkillGroup> SkillGroups { get; }
+
         ITraitContainer<IQuality> Qualities { get; }
 
-        ObservableCollection<IValidatorItem> Statuses { get; }
-
-        // ITraitContainer<IQuality> Qualities { get; }
+        IObservableCollection<IValidatorItem> Statuses { get; }
 
         void AddAttribute(IAttribute attribute);
     }

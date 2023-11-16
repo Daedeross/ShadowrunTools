@@ -8,8 +8,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
-using System.Reactive.Subjects;
-using System.Text;
 
 namespace ShadowrunTools.Characters.ViewModels
 {
@@ -64,6 +62,12 @@ namespace ShadowrunTools.Characters.ViewModels
                 .Bind(_knowledgeSkills)
                 .Subscribe()
                 .DisposeWith(Disposables);
+
+            _skillGroups = new ObservableCollectionExtended<ISkillGroupViewModel>(
+                _character.SkillGroups.Values
+                .Where(sg => !sg.Hidden)
+                .OrderBy(sg => sg.Name)
+                .Select(_viewModelFactory.For<ISkillGroupViewModel, ISkillGroup>));
         }
 
         private ObservableCollectionExtended<ISkillViewModel> _skills = new ObservableCollectionExtended<ISkillViewModel>();
@@ -75,7 +79,8 @@ namespace ShadowrunTools.Characters.ViewModels
         private ObservableCollectionExtended<ISkillViewModel> _knowledgeSkills = new ObservableCollectionExtended<ISkillViewModel>();
         public IObservableCollection<ISkillViewModel> KnowledgeSkills => _knowledgeSkills;
 
-        public IObservableCollection<ISkillGroupViewModel> SkillGroups { get; set; }
+        private ObservableCollectionExtended<ISkillGroupViewModel> _skillGroups;
+        public IObservableCollection<ISkillGroupViewModel> SkillGroups => _skillGroups;
 
         #region Filtering
 

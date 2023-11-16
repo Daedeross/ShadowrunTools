@@ -34,6 +34,11 @@ namespace ShadowrunTools.Characters.Traits
         int BaseIncrease { get; set; }
 
         /// <summary>
+        /// True if the trait can change it's base rating (i.e. with points).
+        /// </summary>
+        bool CanChangeBaseRating { get; }
+
+        /// <summary>
         /// The Base Rating of the trait, before extras and Karma Improvement.
         /// (usually <see cref="Min"/>+<see cref="BaseIncrease"/>, capped at <see cref="Max"/>).
         /// </summary>
@@ -43,6 +48,11 @@ namespace ShadowrunTools.Characters.Traits
         /// The improvement to the <see cref="BaseRating"/> from Karma Advancement
         /// </summary>
         int Improvement { get; set; }
+
+        /// <summary>
+        /// True if the trait can change it's rating (w/Karma).
+        /// </summary>
+        bool CanChangeImprovedRating { get; }
 
         /// <summary>
         /// The "actual" rating before bonus, Base + Karma Improvement

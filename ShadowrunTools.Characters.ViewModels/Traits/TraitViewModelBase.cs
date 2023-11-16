@@ -1,17 +1,13 @@
 ﻿using ReactiveUI;
 using ShadowrunTools.Characters.Model;
-using ShadowrunTools.Characters.Prototypes;
 using ShadowrunTools.Characters.Traits;
 using ShadowrunTools.Foundation;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Windows.Input;
 
 namespace ShadowrunTools.Characters.ViewModels.Traits
-{   
+{
     public abstract class TraitViewModelBase: ViewModelBase, ITrait
     {
         private readonly ITrait _trait;
@@ -30,6 +26,8 @@ namespace ShadowrunTools.Characters.ViewModels.Traits
         public Guid Id => _trait.Id;
 
         public bool Independant => _trait.Independant;
+
+        public bool Hidden => _trait.Hidden;
 
         public string Category => _trait.Category;
 

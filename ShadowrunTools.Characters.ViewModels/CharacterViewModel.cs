@@ -33,7 +33,7 @@ namespace ShadowrunTools.Characters.ViewModels
             Common = _viewModelFactory.For<ICommonViewModel, ICharacter>(_character);
             Skills = _viewModelFactory.For<ICharacterSkillsViewModel, ICharacter>(_character);
 
-            Statuses = new ObservableCollection<ValidatorItemViewModel>(_character.Statuses.Select(
+            Statuses = new ObservableCollectionExtended<ValidatorItemViewModel>(_character.Statuses.Select(
                 item => new ValidatorItemViewModel(displaySettings, item)));
             _character.Statuses.CollectionChanged += OnStatusesChanged;
 
@@ -57,7 +57,7 @@ namespace ShadowrunTools.Characters.ViewModels
 
         #region Status
 
-        public ObservableCollection<ValidatorItemViewModel> Statuses { get; protected set; }
+        public IObservableCollection<ValidatorItemViewModel> Statuses { get; protected set; }
 
         private void OnStatusesChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
@@ -66,7 +66,8 @@ namespace ShadowrunTools.Characters.ViewModels
                 oldItem.Dispose();
             }
 
-            Statuses = new ObservableCollection<ValidatorItemViewModel>(_character.Statuses.Select(
+            // TODO: Change to propper Dynamic collection.
+            Statuses = new ObservableCollectionExtended<ValidatorItemViewModel>(_character.Statuses.Select(
                    item => new ValidatorItemViewModel(_displaySettings, item)));
         }
 

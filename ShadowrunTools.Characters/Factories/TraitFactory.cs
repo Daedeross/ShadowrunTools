@@ -5,7 +5,6 @@
     using ShadowrunTools.Characters.Traits;
     using ShadowrunTools.Foundation;
     using System;
-    using System.Collections.Generic;
 
     public class TraitFactory : ITraitFactory//, ITraitFactoryInternal
     {
@@ -66,19 +65,16 @@
         {
             var container = character.GetOrAdd(TraitCategories.SkillGroup, () => new TraitContainer<ISkillGroup>(TraitCategories.SkillGroup));
 
-            if (container.TryGetValue(groupName, out var trait))
-            {
-                if (trait is ISkillGroup group)
-                {
-                    return group;
-                }
-                else
-                {
-                    throw new InvalidCastException($"Trait of incorrect type in SkillGroup container. {trait.TraitType}");
-                }
-            }
+            var trait = container.GetOrAdd(groupName, () => CreateSkillGroup(character, container, groupName));
 
-            return CreateSkillGroup(character, container, groupName);
+            if (trait is ISkillGroup group)
+            {
+                return group;
+            }
+            else
+            {
+                throw new InvalidCastException($"Trait of incorrect type in SkillGroup container. {trait.TraitType}");
+            }
         }
 
         private ISkillGroup CreateSkillGroup(ICharacter character, ITraitContainer category, string groupName)

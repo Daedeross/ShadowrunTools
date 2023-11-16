@@ -140,7 +140,7 @@
                       Grid.RowSpan="2"
                       materialDesign:DataGridAssist.ColumnHeaderPadding="3">
                 <ListView.View>
-                    <GridView AllowsColumnReorder="False">
+                    <GridView AllowsColumnReorder="False" >
                         <GridView.ColumnHeaderContainerStyle>
                             <Style TargetType="GridViewColumnHeader" BasedOn="{StaticResource ResourceKey={x:Type GridViewColumnHeader}}" >
                                 <Setter Property="IsEnabled" Value="False" />
@@ -153,6 +153,7 @@
                                     <mah:NumericUpDown Margin="-4, 0"
                                                        Value="{Binding BaseIncrease}"
                                                        Minimum="0"
+                                                       IsEnabled="{Binding CanChangeBaseRating}"
                                                        Maximum="{Binding MaxBaseIncrease}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
@@ -163,6 +164,7 @@
                                     <mah:NumericUpDown Margin="-4, 0"
                                                        Value="{Binding Improvement}"
                                                        Minimum="0"
+                                                       IsEnabled="{Binding CanChangeImprovedRating}"
                                                        Maximum="{Binding MaxImprovement}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
@@ -261,6 +263,7 @@
                                     <mah:NumericUpDown Margin="-4, 0"
                                                        Value="{Binding BaseIncrease}"
                                                        Minimum="0"
+                                                       IsEnabled="{Binding CanChangeBaseRating}"
                                                        Maximum="{Binding MaxBaseIncrease}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
@@ -271,6 +274,7 @@
                                     <mah:NumericUpDown Margin="-4, 0"
                                                        Value="{Binding Improvement}"
                                                        Minimum="0"
+                                                       IsEnabled="{Binding CanChangeImprovedRating}"
                                                        Maximum="{Binding MaxImprovement}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>

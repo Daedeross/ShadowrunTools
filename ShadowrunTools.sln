@@ -30,7 +30,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShadowrunTools.Dsl", "Shado
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShadowrunTools.Characters.Ui", "ShadowrunTools.Characters.Ui\ShadowrunTools.Characters.Ui.csproj", "{C6556DB1-F3A6-4B8C-A7B4-D5885895B624}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShadowrunTools.Configuration", "ShadowrunTools.Configuration\ShadowrunTools.Configuration.csproj", "{86FB5AA1-E584-4576-AC80-730D74224738}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShadowrunTools.Configuration", "ShadowrunTools.Configuration\ShadowrunTools.Configuration.csproj", "{86FB5AA1-E584-4576-AC80-730D74224738}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ShadowrunTools.Characters
+﻿namespace ShadowrunTools.Characters
 {
     public interface ISelfValidate
     {

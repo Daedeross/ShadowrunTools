@@ -10,8 +10,8 @@ namespace ShadowrunTools.Foundation
         private const int FNVBasis32bit = unchecked((int)0x811C9DC5);
         private const long FNVBasis64bit = unchecked((long)0xcbf29ce484222325);
 
-        private const int FNVPrime32bit = unchecked((int)0x01000193);
-        private const long FNVPrime64bit = unchecked((long)0x00000100000001B3);
+        private const int FNVPrime32bit = unchecked(0x01000193);
+        private const long FNVPrime64bit = unchecked(0x00000100000001B3);
 
         public static int CalculateHash32(params object[] values) => CalculateHash32(values.AsEnumerable());
 
