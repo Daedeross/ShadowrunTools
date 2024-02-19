@@ -54,13 +54,13 @@
 
             _totalPool = this
                 .WhenAnyValue(x => x.ImprovedRating, x => x.LinkedAttribute.ImprovedRating, x => x.AllowDefault, x => x.mRules.SkillDefaultAdjustment,
-                    (skill_rat, attr_rat, allw_def, adj) => (skill_rat > 0 || allw_def) ? skill_rat + attr_rat + adj : 0)
+                    (skill_rat, attr_rat, allw_def, adj) => (skill_rat > 0) ? skill_rat + attr_rat : (allw_def ? attr_rat + adj : 0))
                 .ToProperty(this, x => x.TotalPool)
                 .DisposeWith(Disposables);
 
             _augmentedPool = this
                 .WhenAnyValue(x => x.AugmentedRating, x => x.LinkedAttribute.AugmentedRating, x => x.AllowDefault, x => x.mRules.SkillDefaultAdjustment,
-                    (skill_rat, attr_rat, allw_def, adj) => (skill_rat > 0 || allw_def) ? skill_rat + attr_rat + adj : 0)
+                    (skill_rat, attr_rat, allw_def, adj) => (skill_rat > 0) ? skill_rat + attr_rat : (allw_def ? attr_rat + adj : 0))
                 .ToProperty(this, x => x.AugmentedPool)
                 .DisposeWith(Disposables);
 
