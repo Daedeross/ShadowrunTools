@@ -93,7 +93,7 @@
             get => m_BaseIncrease;
             set
             {
-                if (value > 0 && value < Max - Min)
+                if (value >= 0 && value < Max - Min)
                 {
                     this.RaiseAndSetIfChanged(ref m_BaseIncrease, value);
                 }

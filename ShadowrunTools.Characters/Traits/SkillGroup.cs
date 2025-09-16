@@ -61,7 +61,7 @@
         #region Overridden
 
 
-        private ObservableAsPropertyHelper<bool> _canChangeBaseRating;
+        private readonly ObservableAsPropertyHelper<bool> _canChangeBaseRating;
         public override bool CanChangeBaseRating => _canChangeBaseRating.Value;
 
         public override int BaseIncrease

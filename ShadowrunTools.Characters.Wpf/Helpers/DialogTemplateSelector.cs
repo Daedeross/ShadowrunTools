@@ -11,10 +11,10 @@ namespace ShadowrunTools.Characters.Wpf.Helpers
 {
     public class DialogTemplateSelector : DataTemplateSelector
     {
-        public DataTemplate? ConfirmTemplate { get; set; }
-        public DataTemplate? HostTemplate { get; set; }
+        public DataTemplate ConfirmTemplate { get; set; }
+        public DataTemplate HostTemplate { get; set; }
 
-        public override DataTemplate? SelectTemplate(object item, DependencyObject container)
+        public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
             return item switch
             {

@@ -25,19 +25,19 @@ namespace ShadowrunTools.Characters.Factories
             ICharacterPriorities characterPriorities = null;
             switch (_rules.GenerationMethod)
             {
-                case Model.GenerationMethod.NPC:
+                case GenerationMethod.NPC:
                     throw new NotImplementedException();
-                case Model.GenerationMethod.Priority:
+                case GenerationMethod.Priority:
                     characterPriorities = new CharacterPriorities(prototypes.Priorities);
                     break;
-                case Model.GenerationMethod.SumToTen:
+                case GenerationMethod.SumToTen:
                     characterPriorities = new CharacterPointPriorities(prototypes.Priorities);
                     break;
-                case Model.GenerationMethod.KarmaGen:
+                case GenerationMethod.KarmaGen:
                     throw new NotImplementedException();
-                case Model.GenerationMethod.LifeModules:
+                case GenerationMethod.LifeModules:
                     throw new NotImplementedException();
-                case Model.GenerationMethod.BuildPoints:
+                case GenerationMethod.BuildPoints:
                     throw new NotImplementedException();
                 default:
                     break;

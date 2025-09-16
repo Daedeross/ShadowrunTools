@@ -12,7 +12,7 @@
                           xmlns:rxui="http://reactiveui.net"
                           xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
                           xmlns:h="clr-namespace:ShadowrunTools.Characters.Wpf.Helpers"
-                          xmlns:local="clr-namespace:ShadowrunTools.Characters.Wpf.Views"
+                          xmlns:local="clr-namespace:ShadowrunTools.Characters.Wpf.Views" xmlns:viewmodel="clr-namespace:ShadowrunTools.Characters.Wpf.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:ViewContainer}"
                           mc:Ignorable="d" 
                           d:DesignHeight="450" d:DesignWidth="1000">
     <UserControl.Resources>
