@@ -1,14 +1,12 @@
 ﻿namespace ShadowrunTools.Characters.Traits
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Linq;
-    using System.Reactive.Disposables;
     using NLog;
     using ReactiveUI;
     using ShadowrunTools.Characters.Model;
     using ShadowrunTools.Foundation;
+    using System;
+    using System.Collections.Generic;
+    using System.Reactive.Disposables;
 
     public abstract class BaseTrait : ReactiveObject, ITrait, IDisposable
     {

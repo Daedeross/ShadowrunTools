@@ -11,15 +11,26 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
-    <PackageReference Include="Avalonia.Themes.Fluent" Version="$(AvaloniaVersion)" />
-    <PackageReference Include="Avalonia.Fonts.Inter" Version="$(AvaloniaVersion)" />
-    <PackageReference Include="Avalonia.ReactiveUI" Version="$(AvaloniaVersion)" />
+    <PackageReference Include="Avalonia" Version="11.3.9" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.9" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="11.3.9" />
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
-    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="$(AvaloniaVersion)" />
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.3.9" />
+    <PackageReference Include="Castle.Windsor" Version="6.0.0" />
+    <PackageReference Include="ReactiveUI.Avalonia" Version="11.3.8" />
+    <PackageReference Include="System.Text.Json" Version="10.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Configuration\" />
     <Folder Include="ViewModels\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ShadowrunTools.Characters.Contract\ShadowrunTools.Characters.Contract.csproj" />
+    <ProjectReference Include="..\ShadowrunTools.Characters.ViewModels.Contract\ShadowrunTools.Characters.ViewModels.Contract.csproj" />
+    <ProjectReference Include="..\ShadowrunTools.Characters.ViewModels\ShadowrunTools.Characters.ViewModels.csproj" />
+    <ProjectReference Include="..\ShadowrunTools.Characters\ShadowrunTools.Characters.csproj" />
+    <ProjectReference Include="..\ShadowrunTools.Serialization\ShadowrunTools.Serialization.csproj" />
   </ItemGroup>
 </Project>

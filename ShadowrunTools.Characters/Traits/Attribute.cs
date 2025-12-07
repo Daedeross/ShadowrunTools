@@ -4,7 +4,7 @@
     using ShadowrunTools.Characters.Model;
     using System;
     using System.Linq;
-    using System.Reactive.Disposables;
+    using System.Reactive.Disposables.Fluent;
 
     public class Attribute : LeveledTrait, IAttribute
     {

@@ -1,6 +1,6 @@
 ﻿using ReactiveUI;
 using ShadowrunTools.Characters.ViewModels;
-using System.Reactive.Disposables;
+using System.Reactive.Disposables.Fluent;
 
 namespace ShadowrunTools.Characters.Wpf.Views
 {

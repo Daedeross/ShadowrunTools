@@ -3,7 +3,7 @@
     using ReactiveUI;
     using ShadowrunTools.Characters.Model;
     using ShadowrunTools.Characters.Traits;
-    using System.Reactive.Disposables;
+    using System.Reactive.Disposables.Fluent;
 
     public abstract class LeveledTraitViewModel : TraitViewModelBase, ILeveledTraitViewModel
     {

@@ -11,7 +11,7 @@ using ShadowrunTools.Characters.Factories;
 using ShadowrunTools.Characters.Priorities;
 using ShadowrunTools.Characters.Traits;
 using ShadowrunTools.Characters.ViewModels;
-using ShadowrunTools.Characters.Wpf.ViewModel;
+using ShadowrunTools.Characters.Wpf.ViewModels;
 using ShadowrunTools.Dsl;
 using ShadowrunTools.Foundation;
 using ShadowrunTools.Serialization;
