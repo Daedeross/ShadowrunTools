@@ -162,7 +162,7 @@ namespace ShadowrunTools.Characters.Tests.Serialization
             return prototypes;
         }
 
-        [Fact]
+        [Fact(Skip = "Don't")]
         public void GenerateAttributesFile()
         {
             var prototypes = MakeAttributes();

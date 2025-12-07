@@ -28,9 +28,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShadowrunTools.Characters.V
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShadowrunTools.Dsl", "ShadowrunTools.Dsl\ShadowrunTools.Dsl.csproj", "{4BA7B35A-A55E-481C-B653-409AB7112C9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShadowrunTools.Characters.Ui", "ShadowrunTools.Characters.Ui\ShadowrunTools.Characters.Ui.csproj", "{C6556DB1-F3A6-4B8C-A7B4-D5885895B624}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShadowrunTools.Configuration", "ShadowrunTools.Configuration\ShadowrunTools.Configuration.csproj", "{86FB5AA1-E584-4576-AC80-730D74224738}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShadowrunTools.Characters.Avalonia", "ShadowrunTools.Characters.Avalonia\ShadowrunTools.Characters.Avalonia.csproj", "{6F38450E-11B5-1F36-F48D-0399DADF5F07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShadowrunTools.Characters.Avalonia.Browser", "ShadowrunTools.Characters.Avalonia.Browser\ShadowrunTools.Characters.Avalonia.Browser.csproj", "{07F268D6-A841-6B26-9248-14B8376A23CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShadowrunTools.Characters.Avalonia.Desktop", "ShadowrunTools.Characters.Avalonia.Desktop\ShadowrunTools.Characters.Avalonia.Desktop.csproj", "{A3BD8CDD-301F-86D1-4331-AFB65752925A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -78,16 +82,22 @@ Global
 		{4BA7B35A-A55E-481C-B653-409AB7112C9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4BA7B35A-A55E-481C-B653-409AB7112C9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4BA7B35A-A55E-481C-B653-409AB7112C9B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C6556DB1-F3A6-4B8C-A7B4-D5885895B624}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C6556DB1-F3A6-4B8C-A7B4-D5885895B624}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C6556DB1-F3A6-4B8C-A7B4-D5885895B624}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{C6556DB1-F3A6-4B8C-A7B4-D5885895B624}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C6556DB1-F3A6-4B8C-A7B4-D5885895B624}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C6556DB1-F3A6-4B8C-A7B4-D5885895B624}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{86FB5AA1-E584-4576-AC80-730D74224738}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{86FB5AA1-E584-4576-AC80-730D74224738}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86FB5AA1-E584-4576-AC80-730D74224738}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86FB5AA1-E584-4576-AC80-730D74224738}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F38450E-11B5-1F36-F48D-0399DADF5F07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F38450E-11B5-1F36-F48D-0399DADF5F07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F38450E-11B5-1F36-F48D-0399DADF5F07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F38450E-11B5-1F36-F48D-0399DADF5F07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07F268D6-A841-6B26-9248-14B8376A23CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07F268D6-A841-6B26-9248-14B8376A23CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07F268D6-A841-6B26-9248-14B8376A23CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07F268D6-A841-6B26-9248-14B8376A23CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3BD8CDD-301F-86D1-4331-AFB65752925A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3BD8CDD-301F-86D1-4331-AFB65752925A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3BD8CDD-301F-86D1-4331-AFB65752925A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3BD8CDD-301F-86D1-4331-AFB65752925A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

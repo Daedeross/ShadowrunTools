@@ -17,7 +17,6 @@ namespace ShadowrunTools.Characters.ViewModels
 
         IObservableCollection<ICharacterViewModel> Characters { get; }
 
-
         ICommand NewCharacterCommand { get; }
 
         ICommand LoadDataFile { get; }
