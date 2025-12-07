@@ -67,7 +67,7 @@
 
         #endregion
 
-        private string m_DisplaySpecializations;
+        private string m_DisplaySpecializations = string.Empty;
         public string DisplaySpecializations
         {
             get => m_DisplaySpecializations;

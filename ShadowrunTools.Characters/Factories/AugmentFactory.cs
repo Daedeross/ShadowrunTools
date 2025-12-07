@@ -10,10 +10,10 @@
             _parser = parser;
         }
 
-        public IAugment Create(IScope<T> scope, string script)
+        public IAugment? Create(IScope<T> scope, string script)
         {
             var result = _parser.ParseAgument(script, scope);
-            if (!result.HasValue)
+            if (!result.HasValue || result.Value is null || result.Value.Expression.Scoped is null)
             {
                 return null;
             }

@@ -13,8 +13,8 @@
     public class Skill : LeveledTraitWithRequirements, ISkill
     {
         private readonly SkillGroup _skillGroup;
-        private readonly Improvement _chargenPointsImprovement;
-        private readonly Improvement _chargenKarmaImprovement;
+        private readonly Improvement? _chargenPointsImprovement;
+        private readonly Improvement? _chargenKarmaImprovement;
 
         public Skill(
             Guid id,

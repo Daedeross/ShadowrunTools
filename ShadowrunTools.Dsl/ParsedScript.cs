@@ -7,9 +7,9 @@ namespace ShadowrunTools.Dsl
     {
         public ScriptType Type { get; private set; }
 
-        public IntermediateParsedAugment<T> Augment { get; private set; }
+        public IntermediateParsedAugment<T>? Augment { get; private set; }
 
-        public Expression Expression { get; private set; }
+        public Expression? Expression { get; private set; }
 
         public ParsedScript(IntermediateParsedAugment<T> augment)
         {

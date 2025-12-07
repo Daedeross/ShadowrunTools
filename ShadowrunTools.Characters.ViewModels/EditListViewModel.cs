@@ -49,7 +49,7 @@
 
         protected void CommitEditExecute()
         {
-            var newProperties = Properties.ToDictionary(p => p.Key, p => p.Value) as IPropertyList;
+            var newProperties = (IPropertyList)Properties.ToDictionary(p => p.Key, p => p.Value);
             if (_editable.ValidateEdit(newProperties))
             {
                 Visible = false;

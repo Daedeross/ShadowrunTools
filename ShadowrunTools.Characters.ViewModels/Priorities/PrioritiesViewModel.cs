@@ -15,6 +15,10 @@ namespace ShadowrunTools.Characters.ViewModels
         public PrioritiesViewModel(DisplaySettings displaySettings, IPriorities priorities, ICharacter model)
             : base(displaySettings)
         {
+            if (model.Priorities is null)
+            {
+                throw new ArgumentNullException(nameof(model.Priorities));
+            }
             Rows.Add(new PriorityRow(displaySettings, PriorityLevel.A, priorities, model.Priorities));
             Rows.Add(new PriorityRow(displaySettings, PriorityLevel.B, priorities, model.Priorities));
             Rows.Add(new PriorityRow(displaySettings, PriorityLevel.C, priorities, model.Priorities));

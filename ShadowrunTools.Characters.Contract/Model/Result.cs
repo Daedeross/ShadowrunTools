@@ -4,9 +4,9 @@ namespace ShadowrunTools.Characters.Model
 {
     public class Result<T>
     {
-        public T Value { get; set; }
+        public T? Value { get; set; }
         public bool HasValue { get; set; }
-        public string Message { get; set; }
+        public string? Message { get; set; }
 
         public Result()
         {

@@ -12,21 +12,22 @@
     {
         public Character(
             ICharacterMetatype characterMetatype,
-            ICharacterPriorities characterPriorities)
+            ICharacterPriorities? characterPriorities)
+            : base()
         {
             Metatype = characterMetatype;
             Priorities = characterPriorities;
         }
 
-        public string Name { get; set; }
+        public string Name { get; set; } = "New Character";
 
         public GenerationMethod GenerationMethod { get; set; }
 
-        public ICharacterPriorities Priorities { get; private set; }
+        public ICharacterPriorities? Priorities { get; private set; }
 
         public ICharacterMetatype Metatype { get; private set; }
 
-        public ISpecialChoice SpecialChoice => null;
+        public ISpecialChoice? SpecialChoice => null;
 
         public IObservableCollection<IValidatorItem> Statuses { get; set; } = new ObservableCollectionExtended<IValidatorItem>();
 
@@ -53,7 +54,7 @@
                     this[TraitCategories.Attribute] = attributes;
                     attributes.CollectionChanged += OnAttributesCollectionChanged;
                 }
-                return attributes as ITraitContainer<IAttribute>;
+                return (ITraitContainer<IAttribute>)attributes;
             }
         }
 
@@ -79,7 +80,7 @@
                     skills = new TraitContainer<IQuality>(TraitCategories.Quality);
                     this[TraitCategories.Quality] = skills;
                 }
-                return skills as ITraitContainer<IQuality>;
+                return (ITraitContainer<IQuality>)skills;
             }
         }
 
@@ -96,7 +97,7 @@
                     skills = new TraitContainer<ISkill>(TraitCategories.Skill);
                     this[TraitCategories.Skill] = skills;
                 }
-                return skills as ITraitContainer<ISkill>;
+                return (ITraitContainer<ISkill>)skills;
             }
         }
 
@@ -109,7 +110,7 @@
                     skillGroups = new TraitContainer<ISkillGroup>(TraitCategories.SkillGroup);
                     this[TraitCategories.SkillGroup] = skillGroups;
                 }
-                return skillGroups as ITraitContainer<ISkillGroup>;
+                return (ITraitContainer<ISkillGroup>)skillGroups;
             }
         }
 

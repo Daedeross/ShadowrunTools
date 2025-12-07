@@ -21,7 +21,7 @@
         public IAttribute CreateAttribute(ICharacter character, IAttributePrototype prototype)
         {
             var id = Guid.NewGuid();
-            var container = character.Attributes as ITraitContainer;
+            var container = (ITraitContainer)character.Attributes;
             var attribute = new Traits.Attribute(id, prototype.GetHashCode(), prototype.Name, container, character, character.Metatype, _rules)
             {
                 SubCategory = prototype.SubCategory,
@@ -36,7 +36,7 @@
 
         public ISkill CreateSkill(ICharacter character, ISkillPrototype prototype)
         {
-            var container = character.Skills as ITraitContainer;
+            var container = (ITraitContainer)character.Skills;
             var attribute = character.Attributes[prototype.LinkedAttribute];
             var parser = _parserFactory.Create<ITrait>();
 

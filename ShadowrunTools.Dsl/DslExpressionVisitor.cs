@@ -28,13 +28,13 @@ namespace ShadowrunTools.Dsl
         private readonly PropertyInfo _traitsIndexer;
         private readonly IEnumerable<Type> _traitTypes;
 
-        private HashSet<PropertyReference> _watchedProperties = new();
+        private readonly HashSet<PropertyReference> _watchedProperties = [];
 
         public ICollection<PropertyReference> WatchedProperties => _watchedProperties;
 
         public DslExpressionVisitor()
             : this(new Dictionary<string, MethodInfo>(),
-                  new[] { typeof(ILeveledTrait), typeof(IAttribute)} )
+                  [typeof(ILeveledTrait), typeof(IAttribute)] )
         {
         }
 
@@ -44,10 +44,10 @@ namespace ShadowrunTools.Dsl
             _functions = functions;
             var type = typeof(IScope<TTrait>);
             _scope = Expression.Parameter(type, "scope");
-            _me = Expression.Property(_scope, type.GetProperty(nameof(IScope<TTrait>.Me)));
-            _categories = Expression.Property(_scope, type.GetProperty(nameof(IScope<TTrait>.Traits)));
-            _categoriesIndexer = typeof(IDictionary<string, ITraitContainer>).GetProperty("Item");
-            _traitsIndexer = typeof(IDictionary<string, ITrait>).GetProperty("Item");
+            _me = Expression.Property(_scope, type.GetProperty(nameof(IScope<TTrait>.Me)) ?? throw new InvalidOperationException());
+            _categories = Expression.Property(_scope, type.GetProperty(nameof(IScope<TTrait>.Traits)) ?? throw new InvalidOperationException());
+            _categoriesIndexer = typeof(IDictionary<string, ITraitContainer>).GetProperty("Item") ?? throw new InvalidOperationException();
+            _traitsIndexer = typeof(IDictionary<string, ITrait>).GetProperty("Item") ?? throw new InvalidOperationException();
 
             _traitTypes = otherTypes;
         }
@@ -267,6 +267,10 @@ namespace ShadowrunTools.Dsl
 
             var trait = context.trait().Accept(this);
 
+            if (trait.Extra is null)
+            {
+                throw new InvalidOperationException("Trait reference must include category and name.");
+            }
             var (category, name) = ((string category, string name))trait.Extra;
 
             _watchedProperties.Add(new PropertyReference(category, name, property));
@@ -308,7 +312,9 @@ namespace ShadowrunTools.Dsl
             var category = context.trait_type().Accept(this);
             var name = context.trait_name().Accept(this);
 
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
             return new(Expression.MakeIndex(category, _traitsIndexer, new[] { name.Value } ), ((string)category.Extra, (string)name.Extra));
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
         }
 
         public override Payload<Expression> VisitTrait_type([NotNull] CharacterBuilderParser.Trait_typeContext context)
@@ -375,7 +381,7 @@ namespace ShadowrunTools.Dsl
         /// <param name="faultExpression">The expression to use if an exception is caught. Result type must match <paramref name="tryExpression"/></param>
         /// <param name="exceptionType">Thy type of exception to catch. Defaults to <see cref="Exception"/>.</param>
         /// <returns>The wrapped expression tree.</returns>
-        private static Expression WrapInTryFault(Expression tryExpression, Expression faultExpression, Type exceptionType = null)
+        private static TryExpression WrapInTryFault(Expression tryExpression, Expression faultExpression, Type? exceptionType = null)
         {
             return Expression.TryCatch(
                 tryExpression,

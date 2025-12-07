@@ -25,7 +25,7 @@
 
         ITraitPrototype GetTraitPrototype(TraitType traitType, string name);
 
-        TPrototype GetTraitPrototype<TPrototype>(string name)
+        TPrototype? GetTraitPrototype<TPrototype>(string name)
             where TPrototype : class, ITraitPrototype;
 
         IReadOnlyDictionary<string, TPrototype> GetTraits<TPrototype>()

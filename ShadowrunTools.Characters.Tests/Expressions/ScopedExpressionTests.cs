@@ -91,6 +91,7 @@ namespace ShadowrunTools.Characters.Tests.Expressions
             var parseResult = parser.ParseExpression<bool>(script, scope.Object);
 
             Assert.True(parseResult.HasValue);
+            Assert.NotNull(parseResult.Value?.Scoped);
 
             var result = parseResult.Value.Scoped();
 
@@ -133,6 +134,7 @@ namespace ShadowrunTools.Characters.Tests.Expressions
             var parseResult = parser.ParseExpression<bool>(script, scope.Object);
 
             Assert.True(parseResult.HasValue);
+            Assert.NotNull(parseResult.Value?.Scoped);
 
             var result = parseResult.Value.Scoped();
 
@@ -177,6 +179,7 @@ namespace ShadowrunTools.Characters.Tests.Expressions
 
 
             Assert.True(result.HasValue);
+            Assert.NotNull(result.Value?.Scoped);
             Assert.Equal(1d, result.Value.Scoped());
         }
     }

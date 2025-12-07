@@ -40,7 +40,7 @@ namespace ShadowrunTools.Serialization
             _metavariants = new List<IMetavariantPrototype>();
         }
 
-        public ITraitPrototype GetTraitPrototype(TraitType traitType, string name)
+        public ITraitPrototype? GetTraitPrototype(TraitType traitType, string name)
         {
             if (_traitsMap1.TryGetValue(traitType, out Dictionary<string, ITraitPrototype> inner))
             {
@@ -50,7 +50,8 @@ namespace ShadowrunTools.Serialization
             return default;
         }
 
-        TPrototype IPrototypeRepository.GetTraitPrototype<TPrototype>(string name)
+        TPrototype? IPrototypeRepository.GetTraitPrototype<TPrototype>(string name)
+            where TPrototype : class
         {
             if (_traitsMap2.TryGetValue(typeof(TPrototype), out Dictionary<string, ITraitPrototype> inner))
             {
@@ -65,7 +66,7 @@ namespace ShadowrunTools.Serialization
         {
             if (_traitsMap2.TryGetValue(typeof(TPrototype), out Dictionary<string, ITraitPrototype> inner))
             {
-                return inner.ToDictionary(kvp => kvp.Key, kvp => kvp.Value as TPrototype);
+                return inner.ToDictionary(kvp => kvp.Key, kvp => (TPrototype)kvp.Value);
             }
             return new Dictionary<string, TPrototype>();
         }

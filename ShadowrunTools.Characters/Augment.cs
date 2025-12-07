@@ -57,7 +57,7 @@ namespace ShadowrunTools.Characters
                 {
                     _scope.Traits.TryGetTrait(pr.Category, pr.Name, out var trait);
 
-                    return new { pr.Category, pr.Name, Trait = trait as IAugmentable, pr.Property };
+                    return new { pr.Category, pr.Name, Trait = (IAugmentable)trait, pr.Property };
                 })
                 .ToDictionary(a => (a.Category, a.Name), a => (a.Trait, a.Property));
 
@@ -154,15 +154,15 @@ namespace ShadowrunTools.Characters
         {
             bool recalc = false;
 
-            if (_watchedTraits.TryGetValue((category, name), out var tuple))
+            if (_watchedTraits.TryGetValue((category, name), out var watch))
             {
-                if (tuple.trait != trait)
+                if (watch.trait != trait)
                 {
                     throw new ArgumentException("Trait being removed does not exist");
                 }
 
-                RemovePropertyFromWatched(trait, tuple.property);
-                tuple.trait = null;
+                RemovePropertyFromWatched(trait, watch.property);
+                //watch.trait = null;
                 recalc = true;
             }
 

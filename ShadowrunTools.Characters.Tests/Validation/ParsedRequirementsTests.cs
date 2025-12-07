@@ -53,7 +53,7 @@ namespace ShadowrunTools.Characters.Tests.Validation
             return container;
         }
 
-        public static IEnumerable<object[]> WhitespaceStrings()
+        public static IEnumerable<object?[]> WhitespaceStrings()
         {
             return (new []
             {
@@ -72,28 +72,28 @@ namespace ShadowrunTools.Characters.Tests.Validation
                 "\x2004",
                 "\x2005"
             })
-            .Select(s => new object[] { s });
+            .Select(s => new object?[] { s });
         }
 
 
         public static IEnumerable<object[]> SimpleBooleanExpressions()
         {
-            return new[]
-            {
-                new object[] { "true", true },
-                new object[] { "TRUE", true },
-                new object[] { "false", false },
-                new object[] { "FALSE", false },
-                new object[] { "true and false", false },
-                new object[] { "false or true", true },
-                new object[] { "1 = 1", true },
-                new object[] { "1 = 2", false },
-                new object[] { "1 < 2", true },
-                new object[] { "1 < 1", false },
-                new object[] { "1 <= 2", true },
-                new object[] { "1 <= 1", true },
-                new object[] { "not (1 = 1)", false },
-            };
+            return
+            [
+                ["true", true],
+                [ "TRUE", true ],
+                [ "false", false ],
+                [ "FALSE", false ],
+                [ "true and false", false ],
+                [ "false or true", true ],
+                [ "1 = 1", true ],
+                [ "1 = 2", false ],
+                [ "1 < 2", true ],
+                [ "1 < 1", false ],
+                [ "1 <= 2", true ],
+                [ "1 <= 1", true ],
+                [ "not (1 = 1)", false ],
+            ];
         }
 
         [Fact]

@@ -121,7 +121,7 @@ namespace ShadowrunTools.Characters
             return false;
         }
 
-        public bool TryGetValue(string key, out ITrait value)
+        public bool TryGetValue(string key, out ITrait? value)
         {
             return _traits.TryGetValue(key, out value);
         }

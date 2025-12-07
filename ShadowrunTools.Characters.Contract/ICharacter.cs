@@ -10,11 +10,11 @@ namespace ShadowrunTools.Characters
     {
         GenerationMethod GenerationMethod { get; }
 
-        ICharacterPriorities Priorities { get; }
+        ICharacterPriorities? Priorities { get; }
 
         ICharacterMetatype Metatype { get; }
 
-        ISpecialChoice SpecialChoice { get; }
+        ISpecialChoice? SpecialChoice { get; }
 
         ITraitContainer<IAttribute> Attributes { get; }
 

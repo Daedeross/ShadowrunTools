@@ -11,6 +11,10 @@
     {
         public static IValidatorItem AttributePointsValidator(ICharacter character)
         {
+            if (character.Priorities is null)
+            {
+                throw new ArgumentNullException(nameof(character.Priorities));
+            }
             return TraitCollectionAggregateValidator.Create<IAttribute, int>(
                 character.Attributes,
                 "Attributes",
@@ -19,7 +23,7 @@
                 (left, attr) => left + (attr.BaseRating - attr.Min),
                 points => points <= character.Priorities.AttributePoints,
                 0,
-                character.Priorities as INotifyItemChanged,
+                (INotifyItemChanged)character.Priorities,
                 nameof(ICharacterPriorities.AttributePoints)
                 );
         }

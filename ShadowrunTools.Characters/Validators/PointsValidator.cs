@@ -1,9 +1,7 @@
 ﻿namespace ShadowrunTools.Characters.Validators
 {
-    using System;
     using System.Collections.Generic;
     using System.Collections.Specialized;
-    using System.Text;
 
     public class PointsValidator : ItemChangedBase, ICharacterValidator
     {
@@ -16,9 +14,9 @@
 
         public bool IsValid { get; private set; } = true;
 
-        private List<IValidatorItem> _items = new();
+        private List<IValidatorItem> _items = [];
         public IReadOnlyCollection<IValidatorItem> Items => _items;
 
-        public event NotifyCollectionChangedEventHandler CollectionChanged;
+        public event NotifyCollectionChangedEventHandler? CollectionChanged;
     }
 }

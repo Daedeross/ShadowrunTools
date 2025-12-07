@@ -1,12 +1,15 @@
 ﻿namespace ShadowrunTools.Characters.Traits
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Linq;
+    using System.Reactive.Disposables;
+    using System.Reactive.Disposables.Fluent;
     using NLog;
     using ReactiveUI;
     using ShadowrunTools.Characters.Model;
     using ShadowrunTools.Foundation;
-    using System;
-    using System.Collections.Generic;
-    using System.Reactive.Disposables;
 
     public abstract class BaseTrait : ReactiveObject, ITrait, IDisposable
     {
@@ -138,10 +141,10 @@
         protected virtual (bool, IEnumerable<string>) OnBeforeCommitEdit(IPropertyList properties)
         {
             var propNames = new List<string>();
-            string name;
-            string subCat;
-            string userNotes;
-            string book;
+            string? name;
+            string? subCat;
+            string? userNotes;
+            string? book;
             int page;
 
             if (properties.TryGetValue("Name", out IProperty pName))
@@ -149,7 +152,7 @@
                 name = pName.Value as string;
                 if (string.IsNullOrWhiteSpace(name))
                 {
-                    return (false, null);
+                    return (false, []);
                 }
             }
             if (properties.TryGetValue("SubCategory", out IProperty pSubCat))
@@ -174,7 +177,7 @@
                 if (!string.Equals(book, Book))
                 {
                     propNames.Add("Book");
-                    Book = book;
+                    Book = book ?? string.Empty;
                 }
             }
             if (properties.TryGetValue("Page", out IProperty pPage))

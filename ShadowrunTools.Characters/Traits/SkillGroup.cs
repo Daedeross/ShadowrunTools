@@ -111,7 +111,7 @@
 
         #endregion
 
-        internal Improvement ImproveSkill(ISkill skill, Improvement improvement)
+        internal Improvement? ImproveSkill(ISkill skill, Improvement improvement)
         {
             var amount = improvement.NewValue - improvement.OldValue;
             if (amount == 0)

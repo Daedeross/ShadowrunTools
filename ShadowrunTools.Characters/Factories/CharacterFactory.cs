@@ -12,7 +12,9 @@ namespace ShadowrunTools.Characters.Factories
         private readonly ITraitFactory _traitFactory;
         private readonly IRules _rules;
 
+#pragma warning disable IDE0290 // Use primary constructor
         public CharacterFactory(IRules rules, ITraitFactory traitFactory)
+#pragma warning restore IDE0290 // Use primary constructor
         {
             _rules = rules;
             _traitFactory = traitFactory;
@@ -22,7 +24,7 @@ namespace ShadowrunTools.Characters.Factories
         {
             var characterPrototype = CharacterPrototype.CreateFromRepository(prototypes);
 
-            ICharacterPriorities characterPriorities = null;
+            ICharacterPriorities? characterPriorities = null;
             switch (_rules.GenerationMethod)
             {
                 case GenerationMethod.NPC:

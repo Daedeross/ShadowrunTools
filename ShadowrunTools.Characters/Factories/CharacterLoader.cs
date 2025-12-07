@@ -21,7 +21,7 @@ namespace ShadowrunTools.Characters.Factories
         {
             var meta = _loader.FromDto(dto.Metatype);
 
-            var characterPriorities = _loader.FromDto(dto.GenerationMethod, dto.Priorities);
+            var characterPriorities = _loader.FromDto(dto.GenerationMethod, dto.Priorities ?? throw new ArgumentNullException(nameof(dto.Priorities)));
 
             var character = new Character(meta, characterPriorities);
             character.Name = dto.Name;
@@ -43,7 +43,7 @@ namespace ShadowrunTools.Characters.Factories
             {
                 GenerationMethod = character.GenerationMethod,
                 Name = character.Name,
-                Priorities = _loader.ToDto(character.Priorities),
+                Priorities = character.Priorities is null ? null : _loader.ToDto(character.Priorities),
                 Metatype = _loader.ToDto(character.Metatype),
                 Attributes = character.Attributes.ToDictionary(kvp => kvp.Key, kvp => _loader.ToDto(kvp.Value))
 

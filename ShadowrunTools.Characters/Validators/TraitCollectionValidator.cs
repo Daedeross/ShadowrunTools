@@ -42,7 +42,7 @@
         }
 
         private string mMessage;
-        public string Message
+        public string? Message
         {
             get => IsValid ? null : mMessage;
         }
@@ -109,7 +109,7 @@
             }
             foreach (var kvp in newTraits)
             {
-                _isValidMap[kvp.Key] = _validation(kvp.Value as ITrait);
+                _isValidMap[kvp.Key] = _validation((ITrait)kvp.Value);
                 kvp.Value.ItemChanged += OnTraitChanged;
             }
 

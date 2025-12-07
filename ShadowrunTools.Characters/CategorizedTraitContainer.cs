@@ -38,7 +38,7 @@
                 }
                 else
                 {
-                    RaiseAddedItems(new List<KeyValuePair<string, ITraitContainer>> { new KeyValuePair<string, ITraitContainer>(key, value) });
+                    RaiseAddedItems([new KeyValuePair<string, ITraitContainer>(key, value)]);
                 }
             }
         }
@@ -136,7 +136,7 @@
             return GetEnumerator();
         }
 
-        public bool TryGetTrait(string category, string name, out ITrait trait)
+        public bool TryGetTrait(string category, string name, out ITrait? trait)
         {
             trait = default;
 
@@ -228,7 +228,7 @@
 
         #region INotifyCollectionChanged
 
-        public event NotifyCollectionChangedEventHandler CollectionChanged;
+        public event NotifyCollectionChangedEventHandler? CollectionChanged;
 
         protected void RaiseAddedItems(IList<KeyValuePair<string, ITraitContainer>> newItems)
         {
@@ -246,7 +246,7 @@
         }
         #endregion
 
-        public event EventHandler<TraitsChangedEventArgs> TraitsChanged;
+        public event EventHandler<TraitsChangedEventArgs>? TraitsChanged;
 
         protected void NotifyTraitsAdded(IList<(string category, string name, ITrait trait)> newTraits)
         {

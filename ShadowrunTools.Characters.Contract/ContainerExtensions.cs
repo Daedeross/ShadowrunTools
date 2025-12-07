@@ -7,7 +7,7 @@
     {
         public static ITraitContainer<ISkill> Skills(this ICategorizedTraitContainer root)
         {
-            return root[Categories.Skills] as ITraitContainer<ISkill>;
+            return (ITraitContainer<ISkill>)root[Categories.Skills];
         }
     }
 }

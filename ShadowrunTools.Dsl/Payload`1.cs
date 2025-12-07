@@ -10,7 +10,7 @@ namespace ShadowrunTools.Dsl
     {
         public T Value { get; set; }
 
-        public object Extra { get; set; }
+        public object? Extra { get; set; }
 
         public Payload(T value)
         {

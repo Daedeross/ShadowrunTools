@@ -20,11 +20,11 @@ namespace ShadowrunTools.Characters
 
         T IDictionary<string, T>.this[string key]
         {
-            get => base[key] as T;
+            get => (T)base[key];
             set => base[key] = value;
         }
 
-        ICollection<T> IDictionary<string, T>.Values => Values.Select(x => x as T).ToList();
+        ICollection<T> IDictionary<string, T>.Values => Values.Select(x => (T)x).ToList();
 
         public void Add(string key, T value)
         {
@@ -52,7 +52,7 @@ namespace ShadowrunTools.Characters
             return base.Remove(new KeyValuePair<string, ITrait>(item.Key, item.Value));
         }
 
-        public bool TryGetValue(string key, out T value)
+        public bool TryGetValue(string key, out T? value)
         {
             var result = base.TryGetValue(key, out ITrait trait);
             value = trait as T;
@@ -87,7 +87,7 @@ namespace ShadowrunTools.Characters
             {
                 if (_enumerator.MoveNext())
                 {
-                    Current = new KeyValuePair<string, TValue>(_enumerator.Current.Key, _enumerator.Current.Value as TValue);
+                    Current = new KeyValuePair<string, TValue>(_enumerator.Current.Key, (TValue)_enumerator.Current.Value);
                     return true;
                 }
                 else

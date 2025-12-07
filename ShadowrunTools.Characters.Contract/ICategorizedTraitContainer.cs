@@ -13,6 +13,6 @@ namespace ShadowrunTools.Characters
 
         event EventHandler<TraitsChangedEventArgs> TraitsChanged;
 
-        bool TryGetTrait(string category, string name, out ITrait trait);
+        bool TryGetTrait(string category, string name, out ITrait? trait);
     }
 }

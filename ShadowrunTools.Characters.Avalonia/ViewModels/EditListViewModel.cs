@@ -1,4 +1,4 @@
-﻿namespace ShadowrunTools.Characters.Wpf.ViewModels
+﻿namespace ShadowrunTools.Characters.Avalonia.ViewModels
 {
     using ShadowrunTools.Foundation;
     using System.Collections.Generic;

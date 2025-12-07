@@ -17,7 +17,7 @@ namespace ShadowrunTools.Dsl
             _visitor = visitor;
         }
 
-        public Result<ParsedAugment<T>> ParseAgument(string script, IScope<T> scope = null)
+        public Result<ParsedAugment<T>> ParseAgument(string script, IScope<T>? scope = null)
         {
             var str = new AntlrInputStream(script);
             var lexer = new CharacterBuilderLexer(str);
@@ -30,7 +30,7 @@ namespace ShadowrunTools.Dsl
             if (result.Type == ScriptType.Augment)
             {
                 var del = Expression.Lambda<Func<IScope<T>, double>>(result.Augment.Expression, _visitor.Scope).Compile();
-                Func<double> scoped = scope is null
+                Func<double>? scoped = scope is null
                     ? null
                     : () => del(scope);
 
@@ -55,7 +55,7 @@ namespace ShadowrunTools.Dsl
             }
         }
 
-        public Result<ParsedExpression<T, TRet>> ParseExpression<TRet>(string script, IScope<T> scope = null)
+        public Result<ParsedExpression<T, TRet>> ParseExpression<TRet>(string script, IScope<T>? scope = null)
         {
             try
             {
@@ -70,7 +70,7 @@ namespace ShadowrunTools.Dsl
                 if (result.Type == ScriptType.Expression)
                 {
                     var del = Expression.Lambda<Func<IScope<T>, TRet>>(result.Expression, _visitor.Scope).Compile();
-                    Func<TRet> scoped = scope is null
+                    Func<TRet>? scoped = scope is null
                         ? null
                         : () => del(scope);
 

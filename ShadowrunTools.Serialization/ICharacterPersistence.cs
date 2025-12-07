@@ -14,7 +14,7 @@
 
         //byte[] SerializeCharacter(ICharacter character, ICharacterLoader loader, System.Text.Encoding encoding);
 
-        ICharacter LoadCharacter(string filename, ICharacterLoader loader);
+        ICharacter? LoadCharacter(string filename, ICharacterLoader loader);
 
         //ICharacter LoadCharacter(Stream stream, ICharacterLoader loader);
 

@@ -7,8 +7,15 @@
 
     public static class ValueChangedExtensions
     {
-        public static bool RaiseAndSetIfValueChanged<TObj, TRet>(this TObj targetObject, ref TRet backingField, TRet newValue, [CallerMemberName] string propertyName = null, IEqualityComparer<TRet> equalityComparer = default) where TObj : INotifyValueChanged
+        public static bool RaiseAndSetIfValueChanged<TObj, TRet>(
+            this TObj targetObject,
+            ref TRet backingField,
+            TRet newValue,
+            [CallerMemberName] string? propertyName = null,
+            IEqualityComparer<TRet>? equalityComparer = default
+            ) where TObj : INotifyValueChanged
         {
+            equalityComparer ??= EqualityComparer<TRet>.Default;
             if (!equalityComparer.Equals(backingField, newValue))
             {
                 var args = new ValueChangedEventArgs(propertyName, backingField, newValue);

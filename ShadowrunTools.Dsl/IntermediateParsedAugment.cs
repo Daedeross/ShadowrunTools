@@ -7,6 +7,6 @@ namespace ShadowrunTools.Dsl
     public class IntermediateParsedAugment<T>
     {
         public List<PropertyReference> Targets { get; set; } = new List<PropertyReference>();
-        public Expression Expression { get; set; }
+        public Expression? Expression { get; set; }
     }
 }

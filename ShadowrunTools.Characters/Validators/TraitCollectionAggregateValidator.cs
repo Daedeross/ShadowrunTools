@@ -42,7 +42,7 @@
         }
 
         private string mMessage;
-        public string Message
+        public string? Message
         {
             get => IsValid ? null : mMessage;
         }

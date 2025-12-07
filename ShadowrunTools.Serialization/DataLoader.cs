@@ -55,6 +55,12 @@ namespace ShadowrunTools.Serialization
             {
                 var dto = _serializer.Deserialize<PrototypeFile>(reader);
 
+                if (dto is null)
+                {
+                    _logger.Error($"Unable to parse file: {filename}");
+                    return;
+                }
+
                 repository.MergeFile(dto);
             }
         }
@@ -83,20 +89,24 @@ namespace ShadowrunTools.Serialization
             _serializer.Serialize(textWriter, dto);
         }
 
-        public ICharacter LoadCharacter(string filename, ICharacterLoader loader)
+        public ICharacter? LoadCharacter(string filename, ICharacterLoader loader)
         {
-            ICharacter character = null;
-
             if (!File.Exists(filename))
             {
                 _logger.Error($"File does not exist: {filename}");
-                return character;
+                return null;
             }
 
             using (var stream = new StreamReader(filename))
             using (var reader = new JsonTextReader(stream))
             {
                 var dto = _serializer.Deserialize<CharacterDto>(reader);
+
+                if (dto is null)
+                {
+                    _logger.Error($"Unable to parse file: {filename}");
+                    return null;
+                }
                 return loader.FromDto(dto);
             }
         }

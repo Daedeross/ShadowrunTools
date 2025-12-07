@@ -12,6 +12,6 @@
         public bool IsValid => Record.IsValid;
         public string Label => Record.Label;
         public string Value => Record.Value;
-        public string Message => Record.Message;
+        public string? Message => Record.Message;
     }
 }

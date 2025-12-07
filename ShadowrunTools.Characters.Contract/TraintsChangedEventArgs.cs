@@ -67,10 +67,10 @@ namespace ShadowrunTools.Characters
             switch (action)
             {
                 case NotifyCollectionChangedAction.Add:
-                    NewItems = new List<(string category, string name, ITrait trait)> { changedItem };
+                    NewItems = [changedItem];
                     break;
                 case NotifyCollectionChangedAction.Remove:
-                    OldItems = new List<(string category, string name, ITrait trait)> { changedItem };
+                    OldItems = [changedItem];
                     break;
                 case NotifyCollectionChangedAction.Reset:
                     break;
@@ -108,7 +108,7 @@ namespace ShadowrunTools.Characters
         /// A NotifyCollectionChangedAction value that describes
         /// the action that caused the event.
         /// </returns>
-        public NotifyCollectionChangedAction Action { get; }
+        public NotifyCollectionChangedAction? Action { get; }
 
         /// <summary>
         /// Gets the list of new traits involved in the change.
@@ -116,7 +116,7 @@ namespace ShadowrunTools.Characters
         /// <returns>
         /// The list of new traits involved in the change.
         /// </returns>
-        public IList<(string category, string name, ITrait trait)> NewItems { get; }
+        public IList<(string category, string name, ITrait trait)> NewItems { get; } = [];
 
         /// <summary>
         /// Gets the list of items affected by a NotifyCollectionChangedAction.Replace,
@@ -126,6 +126,6 @@ namespace ShadowrunTools.Characters
         /// The list of items affected by a NotifyCollectionChangedAction.Replace,
         /// Remove, or Move action.
         /// </returns>
-        public IList<(string category, string name, ITrait trait)> OldItems { get; }
+        public IList<(string category, string name, ITrait trait)> OldItems { get; } = [];
     }
 }

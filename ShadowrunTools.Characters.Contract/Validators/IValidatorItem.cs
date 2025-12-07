@@ -5,6 +5,6 @@
         bool IsValid { get; }
         string Label { get; }
         string Value { get; }
-        string Message { get; }
+        string? Message { get; }
     }
 }

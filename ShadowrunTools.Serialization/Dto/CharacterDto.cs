@@ -18,7 +18,7 @@
         //public Dictionary<string, IPrototype> Prototypes { get; set; }
 
         [DataMember]
-        public CharacterPrioritiesDto Priorities { get; set; }
+        public CharacterPrioritiesDto? Priorities { get; set; }
 
         [DataMember]
         public CharacterMetatypeDto Metatype { get; set; }

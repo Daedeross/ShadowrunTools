@@ -30,8 +30,7 @@ namespace ShadowrunTools.Characters
         public IObservableCollection<string> Augments { get; }
 
 
-        public IEnumerable<(string script, string error)> Errors;
-
+        public IEnumerable<(string script, string error)> Errors = [];
 
         private void OnAddAugment(string script)
         {
